@@ -750,3 +750,8 @@
 :root {
 	@include theme;
 }
+
+/* Use Vazirmatn font when direction is RTL (Persian locale) */
+html[dir='rtl'] {
+	--font-family: 'Vazirmatn', InterVariable, sans-serif;
+}

@@ -4,6 +4,7 @@ import { ref } from 'vue';
 import { createI18n } from 'vue-i18n';
 
 import englishBaseText from './locales/en.json';
+import persianBaseText from './locales/fa.json';
 import type { BaseTextKey, LocaleMessages, INodeTranslationHeaders } from './types';
 import {
 	deriveMiddleKey,
@@ -18,7 +19,7 @@ export const i18nInstance = createI18n({
 	legacy: false,
 	locale: 'en',
 	fallbackLocale: 'en',
-	messages: { en: englishBaseText },
+	messages: { en: englishBaseText, fa: persianBaseText },
 	warnHtmlMessage: false,
 });
 
@@ -394,8 +395,13 @@ export class I18nClass {
 const loadedLanguages: string[] = [];
 
 export function setLanguage(locale: string) {
-	i18nInstance.global.locale.value = locale as 'en';
-	document.querySelector('html')!.setAttribute('lang', locale);
+	i18nInstance.global.locale.value = locale as 'en' | 'fa';
+	const htmlElement = document.querySelector('html')!;
+	htmlElement.setAttribute('lang', locale);
+
+	// Set direction based on locale: Persian (fa) = RTL, English (en) = LTR
+	const direction = locale === 'fa' ? 'rtl' : 'ltr';
+	htmlElement.setAttribute('dir', direction);
 
 	// Invalidate cached baseText results on locale change
 	i18n.clearCache();

@@ -254,17 +254,17 @@ export const useVersionsStore = defineStore(STORES.VERSIONS, () => {
 			}
 
 			message = `${message} <a class="primary-color">More info</a>`;
-			showToast({
-				title: 'Critical update available',
-				message,
-				onClick: () => {
-					uiStore.openModal(VERSIONS_MODAL_KEY);
-				},
-				closeOnClick: true,
-				customClass: 'clickable',
-				type: 'warning',
-				duration: 0,
-			});
+			// showToast({
+			// 	title: 'Critical update available',
+			// 	message,
+			// 	onClick: () => {
+			// 		uiStore.openModal(VERSIONS_MODAL_KEY);
+			// 	},
+			// 	closeOnClick: true,
+			// 	customClass: 'clickable',
+			// 	type: 'warning',
+			// 	duration: 0,
+			// });
 		}
 	};
 

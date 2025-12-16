@@ -290,7 +290,8 @@ function onBackButton() {
 }
 .renderedItems {
 	overflow: auto;
-	height: 100%;
+	flex: 1;
+	min-height: 0;
 	display: flex;
 	flex-direction: column;
 	scrollbar-width: none; /* Firefox 64 */

@@ -719,14 +719,7 @@
 	@include theme;
 }
 
-body[data-theme='light'] {
-	color-scheme: light;
-}
-
-body[data-theme='dark'] {
-	color-scheme: dark;
-}
-
-body:not([data-theme]) {
-	color-scheme: light dark;
+/* Use Vazirmatn font when direction is RTL (Persian locale) */
+html[dir='rtl'] {
+	--font-family: 'Vazirmatn', InterVariable, sans-serif;
 }

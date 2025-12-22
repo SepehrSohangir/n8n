@@ -23,3 +23,70 @@
 	font-display: swap;
 	src: url('#{var.$font-path}/CommitMonoVariable.woff2') format('woff2');
 }
+
+/* VazirMatn font family - Persian/Farsi font */
+@font-face {
+	font-family: VazirMatn;
+	font-style: normal;
+	font-weight: 100;
+	font-display: swap;
+	src:
+		url('#{var.$font-path}/vazir/Vazir-Thin-FD.woff2') format('woff2'),
+		url('#{var.$font-path}/vazir/Vazir-Thin-FD.woff') format('woff'),
+		url('#{var.$font-path}/vazir/Vazir-Thin-FD.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: VazirMatn;
+	font-style: normal;
+	font-weight: 300;
+	font-display: swap;
+	src:
+		url('#{var.$font-path}/vazir/Vazir-Light-FD.woff2') format('woff2'),
+		url('#{var.$font-path}/vazir/Vazir-Light-FD.woff') format('woff'),
+		url('#{var.$font-path}/vazir/Vazir-Light-FD.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: VazirMatn;
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src:
+		url('#{var.$font-path}/vazir/Vazir-Regular-FD.woff2') format('woff2'),
+		url('#{var.$font-path}/vazir/Vazir-Regular-FD.woff') format('woff'),
+		url('#{var.$font-path}/vazir/Vazir-Regular-FD.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: VazirMatn;
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src:
+		url('#{var.$font-path}/vazir/Vazir-Medium-FD.woff2') format('woff2'),
+		url('#{var.$font-path}/vazir/Vazir-Medium-FD.woff') format('woff'),
+		url('#{var.$font-path}/vazir/Vazir-Medium-FD.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: VazirMatn;
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src:
+		url('#{var.$font-path}/vazir/Vazir-Bold-FD.woff2') format('woff2'),
+		url('#{var.$font-path}/vazir/Vazir-Bold-FD.woff') format('woff'),
+		url('#{var.$font-path}/vazir/Vazir-Bold-FD.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: VazirMatn;
+	font-style: normal;
+	font-weight: 900;
+	font-display: swap;
+	src:
+		url('#{var.$font-path}/vazir/Vazir-Black-FD.woff2') format('woff2'),
+		url('#{var.$font-path}/vazir/Vazir-Black-FD.woff') format('woff'),
+		url('#{var.$font-path}/vazir/Vazir-Black-FD.ttf') format('truetype');
+}

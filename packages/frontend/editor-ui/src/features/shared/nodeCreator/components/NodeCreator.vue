@@ -55,7 +55,7 @@ const viewStacksLength = computed(() => useViewStacks().viewStacks.length);
 const nodeCreatorInlineStyle = computed(() => {
 	const rightPosition = getRightOffset();
 	return {
-		top: `${bannersStore.bannersHeight + uiStore.headerHeight}px`,
+		top: '0',
 		right: `${rightPosition}px`,
 	};
 });
@@ -210,12 +210,13 @@ onClickOutside(
 	--node-creator--width: #{$node-creator-width};
 	--node--icon--color: var(--color--text);
 	position: fixed;
-	top: $header-height;
+	top: 0;
 	bottom: 0;
 	right: 0;
 	z-index: var(--node-creator--z);
 	width: var(--node-creator--width);
 	color: $node-creator-text-color;
+	height: 100vh;
 }
 
 .nodeCreatorScrim {

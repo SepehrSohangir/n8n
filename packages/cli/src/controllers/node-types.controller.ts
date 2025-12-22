@@ -1,9 +1,9 @@
 import { GlobalConfig } from '@n8n/config';
 import { Post, RestController } from '@n8n/decorators';
 import { Request } from 'express';
-import { readFile } from 'fs/promises';
 import get from 'lodash/get';
 import type { INodeTypeDescription, INodeTypeNameVersion } from 'n8n-workflow';
+import { setLanguage, loadAndRegisterNodeTranslation } from '@n8n/i18n-backend';
 
 import { NodeTypes } from '@/node-types';
 
@@ -20,6 +20,9 @@ export class NodeTypesController {
 
 		const defaultLocale = this.globalConfig.defaultLocale;
 
+		// Set the locale for i18n
+		setLanguage(defaultLocale);
+
 		if (defaultLocale === 'en') {
 			return nodeInfos.reduce<INodeTypeDescription[]>((acc, { name, version }) => {
 				const { description } = this.nodeTypes.getByNameAndVersion(name, version);
@@ -34,6 +37,11 @@ export class NodeTypesController {
 			nodeTypes: INodeTypeDescription[],
 		) => {
 			const { description, sourcePath } = this.nodeTypes.getWithSourcePath(name, version);
+
+			// Load and register node translation with i18n
+			await loadAndRegisterNodeTranslation(sourcePath, description.name, defaultLocale);
+
+			// Also attach translation to description for backward compatibility
 			const translationPath = await this.nodeTypes.getNodeTranslationPath({
 				nodeSourcePath: sourcePath,
 				longNodeType: description.name,
@@ -41,6 +49,7 @@ export class NodeTypesController {
 			});
 
 			try {
+				const { readFile } = await import('fs/promises');
 				const translation = await readFile(translationPath, 'utf8');
 				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 				description.translation = JSON.parse(translation);

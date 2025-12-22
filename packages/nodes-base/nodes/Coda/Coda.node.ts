@@ -9,6 +9,7 @@ import type {
 	JsonObject,
 } from 'n8n-workflow';
 import { NodeConnectionTypes, NodeApiError } from 'n8n-workflow';
+import { i18n } from '@n8n/i18n-backend';
 
 import { controlFields, controlOperations } from './ControlDescription';
 import { formulaFields, formulaOperations } from './FormulaDescription';
@@ -18,15 +19,28 @@ import { viewFields, viewOperations } from './ViewDescription';
 
 export class Coda implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Coda',
+		// Example: Use i18n to translate displayName and description
+		// Note: In practice, translations are loaded from translation files
+		// and applied by the backend controller. This is shown as an example
+		// of how you could use i18n directly if needed.
+		displayName: i18n.headerText({
+			key: 'headers.coda.displayName',
+			fallback: 'Coda',
+		}),
 		name: 'coda',
 		icon: 'file:coda.svg',
 		group: ['output'],
 		version: [1, 1.1],
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-		description: 'Consume Coda API',
+		description: i18n.headerText({
+			key: 'headers.coda.description',
+			fallback: 'Consume Coda API',
+		}),
 		defaults: {
-			name: 'Coda',
+			name: i18n.headerText({
+				key: 'headers.coda.displayName',
+				fallback: 'Coda',
+			}),
 		},
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],
@@ -87,6 +101,10 @@ export class Coda implements INodeType {
 				const returnData: INodePropertyOptions[] = [];
 				const qs = {};
 				const docs = await codaApiRequestAllItems.call(this, 'items', 'GET', '/docs', {}, qs);
+
+				// Example: Use i18n to translate a label if needed
+				// const translatedLabel = i18n.baseText('generic.name');
+
 				for (const doc of docs) {
 					const docName = doc.name;
 					const docId = doc.id;
@@ -249,6 +267,9 @@ export class Coda implements INodeType {
 		const resource = this.getNodeParameter('resource', 0);
 		let qs: IDataObject = {};
 		const operation = this.getNodeParameter('operation', 0);
+
+		// Example: Use i18n to translate error messages or dynamic content
+		// const errorMessage = i18n.baseText('generic.error');
 
 		if (resource === 'table') {
 			// https://coda.io/developers/apis/v1beta1#operation/upsertRows

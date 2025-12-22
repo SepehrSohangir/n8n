@@ -77,6 +77,10 @@ export abstract class BaseCommand<F = never> {
 	protected needsTaskRunner = false;
 
 	async init(): Promise<void> {
+		// Initialize i18n with default locale
+		const { initializeI18n } = await import('@n8n/i18n-backend');
+		initializeI18n(this.globalConfig);
+
 		this.dbConnection = Container.get(DbConnection);
 		this.errorReporter = Container.get(ErrorReporter);
 

@@ -42,29 +42,29 @@ export class Webhook extends Node {
 	authPropertyName = 'authentication';
 
 	description: INodeTypeDescription = {
-		displayName: 'Webhook',
+		displayName: 'وب هوک',
 		icon: { light: 'file:webhook.svg', dark: 'file:webhook.dark.svg' },
 		name: 'webhook',
 		group: ['trigger'],
 		version: [1, 1.1, 2, 2.1],
 		defaultVersion: 2.1,
-		description: 'Starts the workflow when a webhook is called',
-		eventTriggerDescription: 'Waiting for you to call the Test URL',
-		activationMessage: 'You can now make calls to your production webhook URL.',
+		description: 'شروع جریان کاری زمانی که یک وب هوک فراخوانی می‌شود',
+		eventTriggerDescription: 'در انتظار فراخوانی URL تست',
+		activationMessage: 'اکنون می‌توانید به URL وب هوک تولید خود فراخوانی کنید.',
 		defaults: {
-			name: 'Webhook',
+			name: 'وب هوک',
 		},
 		supportsCORS: true,
 		triggerPanel: {
 			header: '',
 			executionsHelp: {
 				inactive:
-					"Webhooks have two modes: test and production. <br /> <br /> <b>Use test mode while you build your workflow</b>. Click the 'listen' button, then make a request to the test URL. The executions will show up in the editor.<br /> <br /> <b>Use production mode to run your workflow automatically</b>. Publish the workflow, then make requests to the production URL. These executions will show up in the executions list, but not in the editor.",
+					"وب هوک‌ها دو حالت دارند: تست و تولید. <br /> <br /> <b>در حین ساخت جریان کاری خود از حالت تست استفاده کنید</b>. روی دکمه 'گوش دادن' کلیک کنید، سپس یک درخواست به URL تست ارسال کنید. اجراها در ویرایشگر نمایش داده خواهند شد.<br /> <br /> <b>برای اجرای خودکار جریان کاری خود از حالت تولید استفاده کنید</b>. جریان کاری را منتشر کنید، سپس درخواست‌ها را به URL تولید ارسال کنید. این اجراها در فهرست اجراها نمایش داده می‌شوند، اما در ویرایشگر نمایش داده نمی‌شوند.",
 				active:
-					'Webhooks have two modes: test and production. <br /> <br /> <b>Use test mode while you build your workflow</b>. Click the \'listen\' button, then make a request to the test URL. The executions will show up in the editor.<br /> <br /> <b>Use production mode to run your workflow automatically</b>. Since the workflow is activated, you can make requests to the production URL. These executions will show up in the <a data-key="executions">executions list</a>, but not in the editor.',
+					"وب هوک‌ها دو حالت دارند: تست و تولید. <br /> <br /> <b>در حین ساخت جریان کاری خود از حالت تست استفاده کنید</b>. روی دکمه 'گوش دادن' کلیک کنید، سپس یک درخواست به URL تست ارسال کنید. اجراها در ویرایشگر نمایش داده خواهند شد.<br /> <br /> <b>برای اجرای خودکار جریان کاری خود از حالت تولید استفاده کنید</b>. جریان کاری را منتشر کنید، سپس درخواست‌ها را به URL تولید ارسال کنید. این اجراها در فهرست اجراها نمایش داده می‌شوند، اما در ویرایشگر نمایش داده نمی‌شوند.",
 			},
 			activationHint:
-				"Once you've finished building your workflow, run it without having to click this button by using the production webhook URL.",
+				'زمانی که ساخت جریان کاری خود را به پایان رساندید، بدون نیاز به کلیک روی این دکمه، با استفاده از URL وب هوک تولید، آن را اجرا کنید.',
 		},
 
 		inputs: [],
@@ -73,12 +73,12 @@ export class Webhook extends Node {
 		webhooks: [defaultWebhookDescription],
 		properties: [
 			{
-				displayName: 'Allow Multiple HTTP Methods',
+				displayName: 'اجازه به چندین متد HTTP',
 				name: 'multipleMethods',
 				type: 'boolean',
 				default: false,
 				isNodeSetting: true,
-				description: 'Whether to allow the webhook to listen for multiple HTTP methods',
+				description: 'آیا وبهوک باید به چندین متد HTTP گوش دهد',
 			},
 			{
 				...httpMethodsProperty,
@@ -89,7 +89,7 @@ export class Webhook extends Node {
 				},
 			},
 			{
-				displayName: 'HTTP Methods',
+				displayName: 'متدهای HTTP',
 				name: 'httpMethod',
 				type: 'multiOptions',
 				options: [
@@ -119,7 +119,7 @@ export class Webhook extends Node {
 					},
 				],
 				default: ['GET', 'POST'],
-				description: 'The HTTP methods to listen to',
+				description: 'متدهای HTTP برای گوش دادن',
 				displayOptions: {
 					show: {
 						multipleMethods: [true],
@@ -127,20 +127,20 @@ export class Webhook extends Node {
 				},
 			},
 			{
-				displayName: 'Path',
+				displayName: 'مسیر',
 				name: 'path',
 				type: 'string',
 				default: '',
-				placeholder: 'webhook',
+				placeholder: 'وب هوک',
 				description:
-					"The path to listen to, dynamic values could be specified by using ':', e.g. 'your-path/:dynamic-value'. If dynamic values are set 'webhookId' would be prepended to path.",
+					"مسیری که باید به آن گوش داده شود، مقادیر پویا می‌توانند با استفاده از ':' مشخص شوند، مثلاً 'your-path/:dynamic-value'. اگر مقادیر پویا تنظیم شوند، 'webhookId' به مسیر اضافه خواهد شد.",
 			},
 			authenticationProperty(this.authPropertyName),
 			responseModeProperty,
 			responseModePropertyStreaming,
 			{
 				displayName:
-					'Insert a \'Respond to Webhook\' node to control when and how you respond. <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook/" target="_blank">More details</a>',
+					'یک نود \'پاسخ به وبهوک\' اضافه کنید تا کنترل کنید چه زمانی و چگونه پاسخ دهید. <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook/" target="_blank">جزئیات بیشتر</a>',
 				name: 'webhookNotice',
 				type: 'notice',
 				displayOptions: {
@@ -152,7 +152,7 @@ export class Webhook extends Node {
 			},
 			{
 				displayName:
-					'Insert a node that supports streaming (e.g. \'AI Agent\') and enable streaming to stream directly to the response while the workflow is executed. <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook/" target="_blank">More details</a>',
+					'یک نود که از پخش زنده پشتیبانی می‌کند (مثلاً \'AI Agent\') اضافه کنید و پخش زنده را فعال کنید تا داده‌ها به صورت مستقیم به پاسخ در حین اجرای جریان کاری پخش شوند. <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook/" target="_blank">جزئیات بیشتر</a>',
 				name: 'webhookStreamingNotice',
 				type: 'notice',
 				displayOptions: {
@@ -177,7 +177,7 @@ export class Webhook extends Node {
 			responseBinaryPropertyNameProperty,
 			{
 				displayName:
-					'If you are sending back a response, add a "Content-Type" response header with the appropriate value to avoid unexpected behavior',
+					'اگر پاسخی ارسال می‌کنید، یک هدر پاسخ "Content-Type" با مقدار مناسب اضافه کنید تا از رفتار غیرمنتظره جلوگیری شود',
 				name: 'contentTypeNotice',
 				type: 'notice',
 				default: '',

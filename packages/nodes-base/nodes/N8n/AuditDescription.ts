@@ -2,7 +2,7 @@ import type { INodeProperties } from 'n8n-workflow';
 
 export const auditOperations: INodeProperties[] = [
 	{
-		displayName: 'Operation',
+		displayName: 'عملیات',
 		name: 'operation',
 		type: 'options',
 		noDataExpression: true,
@@ -14,10 +14,10 @@ export const auditOperations: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'Generate',
+				name: 'تولید',
 				value: 'generate',
-				action: 'Generate a security audit',
-				description: 'Generate a security audit for this n8n instance',
+				action: 'تولید حسابرسی',
+				description: 'تولید گزارش حسابرسی برای نمونه n8n شما',
 				routing: {
 					request: {
 						method: 'POST',
@@ -31,10 +31,10 @@ export const auditOperations: INodeProperties[] = [
 
 export const auditFields: INodeProperties[] = [
 	{
-		displayName: 'Additional Options',
+		displayName: 'گزینه‌های اضافی',
 		name: 'additionalOptions',
 		type: 'collection',
-		placeholder: 'Add Filter',
+		placeholder: 'افزودن فیلتر',
 		displayOptions: {
 			show: {
 				resource: ['audit'],
@@ -50,38 +50,39 @@ export const auditFields: INodeProperties[] = [
 		default: {},
 		options: [
 			{
-				displayName: 'Categories',
+				displayName: 'دسته‌بندی‌ها',
 				name: 'categories',
-				description: 'Risk categories to include in the audit',
+				description: 'دسته‌بندی‌های ریسک برای گنجاندن در حسابرسی',
 				type: 'multiOptions',
 				default: [],
 				options: [
 					{
-						name: 'Credentials',
+						name: 'اعتبارسنجی‌ها',
 						value: 'credentials',
 					},
 					{
-						name: 'Database',
+						name: 'پایگاه داده',
 						value: 'database',
 					},
 					{
-						name: 'Filesystem',
+						name: 'سیستم فایل',
 						value: 'filesystem',
 					},
 					{
-						name: 'Instance',
+						name: 'نمونه',
 						value: 'instance',
 					},
 					{
-						name: 'Nodes',
+						name: 'گره‌ها',
 						value: 'nodes',
 					},
 				],
 			},
 			{
-				displayName: 'Days Abandoned Workflow',
+				displayName: 'روزهای جریان کاری رها شده',
 				name: 'daysAbandonedWorkflow',
-				description: 'Days for a workflow to be considered abandoned if not executed',
+				description:
+					'تعداد روزهایی که یک جریان کاری در صورت عدم اجرا به عنوان رها شده در نظر گرفته می‌شود',
 				type: 'number',
 				default: 90,
 			},

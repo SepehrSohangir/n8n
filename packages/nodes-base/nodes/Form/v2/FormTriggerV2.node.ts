@@ -24,24 +24,24 @@ import { FORM_TRIGGER_AUTHENTICATION_PROPERTY } from '../interfaces';
 import { formWebhook } from '../utils/utils';
 
 const useWorkflowTimezone: INodeProperties = {
-	displayName: 'Use Workflow Timezone',
+	displayName: 'استفاده از منطقه زمانی جریان کاری',
 	name: 'useWorkflowTimezone',
 	type: 'boolean',
 	default: false,
-	description: "Whether to use the workflow timezone set in node's settings rather than UTC",
+	description: "آیا از منطقه زمانی جریان کاری در فیلد 'submittedAt' یا UTC استفاده شود",
 };
 
 const descriptionV2: INodeTypeDescription = {
-	displayName: 'n8n Form Trigger',
+	displayName: 'تریگر فرم n8n',
 	name: 'formTrigger',
 	icon: 'file:form.svg',
 	group: ['trigger'],
 	// since trigger and node are sharing descriptions and logic we need to sync the versions
 	// and keep them aligned in both nodes
 	version: [2, 2.1, 2.2, 2.3, 2.4],
-	description: 'Generate webforms in n8n and pass their responses to the workflow',
+	description: 'ساخت و مدیریت فرم‌های وب برای جمع‌آوری داده‌ها از کاربران',
 	defaults: {
-		name: 'On form submission',
+		name: 'هنگام ارسال فرم صبر کنید',
 	},
 
 	inputs: [],
@@ -67,8 +67,8 @@ const descriptionV2: INodeTypeDescription = {
 			nodeType: 'form',
 		},
 	],
-	eventTriggerDescription: 'Waiting for you to submit the form',
-	activationMessage: 'You can now make calls to your production Form URL.',
+	eventTriggerDescription: 'هنگامی که یک فرم ارسال می‌شود، این تریگر فعال می‌شود',
+	activationMessage: 'فرم آماده است و می‌توانید آن را با استفاده از لینک زیر مشاهده کنید:',
 	triggerPanel: formTriggerPanel,
 	credentials: [
 		{
@@ -84,7 +84,7 @@ const descriptionV2: INodeTypeDescription = {
 	],
 	properties: [
 		{
-			displayName: 'Authentication',
+			displayName: 'احراز هویت',
 			name: FORM_TRIGGER_AUTHENTICATION_PROPERTY,
 			type: 'options',
 			options: [
@@ -93,7 +93,7 @@ const descriptionV2: INodeTypeDescription = {
 					value: 'basicAuth',
 				},
 				{
-					name: 'None',
+					name: 'هیچ‌کدام',
 					value: 'none',
 				},
 			],
@@ -113,7 +113,7 @@ const descriptionV2: INodeTypeDescription = {
 		},
 		{
 			displayName:
-				"In the 'Respond to Webhook' node, select 'Respond With JSON' and set the <strong>formSubmittedText</strong> key to display a custom response in the form, or the <strong>redirectURL</strong> key to redirect users to a URL",
+				"در گره 'پاسخ به وب‌هوک'، 'پاسخ با JSON' را انتخاب کنید و کلید <strong>formSubmittedText</strong> را برای نمایش پاسخ سفارشی در فرم، یا کلید <strong>redirectURL</strong> را برای هدایت کاربران به یک URL تنظیم کنید",
 			name: 'formNotice',
 			type: 'notice',
 			displayOptions: {
@@ -123,25 +123,25 @@ const descriptionV2: INodeTypeDescription = {
 		},
 		// notice would be shown if no Form node was connected to trigger
 		{
-			displayName: 'Build multi-step forms by adding a form page later in your workflow',
+			displayName: 'ساخت فرم‌های چند مرحله‌ای با افزودن یک صفحه فرم بعدی در جریان کاری',
 			name: ADD_FORM_NOTICE,
 			type: 'notice',
 			default: '',
 		},
 		{
-			displayName: 'Options',
+			displayName: 'گزینه‌ها',
 			name: 'options',
 			type: 'collection',
-			placeholder: 'Add option',
+			placeholder: 'افزودن گزینه',
 			default: {},
 			options: [
 				appendAttributionToForm,
 				{
-					displayName: 'Button Label',
-					description: 'The label of the submit button in the form',
+					displayName: 'برچسب دکمه',
+					description: 'برچسب دکمه ارسال در فرم',
 					name: 'buttonLabel',
 					type: 'string',
-					default: 'Submit',
+					default: 'ارسال',
 				},
 				{
 					...webhookPath,
@@ -157,16 +157,18 @@ const descriptionV2: INodeTypeDescription = {
 					},
 				},
 				{
-					displayName: 'Ignore Bots',
+					displayName: 'نادیده گرفتن ربات‌ها',
 					name: 'ignoreBots',
 					type: 'boolean',
 					default: false,
-					description: 'Whether to ignore requests from bots like link previewers and web crawlers',
+					description:
+						'آیا درخواست‌ها از ربات‌هایی مانند پیش‌نمایش‌دهنده‌های لینک و خزنده‌های وب نادیده گرفته شوند',
 				},
 				{
 					...useWorkflowTimezone,
 					default: false,
-					description: "Whether to use the workflow timezone in 'submittedAt' field or UTC",
+					description:
+						"آیا باید از منطقه زمانی جریان کاری در فیلد 'submittedAt' استفاده شود یا UTC",
 					displayOptions: {
 						show: {
 							'@version': [2],
@@ -176,7 +178,8 @@ const descriptionV2: INodeTypeDescription = {
 				{
 					...useWorkflowTimezone,
 					default: true,
-					description: "Whether to use the workflow timezone in 'submittedAt' field or UTC",
+					description:
+						"آیا باید از منطقه زمانی جریان کاری در فیلد 'submittedAt' استفاده شود یا UTC",
 					displayOptions: {
 						show: {
 							'@version': [{ _cnd: { gt: 2 } }],
@@ -184,7 +187,7 @@ const descriptionV2: INodeTypeDescription = {
 					},
 				},
 				{
-					displayName: 'Custom Form Styling',
+					displayName: 'استایل فرم سفارشی CSS',
 					name: 'customCss',
 					type: 'string',
 					typeOptions: {
@@ -197,7 +200,7 @@ const descriptionV2: INodeTypeDescription = {
 						},
 					},
 					default: cssVariables.trim(),
-					description: 'Override default styling of the public form interface with CSS',
+					description: 'بازنویسی استایل پیش‌فرض رابط فرم عمومی با CSS',
 				},
 			],
 		},

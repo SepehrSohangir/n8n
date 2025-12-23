@@ -27,12 +27,11 @@ import { formDescription, formFields, formTitle } from '../Form/common.descripti
 
 const waitTimeProperties: INodeProperties[] = [
 	{
-		displayName: 'Limit Wait Time',
+		displayName: 'محدود کردن زمان انتظار',
 		name: 'limitWaitTime',
 		type: 'boolean',
 		default: false,
-		description:
-			'Whether to limit the time this node should wait for a user response before execution resumes',
+		description: 'اگر فعال باشد، حداکثر زمان انتظار برای پر شدن فرم را تنظیم می‌کند.',
 	},
 	...updateDisplayOptions(
 		{
@@ -46,24 +45,24 @@ const waitTimeProperties: INodeProperties[] = [
 
 export const formFieldsProperties: INodeProperties[] = [
 	{
-		displayName: 'Define Form',
+		displayName: 'تعریف فرم',
 		name: 'defineForm',
 		type: 'options',
 		noDataExpression: true,
 		options: [
 			{
-				name: 'Using Fields Below',
+				name: 'استفاده از فیلدهای زیر',
 				value: 'fields',
 			},
 			{
-				name: 'Using JSON',
+				name: 'استفاده از JSON',
 				value: 'json',
 			},
 		],
 		default: 'fields',
 	},
 	{
-		displayName: 'Form Fields',
+		displayName: 'فیلدهای فرم (JSON)',
 		name: 'jsonOutput',
 		type: 'json',
 		typeOptions: {
@@ -73,7 +72,7 @@ export const formFieldsProperties: INodeProperties[] = [
 			'[\n  {\n    "fieldLabel": "Name",\n    "placeholder": "enter your name",\n    "requiredField": true\n  },\n  {\n    "fieldLabel": "Age",\n    "fieldType": "number",\n    "placeholder": "enter your age"\n  },\n  {\n    "fieldLabel": "Email",\n    "fieldType": "email",\n    "requiredField": true\n  },\n  {\n    "fieldLabel": "Textarea",\n    "fieldType": "textarea"\n  },\n  {\n    "fieldLabel": "Dropdown Options",\n    "fieldType": "dropdown",\n    "fieldOptions": {\n      "values": [\n        {\n          "option": "option 1"\n        },\n        {\n          "option": "option 2"\n        }\n      ]\n    },\n    "requiredField": true\n  },\n  {\n    "fieldLabel": "Checkboxes",\n    "fieldType": "checkbox",\n    "fieldOptions": {\n      "values": [\n        {\n          "option": "option 1"\n        },\n        {\n          "option": "option 2"\n        }\n      ]\n    }\n  },\n  {\n    "fieldLabel": "Radio",\n    "fieldType": "radio",\n    "fieldOptions": {\n      "values": [\n        {\n          "option": "option 1"\n        },\n        {\n          "option": "option 2"\n        }\n      ]\n    }\n  },\n  {\n    "fieldLabel": "Email",\n    "fieldType": "email",\n    "placeholder": "me@mail.con"\n  },\n  {\n    "fieldLabel": "File",\n    "fieldType": "file",\n    "multipleFiles": true,\n    "acceptFileTypes": ".jpg, .png"\n  },\n  {\n    "fieldLabel": "Number",\n    "fieldType": "number"\n  },\n  {\n    "fieldLabel": "Password",\n    "fieldType": "password"\n  }\n]\n',
 		validateType: 'form-fields',
 		ignoreValidationDuringExecution: true,
-		hint: '<a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.form/" target="_blank">See docs</a> for field syntax',
+		hint: '<a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.form/" target="_blank">مستندات</a> برای اطلاعات بیشتر در مورد قالب فیلدهای فرم.',
 		displayOptions: {
 			show: {
 				defineForm: ['json'],
@@ -93,22 +92,22 @@ const pageProperties = updateDisplayOptions(
 		...formFieldsProperties,
 		...waitTimeProperties,
 		{
-			displayName: 'Options',
+			displayName: 'گزینه‌ها',
 			name: 'options',
 			type: 'collection',
-			placeholder: 'Add option',
+			placeholder: 'افزودن گزینه',
 			default: {},
 			options: [
 				{ ...formTitle, required: false },
 				formDescription,
 				{
-					displayName: 'Button Label',
+					displayName: 'برچسب دکمه',
 					name: 'buttonLabel',
 					type: 'string',
-					default: 'Submit',
+					default: 'ارسال',
 				},
 				{
-					displayName: 'Custom Form Styling',
+					displayName: 'استایل فرم سفارشی',
 					name: 'customCss',
 					type: 'string',
 					typeOptions: {
@@ -116,7 +115,7 @@ const pageProperties = updateDisplayOptions(
 						editor: 'cssEditor',
 					},
 					default: cssVariables.trim(),
-					description: 'Override default styling of the public form interface with CSS',
+					description: 'استایل پیش‌فرض رابط فرم عمومی را با CSS بازنویسی کنید',
 				},
 			],
 		},
@@ -132,30 +131,30 @@ const completionProperties = updateDisplayOptions(
 	[
 		{
 			// eslint-disable-next-line n8n-nodes-base/node-param-display-name-miscased
-			displayName: 'On n8n Form Submission',
+			displayName: 'در زمان ارسال فرم n8n',
 			name: 'respondWith',
 			type: 'options',
 			default: 'text',
 			options: [
 				{
-					name: 'Show Completion Screen',
+					name: 'نمایش صفحه تکمیل',
 					value: 'text',
-					description: 'Show a response text to the user',
+					description: 'نمایش یک متن پاسخ به کاربر',
 				},
 				{
-					name: 'Redirect to URL',
+					name: 'انتقال به URL',
 					value: 'redirect',
-					description: 'Redirect the user to a URL',
+					description: 'انتقال کاربر به یک URL مشخص پس از ارسال فرم',
 				},
 				{
-					name: 'Show Text',
+					name: 'نمایش متن',
 					value: 'showText',
-					description: 'Display simple text or HTML',
+					description: 'نمایش متن یا صفحه HTML سفارشی به کاربر',
 				},
 				{
-					name: 'Return Binary File',
+					name: 'بازگردانی فایل باینری',
 					value: 'returnBinary',
-					description: 'Return incoming binary file',
+					description: 'بازگردانی یک فایل باینری به کاربر پس از ارسال فرم',
 				},
 			],
 		},
@@ -173,7 +172,7 @@ const completionProperties = updateDisplayOptions(
 			},
 		},
 		{
-			displayName: 'Completion Title',
+			displayName: 'عنوان تکمیل',
 			name: 'completionTitle',
 			type: 'string',
 			default: '',
@@ -185,7 +184,7 @@ const completionProperties = updateDisplayOptions(
 			},
 		},
 		{
-			displayName: 'Completion Message',
+			displayName: 'پیام تکمیل',
 			name: 'completionMessage',
 			type: 'string',
 			default: '',
@@ -199,7 +198,7 @@ const completionProperties = updateDisplayOptions(
 			},
 		},
 		{
-			displayName: 'Text',
+			displayName: 'متن پاسخ',
 			name: 'responseText',
 			type: 'string',
 			displayOptions: {
@@ -211,11 +210,11 @@ const completionProperties = updateDisplayOptions(
 				rows: 2,
 			},
 			default: '',
-			placeholder: 'e.g. Thanks for filling the form',
-			description: 'The text to display on the page. Use HTML to show a customized web page.',
+			placeholder: 'مثلا ممنون که فرم را پر کردید!',
+			description: 'متنی که در صفحه تکمیل نمایش داده می‌شود.',
 		},
 		{
-			displayName: 'Input Data Field Name',
+			displayName: 'نام فیلد داده ورودی ',
 			name: 'inputDataFieldName',
 			type: 'string',
 			displayOptions: {
@@ -225,21 +224,20 @@ const completionProperties = updateDisplayOptions(
 			},
 			default: 'data',
 			placeholder: 'e.g. data',
-			description:
-				'Find the name of input field containing the binary data to return in the Input panel on the left, in the Binary tab',
-			hint: 'The name of the input field containing the binary file data to be returned',
+			description: 'نام فیلد ورودی که شامل داده فایل باینری برای بازگردانی است',
+			hint: 'این باید با نام فیلد داده ورودی که در گره قبلی تنظیم شده است مطابقت داشته باشد.',
 		},
 		...waitTimeProperties,
 		{
-			displayName: 'Options',
+			displayName: 'گزینه‌ها',
 			name: 'options',
 			type: 'collection',
-			placeholder: 'Add option',
+			placeholder: 'افزودن گزینه',
 			default: {},
 			options: [
-				{ ...formTitle, required: false, displayName: 'Completion Page Title' },
+				{ ...formTitle, required: false, displayName: 'عنوان صفحه تکمیل' },
 				{
-					displayName: 'Custom Form Styling',
+					displayName: 'استایل فرم سفارشی',
 					name: 'customCss',
 					type: 'string',
 					typeOptions: {
@@ -247,7 +245,7 @@ const completionProperties = updateDisplayOptions(
 						editor: 'cssEditor',
 					},
 					default: cssVariables.trim(),
-					description: 'Override default styling of the public form interface with CSS',
+					description: 'استایل پیش‌فرض رابط فرم عمومی را با CSS بازنویسی کنید',
 				},
 			],
 			displayOptions: {
@@ -263,16 +261,16 @@ export class Form extends Node {
 	nodeInputData: INodeExecutionData[] = [];
 
 	description: INodeTypeDescription = {
-		displayName: 'n8n Form',
+		displayName: 'فرم n8n',
 		name: 'form',
 		icon: 'file:form.svg',
 		group: ['input'],
 		// since trigger and node are sharing descriptions and logic we need to sync the versions
 		// and keep them aligned in both nodes
 		version: [1, 2.3, 2.4],
-		description: 'Generate webforms in n8n and pass their responses to the workflow',
+		description: 'ساخت و مدیریت فرم‌های وب برای جمع‌آوری داده‌ها از کاربران',
 		defaults: {
-			name: 'Form',
+			name: 'فرم',
 		},
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
@@ -300,24 +298,24 @@ export class Form extends Node {
 		],
 		properties: [
 			{
-				displayName: 'An n8n Form Trigger node must be set up before this node',
+				displayName: 'یک فرم تیریگر شده باید قبل از این گره وجود داشته باشد',
 				name: 'triggerNotice',
 				type: 'notice',
 				default: '',
 			},
 			{
-				displayName: 'Page Type',
+				displayName: 'نوع صفحه',
 				name: 'operation',
 				type: 'options',
 				default: 'page',
 				noDataExpression: true,
 				options: [
 					{
-						name: 'Next Form Page',
+						name: 'صفحه بعدی فرم',
 						value: 'page',
 					},
 					{
-						name: 'Form Ending',
+						name: 'پایان فرم - تکمیل',
 						value: 'completion',
 					},
 				],

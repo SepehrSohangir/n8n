@@ -51,14 +51,14 @@ export async function searchWorkflows(
  * This object can be used as a base and then extended as needed.
  */
 export const workflowIdLocator: INodeProperties = {
-	displayName: 'Workflow',
+	displayName: 'جریان کاری',
 	name: 'workflowId',
 	type: 'resourceLocator',
 	default: { mode: 'list', value: '' },
-	description: 'Workflow to filter the executions by',
+	description: 'جریان کاری را انتخاب یا مشخص کنید',
 	modes: [
 		{
-			displayName: 'From List',
+			displayName: 'از لیست',
 			name: 'list',
 			type: 'list',
 			placeholder: 'Select a Workflow...',
@@ -70,7 +70,7 @@ export const workflowIdLocator: INodeProperties = {
 			},
 		},
 		{
-			displayName: 'By URL',
+			displayName: 'با URL',
 			name: 'url',
 			type: 'string',
 			placeholder: 'https://myinstance.app.n8n.cloud/workflow/1',
@@ -89,7 +89,7 @@ export const workflowIdLocator: INodeProperties = {
 			},
 		},
 		{
-			displayName: 'ID',
+			displayName: 'شناسه',
 			name: 'id',
 			type: 'string',
 			validation: [

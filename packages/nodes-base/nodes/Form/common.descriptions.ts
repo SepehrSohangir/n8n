@@ -9,42 +9,42 @@ export const placeholder: string = `
 `.trimStart();
 
 export const webhookPath: INodeProperties = {
-	displayName: 'Form Path',
+	displayName: 'مسیر فرم',
 	name: 'path',
 	type: 'string',
 	default: '',
-	placeholder: 'webhook',
+	placeholder: 'وب‌هوک',
 	required: true,
-	description: "The final segment of the form's URL, both for test and production",
+	description: 'آخرین بخش از URL فرم، هم برای تست و هم برای تولید',
 };
 
 export const formTitle: INodeProperties = {
-	displayName: 'Form Title',
+	displayName: 'عنوان فرم',
 	name: 'formTitle',
 	type: 'string',
 	default: '',
-	placeholder: 'e.g. Contact us',
+	placeholder: 'مثلاً تماس با ما',
 	required: true,
-	description: 'Shown at the top of the form',
+	description: 'نمایش داده شده در بالای فرم',
 };
 
 export const formDescription: INodeProperties = {
-	displayName: 'Form Description',
+	displayName: 'توضیحات فرم',
 	name: 'formDescription',
 	type: 'string',
 	default: '',
-	placeholder: "e.g. We'll get back to you soon",
+	placeholder: 'مثلاً به زودی با شما تماس خواهیم گرفت!',
 	description:
-		'Shown underneath the Form Title. Can be used to prompt the user on how to complete the form. Accepts HTML.',
+		'نمایش داده شده در زیر عنوان فرم. می‌تواند برای راهنمایی کاربر در تکمیل فرم استفاده شود. HTML را می‌پذیرد.',
 	typeOptions: {
 		rows: 2,
 	},
 };
 
 export const formFields: INodeProperties = {
-	displayName: 'Form Elements',
+	displayName: 'عناصر فرم',
 	name: 'formFields',
-	placeholder: 'Add Form Element',
+	placeholder: 'افزودن عنصر فرم',
 	type: 'fixedCollection',
 	default: {},
 	typeOptions: {
@@ -53,14 +53,14 @@ export const formFields: INodeProperties = {
 	},
 	options: [
 		{
-			displayName: 'Values',
+			displayName: 'مقادیر',
 			name: 'values',
 			values: [
 				{
-					displayName: 'Field Name',
+					displayName: 'نام فیلد',
 					name: 'fieldName',
 					description:
-						'The name of the field, used in input attributes and referenced by the workflow',
+						'نام فیلد، که در ویژگی‌های ورودی استفاده می‌شود و توسط جریان کاری ارجاع داده می‌شود',
 					required: true,
 					type: 'string',
 					default: '',
@@ -74,12 +74,12 @@ export const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Label',
+					displayName: 'لیبل فیلد',
 					name: 'fieldLabel',
 					type: 'string',
 					default: '',
-					placeholder: 'e.g. What is your name?',
-					description: 'Label that appears above the input field',
+					placeholder: 'مثلاً نام شما چیست؟',
+					description: 'لیبلی که بالای فیلد ورودی نمایش داده می‌شود',
 					required: true,
 					displayOptions: {
 						hide: {
@@ -91,12 +91,12 @@ export const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Field Name',
+					displayName: 'لیبل فیلد',
 					name: 'fieldLabel',
 					type: 'string',
 					default: '',
-					placeholder: 'e.g. What is your name?',
-					description: 'Label that appears above the input field',
+					placeholder: 'مثلاً نام شما چیست؟',
+					description: 'لیبلی که بالای فیلد ورودی نمایش داده می‌شود',
 					required: true,
 					displayOptions: {
 						hide: {
@@ -108,10 +108,10 @@ export const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Field Name',
+					displayName: 'نام فیلد',
 					name: 'fieldName',
 					description:
-						'The name of the field, used in input attributes and referenced by the workflow',
+						'نام فیلد، که در ویژگی‌های ورودی استفاده می‌شود و توسط جریان کاری ارجاع داده می‌شود',
 					type: 'string',
 					default: '',
 					displayOptions: {
@@ -122,71 +122,71 @@ export const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Element Type',
+					displayName: 'نوع عنصر',
 					name: 'fieldType',
 					type: 'options',
 					default: 'text',
-					description: 'The type of field to add to the form',
+					description: 'نوع فیلدی که به فرم اضافه می‌شود',
 					// Update ALLOWED_FIELD_TYPES in packages/workflow/src/type-validation.ts when adding new field types
 					options: [
 						{
-							name: 'Checkboxes',
+							name: 'چک‌باکس‌ها',
 							value: 'checkbox',
 						},
 						{
-							name: 'Custom HTML',
+							name: 'HTML سفارشی',
 							value: 'html',
 						},
 						{
-							name: 'Date',
+							name: 'تاریخ',
 							value: 'date',
 						},
 						{
-							name: 'Dropdown',
+							name: 'فهرست کشویی',
 							value: 'dropdown',
 						},
 						{
-							name: 'Email',
+							name: 'ایمیل',
 							value: 'email',
 						},
 						{
-							name: 'File',
+							name: 'فایل',
 							value: 'file',
 						},
 						{
-							name: 'Hidden Field',
+							name: 'فیلد مخفی',
 							value: 'hiddenField',
 						},
 						{
-							name: 'Number',
+							name: 'عدد',
 							value: 'number',
 						},
 						{
-							name: 'Password',
+							name: 'رمز عبور',
 							value: 'password',
 						},
 						{
-							name: 'Radio Buttons',
+							name: 'دکمه‌های رادیویی',
 							value: 'radio',
 						},
 						{
-							name: 'Text',
+							name: 'متن',
 							value: 'text',
 						},
 						{
-							name: 'Textarea',
+							name: 'متن چندخطی',
 							value: 'textarea',
 						},
 					],
 					required: true,
 				},
 				{
-					displayName: 'Element Name',
+					displayName: 'نام عنصر',
 					name: 'elementName',
 					type: 'string',
 					default: '',
-					placeholder: 'e.g. content-section',
-					description: 'Optional field. It can be used to include the html in the output.',
+					placeholder: 'مثلاً content-section',
+					description: 'فیلد اختیاری. می‌تواند برای وارد کردن HTML در خروجی استفاده شود.',
 					displayOptions: {
 						show: {
 							fieldType: ['html'],
@@ -194,9 +194,9 @@ export const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Placeholder',
+					displayName: 'متن جایگزین',
 					name: 'placeholder',
-					description: 'Sample text to display inside the field',
+					description: 'متنی نمونه برای نمایش درون فیلد',
 					type: 'string',
 					default: '',
 					displayOptions: {
@@ -206,9 +206,9 @@ export const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Default Value',
+					displayName: 'مقدار پیش‌فرض',
 					name: 'defaultValue',
-					description: 'Default value that will be pre-filled in the form field',
+					description: 'مقدار پیش‌فرضی که در فیلد فرم پر می‌شود',
 					type: 'string',
 					default: '',
 					displayOptions: {
@@ -218,10 +218,9 @@ export const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Default Value',
+					displayName: 'مقدار پیش‌فرض',
 					name: 'defaultValue',
-					description:
-						'Default date value that will be pre-filled in the form field (format: YYYY-MM-DD)',
+					description: 'مقدار پیش‌فرض تاریخ که در فیلد فرم پر می‌شود (فرمت: YYYY-MM-DD)',
 					type: 'dateTime',
 					typeOptions: {
 						dateOnly: true,
@@ -234,10 +233,10 @@ export const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Default Value',
+					displayName: 'مقدار پیش‌فرض',
 					name: 'defaultValue',
 					description:
-						'Default value that will be pre-selected. Must match one of the option labels.',
+						'مقدار پیش‌فرضی که انتخاب خواهد شد. باید با یکی از برچسب‌های گزینه مطابقت داشته باشد.',
 					type: 'string',
 					default: '',
 					displayOptions: {
@@ -247,10 +246,10 @@ export const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Default Value',
+					displayName: 'مقدار پیش‌فرض',
 					name: 'defaultValue',
 					description:
-						'Default value(s) that will be pre-selected. Must match one or multiple of the option labels. Separate multiple pre-selected options with a comma.',
+						'مقدار پیش‌فرضی که انتخاب خواهد شد. باید با یکی از برچسب‌های گزینه مطابقت داشته باشد. گزینه‌های پیش‌انتخاب شده متعدد را با کاما جدا کنید.',
 					type: 'string',
 					default: '',
 					displayOptions: {
@@ -260,10 +259,10 @@ export const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Field Value',
+					displayName: 'مقدار فیلد',
 					name: 'fieldValue',
 					description:
-						'Input value can be set here or will be passed as a query parameter via Field Name if no value is set',
+						'مقدار ورودی می‌تواند در اینجا تنظیم شود یا اگر مقداری تنظیم نشود، به عنوان پارامتر پرس‌وجو از طریق نام فیلد ارسال خواهد شد',
 					type: 'string',
 					default: '',
 					displayOptions: {
@@ -274,10 +273,10 @@ export const formFields: INodeProperties = {
 				},
 
 				{
-					displayName: 'Field Options',
+					displayName: 'گزینه‌های فیلد',
 					name: 'fieldOptions',
-					placeholder: 'Add Field Option',
-					description: 'List of options that can be selected from the dropdown',
+					placeholder: 'افزودن گزینه',
+					description: 'لیستی از گزینه‌ها که می‌توان از فهرست کشویی انتخاب کرد',
 					type: 'fixedCollection',
 					default: { values: [{ option: '' }] },
 					required: true,
@@ -292,11 +291,11 @@ export const formFields: INodeProperties = {
 					},
 					options: [
 						{
-							displayName: 'Values',
+							displayName: 'مقادیر',
 							name: 'values',
 							values: [
 								{
-									displayName: 'Option',
+									displayName: 'گزینه',
 									name: 'option',
 									type: 'string',
 									default: '',
@@ -306,9 +305,9 @@ export const formFields: INodeProperties = {
 					],
 				},
 				{
-					displayName: 'Checkboxes',
+					displayName: 'چک‌باکس‌ها',
 					name: 'fieldOptions',
-					placeholder: 'Add Checkbox',
+					placeholder: 'افزودن چک‌باکس',
 					type: 'fixedCollection',
 					default: { values: [{ option: '' }] },
 					required: true,
@@ -323,11 +322,11 @@ export const formFields: INodeProperties = {
 					},
 					options: [
 						{
-							displayName: 'Values',
+							displayName: 'مقادیر',
 							name: 'values',
 							values: [
 								{
-									displayName: 'Checkbox Label',
+									displayName: 'برچسب چک‌باکس',
 									name: 'option',
 									type: 'string',
 									default: '',
@@ -337,9 +336,9 @@ export const formFields: INodeProperties = {
 					],
 				},
 				{
-					displayName: 'Radio Buttons',
+					displayName: 'دکمه‌های رادیویی',
 					name: 'fieldOptions',
-					placeholder: 'Add Radio Button',
+					placeholder: 'افزودن دکمه رادیویی',
 					type: 'fixedCollection',
 					default: { values: [{ option: '' }] },
 					required: true,
@@ -354,11 +353,11 @@ export const formFields: INodeProperties = {
 					},
 					options: [
 						{
-							displayName: 'Values',
+							displayName: 'مقادیر',
 							name: 'values',
 							values: [
 								{
-									displayName: 'Radio Button Label',
+									displayName: 'برچسب دکمه رادیویی',
 									name: 'option',
 									type: 'string',
 									default: '',
@@ -369,7 +368,7 @@ export const formFields: INodeProperties = {
 				},
 				{
 					displayName:
-						'Multiple Choice is a legacy option, please use Checkboxes or Radio Buttons field type instead',
+						'گزینه چندگانه یک گزینه قدیمی است، لطفاً به جای آن از نوع فیلد چک‌باکس‌ها یا دکمه‌های رادیویی استفاده کنید',
 					name: 'multiselectLegacyNotice',
 					type: 'notice',
 					default: '',
@@ -382,12 +381,11 @@ export const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Multiple Choice',
+					displayName: 'انتخاب چندگانه',
 					name: 'multiselect',
 					type: 'boolean',
 					default: false,
-					description:
-						'Whether to allow the user to select multiple options from the dropdown list',
+					description: 'آیا به کاربر اجازه داده شود چندین گزینه را از فهرست کشویی انتخاب کند',
 					displayOptions: {
 						show: {
 							fieldType: ['dropdown'],
@@ -396,21 +394,21 @@ export const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Limit Selection',
+					displayName: 'محدودیت انتخاب',
 					name: 'limitSelection',
 					type: 'options',
 					default: 'unlimited',
 					options: [
 						{
-							name: 'Exact Number',
+							name: 'تعداد دقیق',
 							value: 'exact',
 						},
 						{
-							name: 'Range',
+							name: 'محدوده',
 							value: 'range',
 						},
 						{
-							name: 'Unlimited',
+							name: 'نامحدود',
 							value: 'unlimited',
 						},
 					],
@@ -421,7 +419,7 @@ export const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Number of Selections',
+					displayName: 'تعداد انتخاب‌ها',
 					name: 'numberOfSelections',
 					type: 'number',
 					default: 1,
@@ -437,7 +435,7 @@ export const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Minimum Selections',
+					displayName: 'حداقل انتخاب‌ها',
 					name: 'minSelections',
 					type: 'number',
 					default: 0,
@@ -453,7 +451,7 @@ export const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Maximum Selections',
+					displayName: 'حداکثر انتخاب‌ها',
 					name: 'maxSelections',
 					type: 'number',
 					default: 1,
@@ -477,8 +475,8 @@ export const formFields: INodeProperties = {
 					type: 'string',
 					noDataExpression: true,
 					default: placeholder,
-					description: 'HTML elements to display on the form page',
-					hint: 'Does not accept <code>&lt;script&gt;</code>, <code>&lt;style&gt;</code> or <code>&lt;input&gt;</code> tags',
+					description: 'عناصر HTML برای نمایش در صفحه فرم',
+					hint: 'قابل قبول نیست <code>&lt;script&gt;</code>, <code>&lt;style&gt;</code> یا <code>&lt;input&gt;</code> تگ‌ها',
 					displayOptions: {
 						show: {
 							fieldType: ['html'],
@@ -486,12 +484,12 @@ export const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Multiple Files',
+					displayName: 'چندین فایل',
 					name: 'multipleFiles',
 					type: 'boolean',
 					default: true,
 					description:
-						'Whether to allow the user to select multiple files from the file input or just one',
+						'آیا به کاربر اجازه داده شود چندین فایل را از ورودی فایل انتخاب کند یا فقط یکی',
 					displayOptions: {
 						show: {
 							fieldType: ['file'],
@@ -499,13 +497,13 @@ export const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Accepted File Types',
+					displayName: 'انواع فایل‌های پذیرفته شده',
 					name: 'acceptFileTypes',
 					type: 'string',
 					default: '',
-					description: 'Comma-separated list of allowed file extensions',
-					hint: 'Leave empty to allow all file types',
-					placeholder: 'e.g. .jpg, .png',
+					description: 'فهرست جدا شده با کاما از پسوندهای فایل مجاز',
+					hint: 'خالی بگذارید تا همه نوع فایل مجاز باشد',
+					placeholder: 'مثلاً .jpg, .png',
 					displayOptions: {
 						show: {
 							fieldType: ['file'],
@@ -513,7 +511,7 @@ export const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: "The displayed date is formatted based on the locale of the user's browser",
+					displayName: 'تاریخ نمایش داده شده بر اساس زبان مرورگر کاربر قالب‌بندی شده است',
 					name: 'formatDate',
 					type: 'notice',
 					default: '',
@@ -524,12 +522,11 @@ export const formFields: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'Required Field',
+					displayName: 'فیلد اجباری',
 					name: 'requiredField',
 					type: 'boolean',
 					default: false,
-					description:
-						'Whether to require the user to enter a value for this field before submitting the form',
+					description: 'آیا از کاربر خواسته شود قبل از ارسال فرم، مقداری برای این فیلد وارد کند',
 					displayOptions: {
 						hide: {
 							fieldType: ['html', 'hiddenField'],
@@ -542,32 +539,32 @@ export const formFields: INodeProperties = {
 };
 
 export const formRespondMode: INodeProperties = {
-	displayName: 'Respond When',
+	displayName: 'زمان پاسخ',
 	name: 'responseMode',
 	type: 'options',
 	options: [
 		{
-			name: 'Form Is Submitted',
+			name: 'فرم ارسال شد',
 			value: 'onReceived',
-			description: 'As soon as this node receives the form submission',
+			description: 'به محض دریافت فرم پاسخ دهید',
 		},
 		{
-			name: 'Workflow Finishes',
+			name: 'جریان کاری کامل شد',
 			value: 'lastNode',
-			description: 'When the last node of the workflow is executed',
+			description: 'وقتی آخرین گره جریان کاری اجرا می‌شود',
 		},
 		{
-			name: "Using 'Respond to Webhook' Node",
+			name: "استفاده از گره 'Respond to Webhook'",
 			value: 'responseNode',
-			description: "When the 'Respond to Webhook' node is executed",
+			description: "وقتی گره 'Respond to Webhook' اجرا می‌شود",
 		},
 	],
 	default: 'onReceived',
-	description: 'When to respond to the form submission',
+	description: 'زمان پاسخ به ارسال فرم',
 };
 
 export const formTriggerPanel = {
-	header: 'Pull in a test form submission',
+	header: 'کشیدن یک ارسال فرم آزمایشی',
 	executionsHelp: {
 		inactive:
 			"Form Trigger has two modes: test and production. <br /> <br /> <b>Use test mode while you build your workflow</b>. Click the 'Execute step' button, then fill out the test form that opens in a popup tab. The executions will show up in the editor.<br /> <br /> <b>Use production mode to run your workflow automatically</b>. Publish the workflow, then make requests to the production URL. Then every time there's a form submission via the Production Form URL, the workflow will execute. These executions will show up in the executions list, but not in the editor.",

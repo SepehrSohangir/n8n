@@ -19,7 +19,7 @@ export class N8n implements INodeType {
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-		description: 'Handle events and perform actions on your n8n instance',
+		description: 'مدیریت رویدادها و انجام عملیات در نمونه n8n شما',
 		defaults: {
 			name: 'n8n',
 		},
@@ -41,25 +41,25 @@ export class N8n implements INodeType {
 		},
 		properties: [
 			{
-				displayName: 'Resource',
+				displayName: 'منبع',
 				name: 'resource',
 				type: 'options',
 				noDataExpression: true,
 				options: [
 					{
-						name: 'Audit',
+						name: 'حسابرسی',
 						value: 'audit',
 					},
 					{
-						name: 'Credential',
+						name: 'اعتبارسنجی',
 						value: 'credential',
 					},
 					{
-						name: 'Execution',
+						name: 'اجرایی',
 						value: 'execution',
 					},
 					{
-						name: 'Workflow',
+						name: 'جریان کاری',
 						value: 'workflow',
 					},
 				],

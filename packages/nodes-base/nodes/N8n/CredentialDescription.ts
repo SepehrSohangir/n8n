@@ -4,7 +4,7 @@ import { parseAndSetBodyJson } from './GenericFunctions';
 
 export const credentialOperations: INodeProperties[] = [
 	{
-		displayName: 'Operation',
+		displayName: 'عملیات',
 		name: 'operation',
 		type: 'options',
 		noDataExpression: true,
@@ -16,9 +16,9 @@ export const credentialOperations: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'Create',
+				name: 'ایجاد',
 				value: 'create',
-				action: 'Create a credential',
+				action: 'ایجاد یک اعتبارسنجی',
 				routing: {
 					request: {
 						method: 'POST',
@@ -27,9 +27,9 @@ export const credentialOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Delete',
+				name: 'حذف',
 				value: 'delete',
-				action: 'Delete a credential',
+				action: 'حذف یک اعتبارسنجی',
 				routing: {
 					request: {
 						method: 'DELETE',
@@ -38,9 +38,9 @@ export const credentialOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Get Schema',
+				name: 'دریافت طرح',
 				value: 'getSchema',
-				action: 'Get credential data schema for type',
+				action: 'دریافت طرح داده اعتبارسنجی برای نوع',
 				routing: {
 					request: {
 						method: 'GET',
@@ -54,7 +54,7 @@ export const credentialOperations: INodeProperties[] = [
 
 const createOperation: INodeProperties[] = [
 	{
-		displayName: 'Name',
+		displayName: 'نام',
 		name: 'name',
 		type: 'string',
 		default: '',
@@ -73,10 +73,10 @@ const createOperation: INodeProperties[] = [
 				},
 			},
 		},
-		description: 'Name of the new credential',
+		description: 'نام اعتبارسنجی جدید',
 	},
 	{
-		displayName: 'Credential Type',
+		displayName: 'نوع اعتبارسنجی',
 		name: 'credentialTypeName',
 		type: 'string',
 		placeholder: 'e.g. n8nApi',
@@ -96,10 +96,10 @@ const createOperation: INodeProperties[] = [
 			},
 		},
 		description:
-			"The available types depend on nodes installed on the n8n instance. Some built-in types include e.g. 'githubApi', 'notionApi', and 'slackApi'.",
+			"نوع‌های موجود به گره‌های نصب شده در نمونه n8n بستگی دارد. برخی از نوع‌های داخلی شامل e.g. 'githubApi', 'notionApi', و 'slackApi' هستند.",
 	},
 	{
-		displayName: 'Data',
+		displayName: 'داده',
 		name: 'data',
 		type: 'json',
 		default: '',
@@ -123,13 +123,13 @@ const createOperation: INodeProperties[] = [
 			},
 		},
 		description:
-			"A valid JSON object with properties required for this Credential Type. To see the expected format, you can use 'Get Schema' operation.",
+			"یک شیء JSON معتبر با ویژگی‌های مورد نیاز برای این نوع اعتبارسنجی. برای مشاهده فرمت مورد انتظار، می‌توانید از عملیات 'دریافت طرح' استفاده کنید.",
 	},
 ];
 
 const deleteOperation: INodeProperties[] = [
 	{
-		displayName: 'Credential ID',
+		displayName: 'شناسه اعتبارسنجی',
 		name: 'credentialId',
 		type: 'string',
 		required: true,
@@ -145,7 +145,7 @@ const deleteOperation: INodeProperties[] = [
 
 const getSchemaOperation: INodeProperties[] = [
 	{
-		displayName: 'Credential Type',
+		displayName: 'نوع اعتبارسنجی',
 		name: 'credentialTypeName',
 		default: '',
 		placeholder: 'e.g. n8nApi',
@@ -158,7 +158,7 @@ const getSchemaOperation: INodeProperties[] = [
 			},
 		},
 		description:
-			"The available types depend on nodes installed on the n8n instance. Some built-in types include e.g. 'githubApi', 'notionApi', and 'slackApi'.",
+			"نوع‌های موجود به گره‌های نصب شده در نمونه n8n بستگی دارد. برخی از نوع‌های داخلی شامل e.g. 'githubApi', 'notionApi', و 'slackApi' هستند.",
 	},
 ];
 

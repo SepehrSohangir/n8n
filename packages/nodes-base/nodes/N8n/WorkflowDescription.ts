@@ -10,7 +10,7 @@ import { workflowIdLocator } from './WorkflowLocator';
 
 export const workflowOperations: INodeProperties[] = [
 	{
-		displayName: 'Operation',
+		displayName: 'عملیات',
 		name: 'operation',
 		type: 'options',
 		noDataExpression: true,
@@ -22,14 +22,14 @@ export const workflowOperations: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'Publish',
+				name: 'انتشار',
 				value: 'activate',
-				action: 'Publish a workflow',
+				action: 'انتشار یک جریان کاری',
 			},
 			{
-				name: 'Create',
+				name: 'ایجاد',
 				value: 'create',
-				action: 'Create a workflow',
+				action: 'ایجاد یک جریان کاری',
 				routing: {
 					request: {
 						method: 'POST',
@@ -38,24 +38,24 @@ export const workflowOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Unpublish',
+				name: 'لغو انتشار',
 				value: 'deactivate',
-				action: 'Unpublish a workflow',
+				action: 'لغو انتشار یک جریان کاری',
 			},
 			{
-				name: 'Delete',
+				name: 'حذف',
 				value: 'delete',
-				action: 'Delete a workflow',
+				action: 'حذف یک جریان کاری',
 			},
 			{
-				name: 'Get',
+				name: 'دریافت',
 				value: 'get',
-				action: 'Get a workflow',
+				action: 'دریافت یک جریان کاری',
 			},
 			{
-				name: 'Get Many',
+				name: 'دریافت بسیاری',
 				value: 'getAll',
-				action: 'Get many workflows',
+				action: 'دریافت بسیاری جریان‌های کاری',
 				routing: {
 					request: {
 						method: 'GET',
@@ -70,14 +70,14 @@ export const workflowOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Get Version',
+				name: 'دریافت نسخه',
 				value: 'getVersion',
-				action: 'Get a workflow version',
+				action: 'دریافت یک نسخه از جریان کاری',
 			},
 			{
-				name: 'Update',
+				name: 'به‌روزرسانی',
 				value: 'update',
-				action: 'Update a workflow',
+				action: 'به‌روزرسانی یک جریان کاری',
 			},
 		],
 	},
@@ -104,10 +104,10 @@ const activateOperation: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Additional Fields',
+		displayName: 'فیلدهای اضافی',
 		name: 'additionalFields',
 		type: 'collection',
-		placeholder: 'Add Field',
+		placeholder: 'افزودن فیلد',
 		default: {},
 		displayOptions: {
 			show: {
@@ -117,7 +117,7 @@ const activateOperation: INodeProperties[] = [
 		},
 		options: [
 			{
-				displayName: 'Version ID',
+				displayName: 'شناسه نسخه',
 				name: 'versionId',
 				type: 'string',
 				default: '',
@@ -127,10 +127,10 @@ const activateOperation: INodeProperties[] = [
 						property: 'versionId',
 					},
 				},
-				description: 'The version ID of the workflow to publish',
+				description: 'شناسه نسخه جریان کاری برای انتشار',
 			},
 			{
-				displayName: 'Name',
+				displayName: 'نام',
 				name: 'name',
 				type: 'string',
 				default: '',
@@ -140,10 +140,10 @@ const activateOperation: INodeProperties[] = [
 						property: 'name',
 					},
 				},
-				description: 'Published version name (will be overwritten)',
+				description: 'نام نسخه منتشر شده (بازنویسی خواهد شد)',
 			},
 			{
-				displayName: 'Description',
+				displayName: 'توضیحات',
 				name: 'description',
 				type: 'string',
 				typeOptions: {
@@ -156,7 +156,7 @@ const activateOperation: INodeProperties[] = [
 						property: 'description',
 					},
 				},
-				description: 'Published version description (will be overwritten)',
+				description: 'توضیحات نسخه منتشر شده (بازنویسی خواهد شد)',
 			},
 		],
 	},
@@ -164,7 +164,7 @@ const activateOperation: INodeProperties[] = [
 
 const createOperation: INodeProperties[] = [
 	{
-		displayName: 'Workflow Object',
+		displayName: 'شیء جریان کاری',
 		name: 'workflowObject',
 		type: 'json',
 		default: '{ "name": "My workflow", "nodes": [], "connections": {}, "settings": {} }',
@@ -186,7 +186,7 @@ const createOperation: INodeProperties[] = [
 			},
 		},
 		description:
-			"A valid JSON object with required fields: 'name', 'nodes', 'connections' and 'settings'. More information can be found in the <a href=\"https://docs.n8n.io/api/api-reference/#tag/workflow/paths/~1workflows/post\">documentation</a>.",
+			"یک شیء JSON معتبر با فیلدهای مورد نیاز: 'name'، 'nodes'، 'connections' و 'settings'. اطلاعات بیشتر را می‌توان در <a href=\"https://docs.n8n.io/api/api-reference/#tag/workflow/paths/~1workflows/post\">مستندات</a> یافت.",
 	},
 ];
 
@@ -230,7 +230,7 @@ const deleteOperation: INodeProperties[] = [
 
 const getAllOperation: INodeProperties[] = [
 	{
-		displayName: 'Return All',
+		displayName: 'بازگرداندن همه',
 		name: 'returnAll',
 		type: 'boolean',
 		default: true,
@@ -240,10 +240,10 @@ const getAllOperation: INodeProperties[] = [
 				operation: ['getAll'],
 			},
 		},
-		description: 'Whether to return all results or only up to a given limit',
+		description: 'آیا همه نتایج بازگردانده شود یا فقط تا حد مشخصی',
 	},
 	{
-		displayName: 'Limit',
+		displayName: 'محدودیت',
 		name: 'limit',
 		type: 'number',
 		default: 100,
@@ -265,10 +265,10 @@ const getAllOperation: INodeProperties[] = [
 				},
 			},
 		},
-		description: 'Max number of results to return',
+		description: 'حداکثر تعداد نتایج برای بازگرداندن',
 	},
 	{
-		displayName: 'Filters',
+		displayName: 'فیلترها',
 		name: 'filters',
 		type: 'collection',
 		default: {},
@@ -280,7 +280,7 @@ const getAllOperation: INodeProperties[] = [
 		},
 		options: [
 			{
-				displayName: 'Return Only Published Workflows',
+				displayName: 'فقط جریان‌های کاری منتشر شده را بازگردان',
 				name: 'activeWorkflows',
 				type: 'boolean',
 				default: true,
@@ -293,7 +293,7 @@ const getAllOperation: INodeProperties[] = [
 				},
 			},
 			{
-				displayName: 'Tags',
+				displayName: 'برچسب‌ها',
 				name: 'tags',
 				type: 'string',
 				default: '',
@@ -305,11 +305,11 @@ const getAllOperation: INodeProperties[] = [
 						value: '={{ $value !== "" ? $value : undefined }}',
 					},
 				},
-				description: 'Include only workflows with these tags',
-				hint: 'Comma separated list of tags (empty value is ignored)',
+				description: 'فقط جریان‌های کاری با این برچسب‌ها را شامل شود',
+				hint: 'فهرست برچسب‌ها جدا شده با کاما (مقدار خالی نادیده گرفته می‌شود)',
 			},
 			{
-				displayName: 'Name',
+				displayName: 'نام',
 				name: 'name',
 				type: 'string',
 				default: '',
@@ -322,7 +322,7 @@ const getAllOperation: INodeProperties[] = [
 				},
 			},
 			{
-				displayName: 'Project ID',
+				displayName: 'شناسه پروژه',
 				name: 'projectId',
 				type: 'string',
 				default: '',
@@ -335,9 +335,9 @@ const getAllOperation: INodeProperties[] = [
 				},
 			},
 			{
-				displayName: 'Exclude Pinned Data',
+				displayName: 'حذف داده‌های پین شده',
 				name: 'excludePinnedData',
-				description: 'Whether to exclude pinned data from the response',
+				description: 'آیا داده‌های پین شده از پاسخ حذف شوند',
 				type: 'boolean',
 				default: false,
 				routing: {
@@ -389,7 +389,7 @@ const getVersionOperation: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Version ID',
+		displayName: 'شناسه نسخه',
 		name: 'versionId',
 		type: 'string',
 		default: '',
@@ -400,7 +400,7 @@ const getVersionOperation: INodeProperties[] = [
 				operation: ['getVersion'],
 			},
 		},
-		description: 'The version ID to retrieve',
+		description: 'شناسه نسخه برای بازیابی',
 	},
 ];
 
@@ -422,7 +422,7 @@ const updateOperation: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Workflow Object',
+		displayName: 'شیء جریان کاری',
 		name: 'workflowObject',
 		type: 'json',
 		default: '',
@@ -444,7 +444,7 @@ const updateOperation: INodeProperties[] = [
 			},
 		},
 		description:
-			"A valid JSON object with required fields: 'name', 'nodes', 'connections' and 'settings'. More information can be found in the <a href=\"https://docs.n8n.io/api/api-reference/#tag/workflow/paths/~1workflows~1%7bid%7d/put\">documentation</a>.",
+			"یک شیء JSON معتبر با فیلدهای مورد نیاز: 'name'، 'nodes'، 'connections' و 'settings'. اطلاعات بیشتر را می‌توانید در <a href=\"https://docs.n8n.io/api/api-reference/#tag/workflow/paths/~1workflows~1%7bid%7d/put\">مستندات</a> بیابید.",
 	},
 ];
 

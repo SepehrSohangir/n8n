@@ -39,7 +39,7 @@ import {
 import { Webhook } from '../Webhook/Webhook.node';
 
 const toWaitAmount: INodeProperties = {
-	displayName: 'Wait Amount',
+	displayName: 'زمان انتظار',
 	name: 'amount',
 	type: 'number',
 	typeOptions: {
@@ -47,44 +47,43 @@ const toWaitAmount: INodeProperties = {
 		numberPrecision: 2,
 	},
 	default: 1,
-	description: 'The time to wait',
+	description: 'زمان انتظار',
 	validateType: 'number',
 };
 
 const unitSelector: INodeProperties = {
-	displayName: 'Wait Unit',
+	displayName: 'واحد زمان انتظار',
 	name: 'unit',
 	type: 'options',
 	options: [
 		{
-			name: 'Seconds',
+			name: 'ثانیه',
 			value: 'seconds',
 		},
 		{
-			name: 'Minutes',
+			name: 'دقیقه',
 			value: 'minutes',
 		},
 		{
-			name: 'Hours',
+			name: 'ساعت',
 			value: 'hours',
 		},
 		{
-			name: 'Days',
+			name: 'روز',
 			value: 'days',
 		},
 	],
 	default: 'hours',
-	description: 'The time unit of the Wait Amount value',
+	description: 'واحد زمان انتظار',
 };
 
 const waitTimeProperties: INodeProperties[] = [
 	{
-		displayName: 'Limit Wait Time',
+		displayName: 'محدود کردن زمان انتظار',
 		name: 'limitWaitTime',
 		type: 'boolean',
 		default: false,
-		description:
-			'Whether to limit the time this node should wait for a user response before execution resumes',
+		description: 'آیا باید زمان انتظار این نود برای پاسخ کاربر قبل از ادامه اجرا محدود شود',
 		displayOptions: {
 			show: {
 				resume: ['webhook', 'form'],
@@ -92,12 +91,12 @@ const waitTimeProperties: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Limit Type',
+		displayName: 'نوع محدودیت',
 		name: 'limitType',
 		type: 'options',
 		default: 'afterTimeInterval',
 		description:
-			'Sets the condition for the execution to resume. Can be a specified date or after some time.',
+			'شرطی را برای ادامه اجرای جریان کاری تنظیم می‌کند. می‌تواند یک تاریخ مشخص یا پس از مدت زمان مشخص باشد.',
 		displayOptions: {
 			show: {
 				limitWaitTime: [true],
@@ -106,19 +105,19 @@ const waitTimeProperties: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'After Time Interval',
-				description: 'Waits for a certain amount of time',
+				name: 'پس از بازه زمانی',
+				description: 'منتظر مدت زمان مشخصی می‌ماند',
 				value: 'afterTimeInterval',
 			},
 			{
-				name: 'At Specified Time',
-				description: 'Waits until the set date and time to continue',
+				name: 'در زمان مشخص شده',
+				description: 'منتظر می‌ماند تا تاریخ و زمان تعیین شده برای ادامه برسد',
 				value: 'atSpecifiedTime',
 			},
 		],
 	},
 	{
-		displayName: 'Amount',
+		displayName: 'زمان انتظار',
 		name: 'resumeAmount',
 		type: 'number',
 		displayOptions: {
@@ -133,10 +132,10 @@ const waitTimeProperties: INodeProperties[] = [
 			numberPrecision: 2,
 		},
 		default: 1,
-		description: 'The time to wait',
+		description: 'زمان انتظار',
 	},
 	{
-		displayName: 'Unit',
+		displayName: 'واحد',
 		name: 'resumeUnit',
 		type: 'options',
 		displayOptions: {
@@ -148,27 +147,27 @@ const waitTimeProperties: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'Seconds',
+				name: 'ثانیه',
 				value: 'seconds',
 			},
 			{
-				name: 'Minutes',
+				name: 'دقیقه',
 				value: 'minutes',
 			},
 			{
-				name: 'Hours',
+				name: 'ساعت',
 				value: 'hours',
 			},
 			{
-				name: 'Days',
+				name: 'روز',
 				value: 'days',
 			},
 		],
 		default: 'hours',
-		description: 'Unit of the interval value',
+		description: 'واحد مقدار بازه زمانی',
 	},
 	{
-		displayName: 'Max Date and Time',
+		displayName: 'حداکثر تاریخ و زمان',
 		name: 'maxDateAndTime',
 		type: 'dateTime',
 		displayOptions: {
@@ -179,19 +178,19 @@ const waitTimeProperties: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'Continue execution after the specified date and time',
+		description: 'ادامه اجرای جریان کاری پس از تاریخ و زمان مشخص شده',
 	},
 ];
 
 const webhookSuffix: INodeProperties = {
-	displayName: 'Webhook Suffix',
+	displayName: 'پسوند وب هوک',
 	name: 'webhookSuffix',
 	type: 'string',
 	default: '',
 	placeholder: 'webhook',
 	noDataExpression: true,
 	description:
-		'This suffix path will be appended to the restart URL. Helpful when using multiple wait nodes.',
+		'این مسیر پسوند به URL راه‌اندازی مجدد اضافه می‌شود. هنگام استفاده از چندین نود انتظار مفید است.',
 };
 
 const displayOnWebhook: IDisplayOptions = {
@@ -216,7 +215,7 @@ const onFormSubmitProperties = updateDisplayOptions(displayOnFormSubmission, [
 const onWebhookCallProperties = updateDisplayOptions(displayOnWebhook, [
 	{
 		...httpMethodsProperty,
-		description: 'The HTTP method of the Webhook call',
+		description: 'روش HTTP تماس وب هوک',
 	},
 	responseCodeProperty,
 	responseModeProperty,
@@ -258,15 +257,15 @@ export class Wait extends Webhook {
 	authPropertyName = 'incomingAuthentication';
 
 	description: INodeTypeDescription = {
-		displayName: 'Wait',
+		displayName: 'انتظار',
 		name: 'wait',
 		icon: 'fa:pause-circle',
 		iconColor: 'crimson',
 		group: ['organization'],
 		version: [1, 1.1],
-		description: 'Wait before continue with execution',
+		description: 'منتظر می‌ماند قبل از ادامه اجرای جریان کاری',
 		defaults: {
-			name: 'Wait',
+			name: 'انتظار',
 			color: '#804050',
 		},
 		inputs: [NodeConnectionTypes.Main],
@@ -302,36 +301,36 @@ export class Wait extends Webhook {
 		],
 		properties: [
 			{
-				displayName: 'Resume',
+				displayName: 'ادامه',
 				name: 'resume',
 				type: 'options',
 				options: [
 					{
-						name: 'After Time Interval',
+						name: 'پس از بازه زمانی',
 						value: 'timeInterval',
-						description: 'Waits for a certain amount of time',
+						description: 'منتظر می‌ماند برای مقدار مشخصی از زمان',
 					},
 					{
-						name: 'At Specified Time',
+						name: 'در زمان مشخص شده',
 						value: 'specificTime',
-						description: 'Waits until a specific date and time to continue',
+						description: 'منتظر می‌ماند تا تاریخ و زمان مشخص شده برای ادامه',
 					},
 					{
-						name: 'On Webhook Call',
+						name: 'در تماس وب هوک',
 						value: 'webhook',
-						description: 'Waits for a webhook call before continuing',
+						description: 'منتظر می‌ماند تا تماس وب هوک برای ادامه',
 					},
 					{
-						name: 'On Form Submitted',
+						name: 'در ارسال فرم',
 						value: 'form',
-						description: 'Waits for a form submission before continuing',
+						description: 'منتظر می‌ماند تا ارسال فرم برای ادامه',
 					},
 				],
 				default: 'timeInterval',
-				description: 'Determines the waiting mode to use before the workflow continues',
+				description: 'تعیین می‌کند که از کدام حالت انتظار قبل از ادامه جریان کاری استفاده شود',
 			},
 			{
-				displayName: 'Authentication',
+				displayName: 'احراز هویت',
 				name: 'incomingAuthentication',
 				type: 'options',
 				options: [
@@ -340,13 +339,13 @@ export class Wait extends Webhook {
 						value: 'basicAuth',
 					},
 					{
-						name: 'None',
+						name: 'هیچکدام',
 						value: 'none',
 					},
 				],
 				default: 'none',
 				description:
-					'If and how incoming resume-webhook-requests to $execution.resumeFormUrl should be authenticated for additional security',
+					'اگر و چگونه درخواست‌های وب هوک ادامه‌دهنده ورودی به $execution.resumeFormUrl باید برای امنیت بیشتر احراز هویت شوند',
 				displayOptions: {
 					show: {
 						resume: ['form'],
@@ -356,7 +355,7 @@ export class Wait extends Webhook {
 			{
 				...authenticationProperty(this.authPropertyName),
 				description:
-					'If and how incoming resume-webhook-requests to $execution.resumeUrl should be authenticated for additional security',
+					'اگر و چگونه درخواست‌های وب هوک ادامه‌دهنده ورودی به $execution.resumeUrl باید برای امنیت بیشتر احراز هویت شوند',
 				displayOptions: displayOnWebhook,
 			},
 
@@ -364,7 +363,7 @@ export class Wait extends Webhook {
 			//         resume:specificTime
 			// ----------------------------------
 			{
-				displayName: 'Date and Time',
+				displayName: 'تاریخ و زمان',
 				name: 'dateTime',
 				type: 'dateTime',
 				displayOptions: {
@@ -373,7 +372,7 @@ export class Wait extends Webhook {
 					},
 				},
 				default: '',
-				description: 'The date and time to wait for before continuing',
+				description: 'تاریخ و زمان برای انتظار قبل از ادامه',
 				required: true,
 			},
 
@@ -428,7 +427,7 @@ export class Wait extends Webhook {
 			// ----------------------------------
 			{
 				displayName:
-					'The webhook URL will be generated at run time. It can be referenced with the <strong>$execution.resumeUrl</strong> variable. Send it somewhere before getting to this node. <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.wait/?utm_source=n8n_app&utm_medium=node_settings_modal-credential_link&utm_campaign=n8n-nodes-base.wait" target="_blank">More info</a>',
+					'آدرس وب هوک در زمان اجرا تولید خواهد شد. می‌توان به آن با متغیر <strong>$execution.resumeUrl</strong> ارجاع داد. قبل از رسیدن به این گره، آن را جایی ارسال کنید. <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.wait/?utm_source=n8n_app&utm_medium=node_settings_modal-credential_link&utm_campaign=n8n-nodes-base.wait" target="_blank">اطلاعات بیشتر</a>',
 				name: 'webhookNotice',
 				type: 'notice',
 				displayOptions: displayOnWebhook,
@@ -436,7 +435,7 @@ export class Wait extends Webhook {
 			},
 			{
 				displayName:
-					'The form url will be generated at run time. It can be referenced with the <strong>$execution.resumeFormUrl</strong> variable. Send it somewhere before getting to this node. <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.wait/?utm_source=n8n_app&utm_medium=node_settings_modal-credential_link&utm_campaign=n8n-nodes-base.wait" target="_blank">More info</a>',
+					'آدرس فرم در زمان اجرا تولید خواهد شد. می‌توان به آن با متغیر <strong>$execution.resumeFormUrl</strong> ارجاع داد. قبل از رسیدن به این گره، آن را جایی ارسال کنید. <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.wait/?utm_source=n8n_app&utm_medium=node_settings_modal-credential_link&utm_campaign=n8n-nodes-base.wait" target="_blank">اطلاعات بیشتر</a>',
 				name: 'formNotice',
 				type: 'notice',
 				displayOptions: displayOnFormSubmission,
@@ -451,10 +450,10 @@ export class Wait extends Webhook {
 				options: [...(optionsProperty.options as INodeProperties[]), webhookSuffix],
 			},
 			{
-				displayName: 'Options',
+				displayName: 'گزینه‌ها',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'Add option',
+				placeholder: 'افزودن گزینه',
 				default: {},
 				displayOptions: {
 					show: {
@@ -467,10 +466,10 @@ export class Wait extends Webhook {
 				options: [appendAttributionToForm, respondWithOptions, webhookSuffix],
 			},
 			{
-				displayName: 'Options',
+				displayName: 'گزینه‌ها',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'Add option',
+				placeholder: 'افزودن گزینه',
 				default: {},
 				displayOptions: {
 					show: {

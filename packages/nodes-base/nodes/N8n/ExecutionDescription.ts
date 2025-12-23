@@ -5,7 +5,7 @@ import { workflowIdLocator } from './WorkflowLocator';
 
 export const executionOperations: INodeProperties[] = [
 	{
-		displayName: 'Operation',
+		displayName: 'عملیات',
 		name: 'operation',
 		type: 'options',
 		noDataExpression: true,
@@ -17,9 +17,9 @@ export const executionOperations: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'Get',
+				name: 'دریافت',
 				value: 'get',
-				action: 'Get an execution',
+				action: 'دریافت یک اجرا',
 				routing: {
 					request: {
 						method: 'GET',
@@ -28,9 +28,9 @@ export const executionOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Get Many',
+				name: 'دریافت چندگانه',
 				value: 'getAll',
-				action: 'Get many executions',
+				action: 'دریافت بسیاری اجراها',
 				routing: {
 					request: {
 						method: 'GET',
@@ -45,9 +45,9 @@ export const executionOperations: INodeProperties[] = [
 				},
 			},
 			{
-				name: 'Delete',
+				name: 'حذف',
 				value: 'delete',
-				action: 'Delete an execution',
+				action: 'حذف یک اجرا',
 				routing: {
 					request: {
 						method: 'DELETE',
@@ -61,7 +61,7 @@ export const executionOperations: INodeProperties[] = [
 
 const deleteOperation: INodeProperties[] = [
 	{
-		displayName: 'Execution ID',
+		displayName: 'شناسه اجرا',
 		name: 'executionId',
 		type: 'string',
 		required: true,
@@ -77,7 +77,7 @@ const deleteOperation: INodeProperties[] = [
 
 const getAllOperation: INodeProperties[] = [
 	{
-		displayName: 'Return All',
+		displayName: 'بازگرداندن همه',
 		name: 'returnAll',
 		type: 'boolean',
 		default: false,
@@ -87,10 +87,10 @@ const getAllOperation: INodeProperties[] = [
 				operation: ['getAll'],
 			},
 		},
-		description: 'Whether to return all results or only up to a given limit',
+		description: 'همه نتایج را برگردانید بدون توجه به محدودیت',
 	},
 	{
-		displayName: 'Limit',
+		displayName: 'محدودیت',
 		name: 'limit',
 		type: 'number',
 		default: 100,
@@ -112,10 +112,10 @@ const getAllOperation: INodeProperties[] = [
 				},
 			},
 		},
-		description: 'Max number of results to return',
+		description: 'حداکثر تعداد نتایج برای بازگرداندن',
 	},
 	{
-		displayName: 'Filters',
+		displayName: 'فیلترها',
 		name: 'filters',
 		type: 'collection',
 		placeholder: 'Add Filter',
@@ -137,23 +137,23 @@ const getAllOperation: INodeProperties[] = [
 						value: '={{ $value || undefined }}',
 					},
 				},
-				description: 'Workflow to filter the executions by',
+				description: 'شناسه جریان کاری برای فیلتر کردن اجراها براساس آن',
 			},
 			{
-				displayName: 'Status',
+				displayName: 'وضعیت',
 				name: 'status',
 				type: 'options',
 				options: [
 					{
-						name: 'Error',
+						name: 'خطا',
 						value: 'error',
 					},
 					{
-						name: 'Success',
+						name: 'موفقیت آمیز',
 						value: 'success',
 					},
 					{
-						name: 'Waiting',
+						name: 'در انتظار',
 						value: 'waiting',
 					},
 				],
@@ -165,16 +165,16 @@ const getAllOperation: INodeProperties[] = [
 						value: '={{ $value }}',
 					},
 				},
-				description: 'Status to filter the executions by',
+				description: 'وضعیت برای فیلتر کردن اجراها براساس آن',
 			},
 		],
 	},
 	{
-		displayName: 'Options',
+		displayName: 'گزینه‌ها',
 		name: 'options',
 		type: 'collection',
 		default: {},
-		placeholder: 'Add option',
+		placeholder: 'افزودن گزینه',
 		displayOptions: {
 			show: {
 				resource: ['execution'],
@@ -183,7 +183,7 @@ const getAllOperation: INodeProperties[] = [
 		},
 		options: [
 			{
-				displayName: 'Include Execution Details',
+				displayName: 'شامل جزئیات اجرا',
 				name: 'activeWorkflows',
 				type: 'boolean',
 				default: false,
@@ -194,7 +194,7 @@ const getAllOperation: INodeProperties[] = [
 						value: '={{ $value }}',
 					},
 				},
-				description: 'Whether to include the detailed execution data',
+				description: 'آیا جزئیات دقیق اجرا را شامل شود',
 			},
 		],
 	},
@@ -202,7 +202,7 @@ const getAllOperation: INodeProperties[] = [
 
 const getOperation: INodeProperties[] = [
 	{
-		displayName: 'Execution ID',
+		displayName: 'شناسه اجرا',
 		name: 'executionId',
 		type: 'string',
 		required: true,
@@ -215,11 +215,11 @@ const getOperation: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Options',
+		displayName: 'گزینه‌ها',
 		name: 'options',
 		type: 'collection',
 		default: {},
-		placeholder: 'Add option',
+		placeholder: 'افزودن گزینه',
 		displayOptions: {
 			show: {
 				resource: ['execution'],
@@ -228,7 +228,7 @@ const getOperation: INodeProperties[] = [
 		},
 		options: [
 			{
-				displayName: 'Include Execution Details',
+				displayName: 'شامل جزئیات اجرا',
 				name: 'activeWorkflows',
 				type: 'boolean',
 				default: false,
@@ -239,7 +239,7 @@ const getOperation: INodeProperties[] = [
 						value: '={{ $value }}',
 					},
 				},
-				description: 'Whether to include the detailed execution data',
+				description: 'آیا جزئیات دقیق اجرا را شامل شود',
 			},
 		],
 	},

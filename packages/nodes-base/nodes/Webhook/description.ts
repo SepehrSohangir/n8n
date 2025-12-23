@@ -49,7 +49,7 @@ export const credentialsProperty = (
 ];
 
 export const authenticationProperty = (propertyName = 'authentication'): INodeProperties => ({
-	displayName: 'Authentication',
+	displayName: 'احراز هویت',
 	name: propertyName,
 	type: 'options',
 	options: [
@@ -66,16 +66,16 @@ export const authenticationProperty = (propertyName = 'authentication'): INodePr
 			value: 'jwtAuth',
 		},
 		{
-			name: 'None',
+			name: 'هیچکدام',
 			value: 'none',
 		},
 	],
 	default: 'none',
-	description: 'The way to authenticate',
+	description: 'روش احراز هویت',
 });
 
 export const httpMethodsProperty: INodeProperties = {
-	displayName: 'HTTP Method',
+	displayName: 'متد HTTP',
 	name: 'httpMethod',
 	type: 'options',
 	options: [
@@ -105,11 +105,11 @@ export const httpMethodsProperty: INodeProperties = {
 		},
 	],
 	default: 'GET',
-	description: 'The HTTP method to listen to',
+	description: 'متد HTTP ',
 };
 
 export const responseCodeProperty: INodeProperties = {
-	displayName: 'Response Code',
+	displayName: 'کد پاسخ',
 	name: 'responseCode',
 	type: 'number',
 	displayOptions: {
@@ -122,34 +122,34 @@ export const responseCodeProperty: INodeProperties = {
 		maxValue: 599,
 	},
 	default: 200,
-	description: 'The HTTP Response code to return',
+	description: 'کد پاسخ HTTP که باید بازگردانده شود',
 };
 
 const responseModeOptions = [
 	{
-		name: 'Immediately',
+		name: 'فوراً',
 		value: 'onReceived',
-		description: 'As soon as this node executes',
+		description: 'به محض اجرای این نود',
 	},
 	{
-		name: 'When Last Node Finishes',
+		name: 'وقتی آخرین نود تمام شد',
 		value: 'lastNode',
-		description: 'Returns data of the last-executed node',
+		description: 'بازگرداندن داده‌های آخرین نود اجرا شده',
 	},
 	{
-		name: "Using 'Respond to Webhook' Node",
+		name: "استفاده از نود 'پاسخ به وبهوک'",
 		value: 'responseNode',
-		description: 'Response defined in that node',
+		description: 'پاسخ تعریف شده در آن نود',
 	},
 ];
 
 export const responseModeProperty: INodeProperties = {
-	displayName: 'Respond',
+	displayName: 'پاسخ',
 	name: 'responseMode',
 	type: 'options',
 	options: responseModeOptions,
 	default: 'onReceived',
-	description: 'When and how to respond to the webhook',
+	description: 'چه زمان و چگونه به وبهوک پاسخ داده شود',
 	displayOptions: {
 		show: {
 			'@version': [1, 1.1, 2],
@@ -158,19 +158,19 @@ export const responseModeProperty: INodeProperties = {
 };
 
 export const responseModePropertyStreaming: INodeProperties = {
-	displayName: 'Respond',
+	displayName: 'پاسخ',
 	name: 'responseMode',
 	type: 'options',
 	options: [
 		...responseModeOptions,
 		{
-			name: 'Streaming',
+			name: 'پخش زنده',
 			value: 'streaming',
-			description: 'Returns data in real time from streaming enabled nodes',
+			description: 'بازگرداندن داده‌ها به صورت زنده از نودهای فعال شده برای پخش زنده',
 		},
 	],
 	default: 'onReceived',
-	description: 'When and how to respond to the webhook',
+	description: 'چه زمان و چگونه به وبهوک پاسخ داده شود',
 	displayOptions: {
 		hide: {
 			'@version': [1, 1.1, 2],
@@ -179,7 +179,7 @@ export const responseModePropertyStreaming: INodeProperties = {
 };
 
 export const responseDataProperty: INodeProperties = {
-	displayName: 'Response Data',
+	displayName: 'داده‌های پاسخ',
 	name: 'responseData',
 	type: 'options',
 	displayOptions: {
@@ -189,35 +189,34 @@ export const responseDataProperty: INodeProperties = {
 	},
 	options: [
 		{
-			name: 'All Entries',
+			name: 'تمام ورودی‌ها',
 			value: 'allEntries',
-			description: 'Returns all the entries of the last node. Always returns an array.',
+			description: 'بازگرداندن تمام ورودی‌های آخرین نود. همیشه یک آرایه باز می‌گرداند.',
 		},
 		{
-			name: 'First Entry JSON',
+			name: 'اولین ورودی JSON',
 			value: 'firstEntryJson',
-			description:
-				'Returns the JSON data of the first entry of the last node. Always returns a JSON object.',
+			description: 'بازگرداندن داده‌های JSON اولین ورودی آخرین نود. همیشه یک شیء JSON باز می‌گرداند.',
 		},
 		{
-			name: 'First Entry Binary',
+			name: 'اولین ورودی باینری',
 			value: 'firstEntryBinary',
 			description:
-				'Returns the binary data of the first entry of the last node. Always returns a binary file.',
+				'بازگرداندن داده‌های باینری اولین ورودی آخرین نود. همیشه یک فایل باینری باز می‌گرداند.',
 		},
 		{
-			name: 'No Response Body',
+			name: 'بدون بدنه پاسخ',
 			value: 'noData',
-			description: 'Returns without a body',
+			description: 'بازگرداندن بدون بدنه',
 		},
 	],
 	default: 'firstEntryJson',
 	description:
-		'What data should be returned. If it should return all items as an array or only the first item as object.',
+		'چه داده‌ای باید بازگردانده شود. آیا باید تمام آیتم‌ها به صورت آرایه بازگردانده شوند یا فقط اولین آیتم به صورت شیء.',
 };
 
 export const responseBinaryPropertyNameProperty: INodeProperties = {
-	displayName: 'Property Name',
+	displayName: 'نام ویژگی',
 	name: 'responseBinaryPropertyName',
 	type: 'string',
 	required: true,
@@ -227,18 +226,18 @@ export const responseBinaryPropertyNameProperty: INodeProperties = {
 			responseData: ['firstEntryBinary'],
 		},
 	},
-	description: 'Name of the binary property to return',
+	description: 'نام ویژگی باینری که باید بازگردانده شود',
 };
 
 export const optionsProperty: INodeProperties = {
-	displayName: 'Options',
+	displayName: 'گزینه‌ها',
 	name: 'options',
 	type: 'collection',
-	placeholder: 'Add option',
+	placeholder: 'افزودن گزینه',
 	default: {},
 	options: [
 		{
-			displayName: 'Binary File',
+			displayName: 'فایل باینری',
 			name: 'binaryData',
 			type: 'boolean',
 			displayOptions: {
@@ -248,10 +247,10 @@ export const optionsProperty: INodeProperties = {
 				},
 			},
 			default: false,
-			description: 'Whether the webhook will receive binary data',
+			description: 'آیا وبهوک داده‌های باینری دریافت خواهد کرد',
 		},
 		{
-			displayName: 'Put Output File in Field',
+			displayName: 'قرار دادن فایل خروجی در فیلد',
 			name: 'binaryPropertyName',
 			type: 'string',
 			default: 'data',
@@ -261,12 +260,12 @@ export const optionsProperty: INodeProperties = {
 					'@version': [1],
 				},
 			},
-			hint: 'The name of the output binary field to put the file in',
+			hint: 'نام فیلد خروجی باینری که فایل باید در آن قرار گیرد',
 			description:
-				'If the data gets received via "Form-Data Multipart" it will be the prefix and a number starting with 0 will be attached to it',
+				'اگر داده‌ها از طریق "Form-Data Multipart" دریافت شوند، این پیش‌وند خواهد بود و عددی که از 0 شروع می‌شود به آن اضافه خواهد شد',
 		},
 		{
-			displayName: 'Field Name for Binary Data',
+			displayName: 'نام فیلد برای داده‌های باینری',
 			name: 'binaryPropertyName',
 			type: 'string',
 			default: 'data',
@@ -276,29 +275,30 @@ export const optionsProperty: INodeProperties = {
 				},
 			},
 			description:
-				'The name of the output field to put any binary file data in. Only relevant if binary data is received.',
+				'نام فیلد خروجی برای قرار دادن هر داده فایل باینری. فقط در صورتی که داده‌های باینری دریافت شود مرتبط است.',
 		},
 		{
-			displayName: 'Ignore Bots',
+			displayName: 'نادیده گرفتن ربات‌ها',
 			name: 'ignoreBots',
 			type: 'boolean',
 			default: false,
-			description: 'Whether to ignore requests from bots like link previewers and web crawlers',
+			description:
+				'آیا درخواست‌ها از ربات‌هایی مانند پیش‌نمایش‌دهنده‌های لینک و خزنده‌های وب نادیده گرفته شوند',
 		},
 		{
-			displayName: 'IP(s) Whitelist',
+			displayName: 'فهرست سفید IP',
 			name: 'ipWhitelist',
 			type: 'string',
 			placeholder: 'e.g. 127.0.0.1',
 			default: '',
-			description: 'Comma-separated list of allowed IP addresses. Leave empty to allow all IPs.',
+			description: 'فهرست جداشده با کاما از آدرس‌های IP مجاز. خالی بگذارید تا همه IPها مجاز باشند.',
 		},
 		{
-			displayName: 'No Response Body',
+			displayName: 'بدون بدنه پاسخ',
 			name: 'noResponseBody',
 			type: 'boolean',
 			default: false,
-			description: 'Whether to send any body in the response',
+			description: 'آیا باید بدنه‌ای در پاسخ ارسال شود',
 			displayOptions: {
 				hide: {
 					rawBody: [true],
@@ -309,7 +309,7 @@ export const optionsProperty: INodeProperties = {
 			},
 		},
 		{
-			displayName: 'Raw Body',
+			displayName: 'بدنه خام',
 			name: 'rawBody',
 			type: 'boolean',
 			displayOptions: {
@@ -323,10 +323,10 @@ export const optionsProperty: INodeProperties = {
 			},
 			default: false,
 			// eslint-disable-next-line n8n-nodes-base/node-param-description-boolean-without-whether
-			description: 'Raw body (binary)',
+			description: 'بدنه خام (باینری)',
 		},
 		{
-			displayName: 'Raw Body',
+			displayName: 'بدنه خام',
 			name: 'rawBody',
 			type: 'boolean',
 			displayOptions: {
@@ -336,10 +336,10 @@ export const optionsProperty: INodeProperties = {
 				},
 			},
 			default: false,
-			description: 'Whether to return the raw body',
+			description: 'آیا باید بدنه خام بازگردانده شود',
 		},
 		{
-			displayName: 'Response Data',
+			displayName: 'داده پاسخ',
 			name: 'responseData',
 			type: 'string',
 			displayOptions: {
@@ -351,11 +351,11 @@ export const optionsProperty: INodeProperties = {
 				},
 			},
 			default: '',
-			placeholder: 'success',
-			description: 'Custom response data to send',
+			placeholder: 'موفقیت',
+			description: 'داده پاسخ سفارشی برای ارسال',
 		},
 		{
-			displayName: 'Response Content-Type',
+			displayName: 'نوع محتوای پاسخ',
 			name: 'responseContentType',
 			type: 'string',
 			displayOptions: {
@@ -368,13 +368,13 @@ export const optionsProperty: INodeProperties = {
 			placeholder: 'application/xml',
 			// eslint-disable-next-line n8n-nodes-base/node-param-description-miscased-json
 			description:
-				'Set a custom content-type to return if another one as the "application/json" should be returned',
+				'نوع محتوای سفارشی برای بازگرداندن اگر نوع دیگری به جز "application/json" باید بازگردانده شود',
 		},
 		{
-			displayName: 'Response Headers',
+			displayName: 'هدرهای پاسخ',
 			name: 'responseHeaders',
-			placeholder: 'Add Response Header',
-			description: 'Add headers to the webhook response',
+			placeholder: 'افزودن هدر پاسخ',
+			description: 'افزودن هدرها به پاسخ وبهوک',
 			type: 'fixedCollection',
 			typeOptions: {
 				multipleValues: true,
@@ -383,28 +383,28 @@ export const optionsProperty: INodeProperties = {
 			options: [
 				{
 					name: 'entries',
-					displayName: 'Entries',
+					displayName: 'ورودی‌ها',
 					values: [
 						{
-							displayName: 'Name',
+							displayName: 'نام',
 							name: 'name',
 							type: 'string',
 							default: '',
-							description: 'Name of the header',
+							description: 'نام هدر',
 						},
 						{
-							displayName: 'Value',
+							displayName: 'مقدار',
 							name: 'value',
 							type: 'string',
 							default: '',
-							description: 'Value of the header',
+							description: 'مقدار هدر',
 						},
 					],
 				},
 			],
 		},
 		{
-			displayName: 'Property Name',
+			displayName: 'نام ویژگی',
 			name: 'responsePropertyName',
 			type: 'string',
 			displayOptions: {
@@ -414,48 +414,56 @@ export const optionsProperty: INodeProperties = {
 				},
 			},
 			default: 'data',
-			description: 'Name of the property to return the data of instead of the whole JSON',
+			description: 'نام ویژگی برای بازگرداندن داده‌ها به جای کل JSON',
 		},
 	],
 };
 
 export const responseCodeSelector: INodeProperties = {
-	displayName: 'Response Code',
+	displayName: 'کد پاسخ',
 	name: 'responseCode',
 	type: 'options',
 	options: [
-		{ name: '200', value: 200, description: 'OK - Request has succeeded' },
-		{ name: '201', value: 201, description: 'Created - Request has been fulfilled' },
-		{ name: '204', value: 204, description: 'No Content - Request processed, no content returned' },
+		{ name: '200', value: 200, description: 'OK - درخواست با موفقیت انجام شد' },
+		{ name: '201', value: 201, description: 'Created - درخواست انجام شده است' },
+		{
+			name: '204',
+			value: 204,
+			description: 'No Content - درخواست پردازش شده، محتوایی بازگردانده نشد',
+		},
 		{
 			name: '301',
 			value: 301,
-			description: 'Moved Permanently - Requested resource moved permanently',
+			description: 'Moved Permanently - منبع درخواست به طور دائم منتقل شده است',
 		},
-		{ name: '302', value: 302, description: 'Found - Requested resource moved temporarily' },
-		{ name: '304', value: 304, description: 'Not Modified - Resource has not been modified' },
-		{ name: '400', value: 400, description: 'Bad Request - Request could not be understood' },
-		{ name: '401', value: 401, description: 'Unauthorized - Request requires user authentication' },
+		{ name: '302', value: 302, description: 'Found - منبع درخواست به طور موقت منتقل شده است' },
+		{ name: '304', value: 304, description: 'Not Modified - منبع تغییر نکرده است' },
+		{ name: '400', value: 400, description: 'Bad Request - درخواست قابل درک نبود' },
+		{
+			name: '401',
+			value: 401,
+			description: 'Unauthorized - درخواست نیاز به احراز هویت کاربر دارد',
+		},
 		{
 			name: '403',
 			value: 403,
-			description: 'Forbidden - Server understood, but refuses to fulfill',
+			description: 'Forbidden - سرور درخواست را فهمید، اما از انجام آن خودداری می‌کند',
 		},
-		{ name: '404', value: 404, description: 'Not Found - Server has not found a match' },
+		{ name: '404', value: 404, description: 'Not Found - سرور مطابقتی پیدا نکرده است' },
 		{
-			name: 'Custom Code',
+			name: 'کد سفارشی',
 			value: 'customCode',
-			description: 'Write any HTTP code',
+			description: 'هر کد پاسخ HTTP دلخواهی را مشخص کنید',
 		},
 	],
 	default: 200,
-	description: 'The HTTP response code to return',
+	description: 'کد پاسخ HTTP برای بازگرداندن',
 };
 
 export const responseCodeOption: INodeProperties = {
-	displayName: 'Response Code',
+	displayName: 'کد پاسخ',
 	name: 'responseCode',
-	placeholder: 'Add Response Code',
+	placeholder: 'افزودن کد پاسخ',
 	type: 'fixedCollection',
 	default: {
 		values: {
@@ -465,11 +473,11 @@ export const responseCodeOption: INodeProperties = {
 	options: [
 		{
 			name: 'values',
-			displayName: 'Values',
+			displayName: 'مقادیر',
 			values: [
 				responseCodeSelector,
 				{
-					displayName: 'Code',
+					displayName: 'کد سفارشی',
 					name: 'customCode',
 					type: 'number',
 					default: 200,

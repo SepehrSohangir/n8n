@@ -48,7 +48,7 @@ export const addPostExecutionWarning = (
 	) {
 		context.addExecutionHints({
 			message:
-				'To make sure expressions after this node work, return the input items that produced each output item. <a target="_blank" href="https://docs.n8n.io/data/data-mapping/data-item-linking/item-linking-code-node/">More info</a>',
+				'برای اینکه اکسپرشن‌های بعد از این نود به‌درستی کار کنند، آیتم‌های ورودی‌ای را که هر آیتم خروجی را تولید کرده‌اند، برگردانید.<a target="_blank" href="https://docs.n8n.io/data/data-mapping/data-item-linking/item-linking-code-node/">اطلاعات بیشتر</a>',
 			location: 'outputPane',
 		});
 	}

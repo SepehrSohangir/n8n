@@ -10,7 +10,7 @@ const commonDescription: INodeProperties = {
 	},
 	default: '',
 	description:
-		'Python code to execute.<br><br>Tip: You can use built-in methods and variables like <code>_today</code> for dates and <code>_jmespath</code> for querying JSON structures. <a href="https://docs.n8n.io/code/builtin/">Learn more</a>.',
+		'نوشتن کد پایتون سفارشی برای پردازش داده‌ها. برای مرجع متغیرها و روش‌ها، <a href="https://docs.n8n.io/code-examples/methods-variables-reference/" target="_blank">اینجا را ببینید</a>.',
 	noDataExpression: true,
 };
 
@@ -48,7 +48,7 @@ export const pythonCodeDescription: INodeProperties[] = [
 		default: '',
 	},
 	{
-		displayName: `${PRINT_INSTRUCTION}<br><br>The native Python option does not support <code>_</code> syntax and helpers, except for <code>_items</code> in all-items mode and <code>_item</code> in per-item mode.`,
+		displayName: `گزینهٔ (Native Python) از سینتکس و helperهای با پیشوند <code>_</code> پشتیبانی نمی‌کند؛ به‌جز <code>_items</code> در حالت all-items و <code>_item</code> در حالت per-item. برای دیدن فهرست متغیرها و متدهای ویژه، کاراکتر <code>$</code> را تایپ کنید. ${PRINT_INSTRUCTION}`,
 		name: 'notice',
 		type: 'notice',
 		displayOptions: {

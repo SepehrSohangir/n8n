@@ -4,12 +4,12 @@ import { optimizeResponseProperties } from '../shared/optimizeResponse';
 
 const preBuiltAgentsCallout: INodeProperties = {
 	// eslint-disable-next-line n8n-nodes-base/node-param-display-name-miscased
-	displayName: 'Try the HTTP request tool with our pre-built',
+	displayName: 'درخواست HTTP را با ابزارهای آماده اجرا کنید',
 	name: 'preBuiltAgentsCalloutHttpRequest',
 	type: 'callout',
 	typeOptions: {
 		calloutAction: {
-			label: 'Joke agent',
+			label: 'ربات جوک',
 			icon: 'bot',
 			type: 'openSampleWorkflowTemplate',
 			templateId: 'joke_agent_with_http_tool',
@@ -27,7 +27,7 @@ export const mainProperties: INodeProperties[] = [
 		default: '',
 	},
 	{
-		displayName: 'Method',
+		displayName: 'روش درخواست',
 		name: 'method',
 		type: 'options',
 		options: [
@@ -61,7 +61,7 @@ export const mainProperties: INodeProperties[] = [
 			},
 		],
 		default: 'GET',
-		description: 'The request method to use',
+		description: 'روش درخواست را برای استفاده انتخاب کنید',
 	},
 	{
 		displayName: 'URL',
@@ -69,35 +69,35 @@ export const mainProperties: INodeProperties[] = [
 		type: 'string',
 		default: '',
 		placeholder: 'http://example.com/index.html',
-		description: 'The URL to make the request to',
+		description: 'آدرس URL برای ارسال درخواست به آن',
 		required: true,
 	},
 	{
-		displayName: 'Authentication',
+		displayName: 'احراز هویت',
 		name: 'authentication',
 		noDataExpression: true,
 		type: 'options',
 		options: [
 			{
-				name: 'None',
+				name: 'هیچکدام',
 				value: 'none',
 			},
 			{
-				name: 'Predefined Credential Type',
+				name: 'نوع اعتبارنامه از پیش تعریف شده',
 				value: 'predefinedCredentialType',
 				description:
-					"We've already implemented auth for many services so that you don't have to set it up manually",
+					'ما قبلاً احراز هویت را برای بسیاری از خدمات پیاده‌سازی کرده‌ایم تا نیازی به تنظیم دستی آن نداشته باشید',
 			},
 			{
-				name: 'Generic Credential Type',
+				name: 'نوع اعتبارنامه عمومی',
 				value: 'genericCredentialType',
-				description: 'Fully customizable. Choose between basic, header, OAuth2, etc.',
+				description: 'کاملاً قابل تنظیم. انتخاب بین basic، header، OAuth2 و غیره.',
 			},
 		],
 		default: 'none',
 	},
 	{
-		displayName: 'Credential Type',
+		displayName: 'نوع اعتبارنامه',
 		name: 'nodeCredentialType',
 		type: 'credentialsSelect',
 		noDataExpression: true,
@@ -111,8 +111,7 @@ export const mainProperties: INodeProperties[] = [
 		},
 	},
 	{
-		displayName:
-			'Make sure you have specified the scope(s) for the Service Account in the credential',
+		displayName: 'مطمئن شوید که دامنه(های) حساب سرویس را در اعتبارنامه مشخص کرده‌اید',
 		name: 'googleApiWarning',
 		type: 'notice',
 		default: '',
@@ -123,7 +122,7 @@ export const mainProperties: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Generic Auth Type',
+		displayName: 'نوع اعتبارنامه عمومی',
 		name: 'genericAuthType',
 		type: 'credentialsSelect',
 		required: true,
@@ -136,14 +135,14 @@ export const mainProperties: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'SSL Certificates',
+		displayName: 'گواهی‌های SSL',
 		name: 'provideSslCertificates',
 		type: 'boolean',
 		default: false,
 		isNodeSetting: true,
 	},
 	{
-		displayName: "Provide certificates in node's 'Credential for SSL Certificates' parameter",
+		displayName: "گواهی‌ها را در پارامتر 'اعتبارنامه برای گواهی‌های SSL' گره ارائه دهید",
 		name: 'provideSslCertificatesNotice',
 		type: 'notice',
 		default: '',
@@ -155,7 +154,7 @@ export const mainProperties: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'SSL Certificate',
+		displayName: 'گواهی SSL',
 		name: 'sslCertificate',
 		type: 'credentials',
 		default: '',
@@ -166,15 +165,15 @@ export const mainProperties: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Send Query Parameters',
+		displayName: 'ارسال پارامترهای Query',
 		name: 'sendQuery',
 		type: 'boolean',
 		default: false,
 		noDataExpression: true,
-		description: 'Whether the request has query params or not',
+		description: 'آیا درخواست پارامترهای query دارد یا خیر',
 	},
 	{
-		displayName: 'Specify Query Parameters',
+		displayName: 'مشخص کردن پارامترهای Query',
 		name: 'specifyQuery',
 		type: 'options',
 		displayOptions: {
@@ -184,18 +183,18 @@ export const mainProperties: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'Using Fields Below',
+				name: 'استفاده از فیلدهای زیر',
 				value: 'keypair',
 			},
 			{
-				name: 'Using JSON',
+				name: 'استفاده از JSON',
 				value: 'json',
 			},
 		],
 		default: 'keypair',
 	},
 	{
-		displayName: 'Query Parameters',
+		displayName: 'پارامترهای Query',
 		name: 'queryParameters',
 		type: 'fixedCollection',
 		displayOptions: {
@@ -207,7 +206,7 @@ export const mainProperties: INodeProperties[] = [
 		typeOptions: {
 			multipleValues: true,
 		},
-		placeholder: 'Add Parameter',
+		placeholder: 'افزودن پارامتر',
 		default: {
 			parameters: [
 				{
@@ -219,16 +218,16 @@ export const mainProperties: INodeProperties[] = [
 		options: [
 			{
 				name: 'parameters',
-				displayName: 'Parameter',
+				displayName: 'پارامتر',
 				values: [
 					{
-						displayName: 'Name',
+						displayName: 'نام',
 						name: 'name',
 						type: 'string',
 						default: '',
 					},
 					{
-						displayName: 'Value',
+						displayName: 'مقدار',
 						name: 'value',
 						type: 'string',
 						default: '',
@@ -250,15 +249,15 @@ export const mainProperties: INodeProperties[] = [
 		default: '',
 	},
 	{
-		displayName: 'Send Headers',
+		displayName: 'ارسال هدرها',
 		name: 'sendHeaders',
 		type: 'boolean',
 		default: false,
 		noDataExpression: true,
-		description: 'Whether the request has headers or not',
+		description: 'آیا درخواست هدر دارد یا خیر',
 	},
 	{
-		displayName: 'Specify Headers',
+		displayName: 'مشخص کردن هدرها',
 		name: 'specifyHeaders',
 		type: 'options',
 		displayOptions: {
@@ -268,18 +267,18 @@ export const mainProperties: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'Using Fields Below',
+				name: 'استفاده از فیلدهای زیر',
 				value: 'keypair',
 			},
 			{
-				name: 'Using JSON',
+				name: 'استفاده از JSON',
 				value: 'json',
 			},
 		],
 		default: 'keypair',
 	},
 	{
-		displayName: 'Header Parameters',
+		displayName: 'پارامترهای هدر',
 		name: 'headerParameters',
 		type: 'fixedCollection',
 		displayOptions: {
@@ -291,7 +290,7 @@ export const mainProperties: INodeProperties[] = [
 		typeOptions: {
 			multipleValues: true,
 		},
-		placeholder: 'Add Parameter',
+		placeholder: 'افزودن پارامتر',
 		default: {
 			parameters: [
 				{
@@ -303,16 +302,16 @@ export const mainProperties: INodeProperties[] = [
 		options: [
 			{
 				name: 'parameters',
-				displayName: 'Parameter',
+				displayName: 'پارامتر',
 				values: [
 					{
-						displayName: 'Name',
+						displayName: 'نام',
 						name: 'name',
 						type: 'string',
 						default: '',
 					},
 					{
-						displayName: 'Value',
+						displayName: 'مقدار',
 						name: 'value',
 						type: 'string',
 						default: '',
@@ -334,15 +333,15 @@ export const mainProperties: INodeProperties[] = [
 		default: '',
 	},
 	{
-		displayName: 'Send Body',
+		displayName: 'ارسال بدنه',
 		name: 'sendBody',
 		type: 'boolean',
 		default: false,
 		noDataExpression: true,
-		description: 'Whether the request has a body or not',
+		description: 'آیا درخواست بدنه دارد یا خیر',
 	},
 	{
-		displayName: 'Body Content Type',
+		displayName: 'نوع محتوای بدنه',
 		name: 'contentType',
 		type: 'options',
 		displayOptions: {
@@ -352,11 +351,11 @@ export const mainProperties: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'Form Urlencoded',
+				name: 'از فرم کدگذاری شده (Form Urlencoded)',
 				value: 'form-urlencoded',
 			},
 			{
-				name: 'Form-Data',
+				name: 'فرم-داده (Form-Data)',
 				value: 'multipart-form-data',
 			},
 			{
@@ -365,11 +364,11 @@ export const mainProperties: INodeProperties[] = [
 			},
 			{
 				// eslint-disable-next-line n8n-nodes-base/node-param-display-name-miscased
-				name: 'n8n Binary File',
+				name: 'فایل باینری n8n',
 				value: 'binaryData',
 			},
 			{
-				name: 'Raw',
+				name: 'خام (raw)',
 				value: 'raw',
 			},
 		],
@@ -377,7 +376,7 @@ export const mainProperties: INodeProperties[] = [
 		description: 'Content-Type to use to send body parameters',
 	},
 	{
-		displayName: 'Specify Body',
+		displayName: 'مشخص کردن بدنه',
 		name: 'specifyBody',
 		type: 'options',
 		displayOptions: {
@@ -388,21 +387,21 @@ export const mainProperties: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'Using Fields Below',
+				name: 'استفاده از فیلدهای زیر',
 				value: 'keypair',
 			},
 			{
-				name: 'Using JSON',
+				name: 'استفاده از JSON',
 				value: 'json',
 			},
 		],
 		default: 'keypair',
 		// eslint-disable-next-line n8n-nodes-base/node-param-description-miscased-json
 		description:
-			'The body can be specified using explicit fields (<code>keypair</code>) or using a JavaScript object (<code>json</code>)',
+			'بدنه می‌تواند با استفاده از فیلدهای صریح (<code>keypair</code>) یا با استفاده از یک شیء جاوااسکریپت (<code>json</code>) مشخص شود',
 	},
 	{
-		displayName: 'Body Parameters',
+		displayName: 'پارامترهای بدنه',
 		name: 'bodyParameters',
 		type: 'fixedCollection',
 		displayOptions: {
@@ -415,7 +414,7 @@ export const mainProperties: INodeProperties[] = [
 		typeOptions: {
 			multipleValues: true,
 		},
-		placeholder: 'Add Parameter',
+		placeholder: 'افزودن پارامتر',
 		default: {
 			parameters: [
 				{
@@ -427,22 +426,22 @@ export const mainProperties: INodeProperties[] = [
 		options: [
 			{
 				name: 'parameters',
-				displayName: 'Parameter',
+				displayName: 'پارامتر',
 				values: [
 					{
-						displayName: 'Name',
+						displayName: 'نام',
 						name: 'name',
 						type: 'string',
 						default: '',
 						description:
-							'ID of the field to set. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+							'شناسه فیلدی که باید تنظیم شود. از لیست انتخاب کنید، یا با استفاده از یک <a href="https://docs.n8n.io/code/expressions/">عبارت</a> یک شناسه مشخص کنید.',
 					},
 					{
-						displayName: 'Value',
+						displayName: 'مقدار',
 						name: 'value',
 						type: 'string',
 						default: '',
-						description: 'Value of the field to set',
+						description: 'مقدار فیلدی که باید تنظیم شود',
 					},
 				],
 			},
@@ -462,7 +461,7 @@ export const mainProperties: INodeProperties[] = [
 		default: '',
 	},
 	{
-		displayName: 'Body Parameters',
+		displayName: 'پارامترهای بدنه',
 		name: 'bodyParameters',
 		type: 'fixedCollection',
 		displayOptions: {
@@ -474,7 +473,7 @@ export const mainProperties: INodeProperties[] = [
 		typeOptions: {
 			multipleValues: true,
 		},
-		placeholder: 'Add Parameter',
+		placeholder: 'افزودن پارامتر',
 		default: {
 			parameters: [
 				{
@@ -486,35 +485,35 @@ export const mainProperties: INodeProperties[] = [
 		options: [
 			{
 				name: 'parameters',
-				displayName: 'Parameter',
+				displayName: 'پارامتر',
 				values: [
 					{
-						displayName: 'Parameter Type',
+						displayName: 'نوع پارامتر',
 						name: 'parameterType',
 						type: 'options',
 						options: [
 							{
 								// eslint-disable-next-line n8n-nodes-base/node-param-display-name-miscased
-								name: 'n8n Binary File',
+								name: 'فایل باینری n8n',
 								value: 'formBinaryData',
 							},
 							{
-								name: 'Form Data',
+								name: 'فرم-داده (form-data)',
 								value: 'formData',
 							},
 						],
 						default: 'formData',
 					},
 					{
-						displayName: 'Name',
+						displayName: 'نام',
 						name: 'name',
 						type: 'string',
 						default: '',
 						description:
-							'ID of the field to set. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+							'شناسه فیلدی که باید تنظیم شود. از لیست انتخاب کنید، یا با استفاده از یک <a href="https://docs.n8n.io/code/expressions/">عبارت</a> یک شناسه مشخص کنید.',
 					},
 					{
-						displayName: 'Value',
+						displayName: 'مقدار',
 						name: 'value',
 						type: 'string',
 						displayOptions: {
@@ -523,10 +522,10 @@ export const mainProperties: INodeProperties[] = [
 							},
 						},
 						default: '',
-						description: 'Value of the field to set',
+						description: 'مقدار فیلدی که باید تنظیم شود',
 					},
 					{
-						displayName: 'Input Data Field Name',
+						displayName: 'نام فیلد داده ورودی',
 						name: 'inputDataFieldName',
 						type: 'string',
 						displayOptions: {
@@ -535,15 +534,14 @@ export const mainProperties: INodeProperties[] = [
 							},
 						},
 						default: '',
-						description:
-							'The name of the incoming field containing the binary file data to be processed',
+						description: 'نام فیلد ورودی حاوی داده فایل باینری که باید پردازش شود',
 					},
 				],
 			},
 		],
 	},
 	{
-		displayName: 'Specify Body',
+		displayName: 'مشخص کردن بدنه',
 		name: 'specifyBody',
 		type: 'options',
 		displayOptions: {
@@ -554,18 +552,18 @@ export const mainProperties: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'Using Fields Below',
+				name: 'استفاده از فیلدهای زیر (keypair)',
 				value: 'keypair',
 			},
 			{
-				name: 'Using Single Field',
+				name: 'استفاده از یک فیلد تکی (string)',
 				value: 'string',
 			},
 		],
 		default: 'keypair',
 	},
 	{
-		displayName: 'Body Parameters',
+		displayName: 'پارامترهای بدنه',
 		name: 'bodyParameters',
 		type: 'fixedCollection',
 		displayOptions: {
@@ -578,7 +576,7 @@ export const mainProperties: INodeProperties[] = [
 		typeOptions: {
 			multipleValues: true,
 		},
-		placeholder: 'Add Parameter',
+		placeholder: 'افزودن پارامتر',
 		default: {
 			parameters: [
 				{
@@ -590,29 +588,29 @@ export const mainProperties: INodeProperties[] = [
 		options: [
 			{
 				name: 'parameters',
-				displayName: 'Parameter',
+				displayName: 'پارامتر',
 				values: [
 					{
-						displayName: 'Name',
+						displayName: 'نام',
 						name: 'name',
 						type: 'string',
 						default: '',
 						description:
-							'ID of the field to set. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+							'شناسه فیلدی که باید تنظیم شود. از لیست انتخاب کنید، یا با استفاده از یک <a href="https://docs.n8n.io/code/expressions/">عبارت</a> یک شناسه مشخص کنید.',
 					},
 					{
-						displayName: 'Value',
+						displayName: 'مقدار',
 						name: 'value',
 						type: 'string',
 						default: '',
-						description: 'Value of the field to set',
+						description: 'مقدار فیلدی که باید تنظیم شود',
 					},
 				],
 			},
 		],
 	},
 	{
-		displayName: 'Body',
+		displayName: 'بدنه',
 		name: 'body',
 		type: 'string',
 		displayOptions: {
@@ -625,7 +623,7 @@ export const mainProperties: INodeProperties[] = [
 		placeholder: 'field1=value1&field2=value2',
 	},
 	{
-		displayName: 'Input Data Field Name',
+		displayName: 'نام فیلد داده ورودی',
 		name: 'inputDataFieldName',
 		type: 'string',
 		displayOptions: {
@@ -635,10 +633,10 @@ export const mainProperties: INodeProperties[] = [
 			},
 		},
 		default: '',
-		description: 'The name of the incoming field containing the binary file data to be processed',
+		description: 'نام فیلد ورودی حاوی داده فایل باینری که باید پردازش شود',
 	},
 	{
-		displayName: 'Content Type',
+		displayName: 'نوع محتوای خام',
 		name: 'rawContentType',
 		type: 'string',
 		displayOptions: {
@@ -651,7 +649,7 @@ export const mainProperties: INodeProperties[] = [
 		placeholder: 'text/html',
 	},
 	{
-		displayName: 'Body',
+		displayName: 'بدنه',
 		name: 'body',
 		type: 'string',
 		displayOptions: {
@@ -664,16 +662,16 @@ export const mainProperties: INodeProperties[] = [
 		placeholder: '',
 	},
 	{
-		displayName: 'Options',
+		displayName: 'گزینه‌ها',
 		name: 'options',
 		type: 'collection',
-		placeholder: 'Add option',
+		placeholder: 'افزودن گزینه',
 		default: {},
 		options: [
 			{
-				displayName: 'Batching',
+				displayName: 'دسته‌بندی',
 				name: 'batching',
-				placeholder: 'Add Batching',
+				placeholder: 'افزودن دسته‌بندی',
 				type: 'fixedCollection',
 				typeOptions: {
 					multipleValues: false,
@@ -683,11 +681,11 @@ export const mainProperties: INodeProperties[] = [
 				},
 				options: [
 					{
-						displayName: 'Batching',
+						displayName: 'دسته‌بندی',
 						name: 'batch',
 						values: [
 							{
-								displayName: 'Items per Batch',
+								displayName: 'آیتم‌ها در هر دسته',
 								name: 'batchSize',
 								type: 'number',
 								typeOptions: {
@@ -695,36 +693,34 @@ export const mainProperties: INodeProperties[] = [
 								},
 								default: 50,
 								description:
-									'Input will be split in batches to throttle requests. -1 for disabled. 0 will be treated as 1.',
+									'ورودی به دسته‌هایی تقسیم می‌شود تا درخواست‌ها کنترل شوند. -1 برای غیرفعال. 0 به عنوان 1 در نظر گرفته می‌شود.',
 							},
 							{
 								// eslint-disable-next-line n8n-nodes-base/node-param-display-name-miscased
-								displayName: 'Batch Interval (ms)',
+								displayName: 'فاصله دسته (میلی‌ثانیه)',
 								name: 'batchInterval',
 								type: 'number',
 								typeOptions: {
 									minValue: 0,
 								},
 								default: 1000,
-								description:
-									'Time (in milliseconds) between each batch of requests. 0 for disabled.',
+								description: 'زمان (بر حسب میلی‌ثانیه) بین هر دسته از درخواست‌ها. 0 برای غیرفعال.',
 							},
 						],
 					},
 				],
 			},
 			{
-				displayName: 'Ignore SSL Issues (Insecure)',
+				displayName: 'نادیده گرفتن مشکلات SSL (ناامن)',
 				name: 'allowUnauthorizedCerts',
 				type: 'boolean',
 				noDataExpression: true,
 				default: false,
 				// eslint-disable-next-line n8n-nodes-base/node-param-description-wrong-for-ignore-ssl-issues
-				description:
-					'Whether to download the response even if SSL certificate validation is not possible',
+				description: 'دانلود پاسخ حتی در صورت نامعتبر بودن گواهی SSL سرور (ناامن)',
 			},
 			{
-				displayName: 'Array Format in Query Parameters',
+				displayName: 'فرمت آرایه در پارامترهای Query',
 				name: 'queryParameterArrays',
 				type: 'options',
 				displayOptions: {
@@ -734,19 +730,19 @@ export const mainProperties: INodeProperties[] = [
 				},
 				options: [
 					{
-						name: 'No Brackets',
+						name: 'بدون براکت',
 						value: 'repeat',
 						// eslint-disable-next-line n8n-nodes-base/node-param-description-lowercase-first-char
 						description: 'e.g. foo=bar&foo=qux',
 					},
 					{
-						name: 'Brackets Only',
+						name: 'فقط براکت',
 						value: 'brackets',
 						// eslint-disable-next-line n8n-nodes-base/node-param-description-lowercase-first-char
 						description: 'e.g. foo[]=bar&foo[]=qux',
 					},
 					{
-						name: 'Brackets with Indices',
+						name: 'براکت‌ها با اندیس‌ها',
 						value: 'indices',
 						// eslint-disable-next-line n8n-nodes-base/node-param-description-lowercase-first-char
 						description: 'e.g. foo[0]=bar&foo[1]=qux',
@@ -755,16 +751,16 @@ export const mainProperties: INodeProperties[] = [
 				default: 'brackets',
 			},
 			{
-				displayName: 'Lowercase Headers',
+				displayName: 'ارسال هدرها با حروف کوچک (Lowercase)',
 				name: 'lowercaseHeaders',
 				type: 'boolean',
 				default: true,
-				description: 'Whether to lowercase header names',
+				description: 'هدر ها را با حروف کوچک ارسال کنید',
 			},
 			{
-				displayName: 'Redirects',
+				displayName: 'ریدایرکت‌ها',
 				name: 'redirect',
-				placeholder: 'Add Redirect',
+				placeholder: 'افزودن ریدایرکت',
 				type: 'fixedCollection',
 				typeOptions: {
 					multipleValues: false,
@@ -772,19 +768,19 @@ export const mainProperties: INodeProperties[] = [
 				default: { redirect: {} },
 				options: [
 					{
-						displayName: 'Redirect',
+						displayName: 'ریدایرکت',
 						name: 'redirect',
 						values: [
 							{
-								displayName: 'Follow Redirects',
+								displayName: 'دنبال کردن ریدایرکت‌ها',
 								name: 'followRedirects',
 								type: 'boolean',
 								default: false,
 								noDataExpression: true,
-								description: 'Whether to follow all redirects',
+								description: 'دنبال کردن همه ریدایرکت‌ها',
 							},
 							{
-								displayName: 'Max Redirects',
+								displayName: 'حداکثر ریدایرکت‌ها',
 								name: 'maxRedirects',
 								type: 'number',
 								displayOptions: {
@@ -793,7 +789,7 @@ export const mainProperties: INodeProperties[] = [
 									},
 								},
 								default: 21,
-								description: 'Max number of redirects to follow',
+								description: 'حداکثر تعداد ریدایرکت‌هایی که باید دنبال شوند',
 							},
 						],
 					},
@@ -805,9 +801,9 @@ export const mainProperties: INodeProperties[] = [
 				},
 			},
 			{
-				displayName: 'Redirects',
+				displayName: 'ریدایرکت‌ها',
 				name: 'redirect',
-				placeholder: 'Add Redirect',
+				placeholder: 'افزودن ریدایرکت',
 				type: 'fixedCollection',
 				typeOptions: {
 					multipleValues: false,
@@ -817,19 +813,19 @@ export const mainProperties: INodeProperties[] = [
 				},
 				options: [
 					{
-						displayName: 'Redirect',
+						displayName: 'ریدایرکت',
 						name: 'redirect',
 						values: [
 							{
-								displayName: 'Follow Redirects',
+								displayName: 'دنبال کردن ریدایرکت‌ها',
 								name: 'followRedirects',
 								type: 'boolean',
 								default: true,
 								noDataExpression: true,
-								description: 'Whether to follow all redirects',
+								description: 'دنبال کردن همه ریدایرکت‌ها',
 							},
 							{
-								displayName: 'Max Redirects',
+								displayName: 'حداکثر ریدایرکت‌ها',
 								name: 'maxRedirects',
 								type: 'number',
 								displayOptions: {
@@ -838,7 +834,7 @@ export const mainProperties: INodeProperties[] = [
 									},
 								},
 								default: 21,
-								description: 'Max number of redirects to follow',
+								description: 'حداکثر تعداد ریدایرکت‌هایی که باید دنبال شوند',
 							},
 						],
 					},
@@ -850,9 +846,9 @@ export const mainProperties: INodeProperties[] = [
 				},
 			},
 			{
-				displayName: 'Response',
+				displayName: 'پاسخ',
 				name: 'response',
-				placeholder: 'Add response',
+				placeholder: 'افزودن پاسخ',
 				type: 'fixedCollection',
 				typeOptions: {
 					multipleValues: false,
@@ -862,36 +858,36 @@ export const mainProperties: INodeProperties[] = [
 				},
 				options: [
 					{
-						displayName: 'Response',
+						displayName: 'پاسخ',
 						name: 'response',
 						values: [
 							{
-								displayName: 'Include Response Headers and Status',
+								displayName: 'شامل هدرها و وضعیت پاسخ',
 								name: 'fullResponse',
 								type: 'boolean',
 								default: false,
 								description:
-									'Whether to return the full response (headers and response status code) data instead of only the body',
+									'آیا باید پاسخ کامل (هدرها و کد وضعیت پاسخ) به جای فقط بدنه بازگردانده شود',
 							},
 							{
-								displayName: 'Never Error',
+								displayName: 'هرگز خطا نده',
 								name: 'neverError',
 								type: 'boolean',
 								default: false,
-								description: 'Whether to succeeds also when status code is not 2xx',
+								description: 'آیا باید حتی زمانی که کد وضعیت 2xx نیست موفقیت‌آمیز باشد',
 							},
 							{
-								displayName: 'Response Format',
+								displayName: 'فرمت پاسخ',
 								name: 'responseFormat',
 								type: 'options',
 								noDataExpression: true,
 								options: [
 									{
-										name: 'Autodetect',
+										name: 'تشخیص خودکار (Autodetect)',
 										value: 'autodetect',
 									},
 									{
-										name: 'File',
+										name: 'فایل',
 										value: 'file',
 									},
 									{
@@ -899,15 +895,15 @@ export const mainProperties: INodeProperties[] = [
 										value: 'json',
 									},
 									{
-										name: 'Text',
+										name: 'متن',
 										value: 'text',
 									},
 								],
 								default: 'autodetect',
-								description: 'The format in which the data gets returned from the URL',
+								description: 'فرمت داده‌ای که انتظار دارید از سرور دریافت کنید',
 							},
 							{
-								displayName: 'Put Output in Field',
+								displayName: 'ذخیره خروجی در فیلد',
 								name: 'outputPropertyName',
 								type: 'string',
 								default: 'data',
@@ -917,17 +913,16 @@ export const mainProperties: INodeProperties[] = [
 										responseFormat: ['file', 'text'],
 									},
 								},
-								description:
-									'Name of the binary property to which to write the data of the read file',
+								description: 'نام ویژگی باینری که داده‌های فایل خوانده شده در آن نوشته می‌شود',
 							},
 						],
 					},
 				],
 			},
 			{
-				displayName: 'Pagination',
+				displayName: 'پیج بندی',
 				name: 'pagination',
-				placeholder: 'Add pagination',
+				placeholder: 'افزودن پیج بندی',
 				type: 'fixedCollection',
 				typeOptions: {
 					multipleValues: false,
@@ -937,11 +932,11 @@ export const mainProperties: INodeProperties[] = [
 				},
 				options: [
 					{
-						displayName: 'Pagination',
+						displayName: 'پیج بندی',
 						name: 'pagination',
 						values: [
 							{
-								displayName: 'Pagination Mode',
+								displayName: 'حالت پیج بندی',
 								name: 'paginationMode',
 								type: 'options',
 								typeOptions: {
@@ -953,20 +948,20 @@ export const mainProperties: INodeProperties[] = [
 										value: 'off',
 									},
 									{
-										name: 'Update a Parameter in Each Request',
+										name: 'آپدیت یک پارامتر در هر درخواست',
 										value: 'updateAParameterInEachRequest',
 									},
 									{
-										name: 'Response Contains Next URL',
+										name: 'پاسخ شامل URL بعدی است',
 										value: 'responseContainsNextURL',
 									},
 								],
 								default: 'updateAParameterInEachRequest',
-								description: 'If pagination should be used',
+								description: 'روش پیج بندی برای استفاده را انتخاب کنید',
 							},
 							{
 								displayName:
-									'Use the $response variables to access the data of the previous response. Refer to the <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/#pagination/?utm_source=n8n_app&utm_medium=node_settings_modal-credential_link&utm_campaign=n8n-nodes-base.httprequest" target="_blank">docs</a> for more info about pagination/',
+									'استفاده از متغیرهای $response برای دسترسی به داده‌های پاسخ قبلی. برای اطلاعات بیشتر به <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/#pagination/?utm_source=n8n_app&utm_medium=node_settings_modal-credential_link&utm_campaign=n8n-nodes-base.httprequest" target="_blank">مستندات</a> مراجعه کنید.',
 								name: 'webhookNotice',
 								displayOptions: {
 									hide: {
@@ -977,7 +972,7 @@ export const mainProperties: INodeProperties[] = [
 								default: '',
 							},
 							{
-								displayName: 'Next URL',
+								displayName: 'URL بعدی',
 								name: 'nextURL',
 								type: 'string',
 								displayOptions: {
@@ -987,10 +982,10 @@ export const mainProperties: INodeProperties[] = [
 								},
 								default: '',
 								description:
-									'Should evaluate to the URL of the next page. <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/#pagination" target="_blank">More info</a>.',
+									'باید به URL صفحه بعد ارزیابی شود. <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/#pagination" target="_blank">اطلاعات بیشتر</a>.',
 							},
 							{
-								displayName: 'Parameters',
+								displayName: 'پارامترها',
 								name: 'parameters',
 								type: 'fixedCollection',
 								displayOptions: {
@@ -1002,7 +997,7 @@ export const mainProperties: INodeProperties[] = [
 									multipleValues: true,
 									noExpression: true,
 								},
-								placeholder: 'Add Parameter',
+								placeholder: 'افزودن پارامتر',
 								default: {
 									parameters: [
 										{
@@ -1015,49 +1010,49 @@ export const mainProperties: INodeProperties[] = [
 								options: [
 									{
 										name: 'parameters',
-										displayName: 'Parameter',
+										displayName: 'پارامتر',
 										values: [
 											{
-												displayName: 'Type',
+												displayName: 'نوع',
 												name: 'type',
 												type: 'options',
 												options: [
 													{
-														name: 'Body',
+														name: 'بدنه',
 														value: 'body',
 													},
 													{
-														name: 'Header',
+														name: 'هدرها',
 														value: 'headers',
 													},
 													{
-														name: 'Query',
+														name: 'کوئری (Query)',
 														value: 'qs',
 													},
 												],
 												default: 'qs',
-												description: 'Where the parameter should be set',
+												description: 'جایی که پارامتر باید تنظیم شود',
 											},
 											{
-												displayName: 'Name',
+												displayName: 'نام',
 												name: 'name',
 												type: 'string',
 												default: '',
-												placeholder: 'e.g page',
+												placeholder: 'مثلاً صفحه',
 											},
 											{
-												displayName: 'Value',
+												displayName: 'مقدار',
 												name: 'value',
 												type: 'string',
 												default: '',
-												hint: 'Use expression mode and $response to access response data',
+												hint: 'از حالت عبارت و $response برای دسترسی به داده‌های پاسخ استفاده کنید',
 											},
 										],
 									},
 								],
 							},
 							{
-								displayName: 'Pagination Complete When',
+								displayName: 'زمان تکمیل صفحه‌بندی',
 								name: 'paginationCompleteWhen',
 								type: 'options',
 								typeOptions: {
@@ -1070,23 +1065,23 @@ export const mainProperties: INodeProperties[] = [
 								},
 								options: [
 									{
-										name: 'Response Is Empty',
+										name: 'پاسخ خالی است',
 										value: 'responseIsEmpty',
 									},
 									{
-										name: 'Receive Specific Status Code(s)',
+										name: 'دریافت کد وضعیت خاص',
 										value: 'receiveSpecificStatusCodes',
 									},
 									{
-										name: 'Other',
+										name: 'سایر',
 										value: 'other',
 									},
 								],
 								default: 'responseIsEmpty',
-								description: 'When should no further requests be made?',
+								description: 'چه زمانی نباید درخواست‌های بیشتری ارسال شود؟',
 							},
 							{
-								displayName: 'Status Code(s) when Complete',
+								displayName: 'کد وضعیت(ها) هنگام تکمیل',
 								name: 'statusCodesWhenComplete',
 								type: 'string',
 								typeOptions: {
@@ -1098,10 +1093,10 @@ export const mainProperties: INodeProperties[] = [
 									},
 								},
 								default: '',
-								description: 'Accepts comma-separated values',
+								description: 'مقادیر جدا شده با کاما را می‌پذیرد',
 							},
 							{
-								displayName: 'Complete Expression',
+								displayName: 'عبارت تکمیل',
 								name: 'completeExpression',
 								type: 'string',
 								displayOptions: {
@@ -1111,10 +1106,10 @@ export const mainProperties: INodeProperties[] = [
 								},
 								default: '',
 								description:
-									'Should evaluate to true when pagination is complete. <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/#pagination" target="_blank">More info</a>.',
+									'باید زمانی که صفحه‌بندی کامل است به true ارزیابی شود. <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/#pagination" target="_blank">اطلاعات بیشتر</a>.',
 							},
 							{
-								displayName: 'Limit Pages Fetched',
+								displayName: 'محدود کردن صفحات واکشی شده',
 								name: 'limitPagesFetched',
 								type: 'boolean',
 								typeOptions: {
@@ -1127,10 +1122,10 @@ export const mainProperties: INodeProperties[] = [
 								},
 								default: false,
 								noDataExpression: true,
-								description: 'Whether the number of requests should be limited',
+								description: 'آیا می‌خواهید تعداد صفحات واکشی شده را محدود کنید؟',
 							},
 							{
-								displayName: 'Max Pages',
+								displayName: 'حداکثر درخواست‌ها',
 								name: 'maxRequests',
 								type: 'number',
 								typeOptions: {
@@ -1142,11 +1137,11 @@ export const mainProperties: INodeProperties[] = [
 									},
 								},
 								default: 100,
-								description: 'Maximum amount of request to be make',
+								description: 'حداکثر تعداد درخواست‌هایی که باید انجام شود',
 							},
 							{
 								// eslint-disable-next-line n8n-nodes-base/node-param-display-name-miscased
-								displayName: 'Interval Between Requests (ms)',
+								displayName: 'فاصله بین درخواست‌ها (میلی‌ثانیه)',
 								name: 'requestInterval',
 								type: 'number',
 								displayOptions: {
@@ -1155,8 +1150,8 @@ export const mainProperties: INodeProperties[] = [
 									},
 								},
 								default: 0,
-								description: 'Time in milliseconds to wait between requests',
-								hint: 'At 0 no delay will be added',
+								description: 'زمان (بر حسب میلی‌ثانیه) برای صبر بین درخواست‌ها',
+								hint: 'اگر 0 باشد، هیچ زمانی صبر نخواهد شد',
 								typeOptions: {
 									minValue: 0,
 								},
@@ -1166,7 +1161,7 @@ export const mainProperties: INodeProperties[] = [
 				],
 			},
 			{
-				displayName: 'Proxy',
+				displayName: 'پروکسی',
 				name: 'proxy',
 				type: 'string',
 				default: '',
@@ -1174,15 +1169,14 @@ export const mainProperties: INodeProperties[] = [
 				description: 'HTTP proxy to use',
 			},
 			{
-				displayName: 'Timeout',
+				displayName: 'تایم اوت درخواست (ms)',
 				name: 'timeout',
 				type: 'number',
 				typeOptions: {
 					minValue: 1,
 				},
 				default: 10000,
-				description:
-					'Time in ms to wait for the server to send response headers (and start the response body) before aborting the request',
+				description: 'زمان (بر حسب میلی‌ثانیه) قبل از اینکه درخواست منقضی شود و خطا دهد',
 			},
 		],
 	},
@@ -1195,7 +1189,7 @@ export const mainProperties: INodeProperties[] = [
 	})),
 	{
 		displayName:
-			"You can view the raw requests this node makes in your browser's developer console",
+			'این گره برای ارسال درخواست‌های HTTP استفاده می‌شود و می‌تواند با هر API یا وب‌سرویسی که از HTTP استفاده می‌کند کار کند. برای اطلاعات بیشتر به <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/?utm_source=n8n_app&utm_medium=node_settings_modal-documentation_link&utm_campaign=n8n-nodes-base.httprequest" target="_blank">مستندات</a> مراجعه کنید.',
 		name: 'infoMessage',
 		type: 'notice',
 		default: '',

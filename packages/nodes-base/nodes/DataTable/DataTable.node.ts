@@ -12,23 +12,23 @@ import {
 
 export class DataTable implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Data table',
+		displayName: 'جدول داده',
 		name: 'dataTable',
 		icon: 'fa:table',
 		iconColor: 'orange-red',
 		group: ['input', 'transform'],
 		version: [1, 1.1],
 		subtitle: '={{$parameter["action"]}}',
-		description: 'Permanently save data across workflow executions in a table',
+		description: 'ذخیره دائمی داده‌ها در طول اجرای گردش کار در یک جدول',
 		defaults: {
-			name: 'Data table',
+			name: 'جدول داده',
 		},
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
 		hints: [
 			{
-				message: 'The selected data table has no columns.',
+				message: 'جدول داده انتخاب شده ستونی ندارد.',
 				displayCondition:
 					'={{ $parameter.dataTableId !== "" && $parameter?.columns?.mappingMode === "defineBelow" && !$parameter?.columns?.schema?.length }}',
 				whenToDisplay: 'beforeExecution',
@@ -38,13 +38,13 @@ export class DataTable implements INodeType {
 		],
 		properties: [
 			{
-				displayName: 'Resource',
+				displayName: 'منبع',
 				name: 'resource',
 				type: 'options',
 				noDataExpression: true,
 				options: [
 					{
-						name: 'Row',
+						name: 'ردیف',
 						value: 'row',
 					},
 				],

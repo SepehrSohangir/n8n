@@ -15,7 +15,7 @@ export class PythonRunnerUnavailableError extends UserError {
 
 		super(message, {
 			description:
-				'Internal mode is intended only for debugging. For production, deploy in external mode: https://docs.n8n.io/hosting/configuration/task-runners/#setting-up-external-mode',
+				'حالت داخلی (Internal mode) فقط برای دیباگ در نظر گرفته شده است. برای محیط پروداکشن، از حالت خارجی (External mode) استفاده کنید. برای اطلاعات بیشتر، به <a href="https://docs.n8n.io/hosting/configuration/task-runners/#setting-up-external-mode" target="_blank">مستندات</a> مراجعه کنید.',
 		});
 	}
 }

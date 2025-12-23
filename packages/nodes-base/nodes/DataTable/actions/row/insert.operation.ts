@@ -21,19 +21,20 @@ const displayOptions: IDisplayOptions = {
 export const description: INodeProperties[] = [
 	makeAddRow(FIELD, displayOptions),
 	{
-		displayName: 'Options',
+		displayName: 'تنظیمات',
 		name: 'options',
 		type: 'collection',
-		placeholder: 'Add Option',
+		placeholder: 'افزودن تنظیمات',
 		default: {},
 		options: [
 			{
-				displayName: 'Optimize Bulk',
+				displayName: 'بهینه‌سازی درج دسته‌ای',
 				name: 'optimizeBulk',
 				type: 'boolean',
 				default: false,
 				noDataExpression: true, // bulk inserts don't support expressions so this is a bit paradoxical
-				description: 'Whether to improve bulk insert performance 5x by not returning inserted data',
+				description:
+					'اگر فعال باشد، سعی می‌کند درج دسته‌ای را بهینه کند. این ممکن است منجر به عملکرد بهتر شود اما خطاها را برای ردیف‌های فردی ارائه نمی‌دهد.',
 			},
 		],
 		displayOptions,
@@ -52,7 +53,7 @@ export async function execute(
 	if (optimizeBulkEnabled) {
 		// This function is always called by index, so we inherently cannot operate in bulk
 		this.addExecutionHints({
-			message: 'Unable to optimize bulk insert due to expression in Data table ID ',
+			message: 'بهینه‌سازی درج دسته‌ای فعال است، اما فقط یک ردیف در هر اجرا پردازش می‌شود.',
 			location: 'outputPane',
 		});
 		const json = await dataTableProxy.insertRows([row], 'count');

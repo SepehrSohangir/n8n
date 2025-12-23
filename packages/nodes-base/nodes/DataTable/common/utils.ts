@@ -33,7 +33,7 @@ export async function getDataTableProxyExecute(
 	if (ctx.helpers.getDataTableProxy === undefined)
 		throw new NodeOperationError(
 			ctx.getNode(),
-			'Attempted to use Data table node but the module is disabled',
+			'تلاش برای استفاده از گره جدول داده اما ماژول غیرفعال است',
 		);
 
 	const dataTableId = ctx.getNodeParameter(DATA_TABLE_ID_FIELD, index, undefined, {
@@ -49,7 +49,7 @@ export async function getDataTableProxyLoadOptions(
 	if (ctx.helpers.getDataTableProxy === undefined)
 		throw new NodeOperationError(
 			ctx.getNode(),
-			'Attempted to use Data table node but the module is disabled',
+			'تلاش برای استفاده از گره جدول داده اما ماژول غیرفعال است',
 		);
 
 	const dataTableId = ctx.getNodeParameter(DATA_TABLE_ID_FIELD, undefined, {
@@ -69,7 +69,7 @@ export async function getDataTableAggregateProxy(
 	if (ctx.helpers.getDataTableAggregateProxy === undefined)
 		throw new NodeOperationError(
 			ctx.getNode(),
-			'Attempted to use Data table node but the module is disabled',
+			'تلاش برای استفاده از گره جدول داده اما ماژول غیرفعال است',
 		);
 
 	return await ctx.helpers.getDataTableAggregateProxy();
@@ -126,7 +126,7 @@ export function buildGetManyFilter(
 					if (isNaN(parsed.getTime())) {
 						throw new NodeOperationError(
 							node,
-							`Invalid date string '${value}' for column '${x.keyName}'`,
+							`رشته تاریخ نامعتبر '${value}' برای ستون '${x.keyName}'`,
 						);
 					}
 					value = parsed;
@@ -160,7 +160,7 @@ export function dataObjectToApiInput(
 			if (Array.isArray(v)) {
 				throw new NodeOperationError(
 					node,
-					`unexpected array input '${JSON.stringify(v)}' in row ${row}`,
+					`ورودی آرایه غیرمنتظره '${JSON.stringify(v)}' در ردیف ${row}`,
 				);
 			}
 
@@ -188,7 +188,7 @@ export function dataObjectToApiInput(
 
 				throw new NodeOperationError(
 					node,
-					`unexpected object input '${JSON.stringify(v)}' in row ${row}`,
+					`ورودی شیء غیرمنتظره '${JSON.stringify(v)}' در ردیف ${row}`,
 				);
 			}
 
@@ -203,7 +203,7 @@ export function getDryRunParameter(ctx: IExecuteFunctions, index: number): boole
 	if (typeof dryRun !== 'boolean') {
 		throw new NodeOperationError(
 			ctx.getNode(),
-			`unexpected input ${JSON.stringify(dryRun)} for boolean dryRun`,
+			`ورودی غیرمنتظره ${JSON.stringify(dryRun)} برای گزینهٔ بولی dryRun`,
 		);
 	}
 

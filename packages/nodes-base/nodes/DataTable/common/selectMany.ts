@@ -48,16 +48,16 @@ export function getSelectFields(
 ): INodeProperties[] {
 	return [
 		{
-			displayName: 'Must Match',
+			displayName: 'طور مطابقت',
 			name: 'matchType',
 			type: 'options',
 			options: [
 				{
-					name: 'Any Condition',
+					name: 'هر شرط',
 					value: ANY_CONDITION,
 				},
 				{
-					name: 'All Conditions',
+					name: 'تمام شرایط',
 					value: ALL_CONDITIONS,
 				},
 			] satisfies Array<{ value: FilterType; name: string }>,
@@ -65,7 +65,7 @@ export function getSelectFields(
 			default: ANY_CONDITION,
 		},
 		{
-			displayName: 'Conditions',
+			displayName: 'شرایط',
 			name: 'filters',
 			type: 'fixedCollection',
 			typeOptions: {
@@ -74,20 +74,20 @@ export function getSelectFields(
 			},
 			displayOptions,
 			default: {},
-			placeholder: 'Add Condition',
+			placeholder: 'افزودن شرط',
 			options: [
 				{
-					displayName: 'Conditions',
+					displayName: 'شرایط',
 					name: 'conditions',
 					values: [
 						{
 							// eslint-disable-next-line n8n-nodes-base/node-param-display-name-wrong-for-dynamic-options
-							displayName: 'Column',
+							displayName: 'ستون',
 							name: 'keyName',
 							type: 'options',
 							// eslint-disable-next-line n8n-nodes-base/node-param-description-wrong-for-dynamic-options
 							description:
-								'Choose from the list, or specify using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
+								'از لیست انتخاب کنید، یا با استفاده از <a href="https://docs.n8n.io/code/expressions/">عبارت</a> مشخص کنید',
 							typeOptions: {
 								loadOptionsDependsOn: [`${DATA_TABLE_ID_FIELD}.value`],
 								loadOptionsMethod: 'getDataTableColumns',
@@ -96,7 +96,7 @@ export function getSelectFields(
 						},
 						{
 							// eslint-disable-next-line n8n-nodes-base/node-param-display-name-wrong-for-dynamic-options
-							displayName: 'Condition',
+							displayName: 'شرط',
 							name: 'condition',
 							// eslint-disable-next-line n8n-nodes-base/node-param-description-missing-from-dynamic-options
 							type: 'options',
@@ -112,7 +112,7 @@ export function getSelectFields(
 								: undefined,
 						},
 						{
-							displayName: 'Value',
+							displayName: 'مقدار',
 							name: 'keyValue',
 							type: 'string',
 							default: '',
@@ -125,7 +125,7 @@ export function getSelectFields(
 					],
 				},
 			],
-			description: 'Filter to decide which rows get',
+			description: 'فیلتر برای تصمیم‌گیری اینکه کدام ردیف‌ها دریافت شوند',
 		},
 	];
 }
@@ -184,7 +184,7 @@ export async function executeSelectMany(
 	const filter = await getSelectFilter(ctx, index);
 
 	if (rejectEmpty && filter.filters.length === 0) {
-		throw new NodeOperationError(ctx.getNode(), 'At least one condition is required');
+		throw new NodeOperationError(ctx.getNode(), 'حداقل یک شرط لازم است');
 	}
 
 	const PAGE_SIZE = 1000;
@@ -219,7 +219,7 @@ export async function executeSelectMany(
 		if (expectedTotal !== undefined && count !== expectedTotal) {
 			throw new NodeOperationError(
 				ctx.getNode(),
-				'synchronization error: result count changed during pagination',
+				'خطای همگام‌سازی: تعداد نتایج در حین صفحه‌بندی تغییر کرد',
 			);
 		}
 		expectedTotal = count;

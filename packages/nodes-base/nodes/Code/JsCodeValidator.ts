@@ -26,8 +26,8 @@ export function validateNoDisallowedMethodsInRunForEach(code: string, itemIndex:
 
 		if (disallowedMethodFound) {
 			throw new ValidationError({
-				message: `Can't use .${disallowedMethod}() here`,
-				description: "This is only available in 'Run Once for All Items' mode",
+				message: `روش <code>$input.${disallowedMethod}()</code> در حالت 'اجرای جداگانه برای هر آیتم' مجاز نیست`,
+				description: "این روش فقط در حالت 'یک‌بار اجرا برای همه موارد' در دسترس است",
 				itemIndex,
 				lineNumber,
 			});

@@ -11,7 +11,7 @@ import { dataObjectToApiInput } from './utils';
 
 export function makeAddRow(operation: string, displayOptions: IDisplayOptions) {
 	return {
-		displayName: 'Columns',
+		displayName: 'ستون‌ها',
 		name: 'columns',
 		type: 'resourceMapper',
 		default: {

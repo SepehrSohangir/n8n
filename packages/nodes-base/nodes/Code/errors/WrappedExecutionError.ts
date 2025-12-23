@@ -11,7 +11,7 @@ export class WrappedExecutionError extends ApplicationError {
 	[key: string]: unknown;
 
 	constructor(error: WrappableError) {
-		const message = typeof error.message === 'string' ? error.message : 'Unknown error';
+		const message = typeof error.message === 'string' ? error.message : 'خطای ناشناخته';
 		super(message, {
 			cause: error,
 		});

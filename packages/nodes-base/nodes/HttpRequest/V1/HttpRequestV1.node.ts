@@ -41,7 +41,7 @@ export class HttpRequestV1 implements INodeType {
 			...baseDescription,
 			version: 1,
 			defaults: {
-				name: 'HTTP Request',
+				name: 'درخوست HTTP',
 				color: '#2200DD',
 			},
 			inputs: [NodeConnectionTypes.Main],
@@ -110,7 +110,7 @@ export class HttpRequestV1 implements INodeType {
 				//           v1 params
 				// ----------------------------------
 				{
-					displayName: 'Authentication',
+					displayName: 'احراز هویت',
 					name: 'authentication',
 					type: 'options',
 					options: [
@@ -144,14 +144,14 @@ export class HttpRequestV1 implements INodeType {
 						},
 					],
 					default: 'none',
-					description: 'The way to authenticate',
+					description: 'روش احراز هویت برای استفاده در این درخواست',
 				},
 
 				// ----------------------------------
 				//        versionless params
 				// ----------------------------------
 				{
-					displayName: 'Request Method',
+					displayName: 'متد درخواست (Request Method)',
 					name: 'requestMethod',
 					type: 'options',
 					options: [
@@ -185,7 +185,7 @@ export class HttpRequestV1 implements INodeType {
 						},
 					],
 					default: 'GET',
-					description: 'The request method to use',
+					description: 'روش درخواست برای استفاده',
 				},
 				{
 					displayName: 'URL',
@@ -197,21 +197,21 @@ export class HttpRequestV1 implements INodeType {
 					required: true,
 				},
 				{
-					displayName: 'Ignore SSL Issues (Insecure)',
+					displayName: 'نادیده گرفتن مشکلات SSL (ناامن)',
 					name: 'allowUnauthorizedCerts',
 					type: 'boolean',
 					default: false,
 					// eslint-disable-next-line n8n-nodes-base/node-param-description-wrong-for-ignore-ssl-issues
 					description:
-						'Whether to download the response even if SSL certificate validation is not possible',
+						'دانلود گواهی‌های SSL خودامضا شده یا نامعتبر و ادامه درخواست‌ها در هر صورت (ناامن)',
 				},
 				{
-					displayName: 'Response Format',
+					displayName: 'فرمت پاسخ',
 					name: 'responseFormat',
 					type: 'options',
 					options: [
 						{
-							name: 'File',
+							name: 'فایل',
 							value: 'file',
 						},
 						{
@@ -219,15 +219,15 @@ export class HttpRequestV1 implements INodeType {
 							value: 'json',
 						},
 						{
-							name: 'String',
+							name: 'رشته',
 							value: 'string',
 						},
 					],
 					default: 'json',
-					description: 'The format in which the data gets returned from the URL',
+					description: 'فرمتی که پاسخ باید در آن بازگردانده شود',
 				},
 				{
-					displayName: 'Property Name',
+					displayName: 'نام فیلد داده‌ها',
 					name: 'dataPropertyName',
 					type: 'string',
 					default: 'data',
@@ -237,10 +237,10 @@ export class HttpRequestV1 implements INodeType {
 							responseFormat: ['string'],
 						},
 					},
-					description: 'Name of the property to which to write the response data',
+					description: 'نام فیلد خروجی برای قرار دادن داده‌های پاسخ',
 				},
 				{
-					displayName: 'Put Output File in Field',
+					displayName: 'قرار دادن فایل خروجی در فیلد',
 					name: 'dataPropertyName',
 					type: 'string',
 					default: 'data',
@@ -250,48 +250,48 @@ export class HttpRequestV1 implements INodeType {
 							responseFormat: ['file'],
 						},
 					},
-					hint: 'The name of the output binary field to put the file in',
+					hint: 'نام فیلد باینری خروجی که فایل در آن قرار می‌گیرد.',
 				},
 
 				{
-					displayName: 'JSON/RAW Parameters',
+					displayName: 'پارامترهای به صورت JSON/RAW',
 					name: 'jsonParameters',
 					type: 'boolean',
 					default: false,
 					description:
-						'Whether the query and/or body parameter should be set via the value-key pair UI or JSON/RAW',
+						'اینکه پارامتر query و/یا body باید از طریق رابط کاربری جفت مقدار-کلید (value-key) یا به صورت JSON/RAW تنظیم شود.',
 				},
 
 				{
-					displayName: 'Options',
+					displayName: 'تنظیمات',
 					name: 'options',
 					type: 'collection',
-					placeholder: 'Add option',
+					placeholder: 'اضافه کردن تنظیمات',
 					default: {},
 					options: [
 						{
-							displayName: 'Batch Interval',
+							displayName: 'فواصل دسته‌ای (Batch Intervals)',
 							name: 'batchInterval',
 							type: 'number',
 							typeOptions: {
 								minValue: 0,
 							},
 							default: 1000,
-							description: 'Time (in milliseconds) between each batch of requests. 0 for disabled.',
+							description:
+								'زمان (بر حسب میلی‌ثانیه) بین هر دسته از درخواست‌ها. مقدار ۰ به معنی غیرفعال بودن است.',
 						},
 						{
-							displayName: 'Batch Size',
+							displayName: ' اندازه دسته‌ای (Batch Size)',
 							name: 'batchSize',
 							type: 'number',
 							typeOptions: {
 								minValue: -1,
 							},
 							default: 50,
-							description:
-								'Input will be split in batches to throttle requests. -1 for disabled. 0 will be treated as 1.',
+							description: 'حداکثر تعداد درخواست‌ها در هر دسته. مقدار -1 به معنی غیرفعال بودن است.',
 						},
 						{
-							displayName: 'Body Content Type',
+							displayName: 'نوع محتوای بدنه (Body Content Type)',
 							name: 'bodyContentType',
 							type: 'options',
 							displayOptions: {
@@ -318,43 +318,44 @@ export class HttpRequestV1 implements INodeType {
 								},
 							],
 							default: 'json',
-							description: 'Content-Type to use to send body parameters',
+							description: 'نوع محتوای بدنه که باید ارسال شود',
 						},
 						{
-							displayName: 'Full Response',
+							displayName: 'پاسخ کامل',
 							name: 'fullResponse',
 							type: 'boolean',
 							default: false,
-							description: 'Whether to return the full response data instead of only the body',
+							description: 'آیا کل داده‌های پاسخ برگردانده شود یا فقط بدنه آن',
 						},
 						{
-							displayName: 'Follow All Redirects',
+							displayName: 'همه ریدایرکت‌ها را دنبال کن',
 							name: 'followAllRedirects',
 							type: 'boolean',
 							default: false,
-							description: 'Whether to follow All HTTP 3xx redirects',
+							description: 'آیا باید تمام ریدایرکت‌های HTTP را دنبال کند',
 						},
 						{
-							displayName: 'Follow GET/HEAD Redirect',
+							displayName: 'ریدایرکت های Get/Head را دنبال کن',
 							name: 'followRedirect',
 							type: 'boolean',
 							default: true,
-							description: 'Whether to follow GET or HEAD HTTP 3xx redirects',
+							description: 'آیا ریدایرکت‌های HTTP 3xx برای GET یا HEAD دنبال شوند یا نه.',
 						},
 						{
-							displayName: 'Ignore Response Code',
+							displayName: 'نادیده گرفتن کد وضعیت پاسخ',
 							name: 'ignoreResponseCode',
 							type: 'boolean',
 							default: false,
-							description: 'Whether to succeeds also when status code is not 2xx',
+							description:
+								'آیا عملیات حتی زمانی که کد وضعیت غیر از 2xx است نیز موفقیت‌آمیز تلقی شود یا نه.',
 						},
 						{
-							displayName: 'MIME Type',
+							displayName: 'نوع فایل (Mime Type)',
 							name: 'bodyContentCustomMimeType',
 							type: 'string',
 							default: '',
 							placeholder: 'text/xml',
-							description: 'Specify the mime type for raw/custom body type',
+							description: 'نوع فایل سفارشی برای ارسال در صورت انتخاب RAW/Custom',
 							displayOptions: {
 								show: {
 									'/requestMethod': ['PATCH', 'POST', 'PUT'],
@@ -362,7 +363,7 @@ export class HttpRequestV1 implements INodeType {
 							},
 						},
 						{
-							displayName: 'Proxy',
+							displayName: 'پروکسی',
 							name: 'proxy',
 							type: 'string',
 							default: '',
@@ -370,11 +371,11 @@ export class HttpRequestV1 implements INodeType {
 							description: 'HTTP proxy to use',
 						},
 						{
-							displayName: 'Split Into Items',
+							displayName: 'تقسیم به آیتم‌ها',
 							name: 'splitIntoItems',
 							type: 'boolean',
 							default: false,
-							description: 'Whether to output each element of an array as own item',
+							description: 'آیا هر عنصر از آرایه به عنوان آیتم جداگانه خروجی داده شود یا نه',
 							displayOptions: {
 								show: {
 									'/responseFormat': ['json'],
@@ -382,7 +383,7 @@ export class HttpRequestV1 implements INodeType {
 							},
 						},
 						{
-							displayName: 'Timeout',
+							displayName: 'تایم اوت',
 							name: 'timeout',
 							type: 'number',
 							typeOptions: {
@@ -390,22 +391,22 @@ export class HttpRequestV1 implements INodeType {
 							},
 							default: 10000,
 							description:
-								'Time in ms to wait for the server to send response headers (and start the response body) before aborting the request',
+								'زمان به میلی‌ثانیه برای انتظار دریافت هدرهای پاسخ از سرور (و شروع بدنه پاسخ) قبل از لغو درخواست.',
 						},
 						{
-							displayName: 'Use Querystring',
+							displayName: 'استفاده از Query String',
 							name: 'useQueryString',
 							type: 'boolean',
 							default: false,
 							description:
-								'Whether you need arrays to be serialized as foo=bar&foo=baz instead of the default foo[0]=bar&foo[1]=baz',
+								'آیا نیاز دارید آرایه‌ها به صورت foo=bar&foo=baz سریال شوند به جای حالت پیش‌فرض foo[0]=bar&foo[1]=baz',
 						},
 					],
 				},
 
 				// Body Parameter
 				{
-					displayName: 'Send Binary File',
+					displayName: 'ارسال داده‌های باینری به عنوان فایل',
 					name: 'sendBinaryData',
 					type: 'boolean',
 					displayOptions: {
@@ -419,10 +420,10 @@ export class HttpRequestV1 implements INodeType {
 						},
 					},
 					default: false,
-					description: 'Whether binary data should be send as body',
+					description: 'آیا داده‌های باینری از ورودی به عنوان فایل ارسال شوند یا نه',
 				},
 				{
-					displayName: 'Input Binary Field',
+					displayName: 'فیلد باینری ورودی',
 					name: 'binaryPropertyName',
 					type: 'string',
 					required: true,
@@ -436,12 +437,12 @@ export class HttpRequestV1 implements INodeType {
 							requestMethod: ['PATCH', 'POST', 'PUT'],
 						},
 					},
-					hint: 'The name of the input binary field containing the file to be uploaded',
+					hint: 'نام فیلد باینری ورودی که شامل داده فایل برای ارسال است.',
 					description:
-						'For Form-Data Multipart, they can be provided in the format: <code>"sendKey1:binaryProperty1,sendKey2:binaryProperty2</code>',
+						'برای Form-Data Multipart، می‌توان آن‌ها را به فرمت زیر ارائه داد:<code>"sendKey1:binaryProperty1,sendKey2:binaryProperty2</code>',
 				},
 				{
-					displayName: 'Body Parameters',
+					displayName: 'پارامترهای بدنه (Body Parameters)',
 					name: 'bodyParametersJson',
 					type: 'json',
 					displayOptions: {
@@ -454,12 +455,12 @@ export class HttpRequestV1 implements INodeType {
 						},
 					},
 					default: '',
-					description: 'Body parameters as JSON or RAW',
+					description: 'پارامترهای بدنه به صورت JSON یا RAW',
 				},
 				{
-					displayName: 'Body Parameters',
+					displayName: 'پارامترهای بدنه (Body Parameters)',
 					name: 'bodyParametersUi',
-					placeholder: 'Add Parameter',
+					placeholder: 'اضافه کردن پارامتر',
 					type: 'fixedCollection',
 					typeOptions: {
 						multipleValues: true,
@@ -470,26 +471,26 @@ export class HttpRequestV1 implements INodeType {
 							requestMethod: ['PATCH', 'POST', 'PUT', 'DELETE'],
 						},
 					},
-					description: 'The body parameter to send',
+					description: 'پارامترهای بدنه که باید ارسال شوند',
 					default: {},
 					options: [
 						{
 							name: 'parameter',
-							displayName: 'Parameter',
+							displayName: 'پارامتر',
 							values: [
 								{
-									displayName: 'Name',
+									displayName: 'نام',
 									name: 'name',
 									type: 'string',
 									default: '',
-									description: 'Name of the parameter',
+									description: 'نام پارامتر',
 								},
 								{
-									displayName: 'Value',
+									displayName: 'مقدار',
 									name: 'value',
 									type: 'string',
 									default: '',
-									description: 'Value of the parameter',
+									description: 'مقدار پارامتر',
 								},
 							],
 						},
@@ -498,7 +499,7 @@ export class HttpRequestV1 implements INodeType {
 
 				// Header Parameters
 				{
-					displayName: 'Headers',
+					displayName: 'هدرها',
 					name: 'headerParametersJson',
 					type: 'json',
 					displayOptions: {
@@ -507,12 +508,12 @@ export class HttpRequestV1 implements INodeType {
 						},
 					},
 					default: '',
-					description: 'Header parameters as JSON or RAW',
+					description: 'پارامترهای هدر به صورت JSON (شیء مسطح)',
 				},
 				{
-					displayName: 'Headers',
+					displayName: 'هدرها',
 					name: 'headerParametersUi',
-					placeholder: 'Add Header',
+					placeholder: 'اضافه کردن هدر',
 					type: 'fixedCollection',
 					typeOptions: {
 						multipleValues: true,
@@ -522,26 +523,26 @@ export class HttpRequestV1 implements INodeType {
 							jsonParameters: [false],
 						},
 					},
-					description: 'The headers to send',
+					description: 'هدرهایی که باید ارسال شوند',
 					default: {},
 					options: [
 						{
 							name: 'parameter',
-							displayName: 'Header',
+							displayName: 'هدر',
 							values: [
 								{
-									displayName: 'Name',
+									displayName: 'نام',
 									name: 'name',
 									type: 'string',
 									default: '',
-									description: 'Name of the header',
+									description: 'نام هدر',
 								},
 								{
-									displayName: 'Value',
+									displayName: 'مقدار',
 									name: 'value',
 									type: 'string',
 									default: '',
-									description: 'Value to set for the header',
+									description: 'مقدار هدر',
 								},
 							],
 						},
@@ -550,7 +551,7 @@ export class HttpRequestV1 implements INodeType {
 
 				// Query Parameter
 				{
-					displayName: 'Query Parameters',
+					displayName: 'پارامترهای Query',
 					name: 'queryParametersJson',
 					type: 'json',
 					displayOptions: {
@@ -559,12 +560,12 @@ export class HttpRequestV1 implements INodeType {
 						},
 					},
 					default: '',
-					description: 'Query parameters as JSON (flat object)',
+					description: 'پارامترهای query به صورت JSON یا RAW',
 				},
 				{
-					displayName: 'Query Parameters',
+					displayName: 'پارامترهای Query',
 					name: 'queryParametersUi',
-					placeholder: 'Add Parameter',
+					placeholder: 'اضافه کردن پارامتر',
 					type: 'fixedCollection',
 					typeOptions: {
 						multipleValues: true,
@@ -574,26 +575,26 @@ export class HttpRequestV1 implements INodeType {
 							jsonParameters: [false],
 						},
 					},
-					description: 'The query parameter to send',
+					description: 'پارامترهای query که باید ارسال شوند',
 					default: {},
 					options: [
 						{
 							name: 'parameter',
-							displayName: 'Parameter',
+							displayName: 'پارامتر',
 							values: [
 								{
-									displayName: 'Name',
+									displayName: 'نام',
 									name: 'name',
 									type: 'string',
 									default: '',
-									description: 'Name of the parameter',
+									description: 'نام پارامتر',
 								},
 								{
-									displayName: 'Value',
+									displayName: 'مقدار',
 									name: 'value',
 									type: 'string',
 									default: '',
-									description: 'Value of the parameter',
+									description: 'مقدار پارامتر',
 								},
 							],
 						},
@@ -601,7 +602,7 @@ export class HttpRequestV1 implements INodeType {
 				},
 				{
 					displayName:
-						"You can view the raw requests this node makes in your browser's developer console",
+						'شما می‌توانید درخواست‌های خام این گره را در کنسول توسعه‌دهنده مرورگر خود مشاهده کنید',
 					name: 'infoMessage',
 					type: 'notice',
 					default: '',
@@ -655,15 +656,15 @@ export class HttpRequestV1 implements INodeType {
 		const jsonParameters: OptionDataParameters = {
 			bodyParametersJson: {
 				name: 'body',
-				displayName: 'Body Parameters',
+				displayName: 'پارامترهای بدنه',
 			},
 			headerParametersJson: {
 				name: 'headers',
-				displayName: 'Headers',
+				displayName: 'هدرها',
 			},
 			queryParametersJson: {
 				name: 'qs',
-				displayName: 'Query Parameters',
+				displayName: 'پارامترهای Query',
 			},
 		};
 		let returnItems: INodeExecutionData[] = [];

@@ -1,7 +1,7 @@
 import type { INodeProperties } from 'n8n-workflow';
 
 const commonDescription: INodeProperties = {
-	displayName: 'JavaScript',
+	displayName: 'جاوااسکریپت',
 	name: 'jsCode',
 	type: 'string',
 	typeOptions: {
@@ -10,7 +10,7 @@ const commonDescription: INodeProperties = {
 	},
 	default: '',
 	description:
-		'JavaScript code to execute.<br><br>Tip: You can use luxon vars like <code>$today</code> for dates and <code>$jmespath</code> for querying JSON structures. <a href="https://docs.n8n.io/nodes/n8n-nodes-base.function">Learn more</a>.',
+		'نوشتن کد جاوااسکریپت سفارشی برای پردازش داده‌ها. برای مرجع متغیرها و روش‌ها، <a href="https://docs.n8n.io/code-examples/methods-variables-reference/" target="_blank">اینجا را ببینید</a>.',
 	noDataExpression: true,
 };
 
@@ -63,7 +63,7 @@ export const javascriptCodeDescription: INodeProperties[] = [
 	...v2Properties,
 	{
 		displayName:
-			'Type <code>$</code> for a list of <a target="_blank" href="https://docs.n8n.io/code-examples/methods-variables-reference/">special vars/methods</a>. Debug by using <code>console.log()</code> statements and viewing their output in the browser console.',
+			'برای دیدن فهرست متغیرها و متدهای ویژه، کاراکتر <code>$</code> را تایپ کنید. برای دیباگ کردن، از دستور <code>console.log()</code> استفاده کنید و خروجی آن را در کنسول مرورگر مشاهده کنید.',
 		name: 'notice',
 		type: 'notice',
 		displayOptions: {

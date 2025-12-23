@@ -38,13 +38,13 @@ class PythonDisabledError extends UserError {
 
 export class Code implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Code',
+		displayName: 'کد',
 		name: 'code',
 		icon: 'file:code.svg',
 		group: ['transform'],
 		version: [1, 2],
 		defaultVersion: 2,
-		description: 'Run custom JavaScript or Python code',
+		description: 'اجرای کد سفارشی جاوااسکریپت یا پایتون',
 		defaults: {
 			name: 'Code',
 		},
@@ -53,26 +53,26 @@ export class Code implements INodeType {
 		parameterPane: 'wide',
 		properties: [
 			{
-				displayName: 'Mode',
+				displayName: 'مود',
 				name: 'mode',
 				type: 'options',
 				noDataExpression: true,
 				options: [
 					{
-						name: 'Run Once for All Items',
+						name: 'یک‌بار اجرا برای همه موارد',
 						value: 'runOnceForAllItems',
-						description: 'Run this code only once, no matter how many input items there are',
+						description: 'ین کد تنها یک‌بار اجرا می شود، بدون توجه به تعداد آیتم‌های ورودی',
 					},
 					{
-						name: 'Run Once for Each Item',
+						name: 'اجرا به ازای هر آیتم',
 						value: 'runOnceForEachItem',
-						description: 'Run this code as many times as there are input items',
+						description: 'این کد به ازای هر آیتم ورودی اجرا می شود',
 					},
 				],
 				default: 'runOnceForAllItems',
 			},
 			{
-				displayName: 'Language',
+				displayName: 'زبان',
 				name: 'language',
 				type: 'options',
 				noDataExpression: true,
@@ -83,25 +83,25 @@ export class Code implements INodeType {
 				},
 				options: [
 					{
-						name: 'JavaScript',
+						name: 'جاوااسکریپت',
 						value: 'javaScript',
-						action: 'Code in JavaScript',
+						action: 'کد با جاوااسکریپت',
 					},
 					{
-						name: 'Python (Beta)',
+						name: 'پایتون (Beta)',
 						value: 'python',
-						action: 'Code in Python (Beta)',
+						action: 'کد با پایتون (Beta)',
 					},
 					{
-						name: 'Python (Native)',
+						name: 'پایتون (Native)',
 						value: 'pythonNative',
-						action: 'Code in Python (Native)',
+						action: 'کد با پایتون (Native)',
 					},
 				],
 				default: 'javaScript',
 			},
 			{
-				displayName: 'Language',
+				displayName: 'زبان',
 				name: 'language',
 				type: 'hidden',
 				displayOptions: {

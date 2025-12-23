@@ -84,9 +84,9 @@ export class JavaScriptSandbox extends Sandbox {
 			// Check if executionResult is an array of arrays
 			if (!Array.isArray(executionResult) || executionResult.some((item) => !Array.isArray(item))) {
 				throw new ValidationError({
-					message: "The code doesn't return an array of arrays",
+					message: 'این کد یک آرایه از آرایه‌ها برنمی‌گرداند',
 					description:
-						'Please return an array of arrays. One array for the different outputs and one for the different items that get returned.',
+						'لطفاً یک آرایه از آرایه‌ها بازگردانید. یک آرایه برای خروجی‌های مختلف و یک آرایه برای آیتم‌های مختلفی که بازگردانده می‌شوند.',
 				});
 			}
 

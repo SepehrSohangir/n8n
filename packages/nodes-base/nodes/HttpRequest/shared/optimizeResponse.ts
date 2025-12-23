@@ -130,22 +130,18 @@ const jsonOptimizer = (ctx: IExecuteFunctions, itemIndex: number): ResponseOptim
 
 		if (typeof response === 'string') {
 			try {
-				responseData = jsonParse(response, { errorMessage: 'Invalid JSON response' });
+				responseData = jsonParse(response, { errorMessage: 'دریافت JSON نامعتبر از پاسخ' });
 			} catch (error) {
-				throw new NodeOperationError(
-					ctx.getNode(),
-					`Received invalid JSON from response '${response}'`,
-					{ itemIndex },
-				);
+				throw new NodeOperationError(ctx.getNode(), `دریافت JSON نامعتبر از پاسخ '${response}'`, {
+					itemIndex,
+				});
 			}
 		}
 
 		if (typeof responseData !== 'object' || !responseData) {
-			throw new NodeOperationError(
-				ctx.getNode(),
-				'The response type must be an object or an array of objects',
-				{ itemIndex },
-			);
+			throw new NodeOperationError(ctx.getNode(), 'نوع پاسخ باید یک شیء یا آرایه‌ای از اشیاء باشد', {
+				itemIndex,
+			});
 		}
 
 		const dataField = ctx.getNodeParameter('dataField', itemIndex, '') as string;
@@ -154,14 +150,10 @@ const jsonOptimizer = (ctx: IExecuteFunctions, itemIndex: number): ResponseOptim
 		if (!Array.isArray(responseData)) {
 			if (dataField) {
 				if (!Object.prototype.hasOwnProperty.call(responseData, dataField)) {
-					throw new NodeOperationError(
-						ctx.getNode(),
-						`Target field "${dataField}" not found in response.`,
-						{
-							itemIndex,
-							description: `The response contained these fields: [${Object.keys(responseData).join(', ')}]`,
-						},
-					);
+					throw new NodeOperationError(ctx.getNode(), `فیلد هدف "${dataField}" در پاسخ یافت نشد.`, {
+						itemIndex,
+						description: `پاسخ شامل این فیلدها بود:[${Object.keys(responseData).join(', ')}]`,
+					});
 				}
 
 				const data = responseData[dataField] as IDataObject | IDataObject[];
@@ -257,16 +249,15 @@ export const configureResponseOptimizer = (
 
 export const optimizeResponseProperties: INodeProperties[] = [
 	{
-		displayName: 'Optimize Response',
+		displayName: 'بهینه‌سازی پاسخ',
 		name: 'optimizeResponse',
 		type: 'boolean',
 		default: false,
 		noDataExpression: true,
-		description:
-			'Whether the optimize the tool response to reduce amount of data passed to the LLM that could lead to better result and reduce cost',
+		description: 'آیا پاسخ را برای استخراج داده‌های مهم‌تر و کاهش نویز بهینه‌سازی کنیم؟',
 	},
 	{
-		displayName: 'Expected Response Type',
+		displayName: 'نوع پاسخ مورد انتظار',
 		name: 'responseType',
 		type: 'options',
 		displayOptions: {
@@ -291,13 +282,13 @@ export const optimizeResponseProperties: INodeProperties[] = [
 		default: 'json',
 	},
 	{
-		displayName: 'Field Containing Data',
+		displayName: 'فیلدی که داده‌ها را در خود دارد',
 		name: 'dataField',
 		type: 'string',
 		default: '',
 		placeholder: 'e.g. records',
-		description: 'Specify the name of the field in the response containing the data',
-		hint: 'leave blank to use whole response',
+		description: 'نام فیلدی که داده‌ها را در پاسخ در خود دارد مشخص کنید',
+		hint: 'برای استفاده از کل پاسخ، خالی بگذارید',
 		requiresDataPath: 'single',
 		displayOptions: {
 			show: {
@@ -307,10 +298,10 @@ export const optimizeResponseProperties: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Include Fields',
+		displayName: 'شامل کردن فیلدها',
 		name: 'fieldsToInclude',
 		type: 'options',
-		description: 'What fields response object should include',
+		description: 'چه فیلدهایی باید در شیء پاسخ گنجانده شوند',
 		default: 'all',
 		displayOptions: {
 			show: {
@@ -320,30 +311,30 @@ export const optimizeResponseProperties: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'All',
+				name: 'همه',
 				value: 'all',
-				description: 'Include all fields',
+				description: 'شامل همه فیلدها',
 			},
 			{
-				name: 'Selected',
+				name: 'انتخاب شده',
 				value: 'selected',
-				description: 'Include only fields specified below',
+				description: 'شامل فقط فیلدهای مشخص شده در زیر',
 			},
 			{
-				name: 'Except',
+				name: 'مستثنی',
 				value: 'except',
-				description: 'Exclude fields specified below',
+				description: 'مستثنی کردن فیلدهای مشخص شده در زیر',
 			},
 		],
 	},
 	{
-		displayName: 'Fields',
+		displayName: 'فیلدها',
 		name: 'fields',
 		type: 'string',
 		default: '',
 		placeholder: 'e.g. field1,field2',
 		description:
-			'Comma-separated list of the field names. Supports dot notation. You can drag the selected fields from the input panel.',
+			'لیست جدا شده با کاما از نام فیلدها. از نشانه‌گذاری نقطه‌ای پشتیبانی می‌کند. می‌توانید فیلدهای انتخاب شده را از پنل ورودی بکشید.',
 		requiresDataPath: 'multiple',
 		displayOptions: {
 			show: {
@@ -356,11 +347,11 @@ export const optimizeResponseProperties: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Selector (CSS)',
+		displayName: 'انتخابگر (CSS)',
 		name: 'cssSelector',
 		type: 'string',
 		description:
-			'Select specific element(e.g. body) or multiple elements(e.g. div) of chosen type in the response HTML.',
+			'انتخاب عنصر خاص (مثلاً body) یا چندین عنصر (مثلاً div) از نوع انتخاب شده در HTML پاسخ.',
 		placeholder: 'e.g. body',
 		default: 'body',
 		displayOptions: {
@@ -371,13 +362,12 @@ export const optimizeResponseProperties: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Return Only Content',
+		displayName: 'فقط محتوای بازگردانده شود',
 		name: 'onlyContent',
 		type: 'boolean',
 		default: false,
-		description:
-			'Whether to return only content of html elements, stripping html tags and attributes',
-		hint: 'Uses less tokens and may be easier for model to understand',
+		description: 'آیا فقط محتوای عناصر html بازگردانده شود و تگ‌ها و ویژگی‌های html حذف شوند',
+		hint: 'از توکن‌های کمتری استفاده می‌کند و ممکن است برای مدل آسان‌تر باشد',
 		displayOptions: {
 			show: {
 				optimizeResponse: [true],
@@ -386,7 +376,7 @@ export const optimizeResponseProperties: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Elements To Omit',
+		displayName: 'عناصر برای حذف',
 		name: 'elementsToOmit',
 		type: 'string',
 		displayOptions: {
@@ -397,15 +387,15 @@ export const optimizeResponseProperties: INodeProperties[] = [
 			},
 		},
 		default: '',
-		placeholder: 'e.g. img, .className, #ItemId',
-		description: 'Comma-separated list of selectors that would be excluded when extracting content',
+		placeholder: 'مثلاً img, .className, #ItemId',
+		description: 'لیست جدا شده با کاما از انتخابگرهایی که هنگام استخراج محتوا حذف می‌شوند',
 	},
 	{
-		displayName: 'Truncate Response',
+		displayName: 'کوتاه کردن پاسخ',
 		name: 'truncateResponse',
 		type: 'boolean',
 		default: false,
-		hint: 'Helps save tokens',
+		hint: 'کمک به صرفه جویی در توکن‌ها',
 		displayOptions: {
 			show: {
 				optimizeResponse: [true],
@@ -414,7 +404,7 @@ export const optimizeResponseProperties: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Max Response Characters',
+		displayName: 'حداکثر تعداد کاراکترهای پاسخ',
 		name: 'maxLength',
 		type: 'number',
 		default: 1000,

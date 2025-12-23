@@ -31,7 +31,7 @@ export class ExecutionError extends ApplicationError {
 		const stackRows = this.stack && typeof this.stack === 'string' ? this.stack.split('\n') : [];
 
 		if (stackRows.length === 0) {
-			this.message = 'Unknown error';
+			this.message = 'خطای ناشناخته';
 			return;
 		}
 
@@ -40,7 +40,7 @@ export class ExecutionError extends ApplicationError {
 		const lineNumberDisplay = this.toLineNumberDisplay(lineNumberRow) || '';
 
 		if (!messageRow) {
-			this.message = `Unknown error ${lineNumberDisplay}`;
+			this.message = `خطای ناشناخته ${lineNumberDisplay}`;
 			return;
 		}
 
@@ -49,7 +49,7 @@ export class ExecutionError extends ApplicationError {
 		if (errorType) this.description = errorType;
 
 		if (!errorDetails) {
-			this.message = `Unknown error ${lineNumberDisplay}`;
+			this.message = `خطای ناشناخته ${lineNumberDisplay}`;
 			return;
 		}
 

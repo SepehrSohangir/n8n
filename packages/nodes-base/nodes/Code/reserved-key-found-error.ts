@@ -3,8 +3,8 @@ import { ValidationError } from './ValidationError';
 export class ReservedKeyFoundError extends ValidationError {
 	constructor(reservedKey: string, itemIndex: number) {
 		super({
-			message: 'Invalid output format',
-			description: `An output item contains the reserved key <code>${reservedKey}</code>. To get around this, please wrap each item in an object, under a key called <code>json</code>. <a href="https://docs.n8n.io/data/data-structure/#data-structure" target="_blank">Example</a>`,
+			message: 'فرمت خروجی نامعتبر است',
+			description: `یک آیتم خروجی شامل کلید رزرو شده <code>${reservedKey}</code> است. برای رفع این مشکل، لطفاً هر آیتم را در یک شیء قرار دهید، زیر کلیدی به نام <code>json</code>. <a href="https://docs.n8n.io/data/data-structure/#data-structure" target="_blank">مثال</a>`,
 			itemIndex,
 		});
 	}

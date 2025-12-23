@@ -13,7 +13,7 @@ export { insert, get, rowExists, rowNotExists, deleteRows, update, upsert };
 
 export const description: INodeProperties[] = [
 	{
-		displayName: 'Operation',
+		displayName: 'عملیات',
 		name: 'operation',
 		type: 'options',
 		noDataExpression: true,
@@ -24,45 +24,45 @@ export const description: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'Delete',
+				name: 'حذف',
 				value: deleteRows.FIELD,
-				description: 'Delete row(s)',
+				description: 'حذف ردیف(ها)',
 				action: 'Delete row(s)',
 			},
 			{
-				name: 'Get',
+				name: 'گرفتن',
 				value: get.FIELD,
-				description: 'Get row(s)',
+				description: 'گرفتن ردیف(ها)',
 				action: 'Get row(s)',
 			},
 			{
-				name: 'If Row Exists',
+				name: 'اگر ردیف وجود دارد',
 				value: rowExists.FIELD,
-				description: 'Match input items that are in the data table',
+				description: 'مطابقت ورودی‌هایی که در جدول داده‌ها وجود دارند',
 				action: 'If row exists',
 			},
 			{
-				name: 'If Row Does Not Exist',
+				name: 'اگر ردیف وجود ندارد',
 				value: rowNotExists.FIELD,
-				description: 'Match input items that are not in the data table',
+				description: 'مطابقت ورودی‌هایی که در جدول داده‌ها وجود ندارند',
 				action: 'If row does not exist',
 			},
 			{
-				name: 'Insert',
+				name: 'درج',
 				value: insert.FIELD,
-				description: 'Insert a new row',
+				description: 'درج یک ردیف جدید',
 				action: 'Insert row',
 			},
 			{
-				name: 'Update',
+				name: 'به‌روزرسانی',
 				value: update.FIELD,
-				description: 'Update row(s) matching certain fields',
+				description: 'به‌روزرسانی ردیف(ها)',
 				action: 'Update row(s)',
 			},
 			{
-				name: 'Upsert',
+				name: 'درج یا به‌روزرسانی',
 				value: upsert.FIELD,
-				description: 'Update row(s), or insert if there is no match',
+				description: 'درج یا به‌روزرسانی ردیف(ها)',
 				action: 'Upsert row(s)',
 			},
 		],
@@ -70,14 +70,14 @@ export const description: INodeProperties[] = [
 	},
 	{
 		// eslint-disable-next-line n8n-nodes-base/node-param-display-name-miscased
-		displayName: 'Data table',
+		displayName: 'جدول داده',
 		name: DATA_TABLE_ID_FIELD,
 		type: 'resourceLocator',
 		default: { mode: 'list', value: '' },
 		required: true,
 		modes: [
 			{
-				displayName: 'From List',
+				displayName: 'از لیست',
 				name: 'list',
 				type: 'list',
 				typeOptions: {
@@ -90,7 +90,7 @@ export const description: INodeProperties[] = [
 				},
 			},
 			{
-				displayName: 'ID',
+				displayName: 'شناسه',
 				name: 'id',
 				type: 'string',
 			},

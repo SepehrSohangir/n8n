@@ -24,11 +24,11 @@ export const description: INodeProperties[] = [
 	...getSelectFields(displayOptions),
 	makeAddRow(FIELD, displayOptions),
 	{
-		displayName: 'Options',
+		displayName: 'تنظیمات',
 		name: 'options',
 		type: 'collection',
 		default: {},
-		placeholder: 'Add option',
+		placeholder: 'افزودن تنظیمات',
 		options: [DRY_RUN],
 		displayOptions,
 	},
@@ -44,7 +44,7 @@ export async function execute(
 	const filter = await getSelectFilter(this, index);
 
 	if (filter.filters.length === 0) {
-		throw new NodeOperationError(this.getNode(), 'At least one condition is required');
+		throw new NodeOperationError(this.getNode(), 'حداقل یک شرط نیاز است.');
 	}
 
 	const result = await dataTableProxy.upsertRow({

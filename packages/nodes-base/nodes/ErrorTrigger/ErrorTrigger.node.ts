@@ -10,18 +10,18 @@ import { NodeConnectionTypes } from 'n8n-workflow';
 
 export class ErrorTrigger implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Error Trigger',
+		displayName: 'تریگر خطا',
 		name: 'errorTrigger',
 		icon: 'fa:bug',
 		iconColor: 'blue',
 		group: ['trigger'],
 		version: 1,
-		description: 'Triggers the workflow when another workflow has an error',
+		description: 'گردش کار را زمانی که گردش کار دیگری خطا دارد تریگر می‌کند',
 		eventTriggerDescription: '',
 		mockManualExecution: true,
 		maxNodes: 1,
 		defaults: {
-			name: 'Error Trigger',
+			name: 'تریگر خطا',
 			color: '#0000FF',
 		},
 		inputs: [],
@@ -29,7 +29,7 @@ export class ErrorTrigger implements INodeType {
 		properties: [
 			{
 				displayName:
-					'This node will trigger when there is an error in another workflow, as long as that workflow is set up to do so. <a href="https://docs.n8n.io/integrations/core-nodes/n8n-nodes-base.errortrigger" target="_blank">More info</a>',
+					'این نود زمانی تریگر می‌شود که در گردش کار دیگری خطایی وجود داشته باشد، به شرطی که آن گردش کار برای این کار تنظیم شده باشد. <a href="https://docs.n8n.io/integrations/core-nodes/n8n-nodes-base.errortrigger" target="_blank">اطلاعات بیشتر</a>',
 				name: 'notice',
 				type: 'notice',
 				default: '',

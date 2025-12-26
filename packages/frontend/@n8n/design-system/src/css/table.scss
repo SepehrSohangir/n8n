@@ -570,3 +570,24 @@
 		}
 	}
 }
+
+/* RTL Support */
+html[dir='rtl'] {
+	@include mixins.b(table) {
+		@include mixins.e(expand-icon) {
+			> .el-icon {
+				left: auto;
+				right: 50%;
+				margin-left: 0;
+				margin-right: -5px;
+			}
+		}
+
+		[class*='el-table__row--level'] {
+			.el-table__expand-icon {
+				margin-right: 0;
+				margin-left: 3px;
+			}
+		}
+	}
+}

@@ -11,59 +11,59 @@ export { append, chooseBranch, combineAll, combineByFields, combineBySql, combin
 
 export const description: INodeProperties[] = [
 	{
-		displayName: 'Mode',
+		displayName: 'حالت',
 		name: 'mode',
 		type: 'options',
 		noDataExpression: true,
 		options: [
 			{
-				name: 'Append',
+				name: 'افزودن',
 				value: 'append',
-				description: 'Output items of each input, one after the other',
+				description: 'خروجی آیتم‌های هر ورودی، یکی پس از دیگری',
 			},
 			{
-				name: 'Combine',
+				name: 'ترکیب',
 				value: 'combine',
-				description: 'Merge matching items together',
+				description: 'ادغام آیتم‌های مطابق با هم',
 			},
 			{
-				name: 'SQL Query',
+				name: 'پرس‌وجوی SQL',
 				value: 'combineBySql',
-				description: 'Write a query to do the merge',
+				description: 'نوشتن یک پرس‌وجو برای انجام ادغام',
 			},
 			{
-				name: 'Choose Branch',
+				name: 'انتخاب شاخه',
 				value: 'chooseBranch',
-				description: 'Output data from a specific branch, without modifying it',
+				description: 'خروجی داده از یک شاخه خاص، بدون تغییر آن',
 			},
 		],
 		default: 'append',
-		description: 'How input data should be merged',
+		description: 'نحوه ادغام داده‌های ورودی',
 	},
 	{
-		displayName: 'Combine By',
+		displayName: 'ترکیب بر اساس',
 		name: 'combineBy',
 		type: 'options',
 		noDataExpression: true,
 		options: [
 			{
-				name: 'Matching Fields',
+				name: 'فیلدهای مطابق',
 				value: 'combineByFields',
-				description: 'Combine items with the same field values',
+				description: 'ترکیب آیتم‌ها با مقادیر فیلد یکسان',
 			},
 			{
-				name: 'Position',
+				name: 'موقعیت',
 				value: 'combineByPosition',
-				description: 'Combine items based on their order',
+				description: 'ترکیب آیتم‌ها بر اساس ترتیب آنها',
 			},
 			{
-				name: 'All Possible Combinations',
+				name: 'همه ترکیب‌های ممکن',
 				value: 'combineAll',
-				description: 'Every pairing of every two items (cross join)',
+				description: 'هر جفت‌سازی از هر دو آیتم (اتصال متقاطع)',
 			},
 		],
 		default: 'combineByFields',
-		description: 'How input data should be merged',
+		description: 'نحوه ادغام داده‌های ورودی',
 		displayOptions: {
 			show: { mode: ['combine'] },
 		},

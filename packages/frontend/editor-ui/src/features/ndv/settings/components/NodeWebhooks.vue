@@ -210,8 +210,8 @@ watch(
 					:content="baseText.clickToCopy"
 					placement="left"
 				>
-					<div v-if="isWebhookMethodVisible(webhook)" class="webhook-wrapper">
-						<div class="http-field">
+					<div v-if="isWebhookMethodVisible(webhook)" class="webhook-wrapper test">
+						<div class="http-field pr">
 							<div class="http-method">{{ getWebhookHttpMethod(webhook) }}<br /></div>
 						</div>
 						<div class="url-field">
@@ -332,5 +332,13 @@ watch(
 	margin-top: var(--spacing--xs);
 	background-color: var(--color--foreground--tint-2);
 	border-radius: 3px;
+}
+.pr {
+	margin-left: 10px;
+	padding-right: 10px;
+}
+.test {
+	display: flex;
+	flex-direction: row-reverse;
 }
 </style>

@@ -1,4 +1,5 @@
-import { TSESTree } from '@typescript-eslint/types';
+import type { TSESTree } from '@typescript-eslint/utils';
+import { AST_NODE_TYPES } from '@typescript-eslint/utils';
 import type { ReportFixFunction } from '@typescript-eslint/utils/ts-eslint';
 
 import {
@@ -37,7 +38,7 @@ function isSensitiveFieldName(name: string): boolean {
 function hasPasswordTypeOption(element: TSESTree.ObjectExpression): boolean {
 	const typeOptionsProperty = findObjectProperty(element, 'typeOptions');
 
-	if (typeOptionsProperty?.value.type !== TSESTree.AST_NODE_TYPES.ObjectExpression) {
+	if (!typeOptionsProperty || typeOptionsProperty.value.type !== AST_NODE_TYPES.ObjectExpression) {
 		return false;
 	}
 
@@ -52,7 +53,7 @@ function createPasswordFix(
 	typeOptionsProperty: TSESTree.Property | null,
 ): ReportFixFunction {
 	return (fixer) => {
-		if (typeOptionsProperty?.value.type === TSESTree.AST_NODE_TYPES.ObjectExpression) {
+		if (typeOptionsProperty && typeOptionsProperty.value.type === AST_NODE_TYPES.ObjectExpression) {
 			const passwordProperty = findObjectProperty(typeOptionsProperty.value, 'password');
 
 			if (passwordProperty) {
@@ -107,13 +108,13 @@ export const CredentialPasswordFieldRule = createRule({
 				const propertiesProperty = findClassProperty(node, 'properties');
 				if (
 					!propertiesProperty?.value ||
-					propertiesProperty.value.type !== TSESTree.AST_NODE_TYPES.ArrayExpression
+					propertiesProperty.value.type !== AST_NODE_TYPES.ArrayExpression
 				) {
 					return;
 				}
 
 				for (const element of propertiesProperty.value.elements) {
-					if (element?.type !== TSESTree.AST_NODE_TYPES.ObjectExpression) {
+					if (element?.type !== AST_NODE_TYPES.ObjectExpression) {
 						continue;
 					}
 

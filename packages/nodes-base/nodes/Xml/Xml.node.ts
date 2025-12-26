@@ -15,8 +15,8 @@ export class Xml implements INodeType {
 		iconColor: 'purple',
 		group: ['transform'],
 		version: 1,
-		subtitle: '={{$parameter["mode"]==="jsonToxml" ? "JSON to XML" : "XML to JSON"}}',
-		description: 'Convert data from and to XML',
+		subtitle: '={{$parameter["mode"]==="jsonToxml" ? "JSON به XML" : "XML به JSON"}}',
+		description: 'تبدیل داده‌ها از و به XML',
 		defaults: {
 			name: 'XML',
 			color: '#333377',
@@ -25,27 +25,27 @@ export class Xml implements INodeType {
 		outputs: [NodeConnectionTypes.Main],
 		properties: [
 			{
-				displayName: 'Mode',
+				displayName: 'حالت',
 				name: 'mode',
 				type: 'options',
 				options: [
 					{
-						name: 'JSON to XML',
+						name: 'JSON به XML',
 						value: 'jsonToxml',
-						description: 'Converts data from JSON to XML',
+						description: 'تبدیل داده‌ها از JSON به XML',
 					},
 					{
-						name: 'XML to JSON',
+						name: 'XML به JSON',
 						value: 'xmlToJson',
-						description: 'Converts data from XML to JSON',
+						description: 'تبدیل داده‌ها از XML به JSON',
 					},
 				],
 				default: 'xmlToJson',
-				description: 'From and to what format the data should be converted',
+				description: 'از و به چه فرمتی داده‌ها باید تبدیل شوند',
 			},
 			{
 				displayName:
-					"If your XML is inside a binary file, use the 'Extract from File' node to convert it to text first",
+					'اگر XML شما درون یک فایل باینری است، ابتدا از نود «استخراج از فایل» برای تبدیل آن به متن استفاده کنید',
 				name: 'xmlNotice',
 				type: 'notice',
 				default: '',
@@ -60,7 +60,7 @@ export class Xml implements INodeType {
 			//         option:jsonToxml
 			// ----------------------------------
 			{
-				displayName: 'Property Name',
+				displayName: 'نام ویژگی',
 				name: 'dataPropertyName',
 				type: 'string',
 				displayOptions: {
@@ -70,13 +70,13 @@ export class Xml implements INodeType {
 				},
 				default: 'data',
 				required: true,
-				description: 'Name of the property to which to contains the converted XML data',
+				description: 'نام ویژگی که حاوی داده‌های XML تبدیل شده است',
 			},
 			{
-				displayName: 'Options',
+				displayName: 'گزینه‌ها',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'Add option',
+				placeholder: 'افزودن گزینه',
 				displayOptions: {
 					show: {
 						mode: ['jsonToxml'],
@@ -85,18 +85,18 @@ export class Xml implements INodeType {
 				default: {},
 				options: [
 					{
-						displayName: 'Allow Surrogate Chars',
+						displayName: 'اجازه کاراکترهای جایگزین',
 						name: 'allowSurrogateChars',
 						type: 'boolean',
 						default: false,
-						description: 'Whether to allow using characters from the Unicode surrogate blocks',
+						description: 'آیا استفاده از کاراکترها از بلوک‌های جایگزین یونیکد مجاز باشد',
 					},
 					{
-						displayName: 'Attribute Key',
+						displayName: 'کلید ویژگی',
 						name: 'attrkey',
 						type: 'string',
 						default: '$',
-						description: 'Prefix that is used to access the attributes',
+						description: 'پیشوندی که برای دسترسی به ویژگی‌ها استفاده می‌شود',
 					},
 					{
 						displayName: 'Cdata',
@@ -104,28 +104,28 @@ export class Xml implements INodeType {
 						type: 'boolean',
 						default: false,
 						description:
-							'Whether to wrap text nodes in &lt;![CDATA[ ... ]]&gt; instead of escaping when necessary. Does not add &lt;![CDATA[ ... ]]&gt; if it is not required.',
+							'آیا گره‌های متنی در &lt;![CDATA[ ... ]]&gt; پیچیده شوند به جای فرار در صورت لزوم. اگر لازم نباشد &lt;![CDATA[ ... ]]&gt; اضافه نمی‌کند.',
 					},
 					{
-						displayName: 'Character Key',
+						displayName: 'کلید کاراکتر',
 						name: 'charkey',
 						type: 'string',
 						default: '_',
-						description: 'Prefix that is used to access the character content',
+						description: 'پیشوندی که برای دسترسی به محتوای کاراکتر استفاده می‌شود',
 					},
 					{
-						displayName: 'Headless',
+						displayName: 'بدون سربرگ',
 						name: 'headless',
 						type: 'boolean',
 						default: false,
-						description: 'Whether to omit the XML header',
+						description: 'آیا سربرگ XML حذف شود',
 					},
 					{
-						displayName: 'Root Name',
+						displayName: 'نام ریشه',
 						name: 'rootName',
 						type: 'string',
 						default: 'root',
-						description: 'Root element name to be used',
+						description: 'نام عنصر ریشه برای استفاده',
 					},
 				],
 			},
@@ -134,7 +134,7 @@ export class Xml implements INodeType {
 			//         option:xmlToJson
 			// ----------------------------------
 			{
-				displayName: 'Property Name',
+				displayName: 'نام ویژگی',
 				name: 'dataPropertyName',
 				type: 'string',
 				displayOptions: {
@@ -144,13 +144,13 @@ export class Xml implements INodeType {
 				},
 				default: 'data',
 				required: true,
-				description: 'Name of the property which contains the XML data to convert',
+				description: 'نام ویژگی که حاوی داده‌های XML برای تبدیل است',
 			},
 			{
-				displayName: 'Options',
+				displayName: 'گزینه‌ها',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'Add option',
+				placeholder: 'افزودن گزینه',
 				displayOptions: {
 					show: {
 						mode: ['xmlToJson'],
@@ -159,70 +159,70 @@ export class Xml implements INodeType {
 				default: {},
 				options: [
 					{
-						displayName: 'Attribute Key',
+						displayName: 'کلید ویژگی',
 						name: 'attrkey',
 						type: 'string',
 						default: '$',
-						description: 'Prefix that is used to access the attributes',
+						description: 'پیشوندی که برای دسترسی به ویژگی‌ها استفاده می‌شود',
 					},
 					{
-						displayName: 'Character Key',
+						displayName: 'کلید کاراکتر',
 						name: 'charkey',
 						type: 'string',
 						default: '_',
-						description: 'Prefix that is used to access the character content',
+						description: 'پیشوندی که برای دسترسی به محتوای کاراکتر استفاده می‌شود',
 					},
 					{
-						displayName: 'Explicit Array',
+						displayName: 'آرایه صریح',
 						name: 'explicitArray',
 						type: 'boolean',
 						default: false,
 						description:
-							'Whether to always put child nodes in an array if true; otherwise an array is created only if there is more than one',
+							'آیا گره‌های فرزند همیشه در یک آرایه قرار داده شوند اگر true باشد؛ در غیر این صورت یک آرایه فقط در صورتی ایجاد می‌شود که بیش از یک گره وجود داشته باشد',
 					},
 					{
-						displayName: 'Explicit Root',
+						displayName: 'ریشه صریح',
 						name: 'explicitRoot',
 						type: 'boolean',
 						default: true,
 						description:
-							'Whether to set this if you want to get the root node in the resulting object',
+							'آیا این گزینه تنظیم شود اگر می‌خواهید گره ریشه را در شیء نتیجه دریافت کنید',
 					},
 					{
-						displayName: 'Ignore Attributes',
+						displayName: 'نادیده گرفتن ویژگی‌ها',
 						name: 'ignoreAttrs',
 						type: 'boolean',
 						default: false,
-						description: 'Whether to ignore all XML attributes and only create text nodes',
+						description: 'آیا همه ویژگی‌های XML نادیده گرفته شوند و فقط گره‌های متنی ایجاد شوند',
 					},
 					{
-						displayName: 'Merge Attributes',
+						displayName: 'ادغام ویژگی‌ها',
 						name: 'mergeAttrs',
 						type: 'boolean',
 						default: true,
 						description:
-							'Whether to merge attributes and child elements as properties of the parent, instead of keying attributes off a child attribute object. This option is ignored if ignoreAttrs is true.',
+							'آیا ویژگی‌ها و عناصر فرزند به عنوان ویژگی‌های والد ادغام شوند، به جای کلیدگذاری ویژگی‌ها از یک شیء ویژگی فرزند. این گزینه اگر ignoreAttrs true باشد نادیده گرفته می‌شود.',
 					},
 					{
-						displayName: 'Normalize',
+						displayName: 'عادی‌سازی',
 						name: 'normalize',
 						type: 'boolean',
 						default: false,
-						description: 'Whether to trim whitespaces inside text nodes',
+						description: 'آیا فضاهای خالی داخل گره‌های متنی برش داده شوند',
 					},
 					{
-						displayName: 'Normalize Tags',
+						displayName: 'عادی‌سازی تگ‌ها',
 						name: 'normalizeTags',
 						type: 'boolean',
 						default: false,
-						description: 'Whether to normalize all tag names to lowercase',
+						description: 'آیا همه نام‌های تگ به حروف کوچک عادی‌سازی شوند',
 					},
 					{
-						displayName: 'Trim',
+						displayName: 'برش',
 						name: 'trim',
 						type: 'boolean',
 						default: false,
-						description: 'Whether to trim the whitespace at the beginning and end of text nodes',
+						description: 'آیا فضاهای خالی در ابتدا و انتهای گره‌های متنی برش داده شوند',
 					},
 				],
 			},

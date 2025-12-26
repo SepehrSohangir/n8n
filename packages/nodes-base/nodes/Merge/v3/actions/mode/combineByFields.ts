@@ -24,42 +24,42 @@ import {
 } from '../../helpers/utils';
 
 const multipleMatchesProperty: INodeProperties = {
-	displayName: 'Multiple Matches',
+	displayName: 'تطابق‌های چندگانه',
 	name: 'multipleMatches',
 	type: 'options',
 	default: 'all',
 	options: [
 		{
-			name: 'Include All Matches',
+			name: 'شامل همه تطابق‌ها',
 			value: 'all',
-			description: 'Output multiple items if there are multiple matches',
+			description: 'خروجی چندین آیتم اگر تطابق‌های چندگانه وجود داشته باشد',
 		},
 		{
-			name: 'Include First Match Only',
+			name: 'فقط شامل اولین تطابق',
 			value: 'first',
-			description: 'Only ever output a single item per match',
+			description: 'فقط یک آیتم واحد در هر تطابق خروجی داده شود',
 		},
 	],
 };
 
 export const properties: INodeProperties[] = [
 	{
-		displayName: 'Fields To Match Have Different Names',
+		displayName: 'فیلدهای برای تطابق نام‌های متفاوتی دارند',
 		name: 'advanced',
 		type: 'boolean',
 		default: false,
-		description: 'Whether name(s) of field to match are different in input 1 and input 2',
+		description: 'آیا نام(های) فیلد برای تطابق در ورودی 1 و ورودی 2 متفاوت هستند',
 	},
 	{
-		displayName: 'Fields to Match',
+		displayName: 'فیلدهای برای تطابق',
 		name: 'fieldsToMatchString',
 		type: 'string',
 		// eslint-disable-next-line n8n-nodes-base/node-param-placeholder-miscased-id
-		placeholder: 'e.g. id, name',
+		placeholder: 'مثلاً id, name',
 		default: '',
 		requiresDataPath: 'multiple',
-		description: 'Specify the fields to use for matching input items',
-		hint: 'Drag or type the input field name',
+		description: 'مشخص کردن فیلدهای برای استفاده برای تطابق آیتم‌های ورودی',
+		hint: 'کشیدن یا تایپ نام فیلد ورودی',
 		displayOptions: {
 			show: {
 				advanced: [false],
@@ -67,15 +67,15 @@ export const properties: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Fields to Match',
+		displayName: 'فیلدهای برای تطابق',
 		name: 'mergeByFields',
 		type: 'fixedCollection',
-		placeholder: 'Add Fields to Match',
+		placeholder: 'افزودن فیلدهای برای تطابق',
 		default: { values: [{ field1: '', field2: '' }] },
 		typeOptions: {
 			multipleValues: true,
 		},
-		description: 'Specify the fields to use for matching input items',
+		description: 'مشخص کردن فیلدهای برای استفاده برای تطابق آیتم‌های ورودی',
 		displayOptions: {
 			show: {
 				advanced: [true],
@@ -83,27 +83,27 @@ export const properties: INodeProperties[] = [
 		},
 		options: [
 			{
-				displayName: 'Values',
+				displayName: 'مقادیر',
 				name: 'values',
 				values: [
 					{
-						displayName: 'Input 1 Field',
+						displayName: 'فیلد ورودی 1',
 						name: 'field1',
 						type: 'string',
 						default: '',
 						// eslint-disable-next-line n8n-nodes-base/node-param-placeholder-miscased-id
-						placeholder: 'e.g. id',
-						hint: 'Drag or type the input field name',
+						placeholder: 'مثلاً id',
+						hint: 'کشیدن یا تایپ نام فیلد ورودی',
 						requiresDataPath: 'single',
 					},
 					{
-						displayName: 'Input 2 Field',
+						displayName: 'فیلد ورودی 2',
 						name: 'field2',
 						type: 'string',
 						default: '',
 						// eslint-disable-next-line n8n-nodes-base/node-param-placeholder-miscased-id
-						placeholder: 'e.g. id',
-						hint: 'Drag or type the input field name',
+						placeholder: 'مثلاً id',
+						hint: 'کشیدن یا تایپ نام فیلد ورودی',
 						requiresDataPath: 'single',
 					},
 				],
@@ -111,55 +111,56 @@ export const properties: INodeProperties[] = [
 		],
 	},
 	{
-		displayName: 'Output Type',
+		displayName: 'نوع خروجی',
 		name: 'joinMode',
 		type: 'options',
-		description: 'How to select the items to send to output',
+		description: 'نحوه انتخاب آیتم‌ها برای ارسال به خروجی',
 		// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 		options: [
 			{
-				name: 'Keep Matches',
+				name: 'نگه داشتن تطابق‌ها',
 				value: 'keepMatches',
-				description: 'Items that match, merged together (inner join)',
+				description: 'آیتم‌هایی که تطابق دارند، با هم ادغام شده (اتصال داخلی)',
 			},
 			{
-				name: 'Keep Non-Matches',
+				name: 'نگه داشتن غیر تطابق‌ها',
 				value: 'keepNonMatches',
-				description: "Items that don't match",
+				description: 'آیتم‌هایی که تطابق ندارند',
 			},
 			{
-				name: 'Keep Everything',
+				name: 'نگه داشتن همه چیز',
 				value: 'keepEverything',
-				description: "Items that match merged together, plus items that don't match (outer join)",
+				description:
+					'آیتم‌هایی که تطابق دارند با هم ادغام شده، به علاوه آیتم‌هایی که تطابق ندارند (اتصال خارجی)',
 			},
 			{
-				name: 'Enrich Input 1',
+				name: 'غنی‌سازی ورودی 1',
 				value: 'enrichInput1',
-				description: 'All of input 1, with data from input 2 added in (left join)',
+				description: 'همه ورودی 1، با داده از ورودی 2 اضافه شده (اتصال چپ)',
 			},
 			{
-				name: 'Enrich Input 2',
+				name: 'غنی‌سازی ورودی 2',
 				value: 'enrichInput2',
-				description: 'All of input 2, with data from input 1 added in (right join)',
+				description: 'همه ورودی 2، با داده از ورودی 1 اضافه شده (اتصال راست)',
 			},
 		],
 		default: 'keepMatches',
 	},
 	{
-		displayName: 'Output Data From',
+		displayName: 'داده خروجی از',
 		name: 'outputDataFrom',
 		type: 'options',
 		options: [
 			{
-				name: 'Both Inputs Merged Together',
+				name: 'هر دو ورودی با هم ادغام شده',
 				value: 'both',
 			},
 			{
-				name: 'Input 1',
+				name: 'ورودی 1',
 				value: 'input1',
 			},
 			{
-				name: 'Input 2',
+				name: 'ورودی 2',
 				value: 'input2',
 			},
 		],
@@ -171,20 +172,20 @@ export const properties: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Output Data From',
+		displayName: 'داده خروجی از',
 		name: 'outputDataFrom',
 		type: 'options',
 		options: [
 			{
-				name: 'Both Inputs Appended Together',
+				name: 'هر دو ورودی با هم الحاق شده',
 				value: 'both',
 			},
 			{
-				name: 'Input 1',
+				name: 'ورودی 1',
 				value: 'input1',
 			},
 			{
-				name: 'Input 2',
+				name: 'ورودی 2',
 				value: 'input2',
 			},
 		],
@@ -196,10 +197,10 @@ export const properties: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Options',
+		displayName: 'گزینه‌ها',
 		name: 'options',
 		type: 'collection',
-		placeholder: 'Add option',
+		placeholder: 'افزودن گزینه',
 		default: {},
 		options: [
 			{
@@ -220,12 +221,12 @@ export const properties: INodeProperties[] = [
 				},
 			},
 			{
-				displayName: 'Disable Dot Notation',
+				displayName: 'غیرفعال کردن نماد نقطه',
 				name: 'disableDotNotation',
 				type: 'boolean',
 				default: false,
 				description:
-					'Whether to disallow referencing child fields using `parent.child` in the field name',
+					'آیا ارجاع به فیلدهای فرزند با استفاده از `parent.child` در نام فیلد مجاز نباشد',
 			},
 			fuzzyCompareProperty,
 			{

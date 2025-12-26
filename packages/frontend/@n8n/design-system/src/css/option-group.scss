@@ -40,3 +40,29 @@
 		padding-left: $gap;
 	}
 }
+
+/* RTL Support */
+html[dir='rtl'] {
+	@include mixins.b(select-group) {
+		$gap: 20px;
+
+		@include mixins.e(wrap) {
+			&:not(:last-of-type) {
+				&::after {
+					left: $gap;
+					right: $gap;
+				}
+			}
+		}
+
+		@include mixins.e(title) {
+			padding-left: 0;
+			padding-right: $gap;
+		}
+
+		& .el-select-dropdown__item {
+			padding-left: 0;
+			padding-right: $gap;
+		}
+	}
+}

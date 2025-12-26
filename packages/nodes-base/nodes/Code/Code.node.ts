@@ -46,7 +46,7 @@ export class Code implements INodeType {
 		defaultVersion: 2,
 		description: 'اجرای کد سفارشی جاوااسکریپت یا پایتون',
 		defaults: {
-			name: 'Code',
+			name: 'کد',
 		},
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],

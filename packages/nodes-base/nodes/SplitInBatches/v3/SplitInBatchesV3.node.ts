@@ -9,53 +9,53 @@ import { NodeConnectionTypes, deepCopy } from 'n8n-workflow';
 
 export class SplitInBatchesV3 implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Loop Over Items (Split in Batches)',
+		displayName: 'حلقه روی آیتم‌ها (تقسیم به دسته‌ها)',
 		name: 'splitInBatches',
 		icon: 'fa:sync',
 		iconColor: 'dark-green',
 		group: ['organization'],
 		version: 3,
-		description: 'Split data into batches and iterate over each batch',
+		description: 'تقسیم داده به دسته‌ها و تکرار روی هر دسته',
 		defaults: {
-			name: 'Loop Over Items',
+			name: 'حلقه روی آیتم‌ها',
 			color: '#007755',
 		},
 		inputs: [NodeConnectionTypes.Main],
 
 		outputs: [NodeConnectionTypes.Main, NodeConnectionTypes.Main],
-		outputNames: ['done', 'loop'],
+		outputNames: ['تمام شده', 'حلقه'],
 		properties: [
 			{
 				displayName:
-					'You may not need this node — n8n nodes automatically run once for each input item. <a href="https://docs.n8n.io/getting-started/key-concepts/looping.html#using-loops-in-n8n" target="_blank">More info</a>',
+					'ممکن است به این نود نیاز نداشته باشید — نودهای n8n به طور خودکار یک بار برای هر آیتم ورودی اجرا می‌شوند. <a href="https://docs.n8n.io/getting-started/key-concepts/looping.html#using-loops-in-n8n" target="_blank">اطلاعات بیشتر</a>',
 				name: 'splitInBatchesNotice',
 				type: 'notice',
 				default: '',
 			},
 			{
-				displayName: 'Batch Size',
+				displayName: 'اندازه دسته',
 				name: 'batchSize',
 				type: 'number',
 				typeOptions: {
 					minValue: 1,
 				},
 				default: 1,
-				description: 'The number of items to return with each call',
+				description: 'تعداد آیتم‌هایی که در هر فراخوانی برگردانده می‌شود',
 			},
 			{
-				displayName: 'Options',
+				displayName: 'گزینه‌ها',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'Add option',
+				placeholder: 'افزودن گزینه',
 				default: {},
 				options: [
 					{
-						displayName: 'Reset',
+						displayName: 'بازنشانی',
 						name: 'reset',
 						type: 'boolean',
 						default: false,
 						description:
-							'Whether the node starts again from the beginning of the input items. This will treat incoming data as a new set rather than continuing with the previous items.',
+							'آیا نود دوباره از ابتدای آیتم‌های ورودی شروع شود. این داده‌های ورودی را به عنوان مجموعه جدیدی در نظر می‌گیرد به جای ادامه با آیتم‌های قبلی.',
 					},
 				],
 			},

@@ -17,87 +17,87 @@ import { sortByCode } from './utils';
 
 export class Sort implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Sort',
+		displayName: 'مرتب‌سازی',
 		name: 'sort',
 		icon: 'file:sort.svg',
 		group: ['transform'],
 		subtitle: '',
 		version: 1,
-		description: 'Change items order',
+		description: 'تغییر ترتیب آیتم‌ها',
 		defaults: {
-			name: 'Sort',
+			name: 'مرتب‌سازی',
 		},
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
 		properties: [
 			{
-				displayName: 'Type',
+				displayName: 'نوع',
 				name: 'type',
 				type: 'options',
 				options: [
 					{
-						name: 'Simple',
+						name: 'ساده',
 						value: 'simple',
 					},
 					{
-						name: 'Random',
+						name: 'تصادفی',
 						value: 'random',
 					},
 					{
-						name: 'Code',
+						name: 'کد',
 						value: 'code',
 					},
 				],
 				default: 'simple',
-				description: 'The type of sorting to perform',
+				description: 'نوع مرتب‌سازی برای انجام',
 			},
 			{
-				displayName: 'Fields To Sort By',
+				displayName: 'فیلدهای برای مرتب‌سازی بر اساس',
 				name: 'sortFieldsUi',
 				type: 'fixedCollection',
 				typeOptions: {
 					multipleValues: true,
 				},
-				placeholder: 'Add Field To Sort By',
+				placeholder: 'افزودن فیلد برای مرتب‌سازی بر اساس',
 				options: [
 					{
 						displayName: '',
 						name: 'sortField',
 						values: [
 							{
-								displayName: 'Field Name',
+								displayName: 'نام فیلد',
 								name: 'fieldName',
 								type: 'string',
 								required: true,
 								default: '',
-								description: 'The field to sort by',
+								description: 'فیلد برای مرتب‌سازی بر اساس',
 								// eslint-disable-next-line n8n-nodes-base/node-param-placeholder-miscased-id
-								placeholder: 'e.g. id',
-								hint: ' Enter the field name as text',
+								placeholder: 'مثلاً id',
+								hint: 'نام فیلد را به صورت متن وارد کنید',
 								requiresDataPath: 'single',
 							},
 							{
-								displayName: 'Order',
+								displayName: 'ترتیب',
 								name: 'order',
 								type: 'options',
 								options: [
 									{
-										name: 'Ascending',
+										name: 'صعودی',
 										value: 'ascending',
 									},
 									{
-										name: 'Descending',
+										name: 'نزولی',
 										value: 'descending',
 									},
 								],
 								default: 'ascending',
-								description: 'The order to sort by',
+								description: 'ترتیب مرتب‌سازی',
 							},
 						],
 					},
 				],
 				default: {},
-				description: 'The fields of the input items to sort by',
+				description: 'فیلدهای آیتم‌های ورودی برای مرتب‌سازی بر اساس',
 				displayOptions: {
 					show: {
 						type: ['simple'],
@@ -105,7 +105,7 @@ export class Sort implements INodeType {
 				},
 			},
 			{
-				displayName: 'Code',
+				displayName: 'کد',
 				name: 'code',
 				type: 'string',
 				typeOptions: {
@@ -128,7 +128,7 @@ export class Sort implements INodeType {
 	return 1;
 	}
 	return 0;`,
-				description: 'Javascript code to determine the order of any two items',
+				description: 'کد جاوااسکریپت برای تعیین ترتیب هر دو آیتم',
 				displayOptions: {
 					show: {
 						type: ['code'],
@@ -136,10 +136,10 @@ export class Sort implements INodeType {
 				},
 			},
 			{
-				displayName: 'Options',
+				displayName: 'گزینه‌ها',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'Add Field',
+				placeholder: 'افزودن فیلد',
 				default: {},
 				displayOptions: {
 					show: {
@@ -148,12 +148,12 @@ export class Sort implements INodeType {
 				},
 				options: [
 					{
-						displayName: 'Disable Dot Notation',
+						displayName: 'غیرفعال کردن نماد نقطه',
 						name: 'disableDotNotation',
 						type: 'boolean',
 						default: false,
 						description:
-							'Whether to disallow referencing child fields using `parent.child` in the field name',
+							'آیا ارجاع به فیلدهای فرزند با استفاده از `parent.child` در نام فیلد مجاز نباشد',
 					},
 				],
 			},

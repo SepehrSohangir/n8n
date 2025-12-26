@@ -9,52 +9,51 @@ import { NodeConnectionTypes, deepCopy } from 'n8n-workflow';
 
 export class SplitInBatchesV2 implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Split In Batches',
+		displayName: 'تقسیم به دسته‌ها',
 		name: 'splitInBatches',
 		icon: 'fa:th-large',
 		group: ['organization'],
 		version: 2,
-		description: 'Split data into batches and iterate over each batch',
+		description: 'تقسیم داده به دسته‌ها و تکرار روی هر دسته',
 		defaults: {
-			name: 'Split In Batches',
+			name: 'تقسیم به دسته‌ها',
 			color: '#007755',
 		},
 		inputs: [NodeConnectionTypes.Main],
 
 		outputs: [NodeConnectionTypes.Main, NodeConnectionTypes.Main],
-		outputNames: ['loop', 'done'],
+		outputNames: ['حلقه', 'تمام شده'],
 		properties: [
 			{
 				displayName:
-					'You may not need this node — n8n nodes automatically run once for each input item. <a href="https://docs.n8n.io/getting-started/key-concepts/looping.html#using-loops-in-n8n" target="_blank">More info</a>',
+					'ممکن است به این نود نیاز نداشته باشید — نودهای n8n به طور خودکار یک بار برای هر آیتم ورودی اجرا می‌شوند. <a href="https://docs.n8n.io/getting-started/key-concepts/looping.html#using-loops-in-n8n" target="_blank">اطلاعات بیشتر</a>',
 				name: 'splitInBatchesNotice',
 				type: 'notice',
 				default: '',
 			},
 			{
-				displayName: 'Batch Size',
+				displayName: 'اندازه دسته',
 				name: 'batchSize',
 				type: 'number',
 				typeOptions: {
 					minValue: 1,
 				},
 				default: 10,
-				description: 'The number of items to return with each call',
+				description: 'تعداد آیتم‌هایی که در هر فراخوانی برگردانده می‌شود',
 			},
 			{
-				displayName: 'Options',
+				displayName: 'گزینه‌ها',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'Add option',
+				placeholder: 'افزودن گزینه',
 				default: {},
 				options: [
 					{
-						displayName: 'Reset',
+						displayName: 'بازنشانی',
 						name: 'reset',
 						type: 'boolean',
 						default: false,
-						description:
-							'Whether the node will be reset and so with the current input-data newly initialized',
+						description: 'آیا نود بازنشانی شود و با داده ورودی فعلی دوباره مقداردهی اولیه شود',
 					},
 				],
 			},

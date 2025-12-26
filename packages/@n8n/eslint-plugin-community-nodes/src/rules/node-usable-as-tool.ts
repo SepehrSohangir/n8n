@@ -1,4 +1,5 @@
-import { TSESTree } from '@typescript-eslint/types';
+import type { TSESTree } from '@typescript-eslint/utils';
+import { AST_NODE_TYPES } from '@typescript-eslint/utils';
 
 import {
 	isNodeTypeClass,
@@ -35,7 +36,7 @@ export const NodeUsableAsToolRule = createRule({
 				}
 
 				const descriptionValue = descriptionProperty.value;
-				if (descriptionValue?.type !== TSESTree.AST_NODE_TYPES.ObjectExpression) {
+				if (!descriptionValue || descriptionValue.type !== AST_NODE_TYPES.ObjectExpression) {
 					return;
 				}
 
@@ -46,7 +47,7 @@ export const NodeUsableAsToolRule = createRule({
 						node,
 						messageId: 'missingUsableAsTool',
 						fix(fixer) {
-							if (descriptionValue?.type === TSESTree.AST_NODE_TYPES.ObjectExpression) {
+							if (descriptionValue.type === AST_NODE_TYPES.ObjectExpression) {
 								const properties = descriptionValue.properties;
 								if (properties.length === 0) {
 									const openBrace = descriptionValue.range[0] + 1;

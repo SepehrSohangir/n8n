@@ -6,24 +6,25 @@ import type {
 } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 
-type eventType = 'Workflow activated' | 'Workflow updated' | undefined;
+type eventType = 'گردش کار فعال شد' | 'گردش کار به‌روزرسانی شد' | 'اجرای دستی' | undefined;
 type activationType = 'activate' | 'update';
 
 export class WorkflowTrigger implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Workflow Trigger',
+		displayName: 'تریگر گردش کار',
 		hidden: true,
 		name: 'workflowTrigger',
 		icon: 'fa:network-wired',
 		iconColor: 'orange-red',
 		group: ['trigger'],
 		version: 1,
-		description: 'Triggers based on various lifecycle events, like when a workflow is activated',
+		description: 'تریگر بر اساس رویدادهای مختلف چرخه حیات، مانند زمانی که یک گردش کار فعال می‌شود',
 		eventTriggerDescription: '',
 		mockManualExecution: true,
-		activationMessage: 'Your workflow will now trigger executions on the event you have defined.',
+		activationMessage:
+			'گردش کار شما اکنون اجراها را بر روی رویدادی که تعریف کرده‌اید تریگر خواهد کرد.',
 		defaults: {
-			name: 'Workflow Trigger',
+			name: 'تریگر گردش کار',
 			color: '#ff6d5a',
 		},
 		inputs: [],
@@ -31,32 +32,32 @@ export class WorkflowTrigger implements INodeType {
 		properties: [
 			{
 				displayName:
-					"This node is deprecated and would not be updated in the future. Please use 'n8n Trigger' node instead.",
+					"این نود منسوخ شده است و در آینده به‌روزرسانی نخواهد شد. لطفاً به جای آن از نود 'تریگر n8n' استفاده کنید.",
 				name: 'oldVersionNotice',
 				type: 'notice',
 				default: '',
 			},
 			{
-				displayName: 'Events',
+				displayName: 'رویدادها',
 				name: 'events',
 				type: 'multiOptions',
 				required: true,
 				default: [],
-				description: `Specifies under which conditions an execution should happen:
+				description: `شرایطی را مشخص می‌کند که تحت آن اجرا باید اتفاق بیفتد:
 					<ul>
-						<li><b>Active Workflow Updated</b>: Triggers when this workflow is updated</li>
-						<li><b>Workflow Activated</b>: Triggers when this workflow is activated</li>
+						<li><b>گردش کار فعال به‌روزرسانی شد</b>: زمانی تریگر می‌شود که این گردش کار به‌روزرسانی شود</li>
+						<li><b>گردش کار فعال شد</b>: زمانی تریگر می‌شود که این گردش کار فعال شود</li>
 					</ul>`,
 				options: [
 					{
-						name: 'Active Workflow Updated',
+						name: 'گردش کار فعال به‌روزرسانی شد',
 						value: 'update',
-						description: 'Triggers when this workflow is updated',
+						description: 'زمانی تریگر می‌شود که این گردش کار به‌روزرسانی شود',
 					},
 					{
-						name: 'Workflow Activated',
+						name: 'گردش کار فعال شد',
 						value: 'activate',
-						description: 'Triggers when this workflow is activated',
+						description: 'زمانی تریگر می‌شود که این گردش کار فعال شود',
 					},
 				],
 			},
@@ -71,10 +72,10 @@ export class WorkflowTrigger implements INodeType {
 		if (events.includes(activationMode)) {
 			let event: eventType;
 			if (activationMode === 'activate') {
-				event = 'Workflow activated';
+				event = 'گردش کار فعال شد';
 			}
 			if (activationMode === 'update') {
-				event = 'Workflow updated';
+				event = 'گردش کار به‌روزرسانی شد';
 			}
 			this.emit([
 				this.helpers.returnJsonArray([
@@ -87,7 +88,7 @@ export class WorkflowTrigger implements INodeType {
 			this.emit([
 				this.helpers.returnJsonArray([
 					{
-						event: 'Manual execution',
+						event: 'اجرای دستی',
 						timestamp: new Date().toISOString(),
 						workflow_id: this.getWorkflow().id,
 					},

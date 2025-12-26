@@ -10,47 +10,47 @@ import type {
 import { removeDuplicateInputItems } from '../utils';
 
 const versionDescription: INodeTypeDescription = {
-	displayName: 'Remove Duplicates',
+	displayName: 'حذف تکراری‌ها',
 	name: 'removeDuplicates',
 	icon: 'file:removeDuplicates.svg',
 	group: ['transform'],
 	subtitle: '',
 	version: [1, 1.1],
-	description: 'Delete items with matching field values',
+	description: 'حذف آیتم‌ها با مقادیر فیلد یکسان',
 	defaults: {
-		name: 'Remove Duplicates',
+		name: 'حذف تکراری‌ها',
 	},
 	inputs: [NodeConnectionTypes.Main],
 	outputs: [NodeConnectionTypes.Main],
 	properties: [
 		{
-			displayName: 'Compare',
+			displayName: 'مقایسه',
 			name: 'compare',
 			type: 'options',
 			options: [
 				{
-					name: 'All Fields',
+					name: 'همه فیلدها',
 					value: 'allFields',
 				},
 				{
-					name: 'All Fields Except',
+					name: 'همه فیلدها به جز',
 					value: 'allFieldsExcept',
 				},
 				{
-					name: 'Selected Fields',
+					name: 'فیلدهای انتخاب شده',
 					value: 'selectedFields',
 				},
 			],
 			default: 'allFields',
-			description: 'The fields of the input items to compare to see if they are the same',
+			description: 'فیلدهای آیتم‌های ورودی برای مقایسه جهت تشخیص یکسان بودن',
 		},
 		{
-			displayName: 'Fields To Exclude',
+			displayName: 'فیلدهای برای حذف',
 			name: 'fieldsToExclude',
 			type: 'string',
-			placeholder: 'e.g. email, name',
+			placeholder: 'مثلاً ایمیل، نام',
 			requiresDataPath: 'multiple',
-			description: 'Fields in the input to exclude from the comparison',
+			description: 'فیلدهای ورودی برای حذف از مقایسه',
 			default: '',
 			displayOptions: {
 				show: {
@@ -59,12 +59,12 @@ const versionDescription: INodeTypeDescription = {
 			},
 		},
 		{
-			displayName: 'Fields To Compare',
+			displayName: 'فیلدهای برای مقایسه',
 			name: 'fieldsToCompare',
 			type: 'string',
-			placeholder: 'e.g. email, name',
+			placeholder: 'مثلاً ایمیل، نام',
 			requiresDataPath: 'multiple',
-			description: 'Fields in the input to add to the comparison',
+			description: 'فیلدهای ورودی برای اضافه کردن به مقایسه',
 			default: '',
 			displayOptions: {
 				show: {
@@ -73,10 +73,10 @@ const versionDescription: INodeTypeDescription = {
 			},
 		},
 		{
-			displayName: 'Options',
+			displayName: 'گزینه‌ها',
 			name: 'options',
 			type: 'collection',
-			placeholder: 'Add Field',
+			placeholder: 'افزودن فیلد',
 			default: {},
 			displayOptions: {
 				show: {
@@ -85,20 +85,20 @@ const versionDescription: INodeTypeDescription = {
 			},
 			options: [
 				{
-					displayName: 'Disable Dot Notation',
+					displayName: 'غیرفعال کردن نماد نقطه',
 					name: 'disableDotNotation',
 					type: 'boolean',
 					default: false,
 					description:
-						'Whether to disallow referencing child fields using `parent.child` in the field name',
+						'آیا ارجاع به فیلدهای فرزند با استفاده از `parent.child` در نام فیلد مجاز نباشد',
 				},
 				{
-					displayName: 'Remove Other Fields',
+					displayName: 'حذف فیلدهای دیگر',
 					name: 'removeOtherFields',
 					type: 'boolean',
 					default: false,
 					description:
-						'Whether to remove any fields that are not being compared. If disabled, will keep the values from the first of the duplicates.',
+						'آیا فیلدهایی که مقایسه نمی‌شوند حذف شوند. اگر غیرفعال باشد، مقادیر اولین تکراری‌ها حفظ می‌شوند.',
 				},
 			],
 		},

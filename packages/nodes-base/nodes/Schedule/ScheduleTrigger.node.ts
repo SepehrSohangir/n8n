@@ -19,17 +19,17 @@ import type { IRecurrenceRule, Rule } from './SchedulerInterface';
 
 export class ScheduleTrigger implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Schedule Trigger',
+		displayName: 'تریگر برنامه زمانی',
 		name: 'scheduleTrigger',
 		icon: 'fa:clock',
 		group: ['trigger', 'schedule'],
 		version: [1, 1.1, 1.2, 1.3],
-		description: 'Triggers the workflow on a given schedule',
+		description: 'گردش کار را بر اساس برنامه زمانی مشخص شده تریگر می‌کند',
 		eventTriggerDescription: '',
 		activationMessage:
-			'Your schedule trigger will now trigger executions on the schedule you have defined.',
+			'تریگر برنامه زمانی شما اکنون اجراها را بر اساس برنامه زمانی که تعریف کرده‌اید تریگر خواهد کرد.',
 		defaults: {
-			name: 'Schedule Trigger',
+			name: 'تریگر برنامه زمانی',
 			color: '#31C49F',
 		},
 
@@ -38,15 +38,15 @@ export class ScheduleTrigger implements INodeType {
 		properties: [
 			{
 				displayName:
-					"This workflow will run on the schedule you define here once you publish it.<br><br>For testing, you can also trigger it manually: by going back to the canvas and clicking 'execute workflow'",
+					"این گردش کار پس از انتشار، بر اساس برنامه زمانی که در اینجا تعریف می‌کنید اجرا خواهد شد.<br><br>برای تست، می‌توانید آن را به صورت دستی نیز تریگر کنید: با بازگشت به بوم و کلیک روی 'اجرای گردش کار'",
 				name: 'notice',
 				type: 'notice',
 				default: '',
 			},
 			{
-				displayName: 'Trigger Rules',
+				displayName: 'قوانین تریگر',
 				name: 'rule',
-				placeholder: 'Add Rule',
+				placeholder: 'افزودن قانون',
 				type: 'fixedCollection',
 				typeOptions: {
 					multipleValues: true,
@@ -61,47 +61,47 @@ export class ScheduleTrigger implements INodeType {
 				options: [
 					{
 						name: 'interval',
-						displayName: 'Trigger Interval',
+						displayName: 'فاصله تریگر',
 						values: [
 							{
-								displayName: 'Trigger Interval',
+								displayName: 'فاصله تریگر',
 								name: 'field',
 								type: 'options',
 								default: 'days',
 								// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 								options: [
 									{
-										name: 'Seconds',
+										name: 'ثانیه',
 										value: 'seconds',
 									},
 									{
-										name: 'Minutes',
+										name: 'دقیقه',
 										value: 'minutes',
 									},
 									{
-										name: 'Hours',
+										name: 'ساعت',
 										value: 'hours',
 									},
 									{
-										name: 'Days',
+										name: 'روز',
 										value: 'days',
 									},
 									{
-										name: 'Weeks',
+										name: 'هفته',
 										value: 'weeks',
 									},
 									{
-										name: 'Months',
+										name: 'ماه',
 										value: 'months',
 									},
 									{
-										name: 'Custom (Cron)',
+										name: 'سفارشی (Cron)',
 										value: 'cronExpression',
 									},
 								],
 							},
 							{
-								displayName: 'Seconds Between Triggers',
+								displayName: 'ثانیه بین تریگرها',
 								name: 'secondsInterval',
 								type: 'number',
 								default: 30,
@@ -110,11 +110,11 @@ export class ScheduleTrigger implements INodeType {
 										field: ['seconds'],
 									},
 								},
-								description: 'Number of seconds between each workflow trigger',
-								hint: 'Must be in range 1-59',
+								description: 'تعداد ثانیه بین هر تریگر گردش کار',
+								hint: 'باید در محدوده 1-59 باشد',
 							},
 							{
-								displayName: 'Minutes Between Triggers',
+								displayName: 'دقیقه بین تریگرها',
 								name: 'minutesInterval',
 								type: 'number',
 								default: 5,
@@ -123,11 +123,11 @@ export class ScheduleTrigger implements INodeType {
 										field: ['minutes'],
 									},
 								},
-								description: 'Number of minutes between each workflow trigger',
-								hint: 'Must be in range 1-59',
+								description: 'تعداد دقیقه بین هر تریگر گردش کار',
+								hint: 'باید در محدوده 1-59 باشد',
 							},
 							{
-								displayName: 'Hours Between Triggers',
+								displayName: 'ساعت بین تریگرها',
 								name: 'hoursInterval',
 								type: 'number',
 								displayOptions: {
@@ -136,11 +136,11 @@ export class ScheduleTrigger implements INodeType {
 									},
 								},
 								default: 1,
-								description: 'Number of hours between each workflow trigger',
-								hint: 'Must be in range 1-23',
+								description: 'تعداد ساعت بین هر تریگر گردش کار',
+								hint: 'باید در محدوده 1-23 باشد',
 							},
 							{
-								displayName: 'Days Between Triggers',
+								displayName: 'روز بین تریگرها',
 								name: 'daysInterval',
 								type: 'number',
 								displayOptions: {
@@ -149,11 +149,11 @@ export class ScheduleTrigger implements INodeType {
 									},
 								},
 								default: 1,
-								description: 'Number of days between each workflow trigger',
-								hint: 'Must be in range 1-31',
+								description: 'تعداد روز بین هر تریگر گردش کار',
+								hint: 'باید در محدوده 1-31 باشد',
 							},
 							{
-								displayName: 'Weeks Between Triggers',
+								displayName: 'هفته بین تریگرها',
 								name: 'weeksInterval',
 								type: 'number',
 								displayOptions: {
@@ -162,10 +162,10 @@ export class ScheduleTrigger implements INodeType {
 									},
 								},
 								default: 1,
-								description: 'Would run every week unless specified otherwise',
+								description: 'هر هفته اجرا می‌شود مگر اینکه خلاف آن مشخص شود',
 							},
 							{
-								displayName: 'Months Between Triggers',
+								displayName: 'ماه بین تریگرها',
 								name: 'monthsInterval',
 								type: 'number',
 								displayOptions: {
@@ -174,10 +174,10 @@ export class ScheduleTrigger implements INodeType {
 									},
 								},
 								default: 1,
-								description: 'Would run every month unless specified otherwise',
+								description: 'هر ماه اجرا می‌شود مگر اینکه خلاف آن مشخص شود',
 							},
 							{
-								displayName: 'Trigger at Day of Month',
+								displayName: 'تریگر در روز ماه',
 								name: 'triggerAtDayOfMonth',
 								type: 'number',
 								displayOptions: {
@@ -190,11 +190,11 @@ export class ScheduleTrigger implements INodeType {
 									maxValue: 31,
 								},
 								default: 1,
-								description: 'The day of the month to trigger (1-31)',
-								hint: 'If a month doesn’t have this day, the node won’t trigger',
+								description: 'روز ماه برای تریگر (1-31)',
+								hint: 'اگر ماه این روز را نداشته باشد، نود تریگر نخواهد شد',
 							},
 							{
-								displayName: 'Trigger on Weekdays',
+								displayName: 'تریگر در روزهای هفته',
 								name: 'triggerAtDay',
 								type: 'multiOptions',
 								displayOptions: {
@@ -207,39 +207,39 @@ export class ScheduleTrigger implements INodeType {
 								},
 								options: [
 									{
-										name: 'Monday',
+										name: 'دوشنبه',
 										value: 1,
 									},
 									{
-										name: 'Tuesday',
+										name: 'سه‌شنبه',
 										value: 2,
 									},
 									{
-										name: 'Wednesday',
+										name: 'چهارشنبه',
 										value: 3,
 									},
 									{
-										name: 'Thursday',
+										name: 'پنج‌شنبه',
 										value: 4,
 									},
 									{
-										name: 'Friday',
+										name: 'جمعه',
 										value: 5,
 									},
 
 									{
-										name: 'Saturday',
+										name: 'شنبه',
 										value: 6,
 									},
 									{
-										name: 'Sunday',
+										name: 'یکشنبه',
 										value: 0,
 									},
 								],
 								default: [0],
 							},
 							{
-								displayName: 'Trigger at Hour',
+								displayName: 'تریگر در ساعت',
 								name: 'triggerAtHour',
 								type: 'options',
 								default: 0,
@@ -250,130 +250,130 @@ export class ScheduleTrigger implements INodeType {
 								},
 								options: [
 									{
-										name: 'Midnight',
-										displayName: 'Midnight',
+										name: 'نیمه‌شب',
+										displayName: 'نیمه‌شب',
 										value: 0,
 									},
 									{
-										name: '1am',
-										displayName: '1am',
+										name: '1 صبح',
+										displayName: '1 صبح',
 										value: 1,
 									},
 									{
-										name: '2am',
-										displayName: '2am',
+										name: '2 صبح',
+										displayName: '2 صبح',
 										value: 2,
 									},
 									{
-										name: '3am',
-										displayName: '3am',
+										name: '3 صبح',
+										displayName: '3 صبح',
 										value: 3,
 									},
 									{
-										name: '4am',
-										displayName: '4am',
+										name: '4 صبح',
+										displayName: '4 صبح',
 										value: 4,
 									},
 									{
-										name: '5am',
-										displayName: '5am',
+										name: '5 صبح',
+										displayName: '5 صبح',
 										value: 5,
 									},
 									{
-										name: '6am',
-										displayName: '6am',
+										name: '6 صبح',
+										displayName: '6 صبح',
 										value: 6,
 									},
 									{
-										name: '7am',
-										displayName: '7am',
+										name: '7 صبح',
+										displayName: '7 صبح',
 										value: 7,
 									},
 									{
-										name: '8am',
-										displayName: '8am',
+										name: '8 صبح',
+										displayName: '8 صبح',
 										value: 8,
 									},
 									{
-										name: '9am',
-										displayName: '9am',
+										name: '9 صبح',
+										displayName: '9 صبح',
 										value: 9,
 									},
 									{
-										name: '10am',
-										displayName: '10am',
+										name: '10 صبح',
+										displayName: '10 صبح',
 										value: 10,
 									},
 									{
-										name: '11am',
-										displayName: '11am',
+										name: '11 صبح',
+										displayName: '11 صبح',
 										value: 11,
 									},
 									{
-										name: 'Noon',
-										displayName: 'Noon',
+										name: 'ظهر',
+										displayName: 'ظهر',
 										value: 12,
 									},
 									{
-										name: '1pm',
-										displayName: '1pm',
+										name: '1 بعدازظهر',
+										displayName: '1 بعدازظهر',
 										value: 13,
 									},
 									{
-										name: '2pm',
-										displayName: '2pm',
+										name: '2 بعدازظهر',
+										displayName: '2 بعدازظهر',
 										value: 14,
 									},
 									{
-										name: '3pm',
-										displayName: '3pm',
+										name: '3 بعدازظهر',
+										displayName: '3 بعدازظهر',
 										value: 15,
 									},
 									{
-										name: '4pm',
-										displayName: '4pm',
+										name: '4 بعدازظهر',
+										displayName: '4 بعدازظهر',
 										value: 16,
 									},
 									{
-										name: '5pm',
-										displayName: '5pm',
+										name: '5 بعدازظهر',
+										displayName: '5 بعدازظهر',
 										value: 17,
 									},
 									{
-										name: '6pm',
-										displayName: '6pm',
+										name: '6 بعدازظهر',
+										displayName: '6 بعدازظهر',
 										value: 18,
 									},
 									{
-										name: '7pm',
-										displayName: '7pm',
+										name: '7 بعدازظهر',
+										displayName: '7 بعدازظهر',
 										value: 19,
 									},
 									{
-										name: '8pm',
-										displayName: '8pm',
+										name: '8 بعدازظهر',
+										displayName: '8 بعدازظهر',
 										value: 20,
 									},
 									{
-										name: '9pm',
-										displayName: '9pm',
+										name: '9 بعدازظهر',
+										displayName: '9 بعدازظهر',
 										value: 21,
 									},
 									{
-										name: '10pm',
-										displayName: '10pm',
+										name: '10 بعدازظهر',
+										displayName: '10 بعدازظهر',
 										value: 22,
 									},
 									{
-										name: '11pm',
-										displayName: '11pm',
+										name: '11 بعدازظهر',
+										displayName: '11 بعدازظهر',
 										value: 23,
 									},
 								],
-								description: 'The hour of the day to trigger',
+								description: 'ساعت روز برای تریگر',
 							},
 							{
-								displayName: 'Trigger at Minute',
+								displayName: 'تریگر در دقیقه',
 								name: 'triggerAtMinute',
 								type: 'number',
 								default: 0,
@@ -386,11 +386,11 @@ export class ScheduleTrigger implements INodeType {
 									minValue: 0,
 									maxValue: 59,
 								},
-								description: 'The minute past the hour to trigger (0-59)',
+								description: 'دقیقه بعد از ساعت برای تریگر (0-59)',
 							},
 							{
 								displayName:
-									'You can find help generating your cron expression <a href="https://crontab.guru/examples.html" target="_blank">here</a>',
+									'می‌توانید راهنمای تولید عبارت cron خود را <a href="https://crontab.guru/examples.html" target="_blank">اینجا</a> پیدا کنید',
 								name: 'notice',
 								type: 'notice',
 								displayOptions: {
@@ -401,17 +401,17 @@ export class ScheduleTrigger implements INodeType {
 								default: '',
 							},
 							{
-								displayName: 'Expression',
+								displayName: 'عبارت',
 								name: 'expression',
 								type: 'string',
 								default: '',
-								placeholder: 'eg. 0 15 * 1 sun',
+								placeholder: 'مثلاً 0 15 * 1 sun',
 								displayOptions: {
 									show: {
 										field: ['cronExpression'],
 									},
 								},
-								hint: 'Format: [Second] [Minute] [Hour] [Day of Month] [Month] [Day of Week]',
+								hint: 'فرمت: [ثانیه] [دقیقه] [ساعت] [روز ماه] [ماه] [روز هفته]',
 							},
 						],
 					},
@@ -475,8 +475,8 @@ export class ScheduleTrigger implements INodeType {
 					this.helpers.registerCron(cron, () => executeTrigger(recurrence));
 				} catch (error) {
 					if (interval.field === 'cronExpression') {
-						throw new NodeOperationError(this.getNode(), 'Invalid cron expression', {
-							description: 'More information on how to build them at https://crontab.guru/',
+						throw new NodeOperationError(this.getNode(), 'عبارت cron نامعتبر است', {
+							description: 'اطلاعات بیشتر در مورد نحوه ساخت آنها در https://crontab.guru/',
 						});
 					} else {
 						throw error;
@@ -491,8 +491,8 @@ export class ScheduleTrigger implements INodeType {
 					try {
 						sendAt(cronExpression);
 					} catch (error) {
-						throw new NodeOperationError(this.getNode(), 'Invalid cron expression', {
-							description: 'More information on how to build them at https://crontab.guru/',
+						throw new NodeOperationError(this.getNode(), 'عبارت cron نامعتبر است', {
+							description: 'اطلاعات بیشتر در مورد نحوه ساخت آنها در https://crontab.guru/',
 						});
 					}
 				}

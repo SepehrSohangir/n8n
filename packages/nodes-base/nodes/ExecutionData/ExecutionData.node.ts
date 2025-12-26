@@ -12,15 +12,15 @@ type DataToSave = {
 
 export class ExecutionData implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Execution Data',
+		displayName: 'داده اجرا',
 		name: 'executionData',
 		icon: 'fa:tasks',
 		group: ['input'],
 		iconColor: 'light-green',
 		version: [1, 1.1],
-		description: 'Add execution data for search',
+		description: 'افزودن داده اجرا برای جستجو',
 		defaults: {
-			name: 'Execution Data',
+			name: 'داده اجرا',
 			color: '#29A568',
 		},
 		inputs: [NodeConnectionTypes.Main],
@@ -28,32 +28,32 @@ export class ExecutionData implements INodeType {
 		properties: [
 			{
 				displayName:
-					"Save important data using this node. It will be displayed on each execution for easy reference and you can filter by it.<br />Filtering is available on Pro and Enterprise plans. <a href='https://n8n.io/pricing/' target='_blank'>More Info</a>",
+					"با استفاده از این نود داده‌های مهم را ذخیره کنید. در هر اجرا نمایش داده می‌شود برای مرجع آسان و می‌توانید بر اساس آن فیلتر کنید.<br />فیلتر کردن در پلن‌های Pro و Enterprise در دسترس است. <a href='https://n8n.io/pricing/' target='_blank'>اطلاعات بیشتر</a>",
 				name: 'notice',
 				type: 'notice',
 				default: '',
 			},
 			{
-				displayName: 'Operation',
+				displayName: 'عملیات',
 				name: 'operation',
 				type: 'options',
 				default: 'save',
 				noDataExpression: true,
 				options: [
 					{
-						name: 'Save Highlight Data (for Search/review)',
+						name: 'ذخیره داده برجسته (برای جستجو/بررسی)',
 						value: 'save',
-						action: 'Save Highlight Data (for search/review)',
+						action: 'ذخیره داده برجسته (برای جستجو/بررسی)',
 					},
 				],
 			},
 			{
-				displayName: 'Data to Save',
+				displayName: 'داده برای ذخیره',
 				name: 'dataToSave',
-				placeholder: 'Add Saved Field',
+				placeholder: 'افزودن فیلد ذخیره شده',
 				type: 'fixedCollection',
 				typeOptions: {
-					multipleValueButtonText: 'Add Saved Field',
+					multipleValueButtonText: 'افزودن فیلد ذخیره شده',
 					multipleValues: true,
 				},
 				displayOptions: {
@@ -64,23 +64,23 @@ export class ExecutionData implements INodeType {
 				default: {},
 				options: [
 					{
-						displayName: 'Values',
+						displayName: 'مقادیر',
 						name: 'values',
 						values: [
 							{
-								displayName: 'Key',
+								displayName: 'کلید',
 								name: 'key',
 								type: 'string',
 								default: '',
-								placeholder: 'e.g. myKey',
+								placeholder: 'مثلاً myKey',
 								requiresDataPath: 'single',
 							},
 							{
-								displayName: 'Value',
+								displayName: 'مقدار',
 								name: 'value',
 								type: 'string',
 								default: '',
-								placeholder: 'e.g. myValue',
+								placeholder: 'مثلاً myValue',
 							},
 						],
 					},
@@ -90,14 +90,14 @@ export class ExecutionData implements INodeType {
 		hints: [
 			{
 				type: 'warning',
-				message: 'Some keys are longer than 50 characters. They will be truncated.',
+				message: 'برخی از کلیدها بیشتر از 50 کاراکتر هستند. برش داده می‌شوند.',
 				displayCondition: '={{ $parameter.dataToSave.values.some((x) => x.key.length > 50) }}',
 				whenToDisplay: 'beforeExecution',
 				location: 'outputPane',
 			},
 			{
 				type: 'warning',
-				message: 'Some values are longer than 512 characters. They will be truncated.',
+				message: 'برخی از مقادیر بیشتر از 512 کاراکتر هستند. برش داده می‌شوند.',
 				displayCondition: '={{ $parameter.dataToSave.values.some((x) => x.value.length > 512) }}',
 				whenToDisplay: 'beforeExecution',
 				location: 'outputPane',

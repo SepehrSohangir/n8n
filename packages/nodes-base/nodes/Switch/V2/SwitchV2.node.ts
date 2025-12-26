@@ -19,7 +19,7 @@ export class SwitchV2 implements INodeType {
 			...baseDescription,
 			version: [2],
 			defaults: {
-				name: 'Switch',
+				name: 'سوئیچ',
 				color: '#506000',
 			},
 			inputs: [NodeConnectionTypes.Main],
@@ -46,30 +46,30 @@ export class SwitchV2 implements INodeType {
 
 			properties: [
 				{
-					displayName: 'Mode',
+					displayName: 'حالت',
 					name: 'mode',
 					type: 'options',
 					options: [
 						{
-							name: 'Expression',
+							name: 'عبارت',
 							value: 'expression',
-							description: 'Expression decides how to route data',
+							description: 'عبارت نحوه مسیریابی داده را تعیین می‌کند',
 						},
 						{
-							name: 'Rules',
+							name: 'قوانین',
 							value: 'rules',
-							description: 'Rules decide how to route data',
+							description: 'قوانین نحوه مسیریابی داده را تعیین می‌کنند',
 						},
 					],
 					default: 'rules',
-					description: 'How data should be routed',
+					description: 'نحوه مسیریابی داده',
 				},
 
 				// ----------------------------------
 				//         mode:expression
 				// ----------------------------------
 				{
-					displayName: 'Output',
+					displayName: 'خروجی',
 					name: 'output',
 					type: 'string',
 					displayOptions: {
@@ -78,11 +78,11 @@ export class SwitchV2 implements INodeType {
 						},
 					},
 					default: '',
-					description: 'The index of output to which to send data to',
+					description: 'ایندکس خروجی برای ارسال داده به آن',
 				},
 
 				{
-					displayName: 'Outputs Amount',
+					displayName: 'تعداد خروجی‌ها',
 					name: 'outputsAmount',
 					type: 'number',
 					displayOptions: {
@@ -91,14 +91,14 @@ export class SwitchV2 implements INodeType {
 						},
 					},
 					default: 4,
-					description: 'Amount of outputs to create',
+					description: 'تعداد خروجی‌ها برای ایجاد',
 				},
 
 				// ----------------------------------
 				//         mode:rules
 				// ----------------------------------
 				{
-					displayName: 'Data Type',
+					displayName: 'نوع داده',
 					name: 'dataType',
 					type: 'options',
 					displayOptions: {
@@ -108,31 +108,31 @@ export class SwitchV2 implements INodeType {
 					},
 					options: [
 						{
-							name: 'Boolean',
+							name: 'بولین',
 							value: 'boolean',
 						},
 						{
-							name: 'Date & Time',
+							name: 'تاریخ و زمان',
 							value: 'dateTime',
 						},
 						{
-							name: 'Number',
+							name: 'عدد',
 							value: 'number',
 						},
 						{
-							name: 'String',
+							name: 'رشته',
 							value: 'string',
 						},
 					],
 					default: 'number',
-					description: 'The type of data to route on',
+					description: 'نوع داده برای مسیریابی',
 				},
 
 				// ----------------------------------
 				//         dataType:boolean
 				// ----------------------------------
 				{
-					displayName: 'Value 1',
+					displayName: 'مقدار 1',
 					name: 'value1',
 					type: 'boolean',
 					displayOptions: {
@@ -143,12 +143,12 @@ export class SwitchV2 implements INodeType {
 					},
 					default: false,
 					// eslint-disable-next-line n8n-nodes-base/node-param-description-boolean-without-whether
-					description: 'The value to compare with the first one',
+					description: 'مقدار برای مقایسه با مقدار اول',
 				},
 				{
-					displayName: 'Routing Rules',
+					displayName: 'قوانین مسیریابی',
 					name: 'rules',
-					placeholder: 'Add Routing Rule',
+					placeholder: 'افزودن قانون مسیریابی',
 					type: 'fixedCollection',
 					typeOptions: {
 						multipleValues: true,
@@ -164,40 +164,40 @@ export class SwitchV2 implements INodeType {
 					options: [
 						{
 							name: 'rules',
-							displayName: 'Boolean',
+							displayName: 'بولین',
 							values: [
 								// eslint-disable-next-line n8n-nodes-base/node-param-operation-without-no-data-expression
 								{
-									displayName: 'Operation',
+									displayName: 'عملیات',
 									name: 'operation',
 									type: 'options',
 									options: [
 										{
-											name: 'Equal',
+											name: 'برابر',
 											value: 'equal',
 										},
 										{
-											name: 'Not Equal',
+											name: 'نا برابر',
 											value: 'notEqual',
 										},
 									],
 									default: 'equal',
-									description: 'Operation to decide where the data should be mapped to',
+									description: 'عملیات برای تعیین اینکه داده باید به کجا نگاشت شود',
 								},
 								{
-									displayName: 'Value 2',
+									displayName: 'مقدار 2',
 									name: 'value2',
 									type: 'boolean',
 									default: false,
 									// eslint-disable-next-line n8n-nodes-base/node-param-description-boolean-without-whether
-									description: 'The value to compare with the first one',
+									description: 'مقدار برای مقایسه با مقدار اول',
 								},
 								{
-									displayName: 'Output Key',
+									displayName: 'کلید خروجی',
 									name: 'outputKey',
 									type: 'string',
 									default: '',
-									description: 'The label of output to which to send data to if rule matches',
+									description: 'برچسب خروجی برای ارسال داده به آن اگر قانون تطابق داشته باشد',
 								},
 							],
 						},
@@ -208,7 +208,7 @@ export class SwitchV2 implements INodeType {
 				//         dataType:dateTime
 				// ----------------------------------
 				{
-					displayName: 'Value 1',
+					displayName: 'مقدار 1',
 					name: 'value1',
 					type: 'dateTime',
 					displayOptions: {
@@ -218,12 +218,12 @@ export class SwitchV2 implements INodeType {
 						},
 					},
 					default: '',
-					description: 'The value to compare with the second one',
+					description: 'مقدار برای مقایسه با مقدار دوم',
 				},
 				{
-					displayName: 'Routing Rules',
+					displayName: 'قوانین مسیریابی',
 					name: 'rules',
-					placeholder: 'Add Routing Rule',
+					placeholder: 'افزودن قانون مسیریابی',
 					type: 'fixedCollection',
 					typeOptions: {
 						multipleValues: true,
@@ -239,7 +239,7 @@ export class SwitchV2 implements INodeType {
 					options: [
 						{
 							name: 'rules',
-							displayName: 'Dates',
+							displayName: 'تاریخ‌ها',
 							values: [
 								// eslint-disable-next-line n8n-nodes-base/node-param-operation-without-no-data-expression
 								{
@@ -248,11 +248,11 @@ export class SwitchV2 implements INodeType {
 									type: 'options',
 									options: [
 										{
-											name: 'Occurred After',
+											name: 'رخ داده پس از',
 											value: 'after',
 										},
 										{
-											name: 'Occurred Before',
+											name: 'رخ داده قبل از',
 											value: 'before',
 										},
 									],
@@ -260,18 +260,18 @@ export class SwitchV2 implements INodeType {
 									description: 'Operation to decide where the data should be mapped to',
 								},
 								{
-									displayName: 'Value 2',
+									displayName: 'مقدار 2',
 									name: 'value2',
 									type: 'dateTime',
 									default: 0,
-									description: 'The value to compare with the first one',
+									description: 'مقدار برای مقایسه با مقدار اول',
 								},
 								{
-									displayName: 'Output Key',
+									displayName: 'کلید خروجی',
 									name: 'outputKey',
 									type: 'string',
 									default: '',
-									description: 'The label of output to which to send data to if rule matches',
+									description: 'برچسب خروجی برای ارسال داده به آن اگر قانون تطابق داشته باشد',
 								},
 							],
 						},
@@ -282,7 +282,7 @@ export class SwitchV2 implements INodeType {
 				//         dataType:number
 				// ----------------------------------
 				{
-					displayName: 'Value 1',
+					displayName: 'مقدار 1',
 					name: 'value1',
 					type: 'number',
 					displayOptions: {
@@ -292,12 +292,12 @@ export class SwitchV2 implements INodeType {
 						},
 					},
 					default: 0,
-					description: 'The value to compare with the second one',
+					description: 'مقدار برای مقایسه با مقدار دوم',
 				},
 				{
-					displayName: 'Routing Rules',
+					displayName: 'قوانین مسیریابی',
 					name: 'rules',
-					placeholder: 'Add Routing Rule',
+					placeholder: 'افزودن قانون مسیریابی',
 					type: 'fixedCollection',
 					typeOptions: {
 						multipleValues: true,
@@ -313,7 +313,7 @@ export class SwitchV2 implements INodeType {
 					options: [
 						{
 							name: 'rules',
-							displayName: 'Numbers',
+							displayName: 'اعداد',
 							values: [
 								// eslint-disable-next-line n8n-nodes-base/node-param-operation-without-no-data-expression
 								{
@@ -323,27 +323,27 @@ export class SwitchV2 implements INodeType {
 									// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 									options: [
 										{
-											name: 'Smaller',
+											name: 'کوچکتر',
 											value: 'smaller',
 										},
 										{
-											name: 'Smaller Equal',
+											name: 'کوچکتر یا برابر',
 											value: 'smallerEqual',
 										},
 										{
-											name: 'Equal',
+											name: 'برابر',
 											value: 'equal',
 										},
 										{
-											name: 'Not Equal',
+											name: 'نا برابر',
 											value: 'notEqual',
 										},
 										{
-											name: 'Larger',
+											name: 'بزرگتر',
 											value: 'larger',
 										},
 										{
-											name: 'Larger Equal',
+											name: 'بزرگتر یا برابر',
 											value: 'largerEqual',
 										},
 									],
@@ -351,18 +351,18 @@ export class SwitchV2 implements INodeType {
 									description: 'Operation to decide where the data should be mapped to',
 								},
 								{
-									displayName: 'Value 2',
+									displayName: 'مقدار 2',
 									name: 'value2',
 									type: 'number',
 									default: 0,
-									description: 'The value to compare with the first one',
+									description: 'مقدار برای مقایسه با مقدار اول',
 								},
 								{
-									displayName: 'Output Key',
+									displayName: 'کلید خروجی',
 									name: 'outputKey',
 									type: 'string',
 									default: '',
-									description: 'The label of output to which to send data to if rule matches',
+									description: 'برچسب خروجی برای ارسال داده به آن اگر قانون تطابق داشته باشد',
 								},
 							],
 						},
@@ -373,7 +373,7 @@ export class SwitchV2 implements INodeType {
 				//         dataType:string
 				// ----------------------------------
 				{
-					displayName: 'Value 1',
+					displayName: 'مقدار 1',
 					name: 'value1',
 					type: 'string',
 					displayOptions: {
@@ -383,12 +383,12 @@ export class SwitchV2 implements INodeType {
 						},
 					},
 					default: '',
-					description: 'The value to compare with the second one',
+					description: 'مقدار برای مقایسه با مقدار دوم',
 				},
 				{
-					displayName: 'Routing Rules',
+					displayName: 'قوانین مسیریابی',
 					name: 'rules',
-					placeholder: 'Add Routing Rule',
+					placeholder: 'افزودن قانون مسیریابی',
 					type: 'fixedCollection',
 					typeOptions: {
 						multipleValues: true,
@@ -404,7 +404,7 @@ export class SwitchV2 implements INodeType {
 					options: [
 						{
 							name: 'rules',
-							displayName: 'Strings',
+							displayName: 'رشته‌ها',
 							values: [
 								// eslint-disable-next-line n8n-nodes-base/node-param-operation-without-no-data-expression
 								{
@@ -414,43 +414,43 @@ export class SwitchV2 implements INodeType {
 									// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 									options: [
 										{
-											name: 'Contains',
+											name: 'شامل',
 											value: 'contains',
 										},
 										{
-											name: 'Not Contains',
+											name: 'شامل نیست',
 											value: 'notContains',
 										},
 										{
-											name: 'Ends With',
+											name: 'به پایان می‌رسد با',
 											value: 'endsWith',
 										},
 										{
-											name: 'Not Ends With',
+											name: 'به پایان نمی‌رسد با',
 											value: 'notEndsWith',
 										},
 										{
-											name: 'Equal',
+											name: 'برابر',
 											value: 'equal',
 										},
 										{
-											name: 'Not Equal',
+											name: 'نا برابر',
 											value: 'notEqual',
 										},
 										{
-											name: 'Regex Match',
+											name: 'تطابق Regex',
 											value: 'regex',
 										},
 										{
-											name: 'Regex Not Match',
+											name: 'عدم تطابق Regex',
 											value: 'notRegex',
 										},
 										{
-											name: 'Starts With',
+											name: 'شروع می‌شود با',
 											value: 'startsWith',
 										},
 										{
-											name: 'Not Starts With',
+											name: 'شروع نمی‌شود با',
 											value: 'notStartsWith',
 										},
 									],
@@ -458,7 +458,7 @@ export class SwitchV2 implements INodeType {
 									description: 'Operation to decide where the data should be mapped to',
 								},
 								{
-									displayName: 'Value 2',
+									displayName: 'مقدار 2',
 									name: 'value2',
 									type: 'string',
 									displayOptions: {
@@ -467,7 +467,7 @@ export class SwitchV2 implements INodeType {
 										},
 									},
 									default: '',
-									description: 'The value to compare with the first one',
+									description: 'مقدار برای مقایسه با مقدار اول',
 								},
 								{
 									displayName: 'Regex',
@@ -480,14 +480,14 @@ export class SwitchV2 implements INodeType {
 									},
 									default: '',
 									placeholder: '/text/i',
-									description: 'The regex which has to match',
+									description: 'Regex که باید تطابق داشته باشد',
 								},
 								{
-									displayName: 'Output Key',
+									displayName: 'کلید خروجی',
 									name: 'outputKey',
 									type: 'string',
 									default: '',
-									description: 'The label of output to which to send data to if rule matches',
+									description: 'برچسب خروجی برای ارسال داده به آن اگر قانون تطابق داشته باشد',
 								},
 							],
 						},
@@ -495,7 +495,7 @@ export class SwitchV2 implements INodeType {
 				},
 
 				{
-					displayName: 'Fallback Output Name or ID',
+					displayName: 'نام یا شناسه خروجی پیش‌فرض',
 					name: 'fallbackOutput',
 					type: 'options',
 					displayOptions: {
@@ -510,7 +510,7 @@ export class SwitchV2 implements INodeType {
 					},
 					default: -1,
 					description:
-						'The output to which to route all items which do not match any of the rules. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+						'خروجی برای مسیریابی همه آیتم‌هایی که با هیچ یک از قوانین تطابق ندارند. از لیست انتخاب کنید، یا یک شناسه با استفاده از یک <a href="https://docs.n8n.io/code/expressions/">عبارت</a> مشخص کنید.',
 				},
 			],
 		};
@@ -526,7 +526,7 @@ export class SwitchV2 implements INodeType {
 				}));
 
 				options.unshift({
-					name: 'None',
+					name: 'هیچکدام',
 					value: -1,
 				});
 

@@ -169,6 +169,12 @@ async function onClickTemplatesLink() {
 	flex-direction: column;
 }
 
+/* RTL Support */
+html[dir='rtl'] .label {
+	direction: rtl;
+	text-align: center;
+}
+
 .orDivider {
 	display: flex;
 	align-items: center;

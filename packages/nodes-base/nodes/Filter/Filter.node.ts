@@ -7,12 +7,12 @@ import { FilterV2 } from './V2/FilterV2.node';
 export class Filter extends VersionedNodeType {
 	constructor() {
 		const baseDescription: INodeTypeBaseDescription = {
-			displayName: 'Filter',
+			displayName: 'فیلتر',
 			name: 'filter',
 			icon: 'fa:filter',
 			iconColor: 'light-blue',
 			group: ['transform'],
-			description: 'Remove items matching a condition',
+			description: 'حذف آیتم‌های منطبق با شرط',
 			defaultVersion: 2.3,
 		};
 

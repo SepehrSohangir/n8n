@@ -15,59 +15,59 @@ import { FieldsTracker } from './utils';
 
 export class SplitOut implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Split Out',
+		displayName: 'تقسیم کردن',
 		name: 'splitOut',
 		icon: 'file:splitOut.svg',
 		group: ['transform'],
 		subtitle: '',
 		version: 1,
-		description: 'Turn a list inside item(s) into separate items',
+		description: 'تبدیل یک لیست درون آیتم(ها) به آیتم‌های جداگانه',
 		defaults: {
-			name: 'Split Out',
+			name: 'تقسیم کردن',
 		},
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
 		properties: [
 			{
-				displayName: 'Fields To Split Out',
+				displayName: 'فیلدهای برای تقسیم',
 				name: 'fieldToSplitOut',
 				type: 'string',
 				default: '',
 				required: true,
-				placeholder: 'Drag fields from the left or type their names',
+				placeholder: 'فیلدها را از سمت چپ بکشید یا نام آنها را تایپ کنید',
 				description:
-					'The name of the input fields to break out into separate items. Separate multiple field names by commas. For binary data, use $binary.',
+					'نام فیلدهای ورودی برای تقسیم به آیتم‌های جداگانه. چندین نام فیلد را با کاما جدا کنید. برای داده‌های باینری، از $binary استفاده کنید.',
 				requiresDataPath: 'multiple',
-				hint: 'Use $binary to split out the input item by binary data',
+				hint: 'برای تقسیم آیتم ورودی بر اساس داده‌های باینری از $binary استفاده کنید',
 			},
 			{
-				displayName: 'Include',
+				displayName: 'شامل',
 				name: 'include',
 				type: 'options',
 				options: [
 					{
-						name: 'No Other Fields',
+						name: 'هیچ فیلد دیگری',
 						value: 'noOtherFields',
 					},
 					{
-						name: 'All Other Fields',
+						name: 'همه فیلدهای دیگر',
 						value: 'allOtherFields',
 					},
 					{
-						name: 'Selected Other Fields',
+						name: 'فیلدهای دیگر انتخاب شده',
 						value: 'selectedOtherFields',
 					},
 				],
 				default: 'noOtherFields',
-				description: 'Whether to copy any other fields into the new items',
+				description: 'آیا فیلدهای دیگر در آیتم‌های جدید کپی شوند',
 			},
 			{
-				displayName: 'Fields To Include',
+				displayName: 'فیلدهای برای شامل کردن',
 				name: 'fieldsToInclude',
 				type: 'string',
-				placeholder: 'e.g. email, name',
+				placeholder: 'مثلاً ایمیل، نام',
 				requiresDataPath: 'multiple',
-				description: 'Fields in the input items to aggregate together',
+				description: 'فیلدهای ورودی برای جمع‌آوری با هم',
 				default: '',
 				displayOptions: {
 					show: {
@@ -76,34 +76,34 @@ export class SplitOut implements INodeType {
 				},
 			},
 			{
-				displayName: 'Options',
+				displayName: 'گزینه‌ها',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'Add Field',
+				placeholder: 'افزودن فیلد',
 				default: {},
 				options: [
 					{
-						displayName: 'Disable Dot Notation',
+						displayName: 'غیرفعال کردن نماد نقطه',
 						name: 'disableDotNotation',
 						type: 'boolean',
 						default: false,
 						description:
-							'Whether to disallow referencing child fields using `parent.child` in the field name',
+							'آیا ارجاع به فیلدهای فرزند با استفاده از `parent.child` در نام فیلد مجاز نباشد',
 					},
 					{
-						displayName: 'Destination Field Name',
+						displayName: 'نام فیلد مقصد',
 						name: 'destinationFieldName',
 						type: 'string',
 						requiresDataPath: 'multiple',
 						default: '',
-						description: 'The field in the output under which to put the split field contents',
+						description: 'فیلدی در خروجی که محتویات فیلد تقسیم شده در آن قرار می‌گیرد',
 					},
 					{
-						displayName: 'Include Binary',
+						displayName: 'شامل باینری',
 						name: 'includeBinary',
 						type: 'boolean',
 						default: false,
-						description: 'Whether to include the binary data in the new items',
+						description: 'آیا داده‌های باینری در آیتم‌های جدید گنجانده شوند',
 					},
 				],
 			},

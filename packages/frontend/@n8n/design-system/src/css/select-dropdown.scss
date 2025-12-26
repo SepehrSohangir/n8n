@@ -58,3 +58,17 @@
 	margin: 0;
 	box-sizing: border-box;
 }
+
+/* RTL Support */
+html[dir='rtl'] {
+	@include mixins.b(select-dropdown) {
+		@include mixins.when(multiple) {
+			& .el-select-dropdown__item.selected {
+				&::after {
+					right: auto;
+					left: 20px;
+				}
+			}
+		}
+	}
+}

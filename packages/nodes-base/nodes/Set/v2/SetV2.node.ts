@@ -16,58 +16,57 @@ import * as raw from './raw.mode';
 type Mode = 'manual' | 'raw';
 
 const versionDescription: INodeTypeDescription = {
-	displayName: 'Edit Fields (Set)',
+	displayName: 'ویرایش فیلدها (Set)',
 	name: 'set',
 	iconColor: 'blue',
 	group: ['input'],
 	version: [3, 3.1, 3.2, 3.3, 3.4],
-	description: 'Modify, add, or remove item fields',
+	description: 'تغییر، افزودن یا حذف فیلدهای آیتم',
 	subtitle: '={{$parameter["mode"]}}',
 	defaults: {
-		name: 'Edit Fields',
+		name: 'ویرایش فیلدها',
 	},
 	inputs: [NodeConnectionTypes.Main],
 	outputs: [NodeConnectionTypes.Main],
 	properties: [
 		{
-			displayName: 'Mode',
+			displayName: 'حالت',
 			name: 'mode',
 			type: 'options',
 			noDataExpression: true,
 			options: [
 				{
-					name: 'Manual Mapping',
+					name: 'نگاشت دستی',
 					value: 'manual',
-					description: 'Edit item fields one by one',
-					action: 'Edit item fields one by one',
+					description: 'ویرایش فیلدهای آیتم یکی یکی',
+					action: 'ویرایش فیلدهای آیتم یکی یکی',
 				},
 				{
 					name: 'JSON',
 					value: 'raw',
-					description: 'Customize item output with JSON',
-					action: 'Customize item output with JSON',
+					description: 'سفارشی‌سازی خروجی آیتم با JSON',
+					action: 'سفارشی‌سازی خروجی آیتم با JSON',
 				},
 			],
 			default: 'manual',
 		},
 		{
-			displayName: 'Duplicate Item',
+			displayName: 'تکرار آیتم',
 			name: 'duplicateItem',
 			type: 'boolean',
 			default: false,
 			isNodeSetting: true,
-			description: 'Whether this item should be duplicated a set number of times',
+			description: 'آیا این آیتم باید به تعداد مشخصی تکرار شود',
 		},
 		{
-			displayName: 'Duplicate Item Count',
+			displayName: 'تعداد تکرار آیتم',
 			name: 'duplicateCount',
 			type: 'number',
 			default: 0,
 			typeOptions: {
 				minValue: 0,
 			},
-			description:
-				'How many times the item should be duplicated, mainly used for testing and debugging',
+			description: 'چند بار آیتم باید تکرار شود، عمدتاً برای تست و دیباگ استفاده می‌شود',
 			isNodeSetting: true,
 			displayOptions: {
 				show: {
@@ -77,7 +76,7 @@ const versionDescription: INodeTypeDescription = {
 		},
 		{
 			displayName:
-				'Item duplication is set in the node settings. This option will be ignored when the workflow runs automatically.',
+				'تکرار آیتم در تنظیمات نود تنظیم شده است. این گزینه زمانی که گردش کار به صورت خودکار اجرا می‌شود نادیده گرفته خواهد شد.',
 			name: 'duplicateWarning',
 			type: 'notice',
 			default: '',
@@ -90,10 +89,10 @@ const versionDescription: INodeTypeDescription = {
 		...raw.description,
 		...manual.description,
 		{
-			displayName: 'Include in Output',
+			displayName: 'شامل در خروجی',
 			name: 'include',
 			type: 'options',
-			description: 'How to select the fields you want to include in your output items',
+			description: 'نحوه انتخاب فیلدهایی که می‌خواهید در آیتم‌های خروجی خود شامل کنید',
 			default: 'all',
 			displayOptions: {
 				show: {
@@ -102,34 +101,34 @@ const versionDescription: INodeTypeDescription = {
 			},
 			options: [
 				{
-					name: 'All Input Fields',
+					name: 'همه فیلدهای ورودی',
 					value: INCLUDE.ALL,
-					description: 'Also include all unchanged fields from the input',
+					description: 'همچنین شامل همه فیلدهای تغییر نیافته از ورودی',
 				},
 				{
-					name: 'No Input Fields',
+					name: 'بدون فیلدهای ورودی',
 					value: INCLUDE.NONE,
-					description: 'Include only the fields specified above',
+					description: 'فقط شامل فیلدهای مشخص شده در بالا',
 				},
 				{
-					name: 'Selected Input Fields',
+					name: 'فیلدهای ورودی انتخاب شده',
 					value: INCLUDE.SELECTED,
-					description: 'Also include the fields listed in the parameter “Fields to Include”',
+					description: 'همچنین شامل فیلدهای فهرست شده در پارامتر "فیلدهای برای شامل کردن"',
 				},
 				{
-					name: 'All Input Fields Except',
+					name: 'همه فیلدهای ورودی به جز',
 					value: INCLUDE.EXCEPT,
-					description: 'Exclude the fields listed in the parameter “Fields to Exclude”',
+					description: 'حذف فیلدهای فهرست شده در پارامتر "فیلدهای برای حذف"',
 				},
 			],
 		},
 		{
-			displayName: 'Include Other Input Fields',
+			displayName: 'شامل سایر فیلدهای ورودی',
 			name: 'includeOtherFields',
 			type: 'boolean',
 			default: false,
 			description:
-				"Whether to pass to the output all the input fields (along with the fields set in 'Fields to Set')",
+				"آیا همه فیلدهای ورودی به خروجی منتقل شوند (همراه با فیلدهای تنظیم شده در 'فیلدهای برای تنظیم')",
 			displayOptions: {
 				hide: {
 					'@version': [3, 3.1, 3.2],
@@ -137,10 +136,10 @@ const versionDescription: INodeTypeDescription = {
 			},
 		},
 		{
-			displayName: 'Input Fields to Include',
+			displayName: 'فیلدهای ورودی برای شامل کردن',
 			name: 'include',
 			type: 'options',
-			description: 'How to select the fields you want to include in your output items',
+			description: 'نحوه انتخاب فیلدهایی که می‌خواهید در آیتم‌های خروجی خود شامل کنید',
 			default: 'all',
 			displayOptions: {
 				hide: {
@@ -150,30 +149,30 @@ const versionDescription: INodeTypeDescription = {
 			},
 			options: [
 				{
-					name: 'All',
+					name: 'همه',
 					value: INCLUDE.ALL,
-					description: 'Also include all unchanged fields from the input',
+					description: 'همچنین شامل همه فیلدهای تغییر نیافته از ورودی',
 				},
 				{
-					name: 'Selected',
+					name: 'انتخاب شده',
 					value: INCLUDE.SELECTED,
-					description: 'Also include the fields listed in the parameter “Fields to Include”',
+					description: 'همچنین شامل فیلدهای فهرست شده در پارامتر "فیلدهای برای شامل کردن"',
 				},
 				{
-					name: 'All Except',
+					name: 'همه به جز',
 					value: INCLUDE.EXCEPT,
-					description: 'Exclude the fields listed in the parameter “Fields to Exclude”',
+					description: 'حذف فیلدهای فهرست شده در پارامتر "فیلدهای برای حذف"',
 				},
 			],
 		},
 		{
-			displayName: 'Fields to Include',
+			displayName: 'فیلدهای برای شامل کردن',
 			name: 'includeFields',
 			type: 'string',
 			default: '',
-			placeholder: 'e.g. fieldToInclude1,fieldToInclude2',
+			placeholder: 'مثلاً fieldToInclude1,fieldToInclude2',
 			description:
-				'Comma-separated list of the field names you want to include in the output. You can drag the selected fields from the input panel.',
+				'لیست جدا شده با کاما از نام فیلدهایی که می‌خواهید در خروجی شامل کنید. می‌توانید فیلدهای انتخاب شده را از پنل ورودی بکشید.',
 			requiresDataPath: 'multiple',
 			displayOptions: {
 				show: {
@@ -183,13 +182,13 @@ const versionDescription: INodeTypeDescription = {
 			},
 		},
 		{
-			displayName: 'Fields to Exclude',
+			displayName: 'فیلدهای برای حذف',
 			name: 'excludeFields',
 			type: 'string',
 			default: '',
-			placeholder: 'e.g. fieldToExclude1,fieldToExclude2',
+			placeholder: 'مثلاً fieldToExclude1,fieldToExclude2',
 			description:
-				'Comma-separated list of the field names you want to exclude from the output. You can drag the selected fields from the input panel.',
+				'لیست جدا شده با کاما از نام فیلدهایی که می‌خواهید از خروجی حذف کنید. می‌توانید فیلدهای انتخاب شده را از پنل ورودی بکشید.',
 			requiresDataPath: 'multiple',
 			displayOptions: {
 				show: {
@@ -199,13 +198,13 @@ const versionDescription: INodeTypeDescription = {
 			},
 		},
 		{
-			displayName: 'Fields to Include',
+			displayName: 'فیلدهای برای شامل کردن',
 			name: 'includeFields',
 			type: 'string',
 			default: '',
-			placeholder: 'e.g. fieldToInclude1,fieldToInclude2',
+			placeholder: 'مثلاً fieldToInclude1,fieldToInclude2',
 			description:
-				'Comma-separated list of the field names you want to include in the output. You can drag the selected fields from the input panel.',
+				'لیست جدا شده با کاما از نام فیلدهایی که می‌خواهید در خروجی شامل کنید. می‌توانید فیلدهای انتخاب شده را از پنل ورودی بکشید.',
 			requiresDataPath: 'multiple',
 			displayOptions: {
 				show: {
@@ -218,13 +217,13 @@ const versionDescription: INodeTypeDescription = {
 			},
 		},
 		{
-			displayName: 'Fields to Exclude',
+			displayName: 'فیلدهای برای حذف',
 			name: 'excludeFields',
 			type: 'string',
 			default: '',
-			placeholder: 'e.g. fieldToExclude1,fieldToExclude2',
+			placeholder: 'مثلاً fieldToExclude1,fieldToExclude2',
 			description:
-				'Comma-separated list of the field names you want to exclude from the output. You can drag the selected fields from the input panel.',
+				'لیست جدا شده با کاما از نام فیلدهایی که می‌خواهید از خروجی حذف کنید. می‌توانید فیلدهای انتخاب شده را از پنل ورودی بکشید.',
 			requiresDataPath: 'multiple',
 			displayOptions: {
 				show: {
@@ -237,14 +236,14 @@ const versionDescription: INodeTypeDescription = {
 			},
 		},
 		{
-			displayName: 'Options',
+			displayName: 'گزینه‌ها',
 			name: 'options',
 			type: 'collection',
-			placeholder: 'Add option',
+			placeholder: 'افزودن گزینه',
 			default: {},
 			options: [
 				{
-					displayName: 'Include Binary File',
+					displayName: 'شامل فایل باینری',
 					name: 'includeBinary',
 					type: 'boolean',
 					default: true,
@@ -253,15 +252,15 @@ const versionDescription: INodeTypeDescription = {
 							'@version': [{ _cnd: { gte: 3.4 } }],
 						},
 					},
-					description: 'Whether binary data should be included if present in the input item',
+					description: 'آیا داده باینری باید شامل شود اگر در آیتم ورودی موجود باشد',
 				},
 				{
-					displayName: 'Strip Binary Data',
+					displayName: 'حذف داده باینری',
 					name: 'stripBinary',
 					type: 'boolean',
 					default: true,
 					description:
-						'Whether binary data should be stripped from the input item. Only applies when "Include Other Input Fields" is enabled.',
+						'آیا داده باینری باید از آیتم ورودی حذف شود. فقط زمانی اعمال می‌شود که "شامل سایر فیلدهای ورودی" فعال باشد.',
 					displayOptions: {
 						show: {
 							'@version': [{ _cnd: { gte: 3.4 } }],
@@ -270,12 +269,11 @@ const versionDescription: INodeTypeDescription = {
 					},
 				},
 				{
-					displayName: 'Ignore Type Conversion Errors',
+					displayName: 'نادیده گرفتن خطاهای تبدیل نوع',
 					name: 'ignoreConversionErrors',
 					type: 'boolean',
 					default: false,
-					description:
-						'Whether to ignore field type errors and apply a less strict type conversion',
+					description: 'آیا خطاهای نوع فیلد نادیده گرفته شوند و تبدیل نوع کمتر سخت‌گیرانه اعمال شود',
 					displayOptions: {
 						show: {
 							'/mode': ['manual'],
@@ -283,13 +281,13 @@ const versionDescription: INodeTypeDescription = {
 					},
 				},
 				{
-					displayName: 'Support Dot Notation',
+					displayName: 'پشتیبانی از نماد نقطه',
 					name: 'dotNotation',
 					type: 'boolean',
 					default: true,
 					// eslint-disable-next-line n8n-nodes-base/node-param-description-boolean-without-whether
 					description:
-						'By default, dot-notation is used in property names. This means that "a.b" will set the property "b" underneath "a" so { "a": { "b": value} }. If that is not intended this can be deactivated, it will then set { "a.b": value } instead.',
+						'به طور پیش‌فرض، نماد نقطه در نام ویژگی‌ها استفاده می‌شود. این به معنای آن است که "a.b" ویژگی "b" را زیر "a" تنظیم می‌کند بنابراین { "a": { "b": value} }. اگر این مورد نظر نیست می‌تواند غیرفعال شود، سپس { "a.b": value } را تنظیم می‌کند.',
 				},
 			],
 		},

@@ -8,16 +8,16 @@ import { NodeConnectionTypes } from 'n8n-workflow';
 
 export class ManualTrigger implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Manual Trigger',
+		displayName: 'تریگر دستی',
 		name: 'manualTrigger',
 		icon: 'fa:mouse-pointer',
 		group: ['trigger'],
 		version: 1,
-		description: 'Runs the flow on clicking a button in n8n',
+		description: 'اجرای گردش کار با کلیک روی دکمه در n8n',
 		eventTriggerDescription: '',
 		maxNodes: 1,
 		defaults: {
-			name: 'When clicking ‘Execute workflow’',
+			name: "هنگام کلیک روی 'اجرای گردش کار'",
 			color: '#909298',
 		},
 
@@ -26,7 +26,7 @@ export class ManualTrigger implements INodeType {
 		properties: [
 			{
 				displayName:
-					'This node is where the workflow execution starts (when you click the ‘test’ button on the canvas).<br><br> <a data-action="showNodeCreator">Explore other ways to trigger your workflow</a> (e.g on a schedule, or a webhook)',
+					'این نود جایی است که اجرای گردش کار شروع می‌شود (هنگامی که روی دکمه \'تست\' در بوم کلیک می‌کنید).<br><br> <a data-action="showNodeCreator">روش‌های دیگر برای تریگر کردن گردش کار خود را کاوش کنید</a> (مثلاً بر اساس برنامه زمانی یا وب هوک)',
 				name: 'notice',
 				type: 'notice',
 				default: '',

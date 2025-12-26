@@ -1,4 +1,5 @@
-import { TSESTree } from '@typescript-eslint/types';
+import type { TSESTree } from '@typescript-eslint/utils';
+import { AST_NODE_TYPES } from '@typescript-eslint/utils';
 import type { TSESLint } from '@typescript-eslint/utils';
 
 import { createRule } from '../utils/index.js';
@@ -36,7 +37,7 @@ export const NoRestrictedGlobalsRule = createRule({
 
 			// Skip property access (like console.process - we want process.exit but not obj.process)
 			if (
-				parent?.type === TSESTree.AST_NODE_TYPES.MemberExpression &&
+				parent?.type === AST_NODE_TYPES.MemberExpression &&
 				parent.property === ref.identifier &&
 				!parent.computed
 			) {

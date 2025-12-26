@@ -1,4 +1,5 @@
-import { TSESTree } from '@typescript-eslint/types';
+import type { TSESTree } from '@typescript-eslint/utils';
+import { AST_NODE_TYPES } from '@typescript-eslint/utils';
 import type { ReportSuggestionArray } from '@typescript-eslint/utils/ts-eslint';
 
 import {
@@ -62,7 +63,7 @@ export const NoCredentialReuseRule = createRule({
 				const descriptionProperty = findClassProperty(node, 'description');
 				if (
 					!descriptionProperty?.value ||
-					descriptionProperty.value.type !== TSESTree.AST_NODE_TYPES.ObjectExpression
+					descriptionProperty.value.type !== AST_NODE_TYPES.ObjectExpression
 				) {
 					return;
 				}

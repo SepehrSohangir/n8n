@@ -27,66 +27,66 @@ import { configuredOutputs } from './utils/outputs';
 import { formatPrivateKey, generatePairedItemData } from '../../utils/utilities';
 
 const respondWithProperty: INodeProperties = {
-	displayName: 'Respond With',
+	displayName: 'پاسخ با',
 	name: 'respondWith',
 	type: 'options',
 	options: [
 		{
-			name: 'All Incoming Items',
+			name: 'همه آیتم‌های ورودی',
 			value: 'allIncomingItems',
-			description: 'Respond with all input JSON items',
+			description: 'پاسخ با همه آیتم‌های JSON ورودی',
 		},
 		{
-			name: 'Binary File',
+			name: 'فایل باینری',
 			value: 'binary',
-			description: 'Respond with incoming file binary data',
+			description: 'پاسخ با داده‌های باینری فایل ورودی',
 		},
 		{
-			name: 'First Incoming Item',
+			name: 'اولین آیتم ورودی',
 			value: 'firstIncomingItem',
-			description: 'Respond with the first input JSON item',
+			description: 'پاسخ با اولین آیتم JSON ورودی',
 		},
 		{
 			name: 'JSON',
 			value: 'json',
-			description: 'Respond with a custom JSON body',
+			description: 'پاسخ با بدنه JSON سفارشی',
 		},
 		{
-			name: 'JWT Token',
+			name: 'توکن JWT',
 			value: 'jwt',
-			description: 'Respond with a JWT token',
+			description: 'پاسخ با یک توکن JWT',
 		},
 		{
-			name: 'No Data',
+			name: 'بدون داده',
 			value: 'noData',
-			description: 'Respond with an empty body',
+			description: 'پاسخ با بدنه خالی',
 		},
 		{
-			name: 'Redirect',
+			name: 'تغییر مسیر',
 			value: 'redirect',
-			description: 'Respond with a redirect to a given URL',
+			description: 'پاسخ با تغییر مسیر به یک URL مشخص',
 		},
 		{
-			name: 'Text',
+			name: 'متن',
 			value: 'text',
-			description: 'Respond with a simple text message body',
+			description: 'پاسخ با بدنه پیام متنی ساده',
 		},
 	],
 	default: 'firstIncomingItem',
-	description: 'The data that should be returned',
+	description: 'داده‌ای که باید برگردانده شود',
 };
 
 export class RespondToWebhook implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Respond to Webhook',
+		displayName: 'پاسخ به Webhook',
 		icon: { light: 'file:webhook.svg', dark: 'file:webhook.dark.svg' },
 		name: 'respondToWebhook',
 		group: ['transform'],
 		version: [1, 1.1, 1.2, 1.3, 1.4, 1.5],
 		defaultVersion: 1.5,
-		description: 'Returns data for Webhook',
+		description: 'برگرداندن داده برای Webhook',
 		defaults: {
-			name: 'Respond to Webhook',
+			name: 'پاسخ به Webhook',
 		},
 		inputs: [NodeConnectionTypes.Main],
 		outputs: `={{(${configuredOutputs})($nodeVersion, $parameter)}}`,
@@ -103,18 +103,17 @@ export class RespondToWebhook implements INodeType {
 		],
 		properties: [
 			{
-				displayName: 'Enable Response Output Branch',
+				displayName: 'فعال‌سازی شاخه خروجی پاسخ',
 				name: 'enableResponseOutput',
 				type: 'boolean',
 				default: false,
-				description:
-					'Whether to provide an additional output branch with the response sent to the webhook',
+				description: 'آیا یک شاخه خروجی اضافی با پاسخ ارسال شده به webhook ارائه شود',
 				isNodeSetting: true,
 				displayOptions: { show: { '@version': [{ _cnd: { gte: 1.4 } }] } },
 			},
 			{
 				displayName:
-					'Verify that the "Webhook" node\'s "Respond" parameter is set to "Using Respond to Webhook Node". <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook/" target="_blank">More details',
+					'تأیید کنید که پارامتر "پاسخ" نود "Webhook" روی "استفاده از نود پاسخ به Webhook" تنظیم شده است. <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.respondtowebhook/" target="_blank">جزئیات بیشتر',
 				name: 'generalNotice',
 				type: 'notice',
 				default: '',
@@ -141,7 +140,7 @@ export class RespondToWebhook implements INodeType {
 			},
 			{
 				displayName:
-					'When using expressions, note that this node will only run for the first item in the input data',
+					'هنگام استفاده از عبارات، توجه داشته باشید که این نود فقط برای اولین آیتم در داده‌های ورودی اجرا می‌شود',
 				name: 'webhookNotice',
 				type: 'notice',
 				displayOptions: {
@@ -152,7 +151,7 @@ export class RespondToWebhook implements INodeType {
 				default: '',
 			},
 			{
-				displayName: 'Redirect URL',
+				displayName: 'URL تغییر مسیر',
 				name: 'redirectURL',
 				type: 'string',
 				required: true,
@@ -162,12 +161,12 @@ export class RespondToWebhook implements INodeType {
 					},
 				},
 				default: '',
-				placeholder: 'e.g. http://www.n8n.io',
-				description: 'The URL to redirect to',
+				placeholder: 'مثلاً http://www.n8n.io',
+				description: 'URL برای تغییر مسیر به',
 				validateType: 'url',
 			},
 			{
-				displayName: 'Response Body',
+				displayName: 'بدنه پاسخ',
 				name: 'responseBody',
 				type: 'json',
 				displayOptions: {
@@ -179,7 +178,7 @@ export class RespondToWebhook implements INodeType {
 				typeOptions: {
 					rows: 4,
 				},
-				description: 'The HTTP response JSON data',
+				description: 'داده‌های JSON پاسخ HTTP',
 			},
 			{
 				displayName: 'Payload',
@@ -195,10 +194,10 @@ export class RespondToWebhook implements INodeType {
 					rows: 4,
 				},
 				validateType: 'object',
-				description: 'The payload to include in the JWT token',
+				description: 'Payload برای گنجاندن در توکن JWT',
 			},
 			{
-				displayName: 'Response Body',
+				displayName: 'بدنه پاسخ',
 				name: 'responseBody',
 				type: 'string',
 				displayOptions: {
@@ -210,11 +209,11 @@ export class RespondToWebhook implements INodeType {
 					rows: 2,
 				},
 				default: '',
-				placeholder: 'e.g. Workflow completed',
-				description: 'The HTTP response text data',
+				placeholder: 'مثلاً گردش کار تکمیل شد',
+				description: 'داده‌های متنی پاسخ HTTP',
 			},
 			{
-				displayName: 'Response Data Source',
+				displayName: 'منبع داده پاسخ',
 				name: 'responseDataSource',
 				type: 'options',
 				displayOptions: {
@@ -224,20 +223,20 @@ export class RespondToWebhook implements INodeType {
 				},
 				options: [
 					{
-						name: 'Choose Automatically From Input',
+						name: 'انتخاب خودکار از ورودی',
 						value: 'automatically',
-						description: 'Use if input data will contain a single piece of binary data',
+						description: 'استفاده کنید اگر داده‌های ورودی شامل یک قطعه داده باینری باشد',
 					},
 					{
-						name: 'Specify Myself',
+						name: 'مشخص کردن خودم',
 						value: 'set',
-						description: 'Enter the name of the input field the binary data will be in',
+						description: 'نام فیلد ورودی که داده‌های باینری در آن قرار دارد را وارد کنید',
 					},
 				],
 				default: 'automatically',
 			},
 			{
-				displayName: 'Input Field Name',
+				displayName: 'نام فیلد ورودی',
 				name: 'inputFieldName',
 				type: 'string',
 				required: true,
@@ -248,11 +247,11 @@ export class RespondToWebhook implements INodeType {
 						responseDataSource: ['set'],
 					},
 				},
-				description: 'The name of the node input field with the binary data',
+				description: 'نام فیلد ورودی نود با داده‌های باینری',
 			},
 			{
 				displayName:
-					'To avoid unexpected behavior, add a "Content-Type" response header with the appropriate value',
+					'برای جلوگیری از رفتار غیرمنتظره، یک هدر پاسخ "Content-Type" با مقدار مناسب اضافه کنید',
 				name: 'contentTypeNotice',
 				type: 'notice',
 				default: '',
@@ -263,14 +262,14 @@ export class RespondToWebhook implements INodeType {
 				},
 			},
 			{
-				displayName: 'Options',
+				displayName: 'گزینه‌ها',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'Add option',
+				placeholder: 'افزودن گزینه',
 				default: {},
 				options: [
 					{
-						displayName: 'Response Code',
+						displayName: 'کد پاسخ',
 						name: 'responseCode',
 						type: 'number',
 						typeOptions: {
@@ -278,13 +277,13 @@ export class RespondToWebhook implements INodeType {
 							maxValue: 599,
 						},
 						default: 200,
-						description: 'The HTTP response code to return. Defaults to 200.',
+						description: 'کد پاسخ HTTP برای برگرداندن. پیش‌فرض 200 است.',
 					},
 					{
-						displayName: 'Response Headers',
+						displayName: 'هدرهای پاسخ',
 						name: 'responseHeaders',
-						placeholder: 'Add Response Header',
-						description: 'Add headers to the webhook response',
+						placeholder: 'افزودن هدر پاسخ',
+						description: 'افزودن هدرها به پاسخ webhook',
 						type: 'fixedCollection',
 						typeOptions: {
 							multipleValues: true,
@@ -293,28 +292,28 @@ export class RespondToWebhook implements INodeType {
 						options: [
 							{
 								name: 'entries',
-								displayName: 'Entries',
+								displayName: 'ورودی‌ها',
 								values: [
 									{
-										displayName: 'Name',
+										displayName: 'نام',
 										name: 'name',
 										type: 'string',
 										default: '',
-										description: 'Name of the header',
+										description: 'نام هدر',
 									},
 									{
-										displayName: 'Value',
+										displayName: 'مقدار',
 										name: 'value',
 										type: 'string',
 										default: '',
-										description: 'Value of the header',
+										description: 'مقدار هدر',
 									},
 								],
 							},
 						],
 					},
 					{
-						displayName: 'Put Response in Field',
+						displayName: 'قرار دادن پاسخ در فیلد',
 						name: 'responseKey',
 						type: 'string',
 						displayOptions: {
@@ -323,15 +322,15 @@ export class RespondToWebhook implements INodeType {
 							},
 						},
 						default: '',
-						description: 'The name of the response field to put all items in',
-						placeholder: 'e.g. data',
+						description: 'نام فیلد پاسخ برای قرار دادن همه آیتم‌ها در آن',
+						placeholder: 'مثلاً data',
 					},
 					{
-						displayName: 'Enable Streaming',
+						displayName: 'فعال‌سازی استریمینگ',
 						name: 'enableStreaming',
 						type: 'boolean',
 						default: true,
-						description: 'Whether to enable streaming to the response',
+						description: 'آیا استریمینگ به پاسخ فعال شود',
 						displayOptions: {
 							show: {
 								['/respondWith']: ['allIncomingItems', 'firstIncomingItem', 'text', 'json', 'jwt'],

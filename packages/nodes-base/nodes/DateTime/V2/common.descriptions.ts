@@ -1,9 +1,9 @@
 import type { INodeProperties } from 'n8n-workflow';
 
 export const includeInputFields: INodeProperties = {
-	displayName: 'Include Input Fields',
+	displayName: 'شامل فیلدهای ورودی',
 	name: 'includeInputFields',
 	type: 'boolean',
 	default: false,
-	description: 'Whether to include all fields of the input item in the output item',
+	description: 'آیا همه فیلدهای آیتم ورودی در آیتم خروجی گنجانده شوند',
 };

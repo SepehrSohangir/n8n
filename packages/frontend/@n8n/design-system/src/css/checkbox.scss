@@ -374,3 +374,91 @@
 @include mixins.b(checkbox-group) {
 	font-size: 0;
 }
+
+/* RTL Support */
+html[dir='rtl'] {
+	@include mixins.b(checkbox) {
+		margin-right: 0;
+		margin-left: 30px;
+
+		@include mixins.when(bordered) {
+			& + .el-checkbox.is-bordered {
+				margin-left: 0;
+				margin-right: 10px;
+			}
+		}
+
+		@include mixins.e(input) {
+			@include mixins.when(indeterminate) {
+				.el-checkbox__inner {
+					&::before {
+						left: 0;
+						right: 0;
+					}
+				}
+			}
+		}
+
+		@include mixins.e(inner) {
+			&::after {
+				left: auto;
+				right: 4px;
+			}
+		}
+
+		@include mixins.e(label) {
+			padding-left: 0;
+			padding-right: 10px;
+		}
+
+		&:last-of-type {
+			margin-right: auto;
+			margin-left: 0;
+		}
+	}
+
+	@include mixins.b(checkbox-button) {
+		@include mixins.e(inner) {
+			border-left: var(--border);
+			border-right: 0;
+
+			& .el-icon {
+				& + span {
+					margin-left: 0;
+					margin-right: 5px;
+				}
+			}
+		}
+
+		&.is-checked {
+			& .el-checkbox-button__inner {
+				box-shadow: 1px 0 0 0 var.$color-primary-light-4;
+			}
+			&:first-child .el-checkbox-button__inner {
+				border-left-color: auto;
+				border-right-color: var.$checkbox-button-checked-border-color;
+			}
+		}
+
+		&.is-disabled {
+			&:first-child .el-checkbox-button__inner {
+				border-left-color: auto;
+				border-right-color: var.$button-disabled-border-color;
+			}
+		}
+
+		&:first-child {
+			.el-checkbox-button__inner {
+				border-left: 0;
+				border-right: var(--border);
+				border-radius: 0 var(--radius) var(--radius) 0;
+			}
+		}
+
+		&:last-child {
+			.el-checkbox-button__inner {
+				border-radius: var(--radius) 0 0 var(--radius);
+			}
+		}
+	}
+}

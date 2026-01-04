@@ -16,16 +16,16 @@ import {
 
 export class CompareDatasets implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'مقایسه مجموعه داده‌ها',
+		displayName: 'Compare Datasets',
 		name: 'compareDatasets',
 		icon: 'file:compare.svg',
 		group: ['transform'],
 		version: [1, 2, 2.1, 2.2, 2.3],
-		description: 'مقایسه دو ورودی برای تغییرات',
-		defaults: { name: 'مقایسه مجموعه داده‌ها' },
+		description: 'Compare two inputs for changes',
+		defaults: { name: 'Compare Datasets' },
 
 		inputs: [NodeConnectionTypes.Main, NodeConnectionTypes.Main],
-		inputNames: ['ورودی A', 'ورودی B'],
+		inputNames: ['Input A', 'Input B'],
 		requiredInputs: 1,
 
 		outputs: [
@@ -34,20 +34,20 @@ export class CompareDatasets implements INodeType {
 			NodeConnectionTypes.Main,
 			NodeConnectionTypes.Main,
 		],
-		outputNames: ['فقط در A', 'یکسان', 'متفاوت', 'فقط در B'],
+		outputNames: ['In A only', 'Same', 'Different', 'In B only'],
 		properties: [
 			{
 				displayName:
-					'آیتم‌های شاخه‌های مختلف زمانی با هم جفت می‌شوند که فیلدهای زیر تطابق داشته باشند. اگر جفت شدند، بقیه فیلدها مقایسه می‌شوند تا مشخص شود آیتم‌ها یکسان هستند یا متفاوت',
+					'Items from different branches are paired together when the fields below match. If paired, the rest of the fields are compared to determine whether the items are the same or different',
 				name: 'infoBox',
 				type: 'notice',
 				default: '',
 			},
 			{
-				displayName: 'فیلدهای تطابق',
+				displayName: 'Fields to Match',
 				name: 'mergeByFields',
 				type: 'fixedCollection',
-				placeholder: 'افزودن فیلدهای تطابق',
+				placeholder: 'Add Fields to Match',
 				default: { values: [{ field1: '', field2: '' }] },
 				typeOptions: {
 					multipleValues: true,
@@ -58,23 +58,23 @@ export class CompareDatasets implements INodeType {
 						name: 'values',
 						values: [
 							{
-								displayName: 'فیلد ورودی A',
+								displayName: 'Input A Field',
 								name: 'field1',
 								type: 'string',
 								default: '',
 								// eslint-disable-next-line n8n-nodes-base/node-param-placeholder-miscased-id
-								placeholder: 'مثال: id',
-								hint: 'نام فیلد را به صورت متن وارد کنید',
+								placeholder: 'e.g. id',
+								hint: ' Enter the field name as text',
 								requiresDataPath: 'single',
 							},
 							{
-								displayName: 'فیلد ورودی B',
+								displayName: 'Input B Field',
 								name: 'field2',
 								type: 'string',
 								default: '',
 								// eslint-disable-next-line n8n-nodes-base/node-param-placeholder-miscased-id
-								placeholder: 'مثال: id',
-								hint: 'نام فیلد را به صورت متن وارد کنید',
+								placeholder: 'e.g. id',
+								hint: ' Enter the field name as text',
 								requiresDataPath: 'single',
 							},
 						],
@@ -82,28 +82,28 @@ export class CompareDatasets implements INodeType {
 				],
 			},
 			{
-				displayName: 'زمانی که تفاوت وجود دارد',
+				displayName: 'When There Are Differences',
 				name: 'resolve',
 				type: 'options',
 				default: 'preferInput2',
 				options: [
 					{
-						name: 'استفاده از نسخه ورودی A',
+						name: 'Use Input A Version',
 						value: 'preferInput1',
 					},
 					{
-						name: 'استفاده از نسخه ورودی B',
+						name: 'Use Input B Version',
 						value: 'preferInput2',
 					},
 					{
-						name: 'استفاده از ترکیب نسخه‌ها',
+						name: 'Use a Mix of Versions',
 						value: 'mix',
-						description: 'خروجی از ورودی‌های مختلف برای فیلدهای مختلف استفاده می‌کند',
+						description: 'Output uses different inputs for different fields',
 					},
 					{
-						name: 'شامل هر دو نسخه',
+						name: 'Include Both Versions',
 						value: 'includeBoth',
-						description: 'خروجی شامل تمام داده است (اما ساختار پیچیده‌تر است)',
+						description: 'Output contains all data (but structure more complex)',
 					},
 				],
 				displayOptions: {
@@ -113,28 +113,28 @@ export class CompareDatasets implements INodeType {
 				},
 			},
 			{
-				displayName: 'زمانی که تفاوت وجود دارد',
+				displayName: 'When There Are Differences',
 				name: 'resolve',
 				type: 'options',
 				default: 'includeBoth',
 				options: [
 					{
-						name: 'استفاده از نسخه ورودی A',
+						name: 'Use Input A Version',
 						value: 'preferInput1',
 					},
 					{
-						name: 'استفاده از نسخه ورودی B',
+						name: 'Use Input B Version',
 						value: 'preferInput2',
 					},
 					{
-						name: 'استفاده از ترکیب نسخه‌ها',
+						name: 'Use a Mix of Versions',
 						value: 'mix',
-						description: 'خروجی از ورودی‌های مختلف برای فیلدهای مختلف استفاده می‌کند',
+						description: 'Output uses different inputs for different fields',
 					},
 					{
-						name: 'شامل هر دو نسخه',
+						name: 'Include Both Versions',
 						value: 'includeBoth',
-						description: 'خروجی شامل تمام داده است (اما ساختار پیچیده‌تر است)',
+						description: 'Output contains all data (but structure more complex)',
 					},
 				],
 				displayOptions: {
@@ -144,12 +144,12 @@ export class CompareDatasets implements INodeType {
 				},
 			},
 			{
-				displayName: 'مقایسه تقریبی',
+				displayName: 'Fuzzy Compare',
 				name: 'fuzzyCompare',
 				type: 'boolean',
 				default: false,
 				description:
-					'آیا هنگام مقایسه فیلدها، تفاوت‌های کوچک نوع تحمل شود. به عنوان مثال عدد ۳ و رشته "۳" یکسان در نظر گرفته می‌شوند.',
+					"Whether to tolerate small type differences when comparing fields. E.g. the number 3 and the string '3' are treated as the same.",
 				displayOptions: {
 					hide: {
 						'@version': [1],
@@ -157,17 +157,17 @@ export class CompareDatasets implements INodeType {
 				},
 			},
 			{
-				displayName: 'ترجیح',
+				displayName: 'Prefer',
 				name: 'preferWhenMix',
 				type: 'options',
 				default: 'input1',
 				options: [
 					{
-						name: 'نسخه ورودی A',
+						name: 'Input A Version',
 						value: 'input1',
 					},
 					{
-						name: 'نسخه ورودی B',
+						name: 'Input B Version',
 						value: 'input2',
 					},
 				],
@@ -178,13 +178,13 @@ export class CompareDatasets implements INodeType {
 				},
 			},
 			{
-				displayName: 'برای همه به جز',
+				displayName: 'For Everything Except',
 				name: 'exceptWhenMix',
 				type: 'string',
 				default: '',
 				// eslint-disable-next-line n8n-nodes-base/node-param-placeholder-miscased-id
-				placeholder: 'مثال: id, country',
-				hint: 'نام فیلدهای ورودی را به صورت متن وارد کنید، با کاما جدا کنید',
+				placeholder: 'e.g. id, country',
+				hint: 'Enter the names of the input fields as text, separated by commas',
 				displayOptions: {
 					show: {
 						resolve: ['mix'],
@@ -193,29 +193,30 @@ export class CompareDatasets implements INodeType {
 				requiresDataPath: 'multiple',
 			},
 			{
-				displayName: 'گزینه‌ها',
+				displayName: 'Options',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'افزودن گزینه',
+				placeholder: 'Add option',
 				default: {},
 				options: [
 					{
-						displayName: 'فیلدهای حذف از مقایسه',
+						displayName: 'Fields to Skip Comparing',
 						name: 'skipFields',
 						type: 'string',
 						default: '',
-						placeholder: 'مثال: updated_at, updated_by',
-						hint: 'نام فیلدها را به صورت متن وارد کنید، با کاما جدا کنید',
-						description: 'فیلدهایی که نباید هنگام بررسی یکسان بودن دو آیتم شامل شوند',
+						placeholder: 'e.g. updated_at, updated_by',
+						hint: 'Enter the field names as text, separated by commas',
+						description:
+							"Fields that shouldn't be included when checking whether two items are the same",
 						requiresDataPath: 'multiple',
 					},
 					{
-						displayName: 'مقایسه تقریبی',
+						displayName: 'Fuzzy Compare',
 						name: 'fuzzyCompare',
 						type: 'boolean',
 						default: false,
 						description:
-							'آیا هنگام مقایسه فیلدها، تفاوت‌های کوچک نوع تحمل شود. به عنوان مثال عدد ۳ و رشته "۳" یکسان در نظر گرفته می‌شوند.',
+							"Whether to tolerate small type differences when comparing fields. E.g. the number 3 and the string '3' are treated as the same.",
 						displayOptions: {
 							show: {
 								'@version': [1],
@@ -223,28 +224,28 @@ export class CompareDatasets implements INodeType {
 						},
 					},
 					{
-						displayName: 'غیرفعال کردن نماد نقطه',
+						displayName: 'Disable Dot Notation',
 						name: 'disableDotNotation',
 						type: 'boolean',
 						default: false,
 						description:
-							'آیا ارجاع به فیلدهای فرزند با استفاده از `parent.child` در نام فیلد مجاز نباشد',
+							'Whether to disallow referencing child fields using `parent.child` in the field name',
 					},
 					{
-						displayName: 'تطابق‌های چندگانه',
+						displayName: 'Multiple Matches',
 						name: 'multipleMatches',
 						type: 'options',
 						default: 'first',
 						options: [
 							{
-								name: 'فقط شامل اولین تطابق',
+								name: 'Include First Match Only',
 								value: 'first',
-								description: 'فقط یک آیتم برای هر تطابق خروجی می‌دهد',
+								description: 'Only ever output a single item per match',
 							},
 							{
-								name: 'شامل تمام تطابق‌ها',
+								name: 'Include All Matches',
 								value: 'all',
-								description: 'اگر چندین تطابق وجود دارد، چندین آیتم خروجی می‌دهد',
+								description: 'Output multiple items if there are multiple matches',
 							},
 						],
 					},

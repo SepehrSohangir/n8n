@@ -22,18 +22,18 @@ export class IfV2 implements INodeType {
 			...baseDescription,
 			version: [2, 2.1, 2.2, 2.3],
 			defaults: {
-				name: 'اگر',
+				name: 'If',
 				color: '#408000',
 			},
 			inputs: [NodeConnectionTypes.Main],
 			outputs: [NodeConnectionTypes.Main, NodeConnectionTypes.Main],
-			outputNames: ['درست', 'نادرست'],
+			outputNames: ['true', 'false'],
 			parameterPane: 'wide',
 			properties: [
 				{
-					displayName: 'شرایط',
+					displayName: 'Conditions',
 					name: 'conditions',
-					placeholder: 'افزودن شرط',
+					placeholder: 'Add Condition',
 					type: 'filter',
 					default: {},
 					typeOptions: {
@@ -54,15 +54,15 @@ export class IfV2 implements INodeType {
 					},
 				},
 				{
-					displayName: 'گزینه‌ها',
+					displayName: 'Options',
 					name: 'options',
 					type: 'collection',
-					placeholder: 'افزودن گزینه',
+					placeholder: 'Add option',
 					default: {},
 					options: [
 						{
-							displayName: 'نادیده گرفتن حروف بزرگ و کوچک',
-							description: 'آیا هنگام ارزیابی شرایط، حروف بزرگ و کوچک نادیده گرفته شود',
+							displayName: 'Ignore Case',
+							description: 'Whether to ignore letter case when evaluating conditions',
 							name: 'ignoreCase',
 							type: 'boolean',
 							default: true,

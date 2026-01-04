@@ -1,7 +1,7 @@
 import type { INodeProperties } from 'n8n-workflow';
 
 const clashHandlingProperties: INodeProperties = {
-	displayName: 'مدیریت برخورد',
+	displayName: 'Clash Handling',
 	name: 'clashHandling',
 	type: 'fixedCollection',
 	default: {
@@ -9,47 +9,48 @@ const clashHandlingProperties: INodeProperties = {
 	},
 	options: [
 		{
-			displayName: 'مقادیر',
+			displayName: 'Values',
 			name: 'values',
 			values: [
 				{
-					displayName: 'هنگام برخورد مقادیر فیلد',
+					displayName: 'When Field Values Clash',
 					name: 'resolveClash',
 					type: 'options',
 					default: '',
 					options: [
 						{
-							name: 'همیشه افزودن شماره ورودی به نام فیلدها',
+							name: 'Always Add Input Number to Field Names',
 							value: 'addSuffix',
 						},
 						{
-							name: 'ترجیح نسخه ورودی 1',
+							name: 'Prefer Input 1 Version',
 							value: 'preferInput1',
 						},
 						{
-							name: 'ترجیح نسخه ورودی 2',
+							name: 'Prefer Input 2 Version',
 							value: 'preferInput2',
 						},
 					],
 				},
 				{
-					displayName: 'ادغام فیلدهای تو در تو',
+					displayName: 'Merging Nested Fields',
 					name: 'mergeMode',
 					type: 'options',
 					default: 'deepMerge',
 					options: [
 						{
-							name: 'ادغام عمیق',
+							name: 'Deep Merge',
 							value: 'deepMerge',
-							description: 'ادغام در هر سطح از تو در تو بودن',
+							description: 'Merge at every level of nesting',
 						},
 						{
-							name: 'ادغام سطحی',
+							name: 'Shallow Merge',
 							value: 'shallowMerge',
-							description: 'ادغام فقط در سطح بالا (همه فیلدهای تو در تو از همان ورودی خواهند آمد)',
+							description:
+								'Merge at the top level only (all nested fields will come from the same input)',
 						},
 					],
-					hint: 'نحوه ادغام زمانی که فیلدهای فرعی زیر فیلدهای سطح بالا وجود دارند',
+					hint: 'How to merge when there are sub-fields below the top-level ones',
 					displayOptions: {
 						show: {
 							resolveClash: ['preferInput1', 'preferInput2'],
@@ -57,12 +58,12 @@ const clashHandlingProperties: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'کاهش فیلدهای خالی',
+					displayName: 'Minimize Empty Fields',
 					name: 'overrideEmpty',
 					type: 'boolean',
 					default: false,
 					description:
-						"آیا نسخه ورودی ترجیحی برای یک فیلد بازنویسی شود اگر خالی باشد و نسخه دیگر خالی نباشد. در اینجا 'خالی' به معنای undefined، null یا رشته خالی است.",
+						"Whether to override the preferred input version for a field if it is empty and the other version isn't. Here 'empty' means undefined, null or an empty string.",
 					displayOptions: {
 						show: {
 							resolveClash: ['preferInput1', 'preferInput2'],
@@ -76,10 +77,10 @@ const clashHandlingProperties: INodeProperties = {
 
 export const optionsDescription: INodeProperties[] = [
 	{
-		displayName: 'گزینه‌ها',
+		displayName: 'Options',
 		name: 'options',
 		type: 'collection',
-		placeholder: 'افزودن گزینه',
+		placeholder: 'Add option',
 		default: {},
 		options: [
 			{
@@ -115,12 +116,12 @@ export const optionsDescription: INodeProperties[] = [
 				},
 			},
 			{
-				displayName: 'غیرفعال کردن نماد نقطه',
+				displayName: 'Disable Dot Notation',
 				name: 'disableDotNotation',
 				type: 'boolean',
 				default: false,
 				description:
-					'آیا ارجاع به فیلدهای فرزند با استفاده از `parent.child` در نام فیلد مجاز نباشد',
+					'Whether to disallow referencing child fields using `parent.child` in the field name',
 				displayOptions: {
 					show: {
 						'/mode': ['combine'],
@@ -129,21 +130,21 @@ export const optionsDescription: INodeProperties[] = [
 				},
 			},
 			{
-				displayName: 'مقایسه فازی',
+				displayName: 'Fuzzy Compare',
 				name: 'fuzzyCompare',
 				type: 'boolean',
 				default: false,
 				description:
-					"آیا تفاوت‌های کوچک نوع هنگام مقایسه فیلدها تحمل شود. مثلاً عدد 3 و رشته '3' یکسان در نظر گرفته می‌شوند.",
+					"Whether to tolerate small type differences when comparing fields. E.g. the number 3 and the string '3' are treated as the same.",
 			},
 			{
-				displayName: 'شامل هر آیتم جفت نشده',
+				displayName: 'Include Any Unpaired Items',
 				name: 'includeUnpaired',
 				type: 'boolean',
 				default: false,
 				// eslint-disable-next-line n8n-nodes-base/node-param-description-boolean-without-whether
 				description:
-					'اگر تعداد متفاوتی از آیتم‌ها در ورودی 1 و ورودی 2 وجود دارد، آیا موارد انتهایی که چیزی برای جفت شدن ندارند شامل شوند',
+					'If there are different numbers of items in input 1 and input 2, whether to include the ones at the end with nothing to pair with',
 				displayOptions: {
 					show: {
 						'/mode': ['combine'],
@@ -152,20 +153,20 @@ export const optionsDescription: INodeProperties[] = [
 				},
 			},
 			{
-				displayName: 'تطابق‌های چندگانه',
+				displayName: 'Multiple Matches',
 				name: 'multipleMatches',
 				type: 'options',
 				default: 'all',
 				options: [
 					{
-						name: 'شامل همه تطابق‌ها',
+						name: 'Include All Matches',
 						value: 'all',
-						description: 'خروجی چندین آیتم اگر تطابق‌های چندگانه وجود داشته باشد',
+						description: 'Output multiple items if there are multiple matches',
 					},
 					{
-						name: 'فقط شامل اولین تطابق',
+						name: 'Include First Match Only',
 						value: 'first',
-						description: 'فقط یک آیتم واحد در هر تطابق خروجی داده شود',
+						description: 'Only ever output a single item per match',
 					},
 				],
 				displayOptions: {
@@ -178,20 +179,20 @@ export const optionsDescription: INodeProperties[] = [
 				},
 			},
 			{
-				displayName: 'تطابق‌های چندگانه',
+				displayName: 'Multiple Matches',
 				name: 'multipleMatches',
 				type: 'options',
 				default: 'all',
 				options: [
 					{
-						name: 'شامل همه تطابق‌ها',
+						name: 'Include All Matches',
 						value: 'all',
-						description: 'خروجی چندین آیتم اگر تطابق‌های چندگانه وجود داشته باشد',
+						description: 'Output multiple items if there are multiple matches',
 					},
 					{
-						name: 'فقط شامل اولین تطابق',
+						name: 'Include First Match Only',
 						value: 'first',
-						description: 'فقط یک آیتم واحد در هر تطابق خروجی داده شود',
+						description: 'Only ever output a single item per match',
 					},
 				],
 				displayOptions: {

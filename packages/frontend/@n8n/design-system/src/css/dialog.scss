@@ -140,22 +140,3 @@
 		opacity: 0;
 	}
 }
-
-/* RTL Support */
-html[dir='rtl'] {
-	@include mixins.b(dialog) {
-		@include mixins.e(headerbtn) {
-			right: auto;
-			left: var.$dialog-padding-primary;
-		}
-
-		@include mixins.e(footer) {
-			text-align: left;
-
-			.button + .button {
-				margin-left: 0;
-				margin-right: var(--spacing--2xs);
-			}
-		}
-	}
-}

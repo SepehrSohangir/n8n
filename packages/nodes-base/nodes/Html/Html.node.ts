@@ -26,9 +26,9 @@ export const capitalizeHeader = (header: string, capitalize?: boolean) => {
 };
 
 const extractionValuesCollection: INodeProperties = {
-	displayName: 'مقادیر استخراج',
+	displayName: 'Extraction Values',
 	name: 'extractionValues',
-	placeholder: 'افزودن مقدار',
+	placeholder: 'Add Value',
 	type: 'fixedCollection',
 	typeOptions: {
 		multipleValues: true,
@@ -37,54 +37,54 @@ const extractionValuesCollection: INodeProperties = {
 	options: [
 		{
 			name: 'values',
-			displayName: 'مقادیر',
+			displayName: 'Values',
 			values: [
 				{
-					displayName: 'کلید',
+					displayName: 'Key',
 					name: 'key',
 					type: 'string',
 					default: '',
-					description: 'کلیدی که مقدار استخراج شده باید تحت آن ذخیره شود',
+					description: 'The key under which the extracted value should be saved',
 				},
 				{
-					displayName: 'انتخابگر CSS',
+					displayName: 'CSS Selector',
 					name: 'cssSelector',
 					type: 'string',
 					default: '',
 					placeholder: '.price',
-					description: 'انتخابگر CSS برای استفاده',
+					description: 'The CSS selector to use',
 				},
 				{
-					displayName: 'مقدار بازگشتی',
+					displayName: 'Return Value',
 					name: 'returnValue',
 					type: 'options',
 					options: [
 						{
-							name: 'ویژگی',
+							name: 'Attribute',
 							value: 'attribute',
-							description: 'دریافت مقدار یک ویژگی مانند "class" از یک عنصر',
+							description: 'Get an attribute value like "class" from an element',
 						},
 						{
 							name: 'HTML',
 							value: 'html',
-							description: 'دریافت HTML که عنصر شامل آن است',
+							description: 'Get the HTML the element contains',
 						},
 						{
-							name: 'متن',
+							name: 'Text',
 							value: 'text',
-							description: 'فقط محتوای متنی عنصر را دریافت کنید',
+							description: 'Get only the text content of the element',
 						},
 						{
-							name: 'مقدار',
+							name: 'Value',
 							value: 'value',
-							description: 'دریافت مقدار یک ورودی، انتخاب یا textarea',
+							description: 'Get value of an input, select or textarea',
 						},
 					],
 					default: 'text',
-					description: 'چه نوع داده‌ای باید برگردانده شود',
+					description: 'What kind of data should be returned',
 				},
 				{
-					displayName: 'ویژگی',
+					displayName: 'Attribute',
 					name: 'attribute',
 					type: 'string',
 					displayOptions: {
@@ -94,10 +94,10 @@ const extractionValuesCollection: INodeProperties = {
 					},
 					default: '',
 					placeholder: 'class',
-					description: 'نام ویژگی برای بازگرداندن مقدار آن',
+					description: 'The name of the attribute to return the value off',
 				},
 				{
-					displayName: 'نادیده گرفتن انتخابگرها',
+					displayName: 'Skip Selectors',
 					name: 'skipSelectors',
 					type: 'string',
 					displayOptions: {
@@ -107,16 +107,16 @@ const extractionValuesCollection: INodeProperties = {
 						},
 					},
 					default: '',
-					placeholder: 'مثلاً img, .className, #ItemId',
-					description: 'لیست جدا شده با کاما از انتخابگرها برای نادیده گرفتن در استخراج متن',
+					placeholder: 'e.g. img, .className, #ItemId',
+					description: 'Comma-separated list of selectors to skip in the text extraction',
 				},
 				{
-					displayName: 'بازگرداندن آرایه',
+					displayName: 'Return Array',
 					name: 'returnArray',
 					type: 'boolean',
 					default: false,
 					description:
-						'آیا مقادیر به عنوان یک آرایه برگردانده شوند تا اگر چندین مورد یافت شد، آنها نیز به صورت جداگانه برگردانده شوند. اگر تنظیم نشود، همه به عنوان یک رشته واحد برگردانده می‌شوند.',
+						'Whether to return the values as an array so if multiple ones get found they also get returned separately. If not set all will be returned as a single string.',
 				},
 			],
 		},
@@ -131,7 +131,7 @@ export class Html implements INodeType {
 		group: ['transform'],
 		version: [1, 1.1, 1.2],
 		subtitle: '={{ $parameter["operation"] }}',
-		description: 'کار با HTML',
+		description: 'Work with HTML',
 		defaults: {
 			name: 'HTML',
 		},
@@ -140,31 +140,31 @@ export class Html implements INodeType {
 		parameterPane: 'wide',
 		properties: [
 			{
-				displayName: 'عملیات',
+				displayName: 'Operation',
 				name: 'operation',
 				type: 'options',
 				noDataExpression: true,
 				options: [
 					{
-						name: 'تولید قالب HTML',
+						name: 'Generate HTML Template',
 						value: 'generateHtmlTemplate',
-						action: 'تولید قالب HTML',
+						action: 'Generate HTML template',
 					},
 					{
-						name: 'استخراج محتوای HTML',
+						name: 'Extract HTML Content',
 						value: 'extractHtmlContent',
-						action: 'استخراج محتوای HTML',
+						action: 'Extract HTML Content',
 					},
 					{
-						name: 'تبدیل به جدول HTML',
+						name: 'Convert to HTML Table',
 						value: 'convertToHtmlTable',
-						action: 'تبدیل به جدول HTML',
+						action: 'Convert to HTML Table',
 					},
 				],
 				default: 'generateHtmlTemplate',
 			},
 			{
-				displayName: 'قالب HTML',
+				displayName: 'HTML Template',
 				name: 'html',
 				typeOptions: {
 					editor: 'htmlEditor',
@@ -172,7 +172,7 @@ export class Html implements INodeType {
 				type: 'string',
 				default: placeholder,
 				noDataExpression: true,
-				description: 'قالب HTML برای رندر',
+				description: 'HTML template to render',
 				displayOptions: {
 					show: {
 						operation: ['generateHtmlTemplate'],
@@ -181,7 +181,7 @@ export class Html implements INodeType {
 			},
 			{
 				displayName:
-					'<b>نکات</b>: برای تکمیل خودکار Ctrl+Space را تایپ کنید. از <code>{{ }}</code> برای عبارات و از تگ‌های <code>&lt;style&gt;</code> برای CSS استفاده کنید. JS در تگ‌های <code>&lt;script&gt;</code> شامل می‌شود اما در n8n اجرا نمی‌شود.',
+					'<b>Tips</b>: Type ctrl+space for completions. Use <code>{{ }}</code> for expressions and <code>&lt;style&gt;</code> tags for CSS. JS in <code>&lt;script&gt;</code> tags is included but not executed in n8n.',
 				name: 'notice',
 				type: 'notice',
 				default: '',
@@ -192,12 +192,12 @@ export class Html implements INodeType {
 				},
 			},
 			{
-				displayName: 'داده منبع',
+				displayName: 'Source Data',
 				name: 'sourceData',
 				type: 'options',
 				options: [
 					{
-						name: 'باینری',
+						name: 'Binary',
 						value: 'binary',
 					},
 					{
@@ -206,7 +206,7 @@ export class Html implements INodeType {
 					},
 				],
 				default: 'json',
-				description: 'آیا HTML از داده‌های باینری یا JSON خوانده شود',
+				description: 'If HTML should be read from binary or JSON data',
 				displayOptions: {
 					show: {
 						operation: ['extractHtmlContent'],
@@ -214,7 +214,7 @@ export class Html implements INodeType {
 				},
 			},
 			{
-				displayName: 'فیلد باینری ورودی',
+				displayName: 'Input Binary Field',
 				name: 'dataPropertyName',
 				type: 'string',
 				requiresDataPath: 'single',
@@ -226,10 +226,10 @@ export class Html implements INodeType {
 				},
 				default: 'data',
 				required: true,
-				hint: 'نام فیلد باینری ورودی حاوی فایل برای استخراج',
+				hint: 'The name of the input binary field containing the file to be extracted',
 			},
 			{
-				displayName: 'ویژگی JSON',
+				displayName: 'JSON Property',
 				name: 'dataPropertyName',
 				type: 'string',
 				requiresDataPath: 'single',
@@ -242,7 +242,7 @@ export class Html implements INodeType {
 				default: 'data',
 				required: true,
 				description:
-					'نام ویژگی JSON که HTML برای استخراج داده‌ها از آن یافت می‌شود. ویژگی می‌تواند شامل یک رشته یا آرایه‌ای از رشته‌ها باشد.',
+					'Name of the JSON property in which the HTML to extract the data from can be found. The property can either contain a string or an array of strings.',
 			},
 			{
 				...extractionValuesCollection,
@@ -273,10 +273,10 @@ export class Html implements INodeType {
 				},
 			},
 			{
-				displayName: 'گزینه‌ها',
+				displayName: 'Options',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'افزودن گزینه',
+				placeholder: 'Add option',
 				default: {},
 				displayOptions: {
 					show: {
@@ -285,20 +285,20 @@ export class Html implements INodeType {
 				},
 				options: [
 					{
-						displayName: 'برش مقادیر',
+						displayName: 'Trim Values',
 						name: 'trimValues',
 						type: 'boolean',
 						default: true,
 						description:
-							'آیا به طور خودکار همه فضاها و خطوط جدید از ابتدا و انتهای مقادیر حذف شوند',
+							'Whether to remove automatically all spaces and newlines from the beginning and end of the values',
 					},
 					{
-						displayName: 'پاکسازی متن',
+						displayName: 'Clean Up Text',
 						name: 'cleanUpText',
 						type: 'boolean',
 						default: true,
 						description:
-							'آیا فضاهای خالی پیشرو و انتهایی، شکست خط (خطوط جدید) حذف شوند و چندین فضای خالی متوالی به یک فضای واحد فشرده شوند',
+							'Whether to remove leading and trailing whitespaces, line breaks (newlines) and condense multiple consecutive whitespaces into a single space',
 					},
 				],
 			},
@@ -306,10 +306,10 @@ export class Html implements INodeType {
 			//       convertToHtmlTable
 			// ----------------------------------
 			{
-				displayName: 'گزینه‌ها',
+				displayName: 'Options',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'افزودن گزینه',
+				placeholder: 'Add option',
 				default: {},
 				displayOptions: {
 					show: {
@@ -318,57 +318,57 @@ export class Html implements INodeType {
 				},
 				options: [
 					{
-						displayName: 'بزرگ کردن حروف سربرگ‌ها',
+						displayName: 'Capitalize Headers',
 						name: 'capitalize',
 						type: 'boolean',
 						default: false,
-						description: 'آیا حروف سربرگ‌ها بزرگ شوند',
+						description: 'Whether to capitalize the headers',
 					},
 					{
-						displayName: 'استایل سفارشی',
+						displayName: 'Custom Styling',
 						name: 'customStyling',
 						type: 'boolean',
 						default: false,
-						description: 'آیا از استایل سفارشی استفاده شود',
+						description: 'Whether to use custom styling',
 					},
 					{
-						displayName: 'عنوان',
+						displayName: 'Caption',
 						name: 'caption',
 						type: 'string',
 						default: '',
-						description: 'عنوان برای اضافه کردن به جدول',
+						description: 'Caption to add to the table',
 					},
 					{
-						displayName: 'ویژگی‌های جدول',
+						displayName: 'Table Attributes',
 						name: 'tableAttributes',
 						type: 'string',
 						default: '',
-						description: 'ویژگی‌ها برای اتصال به جدول',
-						placeholder: 'مثلاً style="padding:10px"',
+						description: 'Attributes to attach to the table',
+						placeholder: 'e.g. style="padding:10px"',
 					},
 					{
-						displayName: 'ویژگی‌های سربرگ',
+						displayName: 'Header Attributes',
 						name: 'headerAttributes',
 						type: 'string',
 						default: '',
-						description: 'ویژگی‌ها برای اتصال به سربرگ جدول',
-						placeholder: 'مثلاً style="padding:10px"',
+						description: 'Attributes to attach to the table header',
+						placeholder: 'e.g. style="padding:10px"',
 					},
 					{
-						displayName: 'ویژگی‌های ردیف',
+						displayName: 'Row Attributes',
 						name: 'rowAttributes',
 						type: 'string',
 						default: '',
-						description: 'ویژگی‌ها برای اتصال به ردیف جدول',
-						placeholder: 'مثلاً style="padding:10px"',
+						description: 'Attributes to attach to the table row',
+						placeholder: 'e.g. style="padding:10px"',
 					},
 					{
-						displayName: 'ویژگی‌های سلول',
+						displayName: 'Cell Attributes',
 						name: 'cellAttributes',
 						type: 'string',
 						default: '',
-						description: 'ویژگی‌ها برای اتصال به سلول جدول',
-						placeholder: 'مثلاً style="padding:10px"',
+						description: 'Attributes to attach to the table cell',
+						placeholder: 'e.g. style="padding:10px"',
 					},
 				],
 			},

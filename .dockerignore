@@ -4,6 +4,10 @@
 # Ignore everything first
 *
 
+# === Exclude node_modules everywhere (must come before package inclusions) ===
+**/node_modules
+**/node_modules/**
+
 # === n8n main image (docker/images/n8n/Dockerfile) ===
 !compiled
 !compiled/**
@@ -17,6 +21,23 @@
 !packages/@n8n
 !packages/@n8n/task-runner-python
 !packages/@n8n/task-runner-python/**
+
+# === Dockerfile.backend and Dockerfile.frontend ===
+!package.json
+!pnpm-lock.yaml
+!pnpm-workspace.yaml
+!turbo.json
+!tsconfig.json
+!scripts
+!scripts/**
+!patches
+!patches/**
+!packages
+# Include packages but exclude node_modules - be explicit about what to include
+!packages/**
+# Now explicitly exclude node_modules (this must come after the inclusion)
+packages/**/node_modules
+packages/**/node_modules/**
 
 # === Docker build files (entrypoints, configs) ===
 !docker

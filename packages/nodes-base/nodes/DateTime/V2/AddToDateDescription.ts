@@ -5,7 +5,7 @@ import { includeInputFields } from './common.descriptions';
 export const AddToDateDescription: INodeProperties[] = [
 	{
 		displayName:
-			"همچنین می‌توانید این کار را با استفاده از یک عبارت انجام دهید، مثلاً <code>{{your_date.plus(5, 'minutes')}}</code>. <a target='_blank' href='https://docs.n8n.io/code/cookbook/luxon/'>اطلاعات بیشتر</a>",
+			"You can also do this using an expression, e.g. <code>{{your_date.plus(5, 'minutes')}}</code>. <a target='_blank' href='https://docs.n8n.io/code/cookbook/luxon/'>More info</a>",
 		name: 'notice',
 		type: 'notice',
 		default: '',
@@ -16,10 +16,10 @@ export const AddToDateDescription: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'تاریخ برای افزودن',
+		displayName: 'Date to Add To',
 		name: 'magnitude',
 		type: 'string',
-		description: 'تاریخی که می‌خواهید تغییر دهید',
+		description: 'The date that you want to change',
 		default: '',
 		displayOptions: {
 			show: {
@@ -29,9 +29,9 @@ export const AddToDateDescription: INodeProperties[] = [
 		required: true,
 	},
 	{
-		displayName: 'واحد زمان برای افزودن',
+		displayName: 'Time Unit to Add',
 		name: 'timeUnit',
-		description: 'واحد زمان برای پارامتر مدت زمان زیر',
+		description: 'Time unit for Duration parameter below',
 		displayOptions: {
 			show: {
 				operation: ['addToDate'],
@@ -41,39 +41,39 @@ export const AddToDateDescription: INodeProperties[] = [
 		// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 		options: [
 			{
-				name: 'سال',
+				name: 'Years',
 				value: 'years',
 			},
 			{
-				name: 'سه‌ماهه',
+				name: 'Quarters',
 				value: 'quarters',
 			},
 			{
-				name: 'ماه',
+				name: 'Months',
 				value: 'months',
 			},
 			{
-				name: 'هفته',
+				name: 'Weeks',
 				value: 'weeks',
 			},
 			{
-				name: 'روز',
+				name: 'Days',
 				value: 'days',
 			},
 			{
-				name: 'ساعت',
+				name: 'Hours',
 				value: 'hours',
 			},
 			{
-				name: 'دقیقه',
+				name: 'Minutes',
 				value: 'minutes',
 			},
 			{
-				name: 'ثانیه',
+				name: 'Seconds',
 				value: 'seconds',
 			},
 			{
-				name: 'میلی‌ثانیه',
+				name: 'Milliseconds',
 				value: 'milliseconds',
 			},
 		],
@@ -81,10 +81,10 @@ export const AddToDateDescription: INodeProperties[] = [
 		required: true,
 	},
 	{
-		displayName: 'مدت زمان',
+		displayName: 'Duration',
 		name: 'duration',
 		type: 'number',
-		description: 'تعداد واحدهای زمانی برای افزودن به تاریخ',
+		description: 'The number of time units to add to the date',
 		default: 0,
 		displayOptions: {
 			show: {
@@ -93,11 +93,11 @@ export const AddToDateDescription: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'نام فیلد خروجی',
+		displayName: 'Output Field Name',
 		name: 'outputFieldName',
 		type: 'string',
 		default: 'newDate',
-		description: 'نام فیلدی که خروجی در آن قرار می‌گیرد',
+		description: 'Name of the field to put the output in',
 		displayOptions: {
 			show: {
 				operation: ['addToDate'],
@@ -105,10 +105,10 @@ export const AddToDateDescription: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'گزینه‌ها',
+		displayName: 'Options',
 		name: 'options',
 		type: 'collection',
-		placeholder: 'افزودن گزینه',
+		placeholder: 'Add option',
 		displayOptions: {
 			show: {
 				operation: ['addToDate'],

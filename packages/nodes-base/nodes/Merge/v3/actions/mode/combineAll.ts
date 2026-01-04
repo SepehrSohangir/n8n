@@ -14,10 +14,10 @@ import { addSuffixToEntriesKeys, selectMergeMethod } from '../../helpers/utils';
 
 export const properties: INodeProperties[] = [
 	{
-		displayName: 'گزینه‌ها',
+		displayName: 'Options',
 		name: 'options',
 		type: 'collection',
-		placeholder: 'افزودن گزینه',
+		placeholder: 'Add option',
 		default: {},
 		options: [clashHandlingProperties, fuzzyCompareProperty],
 	},

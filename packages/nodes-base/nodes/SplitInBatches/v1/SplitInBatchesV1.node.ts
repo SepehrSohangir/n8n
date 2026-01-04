@@ -9,14 +9,14 @@ import { NodeConnectionTypes, deepCopy } from 'n8n-workflow';
 
 export class SplitInBatchesV1 implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'تقسیم به دسته‌ها',
+		displayName: 'Split In Batches',
 		name: 'splitInBatches',
 		icon: 'fa:th-large',
 		group: ['organization'],
 		version: 1,
-		description: 'تقسیم داده به دسته‌ها و تکرار روی هر دسته',
+		description: 'Split data into batches and iterate over each batch',
 		defaults: {
-			name: 'تقسیم به دسته‌ها',
+			name: 'Split In Batches',
 			color: '#007755',
 		},
 		inputs: [NodeConnectionTypes.Main],
@@ -24,34 +24,35 @@ export class SplitInBatchesV1 implements INodeType {
 		properties: [
 			{
 				displayName:
-					'ممکن است به این نود نیاز نداشته باشید — نودهای n8n به طور خودکار یک بار برای هر آیتم ورودی اجرا می‌شوند. <a href="https://docs.n8n.io/getting-started/key-concepts/looping.html#using-loops-in-n8n" target="_blank">اطلاعات بیشتر</a>',
+					'You may not need this node — n8n nodes automatically run once for each input item. <a href="https://docs.n8n.io/getting-started/key-concepts/looping.html#using-loops-in-n8n" target="_blank">More info</a>',
 				name: 'splitInBatchesNotice',
 				type: 'notice',
 				default: '',
 			},
 			{
-				displayName: 'اندازه دسته',
+				displayName: 'Batch Size',
 				name: 'batchSize',
 				type: 'number',
 				typeOptions: {
 					minValue: 1,
 				},
 				default: 10,
-				description: 'تعداد آیتم‌هایی که در هر فراخوانی برگردانده می‌شود',
+				description: 'The number of items to return with each call',
 			},
 			{
-				displayName: 'گزینه‌ها',
+				displayName: 'Options',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'افزودن گزینه',
+				placeholder: 'Add option',
 				default: {},
 				options: [
 					{
-						displayName: 'بازنشانی',
+						displayName: 'Reset',
 						name: 'reset',
 						type: 'boolean',
 						default: false,
-						description: 'آیا نود بازنشانی شود و با داده ورودی فعلی دوباره مقداردهی اولیه شود',
+						description:
+							'Whether the node will be reset and so with the current input-data newly initialized',
 					},
 				],
 			},

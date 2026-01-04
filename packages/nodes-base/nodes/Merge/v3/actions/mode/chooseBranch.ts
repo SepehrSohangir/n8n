@@ -8,28 +8,28 @@ import { numberInputsProperty } from '../../helpers/descriptions';
 export const properties: INodeProperties[] = [
 	numberInputsProperty,
 	{
-		displayName: 'نوع خروجی',
+		displayName: 'Output Type',
 		name: 'chooseBranchMode',
 		type: 'options',
 		options: [
 			{
-				name: 'انتظار برای رسیدن همه ورودی‌ها',
+				name: 'Wait for All Inputs to Arrive',
 				value: 'waitForAll',
 			},
 		],
 		default: 'waitForAll',
 	},
 	{
-		displayName: 'خروجی',
+		displayName: 'Output',
 		name: 'output',
 		type: 'options',
 		options: [
 			{
-				name: 'داده ورودی مشخص شده',
+				name: 'Data of Specified Input',
 				value: 'specifiedInput',
 			},
 			{
-				name: 'یک آیتم خالی واحد',
+				name: 'A Single, Empty Item',
 				value: 'empty',
 			},
 		],
@@ -42,7 +42,7 @@ export const properties: INodeProperties[] = [
 	},
 	{
 		// eslint-disable-next-line n8n-nodes-base/node-param-display-name-wrong-for-dynamic-options
-		displayName: 'استفاده از داده ورودی',
+		displayName: 'Use Data of Input',
 		name: 'useDataOfInput',
 		type: 'options',
 		default: 1,
@@ -57,7 +57,7 @@ export const properties: INodeProperties[] = [
 			loadOptionsDependsOn: ['numberInputs'],
 		},
 		// eslint-disable-next-line n8n-nodes-base/node-param-description-wrong-for-dynamic-options
-		description: 'شماره ورودی برای استفاده از داده آن',
+		description: 'The number of the input to use data of',
 		validateType: 'number',
 	},
 ];

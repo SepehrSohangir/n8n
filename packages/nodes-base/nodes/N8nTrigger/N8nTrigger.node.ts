@@ -6,58 +6,53 @@ import type {
 } from 'n8n-workflow';
 import { NodeConnectionTypes } from 'n8n-workflow';
 
-type eventType =
-	| 'نمونه راه‌اندازی شد'
-	| 'گردش کار منتشر شد'
-	| 'گردش کار به‌روزرسانی شد'
-	| 'اجرای دستی'
-	| undefined;
+type eventType = 'Instance started' | 'Workflow published' | 'Workflow updated' | undefined;
 
 export class N8nTrigger implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'تریگر n8n',
+		displayName: 'n8n Trigger',
 		name: 'n8nTrigger',
 		icon: 'file:n8nTrigger.svg',
 		group: ['trigger'],
 		version: 1,
-		description: 'مدیریت رویدادها و انجام اقدامات روی نمونه n8n شما',
+		description: 'Handle events and perform actions on your n8n instance',
 		eventTriggerDescription: '',
 		mockManualExecution: true,
 		defaults: {
-			name: 'تریگر n8n',
+			name: 'n8n Trigger',
 		},
 		inputs: [],
 		outputs: [NodeConnectionTypes.Main],
 		properties: [
 			{
-				displayName: 'رویدادها',
+				displayName: 'Events',
 				name: 'events',
 				type: 'multiOptions',
 				required: true,
 				default: [],
-				description: `شرایطی را مشخص می‌کند که تحت آن اجرا باید اتفاق بیفتد:
+				description: `Specifies under which conditions an execution should happen:
 				<ul>
-					<li><b>گردش کار منتشر شده به‌روزرسانی شد</b>: زمانی تریگر می‌شود که نسخه گردش کار از حالت منتشر شده منتشر شود (گردش کار قبلاً منتشر شده بود)</li>
-					<li><b>نمونه راه‌اندازی شد</b>: زمانی تریگر می‌شود که این نمونه n8n راه‌اندازی یا راه‌اندازی مجدد شود</li>
-					<li><b>گردش کار منتشر شد</b>: زمانی تریگر می‌شود که نسخه گردش کار از حالت منتشر نشده منتشر شود (گردش کار منتشر نشده بود)</li>
+					<li><b>Published Workflow Updated</b>: Triggers when workflow version is published from a published state (workflow was already published)</li>
+					<li><b>Instance Started</b>:  Triggers when this n8n instance is started or re-started</li>
+					<li><b>Workflow Published</b>: Triggers when workflow version is published from an unpublished state (workflow was unpublished)</li>
 				</ul>`,
 				options: [
 					{
-						name: 'گردش کار منتشر شده به‌روزرسانی شد',
+						name: 'Published Workflow Updated',
 						value: 'update',
 						description:
-							'زمانی تریگر می‌شود که نسخه گردش کار از حالت منتشر شده منتشر شود (گردش کار قبلاً منتشر شده بود)',
+							'Triggers when workflow version is published from a published state (workflow was already published)',
 					},
 					{
-						name: 'نمونه راه‌اندازی شد',
+						name: 'Instance Started',
 						value: 'init',
-						description: 'زمانی تریگر می‌شود که این نمونه n8n راه‌اندازی یا راه‌اندازی مجدد شود',
+						description: 'Triggers when this n8n instance is started or re-started',
 					},
 					{
-						name: 'گردش کار منتشر شد',
+						name: 'Workflow Published',
 						value: 'activate',
 						description:
-							'زمانی تریگر می‌شود که نسخه گردش کار از حالت منتشر نشده منتشر شود (گردش کار منتشر نشده بود)',
+							'Triggers when workflow version is published from an unpublished state (workflow was not published)',
 					},
 				],
 			},
@@ -72,13 +67,13 @@ export class N8nTrigger implements INodeType {
 		if (events.includes(activationMode)) {
 			let event: eventType;
 			if (activationMode === 'activate') {
-				event = 'گردش کار منتشر شد';
+				event = 'Workflow published';
 			}
 			if (activationMode === 'update') {
-				event = 'گردش کار به‌روزرسانی شد';
+				event = 'Workflow updated';
 			}
 			if (activationMode === 'init') {
-				event = 'نمونه راه‌اندازی شد';
+				event = 'Instance started';
 			}
 			this.emit([
 				this.helpers.returnJsonArray([
@@ -91,7 +86,7 @@ export class N8nTrigger implements INodeType {
 			this.emit([
 				this.helpers.returnJsonArray([
 					{
-						event: 'اجرای دستی',
+						event: 'Manual execution',
 						timestamp: new Date().toISOString(),
 						workflow_id: this.getWorkflow().id,
 					},

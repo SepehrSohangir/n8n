@@ -198,28 +198,3 @@
 		padding-left: 10px;
 	}
 }
-
-/* RTL Support */
-html[dir='rtl'] {
-	@include mixins.b(radio) {
-		margin-right: 0;
-		margin-left: 30px;
-
-		@include mixins.when(bordered) {
-			& + .el-radio.is-bordered {
-				margin-left: 0;
-				margin-right: 10px;
-			}
-		}
-
-		&:last-child {
-			margin-right: auto;
-			margin-left: 0;
-		}
-
-		@include mixins.e(label) {
-			padding-left: 0;
-			padding-right: 10px;
-		}
-	}
-}

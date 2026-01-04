@@ -136,12 +136,5 @@ async function onClickTemplatesLink() {
 	margin-top: var(--spacing--2xs);
 	display: flex;
 	flex-direction: column;
-	text-align: center;
-}
-
-/* RTL Support */
-html[dir='rtl'] .label {
-	direction: rtl;
-	text-align: center;
 }
 </style>

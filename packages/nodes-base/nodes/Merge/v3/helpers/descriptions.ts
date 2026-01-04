@@ -1,15 +1,15 @@
 import type { INodeProperties } from 'n8n-workflow';
 
 export const fuzzyCompareProperty: INodeProperties = {
-	displayName: 'مقایسه فازی',
+	displayName: 'Fuzzy Compare',
 	name: 'fuzzyCompare',
 	type: 'boolean',
 	default: false,
 	description:
-		"آیا تفاوت‌های کوچک نوع هنگام مقایسه فیلدها تحمل شود. مثلاً عدد 3 و رشته '3' یکسان در نظر گرفته می‌شوند.",
+		"Whether to tolerate small type differences when comparing fields. E.g. the number 3 and the string '3' are treated as the same.",
 };
 export const numberInputsProperty: INodeProperties = {
-	displayName: 'تعداد ورودی‌ها',
+	displayName: 'Number of Inputs',
 	name: 'numberInputs',
 	type: 'options',
 	noDataExpression: true,
@@ -54,11 +54,11 @@ export const numberInputsProperty: INodeProperties = {
 	],
 	validateType: 'number',
 	description:
-		'تعداد ورودی‌های داده که می‌خواهید ادغام کنید. نود منتظر اجرای همه ورودی‌های متصل می‌ماند.',
+		'The number of data inputs you want to merge. The node waits for all connected inputs to be executed.',
 };
 
 export const clashHandlingProperties: INodeProperties = {
-	displayName: 'مدیریت برخورد',
+	displayName: 'Clash Handling',
 	name: 'clashHandling',
 	type: 'fixedCollection',
 	default: {
@@ -66,12 +66,12 @@ export const clashHandlingProperties: INodeProperties = {
 	},
 	options: [
 		{
-			displayName: 'مقادیر',
+			displayName: 'Values',
 			name: 'values',
 			values: [
 				{
 					// eslint-disable-next-line n8n-nodes-base/node-param-display-name-wrong-for-dynamic-options
-					displayName: 'هنگام برخورد مقادیر فیلد',
+					displayName: 'When Field Values Clash',
 					name: 'resolveClash',
 					// eslint-disable-next-line n8n-nodes-base/node-param-description-missing-from-dynamic-options
 					type: 'options',
@@ -82,23 +82,24 @@ export const clashHandlingProperties: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'ادغام فیلدهای تو در تو',
+					displayName: 'Merging Nested Fields',
 					name: 'mergeMode',
 					type: 'options',
 					default: 'deepMerge',
 					options: [
 						{
-							name: 'ادغام عمیق',
+							name: 'Deep Merge',
 							value: 'deepMerge',
-							description: 'ادغام در هر سطح از تو در تو بودن',
+							description: 'Merge at every level of nesting',
 						},
 						{
-							name: 'ادغام سطحی',
+							name: 'Shallow Merge',
 							value: 'shallowMerge',
-							description: 'ادغام فقط در سطح بالا (همه فیلدهای تو در تو از همان ورودی خواهند آمد)',
+							description:
+								'Merge at the top level only (all nested fields will come from the same input)',
 						},
 					],
-					hint: 'نحوه ادغام زمانی که فیلدهای فرعی زیر فیلدهای سطح بالا وجود دارند',
+					hint: 'How to merge when there are sub-fields below the top-level ones',
 					displayOptions: {
 						show: {
 							resolveClash: [{ _cnd: { not: 'addSuffix' } }],
@@ -106,12 +107,12 @@ export const clashHandlingProperties: INodeProperties = {
 					},
 				},
 				{
-					displayName: 'کاهش فیلدهای خالی',
+					displayName: 'Minimize Empty Fields',
 					name: 'overrideEmpty',
 					type: 'boolean',
 					default: false,
 					description:
-						"آیا نسخه ورودی ترجیحی برای یک فیلد بازنویسی شود اگر خالی باشد و نسخه دیگر خالی نباشد. در اینجا 'خالی' به معنای undefined، null یا رشته خالی است.",
+						"Whether to override the preferred input version for a field if it is empty and the other version isn't. Here 'empty' means undefined, null or an empty string.",
 					displayOptions: {
 						show: {
 							resolveClash: [{ _cnd: { not: 'addSuffix' } }],

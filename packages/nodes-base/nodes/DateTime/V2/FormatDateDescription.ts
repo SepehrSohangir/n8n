@@ -5,7 +5,7 @@ import { includeInputFields } from './common.descriptions';
 export const FormatDateDescription: INodeProperties[] = [
 	{
 		displayName:
-			"همچنین می‌توانید این کار را با استفاده از یک عبارت انجام دهید، مثلاً <code>{{your_date.format('yyyy-MM-dd')}}</code>. <a target='_blank' href='https://docs.n8n.io/code/cookbook/luxon/'>اطلاعات بیشتر</a>",
+			"You can also do this using an expression, e.g. <code>{{your_date.format('yyyy-MM-dd')}}</code>. <a target='_blank' href='https://docs.n8n.io/code/cookbook/luxon/'>More info</a>",
 		name: 'notice',
 		type: 'notice',
 		default: '',
@@ -16,10 +16,10 @@ export const FormatDateDescription: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'تاریخ',
+		displayName: 'Date',
 		name: 'date',
 		type: 'string',
-		description: 'تاریخی که می‌خواهید فرمت کنید',
+		description: 'The date that you want to format',
 		default: '',
 		displayOptions: {
 			show: {
@@ -28,7 +28,7 @@ export const FormatDateDescription: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'فرمت',
+		displayName: 'Format',
 		name: 'format',
 		type: 'options',
 		displayOptions: {
@@ -39,50 +39,50 @@ export const FormatDateDescription: INodeProperties[] = [
 		// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 		options: [
 			{
-				name: 'فرمت سفارشی',
+				name: 'Custom Format',
 				value: 'custom',
 			},
 			{
 				name: 'MM/DD/YYYY',
 				value: 'MM/dd/yyyy',
-				description: 'مثال: 09/04/1986',
+				description: 'Example: 09/04/1986',
 			},
 			{
 				name: 'YYYY/MM/DD',
 				value: 'yyyy/MM/dd',
-				description: 'مثال: 1986/04/09',
+				description: 'Example: 1986/04/09',
 			},
 			{
 				name: 'MMMM DD YYYY',
 				value: 'MMMM dd yyyy',
-				description: 'مثال: April 09 1986',
+				description: 'Example: April 09 1986',
 			},
 			{
 				name: 'MM-DD-YYYY',
 				value: 'MM-dd-yyyy',
-				description: 'مثال: 09-04-1986',
+				description: 'Example: 09-04-1986',
 			},
 			{
 				name: 'YYYY-MM-DD',
 				value: 'yyyy-MM-dd',
-				description: 'مثال: 1986-04-09',
+				description: 'Example: 1986-04-09',
 			},
 			{
-				name: 'برچسب زمانی Unix',
+				name: 'Unix Timestamp',
 				value: 'X',
-				description: 'مثال: 1672531200',
+				description: 'Example: 1672531200',
 			},
 			{
-				name: 'برچسب زمانی Unix (میلی‌ثانیه)',
+				name: 'Unix Ms Timestamp',
 				value: 'x',
-				description: 'مثال: 1674691200000',
+				description: 'Example: 1674691200000',
 			},
 		],
 		default: 'MM/dd/yyyy',
-		description: 'فرمتی که تاریخ به آن تبدیل می‌شود',
+		description: 'The format to convert the date to',
 	},
 	{
-		displayName: 'فرمت سفارشی',
+		displayName: 'Custom Format',
 		name: 'customFormat',
 		type: 'string',
 		displayOptions: {
@@ -91,16 +91,16 @@ export const FormatDateDescription: INodeProperties[] = [
 				operation: ['formatDate'],
 			},
 		},
-		hint: 'فهرست نشانه‌های ویژه <a target="_blank" href="https://moment.github.io/luxon/#/formatting?id=table-of-tokens">اطلاعات بیشتر</a>',
+		hint: 'List of special tokens <a target="_blank" href="https://moment.github.io/luxon/#/formatting?id=table-of-tokens">More info</a>',
 		default: '',
 		placeholder: 'yyyy-MM-dd',
 	},
 	{
-		displayName: 'نام فیلد خروجی',
+		displayName: 'Output Field Name',
 		name: 'outputFieldName',
 		type: 'string',
 		default: 'formattedDate',
-		description: 'نام فیلدی که خروجی در آن قرار می‌گیرد',
+		description: 'Name of the field to put the output in',
 		displayOptions: {
 			show: {
 				operation: ['formatDate'],
@@ -108,10 +108,10 @@ export const FormatDateDescription: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'گزینه‌ها',
+		displayName: 'Options',
 		name: 'options',
 		type: 'collection',
-		placeholder: 'افزودن گزینه',
+		placeholder: 'Add option',
 		displayOptions: {
 			show: {
 				operation: ['formatDate'],
@@ -121,21 +121,21 @@ export const FormatDateDescription: INodeProperties[] = [
 		options: [
 			includeInputFields,
 			{
-				displayName: 'از فرمت تاریخ',
+				displayName: 'From Date Format',
 				name: 'fromFormat',
 				type: 'string',
 				default: 'e.g yyyyMMdd',
-				hint: 'نشانه‌ها به حروف کوچک و بزرگ حساس هستند',
+				hint: 'Tokens are case sensitive',
 				// eslint-disable-next-line n8n-nodes-base/node-param-description-miscased-id
 				description:
-					'فرمتی که ورودی \'تاریخ\' در آن است، زمانی مفید است که فرمت به طور خودکار تشخیص داده نشود. از این <a href="https://moment.github.io/luxon/#/formatting?id=table-of-tokens&id=table-of-tokens" target="_blank">نشانه‌ها</a> برای تعریف فرمت استفاده کنید.',
+					'Format in which the input \'Date\' is, it\'s helpful when the format is not recognized automatically. Use those <a href="https://moment.github.io/luxon/#/formatting?id=table-of-tokens&id=table-of-tokens" target="_blank">tokens</a> to define the format.',
 			},
 			{
-				displayName: 'استفاده از منطقه زمانی گردش کار',
+				displayName: 'Use Workflow Timezone',
 				name: 'timezone',
 				type: 'boolean',
 				default: false,
-				description: 'آیا از منطقه زمانی ورودی استفاده شود یا منطقه زمانی گردش کار',
+				description: "Whether to use the timezone of the input or the workflow's timezone",
 			},
 		],
 	},

@@ -13,14 +13,3 @@
 .text-justify {
 	text-align: justify !important;
 }
-
-/* RTL Support */
-html[dir='rtl'] {
-	.text-left {
-		text-align: right !important;
-	}
-
-	.text-right {
-		text-align: left !important;
-	}
-}

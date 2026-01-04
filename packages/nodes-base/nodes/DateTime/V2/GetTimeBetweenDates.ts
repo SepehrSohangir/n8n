@@ -4,7 +4,7 @@ import { includeInputFields } from './common.descriptions';
 
 export const GetTimeBetweenDatesDescription: INodeProperties[] = [
 	{
-		displayName: 'تاریخ شروع',
+		displayName: 'Start Date',
 		name: 'startDate',
 		type: 'string',
 		default: '',
@@ -15,7 +15,7 @@ export const GetTimeBetweenDatesDescription: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'تاریخ پایان',
+		displayName: 'End Date',
 		name: 'endDate',
 		type: 'string',
 		default: '',
@@ -26,41 +26,41 @@ export const GetTimeBetweenDatesDescription: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'واحدها',
+		displayName: 'Units',
 		name: 'units',
 		type: 'multiOptions',
 		// eslint-disable-next-line n8n-nodes-base/node-param-multi-options-type-unsorted-items
 		options: [
 			{
-				name: 'سال',
+				name: 'Year',
 				value: 'year',
 			},
 			{
-				name: 'ماه',
+				name: 'Month',
 				value: 'month',
 			},
 			{
-				name: 'هفته',
+				name: 'Week',
 				value: 'week',
 			},
 			{
-				name: 'روز',
+				name: 'Day',
 				value: 'day',
 			},
 			{
-				name: 'ساعت',
+				name: 'Hour',
 				value: 'hour',
 			},
 			{
-				name: 'دقیقه',
+				name: 'Minute',
 				value: 'minute',
 			},
 			{
-				name: 'ثانیه',
+				name: 'Second',
 				value: 'second',
 			},
 			{
-				name: 'میلی‌ثانیه',
+				name: 'Millisecond',
 				value: 'millisecond',
 			},
 		],
@@ -72,11 +72,11 @@ export const GetTimeBetweenDatesDescription: INodeProperties[] = [
 		default: ['day'],
 	},
 	{
-		displayName: 'نام فیلد خروجی',
+		displayName: 'Output Field Name',
 		name: 'outputFieldName',
 		type: 'string',
 		default: 'timeDifference',
-		description: 'نام فیلدی که خروجی در آن قرار می‌گیرد',
+		description: 'Name of the field to put the output in',
 		displayOptions: {
 			show: {
 				operation: ['getTimeBetweenDates'],
@@ -84,10 +84,10 @@ export const GetTimeBetweenDatesDescription: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'گزینه‌ها',
+		displayName: 'Options',
 		name: 'options',
 		type: 'collection',
-		placeholder: 'افزودن گزینه',
+		placeholder: 'Add option',
 		displayOptions: {
 			show: {
 				operation: ['getTimeBetweenDates'],
@@ -97,11 +97,11 @@ export const GetTimeBetweenDatesDescription: INodeProperties[] = [
 		options: [
 			includeInputFields,
 			{
-				displayName: 'خروجی به صورت رشته ISO',
+				displayName: 'Output as ISO String',
 				name: 'isoString',
 				type: 'boolean',
 				default: false,
-				description: 'آیا تاریخ به صورت رشته ISO خروجی داده شود یا خیر',
+				description: 'Whether to output the date as ISO string or not',
 			},
 		],
 	},

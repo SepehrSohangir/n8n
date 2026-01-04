@@ -11,44 +11,44 @@ import {
 
 export class LocalFileTrigger implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'تریگر فایل محلی',
+		displayName: 'Local File Trigger',
 		name: 'localFileTrigger',
 		icon: 'fa:folder-open',
 		iconColor: 'black',
 		group: ['trigger'],
 		version: 1,
-		subtitle: '=مسیر: {{$parameter["path"]}}',
-		description: 'گردش کار را بر روی تغییرات سیستم فایل تریگر می‌کند',
+		subtitle: '=Path: {{$parameter["path"]}}',
+		description: 'Triggers a workflow on file system changes',
 		eventTriggerDescription: '',
 		defaults: {
-			name: 'تریگر فایل محلی',
+			name: 'Local File Trigger',
 			color: '#404040',
 		},
 		triggerPanel: {
 			header: '',
 			executionsHelp: {
 				inactive:
-					"<b>در حین ساخت گردش کار خود</b>، روی دکمه 'اجرای مرحله' کلیک کنید، سپس تغییری در فایل یا پوشه تحت نظارت خود ایجاد کنید. این یک اجرا را تریگر می‌کند که در این ویرایشگر نمایش داده خواهد شد.<br /> <br /><b>پس از رضایت از گردش کار خود</b>، آن را منتشر کنید. سپس هر بار که تغییری تشخیص داده شود، گردش کار اجرا خواهد شد. این اجراها در <a data-key='executions'>فهرست اجراها</a> نمایش داده می‌شوند، اما در ویرایشگر نمایش داده نمی‌شوند.",
+					"<b>While building your workflow</b>, click the 'execute step' button, then make a change to your watched file or folder. This will trigger an execution, which will show up in this editor.<br /> <br /><b>Once you're happy with your workflow</b>, publish it. Then every time a change is detected, the workflow will execute. These executions will show up in the <a data-key='executions'>executions list</a>, but not in the editor.",
 				active:
-					"<b>در حین ساخت گردش کار خود</b>، روی دکمه 'اجرای مرحله' کلیک کنید، سپس تغییری در فایل یا پوشه تحت نظارت خود ایجاد کنید. این یک اجرا را تریگر می‌کند که در این ویرایشگر نمایش داده خواهد شد.<br /> <br /><b>گردش کار شما همچنین به طور خودکار اجرا خواهد شد</b>، زیرا فعال شده است. هر بار که تغییری تشخیص داده شود، این نود یک اجرا را تریگر می‌کند. این اجراها در <a data-key='executions'>فهرست اجراها</a> نمایش داده می‌شوند، اما در ویرایشگر نمایش داده نمی‌شوند.",
+					"<b>While building your workflow</b>, click the 'execute step' button, then make a change to your watched file or folder. This will trigger an execution, which will show up in this editor.<br /> <br /><b>Your workflow will also execute automatically</b>, since it's activated. Every time a change is detected, this node will trigger an execution. These executions will show up in the <a data-key='executions'>executions list</a>, but not in the editor.",
 			},
 			activationHint:
-				'پس از اتمام ساخت گردش کار خود، آن را منتشر کنید تا به طور مداوم گوش دهد (فقط آن اجراها را در اینجا نخواهید دید).',
+				'Once you’ve finished building your workflow, publish it to have it also listen continuously (you just won’t see those executions here).',
 		},
 		inputs: [],
 		outputs: [NodeConnectionTypes.Main],
 		properties: [
 			{
-				displayName: 'تریگر بر اساس',
+				displayName: 'Trigger On',
 				name: 'triggerOn',
 				type: 'options',
 				options: [
 					{
-						name: 'تغییرات در یک فایل مشخص',
+						name: 'Changes to a Specific File',
 						value: 'file',
 					},
 					{
-						name: 'تغییرات مربوط به یک پوشه مشخص',
+						name: 'Changes Involving a Specific Folder',
 						value: 'folder',
 					},
 				],
@@ -56,7 +56,7 @@ export class LocalFileTrigger implements INodeType {
 				default: '',
 			},
 			{
-				displayName: 'فایل برای نظارت',
+				displayName: 'File to Watch',
 				name: 'path',
 				type: 'string',
 				displayOptions: {
@@ -68,7 +68,7 @@ export class LocalFileTrigger implements INodeType {
 				placeholder: '/data/invoices/1.pdf',
 			},
 			{
-				displayName: 'پوشه برای نظارت',
+				displayName: 'Folder to Watch',
 				name: 'path',
 				type: 'string',
 				displayOptions: {
@@ -80,7 +80,7 @@ export class LocalFileTrigger implements INodeType {
 				placeholder: '/data/invoices',
 			},
 			{
-				displayName: 'نظارت برای',
+				displayName: 'Watch for',
 				name: 'events',
 				type: 'multiOptions',
 				displayOptions: {
@@ -90,139 +90,139 @@ export class LocalFileTrigger implements INodeType {
 				},
 				options: [
 					{
-						name: 'فایل اضافه شد',
+						name: 'File Added',
 						value: 'add',
-						description: 'زمانی تریگر می‌شود که یک فایل جدید اضافه شود',
+						description: 'Triggers whenever a new file was added',
 					},
 					{
-						name: 'فایل تغییر کرد',
+						name: 'File Changed',
 						value: 'change',
-						description: 'زمانی تریگر می‌شود که یک فایل تغییر کند',
+						description: 'Triggers whenever a file was changed',
 					},
 					{
-						name: 'فایل حذف شد',
+						name: 'File Deleted',
 						value: 'unlink',
-						description: 'زمانی تریگر می‌شود که یک فایل حذف شود',
+						description: 'Triggers whenever a file was deleted',
 					},
 					{
-						name: 'پوشه اضافه شد',
+						name: 'Folder Added',
 						value: 'addDir',
-						description: 'زمانی تریگر می‌شود که یک پوشه جدید اضافه شود',
+						description: 'Triggers whenever a new folder was added',
 					},
 					{
-						name: 'پوشه حذف شد',
+						name: 'Folder Deleted',
 						value: 'unlinkDir',
-						description: 'زمانی تریگر می‌شود که یک پوشه حذف شود',
+						description: 'Triggers whenever a folder was deleted',
 					},
 				],
 				required: true,
 				default: [],
-				description: 'رویدادهایی که باید به آنها گوش داد',
+				description: 'The events to listen to',
 			},
 
 			{
-				displayName: 'گزینه‌ها',
+				displayName: 'Options',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'افزودن گزینه',
+				placeholder: 'Add option',
 				default: {},
 				options: [
 					{
-						displayName: 'انتظار برای پایان نوشتن',
+						displayName: 'Await Write Finish',
 						name: 'awaitWriteFinish',
 						type: 'boolean',
 						default: false,
-						description: 'آیا تا پایان نوشتن فایل‌ها صبر کند تا از خواندن ناقص جلوگیری شود',
+						description: 'Whether to wait until files finished writing to avoid partially read',
 					},
 					{
-						displayName: 'شامل فایل‌ها/پوشه‌های پیوندی',
+						displayName: 'Include Linked Files/Folders',
 						name: 'followSymlinks',
 						type: 'boolean',
 						default: true,
 						description:
-							'آیا فایل‌ها/پوشه‌های پیوندی نیز نظارت شوند (این شامل symlinkها، aliasها در MacOS و میانبرها در Windows می‌شود). در غیر این صورت فقط خود پیوندها نظارت می‌شوند).',
+							'Whether linked files/folders will also be watched (this includes symlinks, aliases on MacOS and shortcuts on Windows). Otherwise only the links themselves will be monitored).',
 					},
 					{
-						displayName: 'نادیده گرفتن',
+						displayName: 'Ignore',
 						name: 'ignored',
 						type: 'string',
 						default: '',
-						placeholder: '**/*.txt یا ignore-me/subfolder',
+						placeholder: '**/*.txt or ignore-me/subfolder',
 						description:
-							"فایل‌ها یا مسیرهایی که باید نادیده گرفته شوند. کل مسیر تست می‌شود، نه فقط نام فایل. از سینتکس <a href=\"https://github.com/micromatch/anymatch\">Anymatch</a> پشتیبانی می‌کند. الگوهای regex ممکن است در macOS کار نکنند. برای نادیده گرفتن فایل‌ها بر اساس تطابق زیررشته، از گزینه 'حالت نادیده گرفتن' با 'شامل' استفاده کنید.",
+							"Files or paths to ignore. The whole path is tested, not just the filename. Supports <a href=\"https://github.com/micromatch/anymatch\">Anymatch</a>- syntax. Regex patterns may not work on macOS. To ignore files based on substring matching, use the 'Ignore Mode' option with 'Contain'.",
 					},
 					{
-						displayName: 'نادیده گرفتن فایل‌ها/پوشه‌های موجود',
+						displayName: 'Ignore Existing Files/Folders',
 						name: 'ignoreInitial',
 						type: 'boolean',
 						default: true,
-						description: 'آیا فایل‌ها/پوشه‌های موجود نادیده گرفته شوند تا رویدادی تریگر نشود',
+						description: 'Whether to ignore existing files/folders to not trigger an event',
 					},
 					{
-						displayName: 'حداکثر عمق پوشه',
+						displayName: 'Max Folder Depth',
 						name: 'depth',
 						type: 'options',
 						options: [
 							{
-								name: '1 سطح پایین',
+								name: '1 Levels Down',
 								value: 1,
 							},
 							{
-								name: '2 سطح پایین',
+								name: '2 Levels Down',
 								value: 2,
 							},
 							{
-								name: '3 سطح پایین',
+								name: '3 Levels Down',
 								value: 3,
 							},
 							{
-								name: '4 سطح پایین',
+								name: '4 Levels Down',
 								value: 4,
 							},
 							{
-								name: '5 سطح پایین',
+								name: '5 Levels Down',
 								value: 5,
 							},
 							{
-								name: 'فقط پوشه بالا',
+								name: 'Top Folder Only',
 								value: 0,
 							},
 							{
-								name: 'نامحدود',
+								name: 'Unlimited',
 								value: -1,
 							},
 						],
 						default: -1,
-						description: 'چقدر عمیق در ساختار پوشه برای نظارت بر تغییرات',
+						description: 'How deep into the folder structure to watch for changes',
 					},
 					{
-						displayName: 'استفاده از نظرسنجی',
+						displayName: 'Use Polling',
 						name: 'usePolling',
 						type: 'boolean',
 						default: false,
 						description:
-							'آیا از نظرسنجی برای نظارت استفاده شود. معمولاً برای نظارت موفق بر فایل‌ها از طریق شبکه ضروری است.',
+							'Whether to use polling for watching. Typically necessary to successfully watch files over a network.',
 					},
 					{
-						displayName: 'حالت نادیده گرفتن',
+						displayName: 'Ignore Mode',
 						name: 'ignoreMode',
 						type: 'options',
 						options: [
 							{
-								name: 'تطابق',
+								name: 'Match',
 								value: 'match',
 								description:
-									'نادیده گرفتن فایل‌ها با استفاده از الگوهای regex (مثلاً **/*.txt)، در macOS پشتیبانی نمی‌شود',
+									'Ignore files using regex patterns (e.g., **/*.txt), Not supported on macOS',
 							},
 							{
-								name: 'شامل',
+								name: 'Contain',
 								value: 'contain',
-								description: 'نادیده گرفتن فایل‌ها اگر مسیر آنها شامل مقدار مشخص شده باشد',
+								description: 'Ignore files if their path contains the specified value',
 							},
 						],
 						default: 'match',
 						description:
-							'آیا فایل‌ها با استفاده از تطابق regex (الگوهای Anymatch) نادیده گرفته شوند یا با بررسی اینکه آیا مسیر شامل یک مقدار مشخص شده است',
+							'Whether to ignore files using regex matching (Anymatch patterns) or by checking if the path contains a specified value',
 					},
 				],
 			},

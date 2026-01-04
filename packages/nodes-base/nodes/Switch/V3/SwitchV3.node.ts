@@ -54,34 +54,34 @@ export class SwitchV3 implements INodeType {
 			subtitle: `=mode: {{(${capitalize})($parameter["mode"])}}`,
 			version: [3, 3.1, 3.2, 3.3, 3.4],
 			defaults: {
-				name: 'سوئیچ',
+				name: 'Switch',
 				color: '#506000',
 			},
 			inputs: [NodeConnectionTypes.Main],
 			outputs: `={{(${configuredOutputs})($parameter)}}`,
 			properties: [
 				{
-					displayName: 'حالت',
+					displayName: 'Mode',
 					name: 'mode',
 					type: 'options',
 					noDataExpression: true,
 					options: [
 						{
-							name: 'قوانین',
+							name: 'Rules',
 							value: 'rules',
-							description: 'ساخت یک قانون تطابق برای هر خروجی',
+							description: 'Build a matching rule for each output',
 						},
 						{
-							name: 'عبارت',
+							name: 'Expression',
 							value: 'expression',
-							description: 'نوشتن یک عبارت برای بازگرداندن ایندکس خروجی',
+							description: 'Write an expression to return the output index',
 						},
 					],
 					default: 'rules',
-					description: 'نحوه مسیریابی داده',
+					description: 'How data should be routed',
 				},
 				{
-					displayName: 'تعداد خروجی‌ها',
+					displayName: 'Number of Outputs',
 					name: 'numberOutputs',
 					type: 'number',
 					noDataExpression: true,
@@ -92,10 +92,10 @@ export class SwitchV3 implements INodeType {
 						},
 					},
 					default: 4,
-					description: 'چند خروجی ایجاد شود',
+					description: 'How many outputs to create',
 				},
 				{
-					displayName: 'تعداد خروجی‌ها',
+					displayName: 'Number of Outputs',
 					name: 'numberOutputs',
 					type: 'number',
 					displayOptions: {
@@ -105,14 +105,14 @@ export class SwitchV3 implements INodeType {
 						},
 					},
 					default: 4,
-					description: 'چند خروجی ایجاد شود',
+					description: 'How many outputs to create',
 				},
 				{
-					displayName: 'ایندکس خروجی',
+					displayName: 'Output Index',
 					name: 'output',
 					type: 'number',
 					validateType: 'number',
-					hint: 'ایندکس برای مسیریابی آیتم به آن، از 0 شروع می‌شود',
+					hint: 'The index to route the item to, starts at 0',
 					displayOptions: {
 						show: {
 							mode: ['expression'],
@@ -121,12 +121,12 @@ export class SwitchV3 implements INodeType {
 					// eslint-disable-next-line n8n-nodes-base/node-param-default-wrong-for-number
 					default: '={{}}',
 					description:
-						'ایندکس خروجی برای ارسال آیتم ورودی به آن. از یک عبارت برای محاسبه اینکه کدام آیتم ورودی باید به کدام خروجی مسیریابی شود استفاده کنید. عبارت باید یک عدد برگرداند.',
+						'The output index to send the input item to. Use an expression to calculate which input item should be routed to which output. The expression must return a number.',
 				},
 				{
-					displayName: 'قوانین مسیریابی',
+					displayName: 'Routing Rules',
 					name: 'rules',
-					placeholder: 'افزودن قانون مسیریابی',
+					placeholder: 'Add Routing Rule',
 					type: 'fixedCollection',
 					typeOptions: {
 						multipleValues: true,
@@ -164,12 +164,12 @@ export class SwitchV3 implements INodeType {
 					options: [
 						{
 							name: 'values',
-							displayName: 'مقادیر',
+							displayName: 'Values',
 							values: [
 								{
-									displayName: 'شرایط',
+									displayName: 'Conditions',
 									name: 'conditions',
-									placeholder: 'افزودن شرط',
+									placeholder: 'Add Condition',
 									type: 'filter',
 									default: {},
 									typeOptions: {
@@ -182,17 +182,17 @@ export class SwitchV3 implements INodeType {
 									},
 								},
 								{
-									displayName: 'تغییر نام خروجی',
+									displayName: 'Rename Output',
 									name: 'renameOutput',
 									type: 'boolean',
 									default: false,
 								},
 								{
-									displayName: 'نام خروجی',
+									displayName: 'Output Name',
 									name: 'outputKey',
 									type: 'string',
 									default: '',
-									description: 'برچسب خروجی برای ارسال داده به آن اگر قانون تطابق داشته باشد',
+									description: 'The label of output to which to send data to if rule matches',
 									displayOptions: {
 										show: {
 											renameOutput: [true],
@@ -213,10 +213,10 @@ export class SwitchV3 implements INodeType {
 					},
 				},
 				{
-					displayName: 'گزینه‌ها',
+					displayName: 'Options',
 					name: 'options',
 					type: 'collection',
-					placeholder: 'افزودن گزینه',
+					placeholder: 'Add option',
 					default: {},
 					displayOptions: {
 						show: {
@@ -226,7 +226,7 @@ export class SwitchV3 implements INodeType {
 					options: [
 						{
 							// eslint-disable-next-line n8n-nodes-base/node-param-display-name-wrong-for-dynamic-options
-							displayName: 'خروجی پیش‌فرض',
+							displayName: 'Fallback Output',
 							name: 'fallbackOutput',
 							type: 'options',
 							typeOptions: {
@@ -236,11 +236,11 @@ export class SwitchV3 implements INodeType {
 							default: 'none',
 							// eslint-disable-next-line n8n-nodes-base/node-param-description-wrong-for-dynamic-options
 							description:
-								'اگر هیچ قانونی تطابق نداشته باشد، آیتم به این خروجی ارسال می‌شود، به طور پیش‌فرض نادیده گرفته می‌شوند',
+								'If no rule matches the item will be sent to this output, by default they will be ignored',
 						},
 						{
-							displayName: 'نادیده گرفتن حروف کوچک و بزرگ',
-							description: 'آیا حروف کوچک و بزرگ هنگام ارزیابی شرایط نادیده گرفته شود',
+							displayName: 'Ignore Case',
+							description: 'Whether to ignore letter case when evaluating conditions',
 							name: 'ignoreCase',
 							type: 'boolean',
 							default: true,
@@ -254,10 +254,10 @@ export class SwitchV3 implements INodeType {
 							},
 						},
 						{
-							displayName: 'تغییر نام خروجی پیش‌فرض',
+							displayName: 'Rename Fallback Output',
 							name: 'renameFallbackOutput',
 							type: 'string',
-							placeholder: 'مثلاً Fallback',
+							placeholder: 'e.g. Fallback',
 							default: '',
 							displayOptions: {
 								show: {
@@ -267,12 +267,12 @@ export class SwitchV3 implements INodeType {
 						},
 						{
 							// eslint-disable-next-line n8n-nodes-base/node-param-display-name-miscased
-							displayName: 'ارسال داده به همه خروجی‌های تطابق',
+							displayName: 'Send data to all matching outputs',
 							name: 'allMatchingOutputs',
 							type: 'boolean',
 							default: false,
 							description:
-								'آیا داده به همه خروجی‌هایی که شرایط را برآورده می‌کنند ارسال شود (و نه فقط اولین مورد)',
+								'Whether to send data to all outputs meeting conditions (and not just the first one)',
 						},
 					],
 				},
@@ -288,22 +288,22 @@ export class SwitchV3 implements INodeType {
 				const outputOptions: INodePropertyOptions[] = [
 					{
 						// eslint-disable-next-line n8n-nodes-base/node-param-display-name-miscased
-						name: 'هیچکدام (پیش‌فرض)',
+						name: 'None (default)',
 						value: 'none',
-						description: 'آیتم‌ها نادیده گرفته می‌شوند',
+						description: 'Items will be ignored',
 					},
 					{
-						name: 'خروجی اضافی',
+						name: 'Extra Output',
 						value: 'extra',
-						description: 'آیتم‌ها به خروجی اضافی و جداگانه ارسال می‌شوند',
+						description: 'Items will be sent to the extra, separate, output',
 					},
 				];
 
 				for (const [index, rule] of rules.entries()) {
 					outputOptions.push({
-						name: `خروجی ${rule.outputKey || index}`,
+						name: `Output ${rule.outputKey || index}`,
 						value: index,
-						description: `آیتم‌ها به همان خروجی ارسال می‌شوند که زمانی که قانون ${index + 1} تطابق داشته باشد`,
+						description: `Items will be sent to the same output as when matched rule ${index + 1}`,
 					});
 				}
 

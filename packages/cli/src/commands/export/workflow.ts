@@ -40,7 +40,7 @@ const flagsSchema = z.object({
 		'--all --output=backups/latest/',
 		'--backup --output=backups/latest/',
 	],
-	flagsSchema: flagsSchema as any,
+	flagsSchema,
 })
 export class ExportWorkflowsCommand extends BaseCommand<z.infer<typeof flagsSchema>> {
 	// eslint-disable-next-line complexity

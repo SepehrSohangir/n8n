@@ -12,22 +12,22 @@ import { removeDuplicatesNodeFields } from './RemoveDuplicatesV2.description';
 import { removeDuplicateInputItems } from '../utils';
 
 const versionDescription: INodeTypeDescription = {
-	displayName: 'حذف موارد تکراری',
+	displayName: 'Remove Duplicates',
 	name: 'removeDuplicates',
 	icon: 'file:removeDuplicates.svg',
 	group: ['transform'],
 	subtitle: '',
 	version: [2],
-	description: 'حذف آیتم‌ها با مقادیر فیلد یکسان',
+	description: 'Delete items with matching field values',
 	defaults: {
-		name: 'حذف موارد تکراری',
+		name: 'Remove Duplicates',
 	},
 	inputs: [NodeConnectionTypes.Main],
 	outputs: [NodeConnectionTypes.Main],
-	outputNames: ['نگه داشته شده', 'دور انداخته شده'],
+	outputNames: ['Kept', 'Discarded'],
 	hints: [
 		{
-			message: 'کلید حذف تکراری تنظیم شده در "مقدار برای حذف تکراری بر اساس" هیچ مقداری ندارد',
+			message: 'The dedupe key set in “Value to Dedupe On” has no value',
 			displayCondition:
 				'={{ $parameter["operation"] === "removeItemsSeenInPreviousExecutions" && ($parameter["logic"] === "removeItemsWithAlreadySeenKeyValues" && $parameter["dedupeValue"] === undefined) || ($parameter["logic"] === "removeItemsUpToStoredIncrementalKey" && $parameter["incrementalDedupeValue"] === undefined) || ($parameter["logic"] === "removeItemsUpToStoredDate" && $parameter["dateDedupeValue"] === undefined) }}',
 			whenToDisplay: 'beforeExecution',

@@ -183,20 +183,3 @@
 		}
 	}
 }
-
-/* RTL Support */
-html[dir='rtl'] {
-	@include mixins.b(tag) {
-		.el-icon.el-tag__close {
-			margin-right: 0;
-			margin-left: 0;
-		}
-
-		@include mixins.m(mini) {
-			.el-icon.el-tag__close {
-				margin-left: 0;
-				margin-right: -3px;
-			}
-		}
-	}
-}

@@ -5,13 +5,13 @@ import * as mode from './mode';
 import { configuredInputs } from '../helpers/utils';
 
 export const versionDescription: INodeTypeDescription = {
-	displayName: 'ادغام',
+	displayName: 'Merge',
 	name: 'merge',
 	group: ['transform'],
-	description: 'ادغام داده‌های چندین جریان پس از در دسترس بودن داده از هر دو',
+	description: 'Merges data of multiple streams once data from both is available',
 	version: [3, 3.1, 3.2],
 	defaults: {
-		name: 'ادغام',
+		name: 'Merge',
 	},
 	inputs: `={{(${configuredInputs})($parameter)}}`,
 	outputs: [NodeConnectionTypes.Main],

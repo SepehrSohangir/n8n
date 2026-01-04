@@ -26,46 +26,46 @@ export class DateTimeV2 implements INodeType {
 			...baseDescription,
 			version: 2,
 			defaults: {
-				name: 'تاریخ و زمان',
+				name: 'Date & Time',
 				color: '#408000',
 			},
 			usableAsTool: true,
 			inputs: [NodeConnectionTypes.Main],
 			outputs: [NodeConnectionTypes.Main],
-			description: 'دستکاری مقادیر تاریخ و زمان',
+			description: 'Manipulate date and time values',
 			properties: [
 				{
-					displayName: 'عملیات',
+					displayName: 'Operation',
 					name: 'operation',
 					type: 'options',
 					noDataExpression: true,
 					options: [
 						{
-							name: 'افزودن به تاریخ',
+							name: 'Add to a Date',
 							value: 'addToDate',
 						},
 						{
-							name: 'استخراج بخشی از تاریخ',
+							name: 'Extract Part of a Date',
 							value: 'extractDate',
 						},
 						{
-							name: 'فرمت کردن تاریخ',
+							name: 'Format a Date',
 							value: 'formatDate',
 						},
 						{
-							name: 'دریافت تاریخ فعلی',
+							name: 'Get Current Date',
 							value: 'getCurrentDate',
 						},
 						{
-							name: 'دریافت زمان بین تاریخ‌ها',
+							name: 'Get Time Between Dates',
 							value: 'getTimeBetweenDates',
 						},
 						{
-							name: 'گرد کردن تاریخ',
+							name: 'Round a Date',
 							value: 'roundDate',
 						},
 						{
-							name: 'کم کردن از تاریخ',
+							name: 'Subtract From a Date',
 							value: 'subtractFromDate',
 						},
 					],
@@ -116,7 +116,7 @@ export class DateTimeV2 implements INodeType {
 					if (DateTime.now().setZone(newLocal).invalidReason === 'unsupported zone') {
 						throw new NodeOperationError(
 							this.getNode(),
-							`منطقه زمانی ${newLocal} معتبر نیست. لطفاً منطقه زمانی را بررسی کنید.`,
+							`The timezone ${newLocal} is not valid. Please check the timezone.`,
 						);
 					}
 

@@ -106,7 +106,7 @@ const flagsSchema = z.object({
 		'--snapshot=/data/snapshots --shallow',
 		'--compare=/data/previousExecutionData --retries=2',
 	],
-	flagsSchema: flagsSchema as any,
+	flagsSchema,
 })
 export class ExecuteBatch extends BaseCommand<z.infer<typeof flagsSchema>> {
 	static cancelled = false;

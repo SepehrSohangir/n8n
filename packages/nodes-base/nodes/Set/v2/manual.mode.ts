@@ -22,11 +22,11 @@ import { updateDisplayOptions } from '../../../utils/utilities';
 
 const properties: INodeProperties[] = [
 	{
-		displayName: 'فیلدهای برای تنظیم',
+		displayName: 'Fields to Set',
 		name: 'fields',
-		placeholder: 'افزودن فیلد',
+		placeholder: 'Add Field',
 		type: 'fixedCollection',
-		description: 'ویرایش فیلدهای موجود یا افزودن فیلدهای جدید برای تغییر داده خروجی',
+		description: 'Edit existing fields or add new ones to modify the output data',
 		displayOptions: {
 			show: {
 				'@version': [3, 3.1, 3.2],
@@ -40,50 +40,50 @@ const properties: INodeProperties[] = [
 		options: [
 			{
 				name: 'values',
-				displayName: 'مقادیر',
+				displayName: 'Values',
 				values: [
 					{
-						displayName: 'نام',
+						displayName: 'Name',
 						name: 'name',
 						type: 'string',
 						default: '',
-						placeholder: 'مثلاً fieldName',
+						placeholder: 'e.g. fieldName',
 						description:
-							'نام فیلد برای تنظیم مقدار آن. از نماد نقطه پشتیبانی می‌کند. مثال: data.person[0].name.',
+							'Name of the field to set the value of. Supports dot-notation. Example: data.person[0].name.',
 						requiresDataPath: 'single',
 					},
 					{
-						displayName: 'نوع',
+						displayName: 'Type',
 						name: 'type',
 						type: 'options',
-						description: 'نوع مقدار فیلد',
+						description: 'The field value type',
 						// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 						options: [
 							{
-								name: 'رشته',
+								name: 'String',
 								value: 'stringValue',
 							},
 							{
-								name: 'عدد',
+								name: 'Number',
 								value: 'numberValue',
 							},
 							{
-								name: 'بولین',
+								name: 'Boolean',
 								value: 'booleanValue',
 							},
 							{
-								name: 'آرایه',
+								name: 'Array',
 								value: 'arrayValue',
 							},
 							{
-								name: 'شیء',
+								name: 'Object',
 								value: 'objectValue',
 							},
 						],
 						default: 'stringValue',
 					},
 					{
-						displayName: 'مقدار',
+						displayName: 'Value',
 						name: 'stringValue',
 						type: 'string',
 						default: '',
@@ -96,7 +96,7 @@ const properties: INodeProperties[] = [
 						ignoreValidationDuringExecution: true,
 					},
 					{
-						displayName: 'مقدار',
+						displayName: 'Value',
 						name: 'numberValue',
 						type: 'string',
 						default: '',
@@ -109,17 +109,17 @@ const properties: INodeProperties[] = [
 						ignoreValidationDuringExecution: true,
 					},
 					{
-						displayName: 'مقدار',
+						displayName: 'Value',
 						name: 'booleanValue',
 						type: 'options',
 						default: 'true',
 						options: [
 							{
-								name: 'درست',
+								name: 'True',
 								value: 'true',
 							},
 							{
-								name: 'غلط',
+								name: 'False',
 								value: 'false',
 							},
 						],
@@ -132,11 +132,11 @@ const properties: INodeProperties[] = [
 						ignoreValidationDuringExecution: true,
 					},
 					{
-						displayName: 'مقدار',
+						displayName: 'Value',
 						name: 'arrayValue',
 						type: 'string',
 						default: '',
-						placeholder: 'مثلاً [ arrayItem1, arrayItem2, arrayItem3 ]',
+						placeholder: 'e.g. [ arrayItem1, arrayItem2, arrayItem3 ]',
 						displayOptions: {
 							show: {
 								type: ['arrayValue'],
@@ -146,7 +146,7 @@ const properties: INodeProperties[] = [
 						ignoreValidationDuringExecution: true,
 					},
 					{
-						displayName: 'مقدار',
+						displayName: 'Value',
 						name: 'objectValue',
 						type: 'json',
 						default: '={}',
@@ -166,7 +166,7 @@ const properties: INodeProperties[] = [
 		],
 	},
 	{
-		displayName: 'فیلدهای برای تنظیم',
+		displayName: 'Fields to Set',
 		name: 'assignments',
 		type: 'assignmentCollection',
 		displayOptions: {

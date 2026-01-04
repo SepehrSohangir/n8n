@@ -15,10 +15,10 @@ import { addSuffixToEntriesKeys, selectMergeMethod } from '../../helpers/utils';
 export const properties: INodeProperties[] = [
 	numberInputsProperty,
 	{
-		displayName: 'گزینه‌ها',
+		displayName: 'Options',
 		name: 'options',
 		type: 'collection',
-		placeholder: 'افزودن گزینه',
+		placeholder: 'Add option',
 		default: {},
 		options: [
 			{
@@ -26,12 +26,12 @@ export const properties: INodeProperties[] = [
 				default: { values: { resolveClash: 'addSuffix' } },
 			},
 			{
-				displayName: 'شامل هر آیتم جفت نشده',
+				displayName: 'Include Any Unpaired Items',
 				name: 'includeUnpaired',
 				type: 'boolean',
 				default: false,
 				description:
-					'آیا آیتم‌های جفت نشده باید در نتیجه گنجانده شوند زمانی که تعداد متفاوتی از آیتم‌ها در بین ورودی‌ها وجود دارد',
+					'Whether unpaired items should be included in the result when there are differing numbers of items among the inputs',
 			},
 		],
 	},

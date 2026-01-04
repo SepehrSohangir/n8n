@@ -8,12 +8,12 @@ import { SwitchV3 } from './V3/SwitchV3.node';
 export class Switch extends VersionedNodeType {
 	constructor() {
 		const baseDescription: INodeTypeBaseDescription = {
-			displayName: 'سوئیچ',
+			displayName: 'Switch',
 			name: 'switch',
 			icon: 'fa:map-signs',
 			iconColor: 'light-blue',
 			group: ['transform'],
-			description: 'مسیریابی آیتم‌ها بر اساس عبارت یا قوانین تعریف شده',
+			description: 'Route items depending on defined expression or rules',
 			defaultVersion: 3.4,
 		};
 

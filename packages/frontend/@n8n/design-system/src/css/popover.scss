@@ -40,11 +40,3 @@
 		outline-width: 0;
 	}
 }
-
-/* RTL Support */
-html[dir='rtl'] {
-	@include mixins.b(popover) {
-		text-align: right;
-		direction: rtl;
-	}
-}

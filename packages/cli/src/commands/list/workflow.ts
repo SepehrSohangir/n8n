@@ -17,7 +17,7 @@ const flagsSchema = z.object({
 	name: 'list:workflow',
 	description: 'List workflows',
 	examples: ['', '--active=true --onlyId', '--active=false'],
-	flagsSchema: flagsSchema as any,
+	flagsSchema,
 })
 export class ListWorkflowCommand extends BaseCommand<z.infer<typeof flagsSchema>> {
 	async run() {

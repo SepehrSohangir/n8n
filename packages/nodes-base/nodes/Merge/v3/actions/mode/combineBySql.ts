@@ -71,13 +71,13 @@ type OperationOptions = {
 export const properties: INodeProperties[] = [
 	numberInputsProperty,
 	{
-		displayName: 'پرس‌وجو',
+		displayName: 'Query',
 		name: 'query',
 		type: 'string',
 		default: 'SELECT * FROM input1 LEFT JOIN input2 ON input1.name = input2.id',
 		noDataExpression: true,
-		description: 'داده ورودی به عنوان جداول با شماره مربوطه در دسترس است، مثلاً input1، input2',
-		hint: 'پشتیبانی از <a href="https://github.com/alasql/alasql/wiki/Supported-SQL-statements" target="_blank">اکثر</a> زبان SQL-99',
+		description: 'Input data available as tables with corresponding number, e.g. input1, input2',
+		hint: 'Supports <a href="https://github.com/alasql/alasql/wiki/Supported-SQL-statements" target="_blank">most</a> of the SQL-99 language',
 		required: true,
 		typeOptions: {
 			rows: 5,
@@ -85,24 +85,24 @@ export const properties: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'گزینه‌ها',
+		displayName: 'Options',
 		name: 'options',
 		type: 'collection',
-		placeholder: 'افزودن گزینه',
+		placeholder: 'Add option',
 		default: {},
 		options: [
 			{
-				displayName: 'نتیجه پرس‌وجوی خالی',
+				displayName: 'Empty Query Result',
 				name: 'emptyQueryResult',
 				type: 'options',
-				description: 'چه چیزی برگردانده شود اگر پرس‌وجو با موفقیت اجرا شد اما هیچ نتیجه‌ای برنگرداند',
+				description: 'What to return if the query executed successfully but returned no results',
 				options: [
 					{
-						name: 'موفقیت',
+						name: 'Success',
 						value: 'success',
 					},
 					{
-						name: 'نتیجه خالی',
+						name: 'Empty Result',
 						value: 'empty',
 					},
 				],

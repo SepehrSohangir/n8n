@@ -51,7 +51,7 @@ describe('CommandRegistry', () => {
 				flag1: z.string().describe('Flag one description').optional(),
 				flag2: z.boolean().describe('Flag two description').optional(),
 				shortFlag: z.number().alias('s').describe('Short flag with alias').optional(),
-			}) as any,
+			}),
 		});
 
 		Container.set(TestCommand, new TestCommand());

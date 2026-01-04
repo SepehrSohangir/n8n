@@ -22,72 +22,72 @@ export class MergeV1 implements INodeType {
 			...baseDescription,
 			version: 1,
 			defaults: {
-				name: 'ادغام',
+				name: 'Merge',
 				color: '#00bbcc',
 			},
 
 			inputs: [NodeConnectionTypes.Main, NodeConnectionTypes.Main],
 			outputs: [NodeConnectionTypes.Main],
-			inputNames: ['ورودی ۱', 'ورودی ۲'],
+			inputNames: ['Input 1', 'Input 2'],
 			properties: [
 				oldVersionNotice,
 				{
-					displayName: 'حالت',
+					displayName: 'Mode',
 					name: 'mode',
 					type: 'options',
 					options: [
 						{
-							name: 'افزودن',
+							name: 'Append',
 							value: 'append',
 							description:
-								'ترکیب داده‌های هر دو ورودی. خروجی شامل آیتم‌های ورودی ۱ و ورودی ۲ خواهد بود.',
+								'Combines data of both inputs. The output will contain items of input 1 and input 2.',
 						},
 						{
-							name: 'نگه‌داشتن تطابق‌های کلیدی',
+							name: 'Keep Key Matches',
 							value: 'keepKeyMatches',
-							description: 'داده ورودی ۱ را نگه می‌دارد اگر با داده ورودی ۲ تطابق پیدا کند',
+							description: 'Keeps data of input 1 if it does find a match with data of input 2',
 						},
 						{
-							name: 'ادغام بر اساس ایندکس',
+							name: 'Merge By Index',
 							value: 'mergeByIndex',
 							description:
-								'ادغام داده‌های هر دو ورودی. خروجی شامل آیتم‌های ورودی ۱ ادغام شده با داده ورودی ۲ خواهد بود. ادغام بر اساس ایندکس آیتم‌ها انجام می‌شود. بنابراین اولین آیتم ورودی ۱ با اولین آیتم ورودی ۲ ادغام می‌شود و به همین ترتیب.',
+								'Merges data of both inputs. The output will contain items of input 1 merged with data of input 2. Merge happens depending on the index of the items. So first item of input 1 will be merged with first item of input 2 and so on.',
 						},
 						{
-							name: 'ادغام بر اساس کلید',
+							name: 'Merge By Key',
 							value: 'mergeByKey',
 							description:
-								'ادغام داده‌های هر دو ورودی. خروجی شامل آیتم‌های ورودی ۱ ادغام شده با داده ورودی ۲ خواهد بود. ادغام بر اساس یک کلید تعریف شده انجام می‌شود.',
+								'Merges data of both inputs. The output will contain items of input 1 merged with data of input 2. Merge happens depending on a defined key.',
 						},
 						{
-							name: 'چندگانه',
+							name: 'Multiplex',
 							value: 'multiplex',
 							description:
-								'هر مقدار از یک ورودی را با هر مقدار از ورودی دیگر ادغام می‌کند. خروجی شامل (m * n) آیتم خواهد بود که (m) و (n) طول ورودی‌ها هستند.',
+								'Merges each value of one input with each value of the other input. The output will contain (m * n) items where (m) and (n) are lengths of the inputs.',
 						},
 						{
-							name: 'عبور',
+							name: 'Pass-Through',
 							value: 'passThrough',
 							description:
-								'داده یک ورودی را عبور می‌دهد. خروجی فقط شامل آیتم‌های ورودی تعریف شده خواهد بود.',
+								'Passes through data of one input. The output will contain only items of the defined input.',
 						},
 						{
-							name: 'حذف تطابق‌های کلیدی',
+							name: 'Remove Key Matches',
 							value: 'removeKeyMatches',
-							description: 'داده ورودی ۱ را نگه می‌دارد اگر با داده ورودی ۲ تطابق پیدا نکند',
+							description: 'Keeps data of input 1 if it does NOT find match with data of input 2',
 						},
 						{
-							name: 'انتظار',
+							name: 'Wait',
 							value: 'wait',
 							description:
-								'تا زمانی که داده هر دو ورودی در دسترس باشد منتظر می‌ماند و سپس یک آیتم خالی خروجی می‌دهد. نودهای منبع باید به هر دو ورودی ۱ و ۲ متصل شوند. این نود فقط از ۲ منبع پشتیبانی می‌کند، اگر به منابع بیشتری نیاز دارید، چندین نود ادغام را به صورت سری وصل کنید. این نود هیچ داده‌ای خروجی نمی‌دهد.',
+								'Waits till data of both inputs is available and will then output a single empty item. Source Nodes must connect to both Input 1 and 2. This node only supports 2 Sources, if you need more Sources, connect multiple Merge nodes in series. This node will not output any data.',
 						},
 					],
 					default: 'append',
-					description: 'نحوه ادغام داده شاخه‌ها',
+					description: 'How data of branches should be merged',
 				},
 				{
-					displayName: 'اتصال',
+					displayName: 'Join',
 					name: 'join',
 					type: 'options',
 					displayOptions: {
@@ -97,57 +97,58 @@ export class MergeV1 implements INodeType {
 					},
 					options: [
 						{
-							name: 'اتصال داخلی',
+							name: 'Inner Join',
 							value: 'inner',
 							description:
-								'به اندازه هر دو ورودی ادغام می‌کند. (مثال: ورودی۱ = ۵ آیتم، ورودی۲ = ۳ آیتم | خروجی شامل ۳ آیتم خواهد بود).',
+								'Merges as many items as both inputs contain. (Example: Input1 = 5 items, Input2 = 3 items | Output will contain 3 items).',
 						},
 						{
-							name: 'اتصال چپ',
+							name: 'Left Join',
 							value: 'left',
 							description:
-								'به اندازه ورودی اول ادغام می‌کند. (مثال: ورودی۱ = ۳ آیتم، ورودی۲ = ۵ آیتم | خروجی شامل ۳ آیتم خواهد بود).',
+								'Merges as many items as first input contains. (Example: Input1 = 3 items, Input2 = 5 items | Output will contain 3 items).',
 						},
 						{
-							name: 'اتصال خارجی',
+							name: 'Outer Join',
 							value: 'outer',
 							description:
-								'به اندازه ورودی با بیشترین آیتم ادغام می‌کند. (مثال: ورودی۱ = ۳ آیتم، ورودی۲ = ۵ آیتم | خروجی شامل ۵ آیتم خواهد بود).',
+								'Merges as many items as input contains with most items. (Example: Input1 = 3 items, Input2 = 5 items | Output will contain 5 items).',
 						},
 					],
 					default: 'left',
-					description: 'خروجی چند آیتم خواهد داشت اگر ورودی‌ها تعداد متفاوتی از آیتم‌ها داشته باشند',
+					description:
+						'How many items the output will contain if inputs contain different amount of items',
 				},
 				{
-					displayName: 'ویژگی ورودی ۱',
+					displayName: 'Property Input 1',
 					name: 'propertyName1',
 					type: 'string',
 					default: '',
-					hint: 'نام فیلد به صورت متن (مثال: "id")',
+					hint: 'The name of the field as text (e.g. “id”)',
 					required: true,
 					displayOptions: {
 						show: {
 							mode: ['keepKeyMatches', 'mergeByKey', 'removeKeyMatches'],
 						},
 					},
-					description: 'نام ویژگی که تعیین می‌کند کدام آیتم‌های ورودی ۱ ادغام شوند',
+					description: 'Name of property which decides which items to merge of input 1',
 				},
 				{
-					displayName: 'ویژگی ورودی ۲',
+					displayName: 'Property Input 2',
 					name: 'propertyName2',
 					type: 'string',
 					default: '',
-					hint: 'نام فیلد به صورت متن (مثال: "id")',
+					hint: 'The name of the field as text (e.g. “id”)',
 					required: true,
 					displayOptions: {
 						show: {
 							mode: ['keepKeyMatches', 'mergeByKey', 'removeKeyMatches'],
 						},
 					},
-					description: 'نام ویژگی که تعیین می‌کند کدام آیتم‌های ورودی ۲ ادغام شوند',
+					description: 'Name of property which decides which items to merge of input 2',
 				},
 				{
-					displayName: 'داده خروجی',
+					displayName: 'Output Data',
 					name: 'output',
 					type: 'options',
 					displayOptions: {
@@ -157,19 +158,19 @@ export class MergeV1 implements INodeType {
 					},
 					options: [
 						{
-							name: 'ورودی ۱',
+							name: 'Input 1',
 							value: 'input1',
 						},
 						{
-							name: 'ورودی ۲',
+							name: 'Input 2',
 							value: 'input2',
 						},
 					],
 					default: 'input1',
-					description: 'تعیین می‌کند داده کدام ورودی به عنوان خروجی نود استفاده شود',
+					description: 'Defines of which input the data should be used as output of node',
 				},
 				{
-					displayName: 'بازنویسی',
+					displayName: 'Overwrite',
 					name: 'overwrite',
 					type: 'options',
 					displayOptions: {
@@ -179,23 +180,23 @@ export class MergeV1 implements INodeType {
 					},
 					options: [
 						{
-							name: 'همیشه',
+							name: 'Always',
 							value: 'always',
-							description: 'همیشه همه چیز را بازنویسی می‌کند',
+							description: 'Always overwrites everything',
 						},
 						{
-							name: 'اگر خالی باشد',
+							name: 'If Blank',
 							value: 'blank',
-							description: 'فقط مقادیر "null"، "undefined" یا رشته خالی را بازنویسی می‌کند',
+							description: 'Overwrites only values of "null", "undefined" or empty string',
 						},
 						{
-							name: 'اگر وجود نداشته باشد',
+							name: 'If Missing',
 							value: 'undefined',
-							description: 'فقط مقادیری را اضافه می‌کند که هنوز وجود ندارند',
+							description: 'Only adds values which do not exist yet',
 						},
 					],
 					default: 'always',
-					description: 'انتخاب زمان بازنویسی مقادیر از ورودی ۱ با مقادیر از ورودی ۲',
+					description: 'Select when to overwrite the values from Input1 with values from Input 2',
 				},
 			],
 		};

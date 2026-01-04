@@ -5,14 +5,3 @@
 .float-right {
 	float: right !important;
 }
-
-/* RTL Support */
-html[dir='rtl'] {
-	.float-left {
-		float: right !important;
-	}
-
-	.float-right {
-		float: left !important;
-	}
-}

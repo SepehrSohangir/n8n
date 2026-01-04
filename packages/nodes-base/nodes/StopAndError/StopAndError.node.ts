@@ -15,15 +15,15 @@ const errorObjectPlaceholder = `{
 
 export class StopAndError implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'توقف و خطا',
+		displayName: 'Stop and Error',
 		name: 'stopAndError',
 		icon: 'fa:exclamation-triangle',
 		iconColor: 'red',
 		group: ['input'],
 		version: 1,
-		description: 'پرتاب خطا در گردش کار',
+		description: 'Throw an error in the workflow',
 		defaults: {
-			name: 'توقف و خطا',
+			name: 'Stop and Error',
 			color: '#ff0000',
 		},
 		inputs: [NodeConnectionTypes.Main],
@@ -31,27 +31,27 @@ export class StopAndError implements INodeType {
 		outputs: [],
 		properties: [
 			{
-				displayName: 'نوع خطا',
+				displayName: 'Error Type',
 				name: 'errorType',
 				type: 'options',
 				options: [
 					{
-						name: 'پیام خطا',
+						name: 'Error Message',
 						value: 'errorMessage',
 					},
 					{
-						name: 'شیء خطا',
+						name: 'Error Object',
 						value: 'errorObject',
 					},
 				],
 				default: 'errorMessage',
-				description: 'نوع خطایی که پرتاب می‌شود',
+				description: 'Type of error to throw',
 			},
 			{
-				displayName: 'پیام خطا',
+				displayName: 'Error Message',
 				name: 'errorMessage',
 				type: 'string',
-				placeholder: 'خطایی رخ داد!',
+				placeholder: 'An error occurred!',
 				default: '',
 				required: true,
 				displayOptions: {
@@ -61,10 +61,10 @@ export class StopAndError implements INodeType {
 				},
 			},
 			{
-				displayName: 'شیء خطا',
+				displayName: 'Error Object',
 				name: 'errorObject',
 				type: 'json',
-				description: 'شیء حاوی ویژگی‌های خطا',
+				description: 'Object containing error properties',
 				default: '',
 				typeOptions: {
 					alwaysOpenEditWindow: true,

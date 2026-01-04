@@ -6,12 +6,12 @@ import { RemoveDuplicatesV2 } from './v2/RemoveDuplicatesV2.node';
 export class RemoveDuplicates extends VersionedNodeType {
 	constructor() {
 		const baseDescription: INodeTypeBaseDescription = {
-			displayName: 'حذف موارد تکراری',
+			displayName: 'Remove Duplicates',
 			name: 'removeDuplicates',
 			icon: 'file:removeDuplicates.svg',
 			group: ['transform'],
 			defaultVersion: 2,
-			description: 'حذف آیتم‌ها با مقادیر فیلد یکسان',
+			description: 'Delete items with matching field values',
 		};
 
 		const nodeVersions: IVersionedNodeType['nodeVersions'] = {

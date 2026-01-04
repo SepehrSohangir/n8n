@@ -18,43 +18,43 @@ import { prepareFieldsArray } from '../utils/utils';
 
 export class Aggregate implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'تجمیع',
+		displayName: 'Aggregate',
 		name: 'aggregate',
 		icon: 'file:aggregate.svg',
 		group: ['transform'],
 		subtitle: '',
 		version: 1,
-		description: 'ترکیب یک فیلد از چندین آیتم در یک لیست در یک آیتم واحد',
+		description: 'Combine a field from many items into a list in a single item',
 		defaults: {
-			name: 'تجمیع',
+			name: 'Aggregate',
 		},
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
 		properties: [
 			{
-				displayName: 'تجمیع',
+				displayName: 'Aggregate',
 				name: 'aggregate',
 				type: 'options',
 				default: 'aggregateIndividualFields',
 				options: [
 					{
-						name: 'فیلدهای جداگانه',
+						name: 'Individual Fields',
 						value: 'aggregateIndividualFields',
 					},
 					{
-						name: 'همه داده‌های آیتم (در یک لیست واحد)',
+						name: 'All Item Data (Into a Single List)',
 						value: 'aggregateAllItemData',
 					},
 				],
 			},
 			{
-				displayName: 'فیلدهای برای تجمیع',
+				displayName: 'Fields To Aggregate',
 				name: 'fieldsToAggregate',
 				type: 'fixedCollection',
 				typeOptions: {
 					multipleValues: true,
 				},
-				placeholder: 'افزودن فیلد برای تجمیع',
+				placeholder: 'Add Field To Aggregate',
 				default: { fieldToAggregate: [{ fieldToAggregate: '', renameField: false }] },
 				displayOptions: {
 					show: {
@@ -67,25 +67,25 @@ export class Aggregate implements INodeType {
 						name: 'fieldToAggregate',
 						values: [
 							{
-								displayName: 'نام فیلد ورودی',
+								displayName: 'Input Field Name',
 								name: 'fieldToAggregate',
 								type: 'string',
 								default: '',
-								description: 'نام فیلدی در آیتم‌های ورودی برای تجمیع با هم',
+								description: 'The name of a field in the input items to aggregate together',
 								// eslint-disable-next-line n8n-nodes-base/node-param-placeholder-miscased-id
-								placeholder: 'مثلاً id',
-								hint: 'نام فیلد را به صورت متن وارد کنید',
+								placeholder: 'e.g. id',
+								hint: ' Enter the field name as text',
 								requiresDataPath: 'single',
 							},
 							{
-								displayName: 'تغییر نام فیلد',
+								displayName: 'Rename Field',
 								name: 'renameField',
 								type: 'boolean',
 								default: false,
-								description: 'آیا فیلد در خروجی نام متفاوتی داشته باشد',
+								description: 'Whether to give the field a different name in the output',
 							},
 							{
-								displayName: 'نام فیلد خروجی',
+								displayName: 'Output Field Name',
 								name: 'outputFieldName',
 								displayOptions: {
 									show: {
@@ -95,7 +95,7 @@ export class Aggregate implements INodeType {
 								type: 'string',
 								default: '',
 								description:
-									'نام فیلدی که داده‌های تجمیع شده در آن قرار می‌گیرد. برای استفاده از نام فیلد ورودی، خالی بگذارید.',
+									'The name of the field to put the aggregated data in. Leave blank to use the input field name.',
 								requiresDataPath: 'single',
 							},
 						],
@@ -103,7 +103,7 @@ export class Aggregate implements INodeType {
 				],
 			},
 			{
-				displayName: 'قرار دادن خروجی در فیلد',
+				displayName: 'Put Output in Field',
 				name: 'destinationFieldName',
 				type: 'string',
 				displayOptions: {
@@ -112,24 +112,24 @@ export class Aggregate implements INodeType {
 					},
 				},
 				default: 'data',
-				description: 'نام فیلد خروجی برای قرار دادن داده‌ها',
+				description: 'The name of the output field to put the data in',
 			},
 			{
-				displayName: 'شامل',
+				displayName: 'Include',
 				name: 'include',
 				type: 'options',
 				default: 'allFields',
 				options: [
 					{
-						name: 'همه فیلدها',
+						name: 'All Fields',
 						value: 'allFields',
 					},
 					{
-						name: 'فیلدهای مشخص شده',
+						name: 'Specified Fields',
 						value: 'specifiedFields',
 					},
 					{
-						name: 'همه فیلدها به جز',
+						name: 'All Fields Except',
 						value: 'allFieldsExcept',
 					},
 				],
@@ -140,10 +140,10 @@ export class Aggregate implements INodeType {
 				},
 			},
 			{
-				displayName: 'فیلدهای برای حذف',
+				displayName: 'Fields To Exclude',
 				name: 'fieldsToExclude',
 				type: 'string',
-				placeholder: 'مثلاً ایمیل، نام',
+				placeholder: 'e.g. email, name',
 				default: '',
 				requiresDataPath: 'multiple',
 				displayOptions: {
@@ -154,10 +154,10 @@ export class Aggregate implements INodeType {
 				},
 			},
 			{
-				displayName: 'فیلدهای برای شامل کردن',
+				displayName: 'Fields To Include',
 				name: 'fieldsToInclude',
 				type: 'string',
-				placeholder: 'مثلاً ایمیل، نام',
+				placeholder: 'e.g. email, name',
 				default: '',
 				requiresDataPath: 'multiple',
 				displayOptions: {
@@ -168,19 +168,19 @@ export class Aggregate implements INodeType {
 				},
 			},
 			{
-				displayName: 'گزینه‌ها',
+				displayName: 'Options',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'افزودن فیلد',
+				placeholder: 'Add Field',
 				default: {},
 				options: [
 					{
-						displayName: 'غیرفعال کردن نماد نقطه',
+						displayName: 'Disable Dot Notation',
 						name: 'disableDotNotation',
 						type: 'boolean',
 						default: false,
 						description:
-							'آیا ارجاع به فیلدهای فرزند با استفاده از `parent.child` در نام فیلد مجاز نباشد',
+							'Whether to disallow referencing child fields using `parent.child` in the field name',
 						displayOptions: {
 							hide: {
 								'/aggregate': ['aggregateAllItemData'],
@@ -188,12 +188,12 @@ export class Aggregate implements INodeType {
 						},
 					},
 					{
-						displayName: 'ادغام لیست‌ها',
+						displayName: 'Merge Lists',
 						name: 'mergeLists',
 						type: 'boolean',
 						default: false,
 						description:
-							'آیا خروجی در یک لیست تخت واحد ادغام شود (به جای لیست لیست‌ها)، اگر فیلد برای تجمیع یک لیست باشد',
+							'Whether to merge the output into a single flat list (rather than a list of lists), if the field to aggregate is a list',
 						displayOptions: {
 							hide: {
 								'/aggregate': ['aggregateAllItemData'],
@@ -201,19 +201,19 @@ export class Aggregate implements INodeType {
 						},
 					},
 					{
-						displayName: 'شامل باینری‌ها',
+						displayName: 'Include Binaries',
 						name: 'includeBinaries',
 						type: 'boolean',
 						default: false,
-						description: 'آیا داده‌های باینری در آیتم جدید گنجانده شوند',
+						description: 'Whether to include the binary data in the new item',
 					},
 					{
-						displayName: 'فقط باینری‌های منحصر به فرد را نگه دارید',
+						displayName: 'Keep Only Unique Binaries',
 						name: 'keepOnlyUnique',
 						type: 'boolean',
 						default: false,
 						description:
-							'آیا فقط باینری‌های منحصر به فرد با مقایسه انواع MIME، انواع فایل، اندازه‌های فایل و پسوندهای فایل حفظ شوند',
+							'Whether to keep only unique binaries by comparing mime types, file types, file sizes and file extensions',
 						displayOptions: {
 							show: {
 								includeBinaries: [true],
@@ -221,12 +221,12 @@ export class Aggregate implements INodeType {
 						},
 					},
 					{
-						displayName: 'حفظ مقادیر گمشده و تهی',
+						displayName: 'Keep Missing And Null Values',
 						name: 'keepMissing',
 						type: 'boolean',
 						default: false,
 						description:
-							'آیا یک ورودی تهی به لیست تجمیع شده اضافه شود زمانی که یک مقدار گمشده یا تهی وجود دارد',
+							'Whether to add a null entry to the aggregated list when there is a missing or null value',
 						displayOptions: {
 							hide: {
 								'/aggregate': ['aggregateAllItemData'],

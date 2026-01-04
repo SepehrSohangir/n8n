@@ -15,89 +15,89 @@ import { getCurrentWorkflowInputData } from '../../../utils/workflowInputsResour
 
 export class ExecuteWorkflow implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'اجرای زیر-گردش کار',
+		displayName: 'Execute Sub-workflow',
 		name: 'executeWorkflow',
 		icon: 'fa:sign-in-alt',
 		iconColor: 'orange-red',
 		group: ['transform'],
 		version: [1, 1.1, 1.2, 1.3],
-		subtitle: '={{"گردش کار: " + $parameter["workflowId"]}}',
-		description: 'اجرای گردش کار دیگر',
+		subtitle: '={{"Workflow: " + $parameter["workflowId"]}}',
+		description: 'Execute another workflow',
 		defaults: {
-			name: 'اجرای گردش کار',
+			name: 'Execute Workflow',
 			color: '#ff6d5a',
 		},
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
 		properties: [
 			{
-				displayName: 'عملیات',
+				displayName: 'Operation',
 				name: 'operation',
 				type: 'hidden',
 				noDataExpression: true,
 				default: 'call_workflow',
 				options: [
 					{
-						name: 'اجرای یک زیر-گردش کار',
+						name: 'Execute a Sub-Workflow',
 						value: 'call_workflow',
 					},
 				],
 			},
 			{
-				displayName: 'این نود منسوخ شده است. لطفاً با حذف آن و افزودن یک نود جدید آن را ارتقا دهید',
+				displayName: 'This node is out of date. Please upgrade by removing it and adding a new one',
 				name: 'outdatedVersionWarning',
 				type: 'notice',
 				displayOptions: { show: { '@version': [{ _cnd: { lte: 1.1 } }] } },
 				default: '',
 			},
 			{
-				displayName: 'منبع',
+				displayName: 'Source',
 				name: 'source',
 				type: 'options',
 				options: [
 					{
-						name: 'پایگاه داده',
+						name: 'Database',
 						value: 'database',
-						description: 'بارگذاری گردش کار از پایگاه داده با شناسه',
+						description: 'Load the workflow from the database by ID',
 					},
 					{
-						name: 'فایل محلی',
+						name: 'Local File',
 						value: 'localFile',
-						description: 'بارگذاری گردش کار از یک فایل ذخیره شده محلی',
+						description: 'Load the workflow from a locally saved file',
 					},
 					{
-						name: 'پارامتر',
+						name: 'Parameter',
 						value: 'parameter',
-						description: 'بارگذاری گردش کار از یک پارامتر',
+						description: 'Load the workflow from a parameter',
 					},
 					{
 						name: 'URL',
 						value: 'url',
-						description: 'بارگذاری گردش کار از یک URL',
+						description: 'Load the workflow from an URL',
 					},
 				],
 				default: 'database',
-				description: 'از کجا گردش کار برای اجرا دریافت شود',
+				description: 'Where to get the workflow to execute from',
 				displayOptions: { show: { '@version': [{ _cnd: { lte: 1.1 } }] } },
 			},
 			{
-				displayName: 'منبع',
+				displayName: 'Source',
 				name: 'source',
 				type: 'options',
 				options: [
 					{
-						name: 'پایگاه داده',
+						name: 'Database',
 						value: 'database',
-						description: 'بارگذاری گردش کار از پایگاه داده با شناسه',
+						description: 'Load the workflow from the database by ID',
 					},
 					{
-						name: 'تعریف در زیر',
+						name: 'Define Below',
 						value: 'parameter',
-						description: 'ارسال کد JSON یک گردش کار',
+						description: 'Pass the JSON code of a workflow',
 					},
 				],
 				default: 'database',
-				description: 'از کجا گردش کار برای اجرا دریافت شود',
+				description: 'Where to get the workflow to execute from',
 				displayOptions: { show: { '@version': [{ _cnd: { gte: 1.2 } }] } },
 			},
 
@@ -105,7 +105,7 @@ export class ExecuteWorkflow implements INodeType {
 			//         source:database
 			// ----------------------------------
 			{
-				displayName: 'شناسه گردش کار',
+				displayName: 'Workflow ID',
 				name: 'workflowId',
 				type: 'string',
 				displayOptions: {
@@ -116,12 +116,12 @@ export class ExecuteWorkflow implements INodeType {
 				},
 				default: '',
 				required: true,
-				hint: 'می‌تواند در URL گردش کار یافت شود',
+				hint: 'Can be found in the URL of the workflow',
 				description:
-					'توجه در استفاده از عبارت: اگر این نود برای اجرای یک بار با تمام آیتم‌ها تنظیم شده باشد، همه به <em>همان</em> گردش کار ارسال می‌شوند. شناسه آن گردش کار با ارزیابی عبارت برای <strong>اولین آیتم ورودی</strong> محاسبه می‌شود.',
+					"Note on using an expression here: if this node is set to run once with all items, they will all be sent to the <em>same</em> workflow. That workflow's ID will be calculated by evaluating the expression for the <strong>first input item</strong>.",
 			},
 			{
-				displayName: 'گردش کار',
+				displayName: 'Workflow',
 				name: 'workflowId',
 				type: 'workflowSelector',
 				displayOptions: {
@@ -137,7 +137,7 @@ export class ExecuteWorkflow implements INodeType {
 			//         source:localFile
 			// ----------------------------------
 			{
-				displayName: 'مسیر گردش کار',
+				displayName: 'Workflow Path',
 				name: 'workflowPath',
 				type: 'string',
 				displayOptions: {
@@ -148,14 +148,14 @@ export class ExecuteWorkflow implements INodeType {
 				default: '',
 				placeholder: '/data/workflow.json',
 				required: true,
-				description: 'مسیر فایل JSON گردش کار محلی برای اجرا',
+				description: 'The path to local JSON workflow file to execute',
 			},
 
 			// ----------------------------------
 			//         source:parameter
 			// ----------------------------------
 			{
-				displayName: 'JSON گردش کار',
+				displayName: 'Workflow JSON',
 				name: 'workflowJson',
 				type: 'json',
 				typeOptions: {
@@ -168,14 +168,14 @@ export class ExecuteWorkflow implements INodeType {
 				},
 				default: '\n\n\n',
 				required: true,
-				description: 'کد JSON گردش کار برای اجرا',
+				description: 'The workflow JSON code to execute',
 			},
 
 			// ----------------------------------
 			//         source:url
 			// ----------------------------------
 			{
-				displayName: 'URL گردش کار',
+				displayName: 'Workflow URL',
 				name: 'workflowUrl',
 				type: 'string',
 				displayOptions: {
@@ -186,18 +186,18 @@ export class ExecuteWorkflow implements INodeType {
 				default: '',
 				placeholder: 'https://example.com/workflow.json',
 				required: true,
-				description: 'URL که از آن گردش کار بارگذاری می‌شود',
+				description: 'The URL from which to load the workflow from',
 			},
 			{
 				displayName:
-					'هر داده‌ای که به این نود ارسال کنید توسط تریگر اجرای گردش کار خروجی داده می‌شود. <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.executeworkflow/" target="_blank">اطلاعات بیشتر</a>',
+					'Any data you pass into this node will be output by the Execute Workflow Trigger. <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.executeworkflow/" target="_blank">More info</a>',
 				name: 'executeWorkflowNotice',
 				type: 'notice',
 				default: '',
 				displayOptions: { show: { '@version': [{ _cnd: { lte: 1.1 } }] } },
 			},
 			{
-				displayName: 'ورودی‌های گردش کار',
+				displayName: 'Workflow Inputs',
 				name: 'workflowInputs',
 				type: 'resourceMapper',
 				noDataExpression: true,
@@ -210,11 +210,11 @@ export class ExecuteWorkflow implements INodeType {
 					loadOptionsDependsOn: ['workflowId.value'],
 					resourceMapper: {
 						localResourceMapperMethod: 'loadSubWorkflowInputs',
-						valuesLabel: 'ورودی‌های گردش کار',
+						valuesLabel: 'Workflow Inputs',
 						mode: 'map',
 						fieldWords: {
-							singular: 'ورودی',
-							plural: 'ورودی‌ها',
+							singular: 'input',
+							plural: 'inputs',
 						},
 						addAllFields: true,
 						multiKeyMatch: false,
@@ -233,40 +233,40 @@ export class ExecuteWorkflow implements INodeType {
 				},
 			},
 			{
-				displayName: 'حالت',
+				displayName: 'Mode',
 				name: 'mode',
 				type: 'options',
 				noDataExpression: true,
 				options: [
 					{
 						// eslint-disable-next-line n8n-nodes-base/node-param-display-name-miscased
-						name: 'اجرای یک بار با تمام آیتم‌ها',
+						name: 'Run once with all items',
 						value: 'once',
-						description: 'ارسال تمام آیتم‌ها به یک اجرای زیر-گردش کار',
+						description: 'Pass all items into a single execution of the sub-workflow',
 					},
 					{
 						// eslint-disable-next-line n8n-nodes-base/node-param-display-name-miscased
-						name: 'اجرای یک بار برای هر آیتم',
+						name: 'Run once for each item',
 						value: 'each',
-						description: 'فراخوانی زیر-گردش کار به صورت جداگانه برای هر آیتم',
+						description: 'Call the sub-workflow individually for each item',
 					},
 				],
 				default: 'once',
 			},
 			{
-				displayName: 'گزینه‌ها',
+				displayName: 'Options',
 				name: 'options',
 				type: 'collection',
 				default: {},
-				placeholder: 'افزودن گزینه',
+				placeholder: 'Add option',
 				options: [
 					{
-						displayName: 'انتظار برای تکمیل زیر-گردش کار',
+						displayName: 'Wait For Sub-Workflow Completion',
 						name: 'waitForSubWorkflow',
 						type: 'boolean',
 						default: true,
 						description:
-							'آیا گردش کار اصلی باید برای تکمیل اجرای زیر-گردش کار منتظر بماند قبل از ادامه',
+							'Whether the main workflow should wait for the sub-workflow to complete its execution before proceeding',
 					},
 				],
 			},
@@ -275,7 +275,7 @@ export class ExecuteWorkflow implements INodeType {
 			{
 				type: 'info',
 				message:
-					'توجه در استفاده از عبارت برای شناسه گردش کار: از آنجایی که این نود برای اجرای یک بار با تمام آیتم‌ها تنظیم شده است، همه به <em>همان</em> گردش کار ارسال می‌شوند. شناسه آن گردش کار با ارزیابی عبارت برای <strong>اولین آیتم ورودی</strong> محاسبه می‌شود.',
+					"Note on using an expression for workflow ID: Since this node is set to run once with all items, they will all be sent to the <em>same</em> workflow. That workflow's ID will be calculated by evaluating the expression for the <strong>first input item</strong>.",
 				displayCondition:
 					'={{ $rawParameter.workflowId.startsWith("=") && $parameter.mode === "once" && $nodeVersion >= 1.2 }}',
 				whenToDisplay: 'always',

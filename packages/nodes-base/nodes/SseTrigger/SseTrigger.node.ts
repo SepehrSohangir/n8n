@@ -10,29 +10,29 @@ import { NodeConnectionTypes, jsonParse } from 'n8n-workflow';
 
 export class SseTrigger implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'تریگر SSE',
+		displayName: 'SSE Trigger',
 		name: 'sseTrigger',
 		icon: 'fa:cloud-download-alt',
 		iconColor: 'dark-blue',
 		group: ['trigger'],
 		version: 1,
-		description: 'گردش کار را زمانی که رویدادهای ارسال شده از سرور رخ می‌دهند تریگر می‌کند',
+		description: 'Triggers the workflow when Server-Sent Events occur',
 		eventTriggerDescription: '',
-		activationMessage: 'اکنون می‌توانید به URL SSE خود فراخوانی کنید تا اجراها را تریگر کنید.',
+		activationMessage: 'You can now make calls to your SSE URL to trigger executions.',
 		defaults: {
-			name: 'تریگر SSE',
+			name: 'SSE Trigger',
 			color: '#225577',
 		},
 		triggerPanel: {
 			header: '',
 			executionsHelp: {
 				inactive:
-					"<b>در حین ساخت گردش کار خود</b>، روی دکمه 'اجرای مرحله' کلیک کنید، سپس یک رویداد SSE را تریگر کنید. این یک اجرا را تریگر می‌کند که در این ویرایشگر نمایش داده خواهد شد.<br /> <br /><b>پس از رضایت از گردش کار خود</b>، آن را منتشر کنید. سپس هر بار که تغییری تشخیص داده شود، گردش کار اجرا خواهد شد. این اجراها در <a data-key='executions'>فهرست اجراها</a> نمایش داده می‌شوند، اما در ویرایشگر نمایش داده نمی‌شوند.",
+					"<b>While building your workflow</b>, click the 'execute step' button, then trigger an SSE event. This will trigger an execution, which will show up in this editor.<br /> <br /><b>Once you're happy with your workflow</b>, publish it. Then every time a change is detected, the workflow will execute. These executions will show up in the <a data-key='executions'>executions list</a>, but not in the editor.",
 				active:
-					"<b>در حین ساخت گردش کار خود</b>، روی دکمه 'اجرای مرحله' کلیک کنید، سپس یک رویداد SSE را تریگر کنید. این یک اجرا را تریگر می‌کند که در این ویرایشگر نمایش داده خواهد شد.<br /> <br /><b>گردش کار شما همچنین به طور خودکار اجرا خواهد شد</b>، زیرا فعال شده است. هر بار که تغییری تشخیص داده شود، این نود یک اجرا را تریگر می‌کند. این اجراها در <a data-key='executions'>فهرست اجراها</a> نمایش داده می‌شوند، اما در ویرایشگر نمایش داده نمی‌شوند.",
+					"<b>While building your workflow</b>, click the 'execute step' button, then trigger an SSE event. This will trigger an execution, which will show up in this editor.<br /> <br /><b>Your workflow will also execute automatically</b>, since it's activated. Every time a change is detected, this node will trigger an execution. These executions will show up in the <a data-key='executions'>executions list</a>, but not in the editor.",
 			},
 			activationHint:
-				'پس از اتمام ساخت گردش کار خود، آن را منتشر کنید تا به طور مداوم گوش دهد (فقط آن اجراها را در اینجا نخواهید دید).',
+				'Once you’ve finished building your workflow, publish it to have it also listen continuously (you just won’t see those executions here).',
 		},
 		inputs: [],
 		outputs: [NodeConnectionTypes.Main],
@@ -43,7 +43,7 @@ export class SseTrigger implements INodeType {
 				type: 'string',
 				default: '',
 				placeholder: 'http://example.com',
-				description: 'URL برای دریافت SSE از آن',
+				description: 'The URL to receive the SSE from',
 				required: true,
 			},
 		],
@@ -56,7 +56,7 @@ export class SseTrigger implements INodeType {
 
 		eventSource.onmessage = (event) => {
 			const eventData = jsonParse<IDataObject>(event.data as string, {
-				errorMessage: 'JSON نامعتبر برای داده رویداد',
+				errorMessage: 'Invalid JSON for event data',
 			});
 			this.emit([this.helpers.returnJsonArray([eventData])]);
 		};

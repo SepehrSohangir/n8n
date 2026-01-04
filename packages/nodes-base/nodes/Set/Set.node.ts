@@ -7,11 +7,11 @@ import { SetV2 } from './v2/SetV2.node';
 export class Set extends VersionedNodeType {
 	constructor() {
 		const baseDescription: INodeTypeBaseDescription = {
-			displayName: 'ویرایش فیلدها (Set)',
+			displayName: 'Set',
 			name: 'set',
 			icon: 'fa:pen',
 			group: ['input'],
-			description: 'افزودن یا ویرایش فیلدها روی یک آیتم ورودی و به صورت اختیاری حذف فیلدهای دیگر',
+			description: 'Add or edit fields on an input item and optionally remove other fields',
 			defaultVersion: 3.4,
 		};
 

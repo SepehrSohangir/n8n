@@ -8,15 +8,15 @@ import { assertParamIsNumber, NodeConnectionTypes, NodeOperationError } from 'n8
 
 export class TimeSaved implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'ردیابی زمان ذخیره شده',
+		displayName: 'Track Time Saved',
 		name: 'timeSaved',
 		icon: 'fa:timer',
 		group: ['organization'],
 		version: 1,
 		description:
-			'ردیابی پویای زمان ذخیره شده بر اساس مسیر اجرای گردش کار و تعداد آیتم‌های پردازش شده',
+			'Dynamically track time saved based on the workflow’s execution path and the number of items processed',
 		defaults: {
-			name: 'زمان ذخیره شده',
+			name: 'Time Saved',
 			color: '#1E90FF',
 		},
 		inputs: [NodeConnectionTypes.Main],
@@ -24,32 +24,32 @@ export class TimeSaved implements INodeType {
 		properties: [
 			{
 				displayName:
-					'برای هر اجرا، زمان ذخیره شده مجموع همه نودهای زمان ذخیره شده‌ای است که اجرا می‌شوند. از این استفاده کنید زمانی که مسیرهای اجرای مختلف یا آیتم‌ها مقادیر مختلفی از زمان را ذخیره می‌کنند.',
+					'For each run, time saved is the sum of all Time Saved nodes that execute. Use this when different execution paths or items save different amounts of time.',
 				name: 'notice',
 				type: 'notice',
 				default: '',
 			},
 			{
-				displayName: 'حالت محاسبه',
+				displayName: 'Calculation Mode',
 				name: 'mode',
 				type: 'options',
 				default: 'once',
 				noDataExpression: true,
 				options: [
 					{
-						name: 'یک بار برای همه آیتم‌ها',
+						name: 'Once For All Items',
 						value: 'once',
-						description: 'شمارش دقیقه‌های ذخیره شده یک بار برای همه آیتم‌های ورودی',
+						description: 'Counts minutes saved once for all input items',
 					},
 					{
-						name: 'به ازای هر آیتم',
+						name: 'Per Item',
 						value: 'perItem',
-						description: 'ضرب کردن دقیقه‌های ذخیره شده در تعداد آیتم‌های ورودی',
+						description: 'Multiply minutes saved by the number of input items',
 					},
 				],
 			},
 			{
-				displayName: 'دقیقه‌های ذخیره شده',
+				displayName: 'Minutes Saved',
 				name: 'minutesSaved',
 				type: 'number',
 				default: 0,
@@ -57,13 +57,14 @@ export class TimeSaved implements INodeType {
 				typeOptions: {
 					minValue: 0,
 				},
-				description: 'تعداد دقیقه‌های ذخیره شده توسط این اجرای گردش کار',
+				description: 'Number of minutes saved by this workflow execution',
 			},
 		],
 		hints: [
 			{
 				type: 'info',
-				message: 'چندین نود زمان ذخیره شده در همان گردش کار مقادیر خود را با هم جمع می‌کنند.',
+				message:
+					'Multiple Saved Time nodes in the same workflow will have their values summed together.',
 				displayCondition: '=true',
 				whenToDisplay: 'beforeExecution',
 				location: 'outputPane',

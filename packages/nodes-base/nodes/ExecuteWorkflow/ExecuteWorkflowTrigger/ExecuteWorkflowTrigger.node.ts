@@ -22,17 +22,17 @@ import { getFieldEntries } from '../../../utils/workflowInputsResourceMapping/Ge
 
 export class ExecuteWorkflowTrigger implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Execute Workflow Trigger',
+		displayName: 'تریگر اجرای گردش کار',
 		name: 'executeWorkflowTrigger',
 		icon: 'fa:sign-out-alt',
 		group: ['trigger'],
 		version: [1, 1.1],
 		description:
-			'Helpers for calling other n8n workflows. Used for designing modular, microservice-like workflows.',
+			'کمک‌کننده‌ها برای فراخوانی گردش کارهای دیگر n8n. برای طراحی گردش کارهای ماژولار و شبیه میکروسرویس استفاده می‌شود.',
 		eventTriggerDescription: '',
 		maxNodes: 1,
 		defaults: {
-			name: 'When Executed by Another Workflow',
+			name: 'هنگام اجرا توسط گردش کار دیگر',
 			color: '#ff6d5a',
 		},
 		inputs: [],
@@ -40,7 +40,7 @@ export class ExecuteWorkflowTrigger implements INodeType {
 		hints: [
 			{
 				message:
-					"This workflow isn't set to accept any input data. Fill out the workflow input schema or change the workflow to accept any data passed to it.",
+					'این گردش کار برای پذیرش هیچ داده ورودی تنظیم نشده است. طرح ورودی گردش کار را پر کنید یا گردش کار را تغییر دهید تا هر داده‌ای که به آن ارسال می‌شود را بپذیرد.',
 				// This condition checks if we have no input fields, which gets a bit awkward:
 				// For WORKFLOW_INPUTS: keys() only contains `VALUES` if at least one value is provided
 				// For JSON_EXAMPLE: We remove all whitespace and check if we're left with an empty object. Note that we already error if the example is not valid JSON
@@ -53,23 +53,24 @@ export class ExecuteWorkflowTrigger implements INodeType {
 		],
 		properties: [
 			{
-				displayName: 'Events',
+				displayName: 'رویدادها',
 				name: 'events',
 				type: 'hidden',
 				noDataExpression: true,
 				options: [
 					{
-						name: 'Workflow Call',
+						name: 'فراخوانی گردش کار',
 						value: 'worklfow_call',
-						description: 'When executed by another workflow using Execute Workflow Trigger',
-						action: 'When executed by Another Workflow',
+						description:
+							'زمانی که توسط گردش کار دیگری با استفاده از تریگر اجرای گردش کار اجرا می‌شود',
+						action: 'هنگام اجرا توسط گردش کار دیگر',
 					},
 				],
 				default: 'worklfow_call',
 			},
 			{
 				displayName:
-					"When an ‘execute workflow’ node calls this workflow, the execution starts here. Any data passed into the 'execute workflow' node will be output by this node.",
+					"زمانی که یک نود 'اجرای گردش کار' این گردش کار را فراخوانی می‌کند، اجرا از اینجا شروع می‌شود. هر داده‌ای که به نود 'اجرای گردش کار' ارسال شود توسط این نود خروجی داده می‌شود.",
 				name: 'notice',
 				type: 'notice',
 				default: '',
@@ -78,7 +79,7 @@ export class ExecuteWorkflowTrigger implements INodeType {
 				},
 			},
 			{
-				displayName: 'This node is out of date. Please upgrade by removing it and adding a new one',
+				displayName: 'این نود منسوخ شده است. لطفاً با حذف آن و افزودن یک نود جدید آن را ارتقا دهید',
 				name: 'outdatedVersionWarning',
 				type: 'notice',
 				displayOptions: { show: { '@version': [{ _cnd: { eq: 1 } }] } },
@@ -86,27 +87,27 @@ export class ExecuteWorkflowTrigger implements INodeType {
 			},
 			{
 				// eslint-disable-next-line n8n-nodes-base/node-param-display-name-miscased
-				displayName: 'Input data mode',
+				displayName: 'حالت داده ورودی',
 				name: INPUT_SOURCE,
 				type: 'options',
 				options: [
 					{
 						// eslint-disable-next-line n8n-nodes-base/node-param-display-name-miscased
-						name: 'Define using fields below',
+						name: 'تعریف با استفاده از فیلدهای زیر',
 						value: WORKFLOW_INPUTS,
-						description: 'Provide input fields via UI',
+						description: 'ارائه فیلدهای ورودی از طریق رابط کاربری',
 					},
 					{
 						// eslint-disable-next-line n8n-nodes-base/node-param-display-name-miscased
-						name: 'Define using JSON example',
+						name: 'تعریف با استفاده از مثال JSON',
 						value: JSON_EXAMPLE,
-						description: 'Generate a schema from an example JSON object',
+						description: 'تولید یک طرح از یک شیء JSON نمونه',
 					},
 					{
 						// eslint-disable-next-line n8n-nodes-base/node-param-display-name-miscased
-						name: 'Accept all data',
+						name: 'پذیرش همه داده‌ها',
 						value: PASSTHROUGH,
-						description: 'Use all incoming data from the parent workflow',
+						description: 'استفاده از همه داده‌های ورودی از گردش کار والد',
 					},
 				],
 				default: WORKFLOW_INPUTS,
@@ -117,7 +118,7 @@ export class ExecuteWorkflowTrigger implements INodeType {
 			},
 			{
 				displayName:
-					'Provide an example object to infer fields and their types.<br>To allow any type for a given field, set the value to null.',
+					'یک شیء نمونه برای استنتاج فیلدها و انواع آنها ارائه دهید.<br>برای اجازه دادن به هر نوع برای یک فیلد مشخص، مقدار را null تنظیم کنید.',
 				name: `${JSON_EXAMPLE}_notice`,
 				type: 'notice',
 				default: '',
@@ -126,7 +127,7 @@ export class ExecuteWorkflowTrigger implements INodeType {
 				},
 			},
 			{
-				displayName: 'JSON Example',
+				displayName: 'مثال JSON',
 				name: JSON_EXAMPLE,
 				type: 'json',
 				default: JSON.stringify(
@@ -145,12 +146,12 @@ export class ExecuteWorkflowTrigger implements INodeType {
 				},
 			},
 			{
-				displayName: 'Workflow Input Schema',
+				displayName: 'طرح ورودی گردش کار',
 				name: WORKFLOW_INPUTS,
-				placeholder: 'Add field',
+				placeholder: 'افزودن فیلد',
 				type: 'fixedCollection',
 				description:
-					'Define expected input fields. If no inputs are provided, all data from the calling workflow will be passed through.',
+					'تعریف فیلدهای ورودی مورد انتظار. اگر هیچ ورودی ارائه نشود، همه داده‌ها از گردش کار فراخوانی‌کننده عبور داده می‌شوند.',
 				typeOptions: {
 					multipleValues: true,
 					sortable: true,
@@ -163,25 +164,25 @@ export class ExecuteWorkflowTrigger implements INodeType {
 				options: [
 					{
 						name: VALUES,
-						displayName: 'Values',
+						displayName: 'مقادیر',
 						values: [
 							{
-								displayName: 'Name',
+								displayName: 'نام',
 								name: 'name',
 								type: 'string',
 								default: '',
-								placeholder: 'e.g. fieldName',
+								placeholder: 'مثلاً fieldName',
 								description:
-									'A unique name for this workflow input, used to reference it from another workflows',
+									'یک نام منحصر به فرد برای این ورودی گردش کار، برای ارجاع به آن از گردش کارهای دیگر استفاده می‌شود',
 								required: true,
 								noDataExpression: true,
 							},
 							{
-								displayName: 'Type',
+								displayName: 'نوع',
 								name: 'type',
 								type: 'options',
 								description:
-									"Expected data type for this input value. Determines how this field's values are stored, validated, and displayed.",
+									'نوع داده مورد انتظار برای این مقدار ورودی. نحوه ذخیره، اعتبارسنجی و نمایش مقادیر این فیلد را تعیین می‌کند.',
 								options: TYPE_OPTIONS,
 								required: true,
 								default: 'string',

@@ -1,68 +1,68 @@
 import type { INodeProperties } from 'n8n-workflow';
 const operationOptions = [
 	{
-		name: 'Remove Items Repeated Within Current Input',
+		name: 'حذف آیتم‌های تکراری در ورودی فعلی',
 		value: 'removeDuplicateInputItems',
-		description: 'Remove duplicates from incoming items',
-		action: 'Remove items repeated within current input',
+		description: 'حذف تکراری‌ها از آیتم‌های ورودی',
+		action: 'حذف آیتم‌های تکراری در ورودی فعلی',
 	},
 	{
-		name: 'Remove Items Processed in Previous Executions',
+		name: 'حذف آیتم‌های پردازش شده در اجراهای قبلی',
 		value: 'removeItemsSeenInPreviousExecutions',
-		description: 'Deduplicate items already seen in previous executions',
-		action: 'Remove items processed in previous executions',
+		description: 'حذف تکراری آیتم‌هایی که قبلاً در اجراهای قبلی دیده شده‌اند',
+		action: 'حذف آیتم‌های پردازش شده در اجراهای قبلی',
 	},
 	{
-		name: 'Clear Deduplication History',
+		name: 'پاک کردن تاریخچه حذف تکراری',
 		value: 'clearDeduplicationHistory',
-		description: 'Wipe the store of previous items',
-		action: 'Clear deduplication history',
+		description: 'پاک کردن ذخیره آیتم‌های قبلی',
+		action: 'پاک کردن تاریخچه حذف تکراری',
 	},
 ];
 const compareOptions = [
 	{
-		name: 'All Fields',
+		name: 'همه فیلدها',
 		value: 'allFields',
 	},
 	{
-		name: 'All Fields Except',
+		name: 'همه فیلدها به جز',
 		value: 'allFieldsExcept',
 	},
 	{
-		name: 'Selected Fields',
+		name: 'فیلدهای انتخاب شده',
 		value: 'selectedFields',
 	},
 ];
 const logicOptions = [
 	{
-		name: 'Value Is New',
+		name: 'مقدار جدید است',
 		value: 'removeItemsWithAlreadySeenKeyValues',
-		description: 'Remove all input items with values matching those already processed',
+		description: 'حذف همه آیتم‌های ورودی با مقادیر مطابق با آن‌هایی که قبلاً پردازش شده‌اند',
 	},
 	{
-		name: 'Value Is Higher than Any Previous Value',
+		name: 'مقدار بالاتر از هر مقدار قبلی است',
 		value: 'removeItemsUpToStoredIncrementalKey',
 		description:
-			'Works with incremental values, removes all input items with values up to the stored value',
+			'با مقادیر افزایشی کار می‌کند، همه آیتم‌های ورودی با مقادیر تا مقدار ذخیره شده را حذف می‌کند',
 	},
 	{
-		name: 'Value Is a Date Later than Any Previous Date',
+		name: 'مقدار یک تاریخ دیرتر از هر تاریخ قبلی است',
 		value: 'removeItemsUpToStoredDate',
 		description:
-			'Works with date values, removes all input items with values up to the stored date',
+			'با مقادیر تاریخ کار می‌کند، همه آیتم‌های ورودی با مقادیر تا تاریخ ذخیره شده را حذف می‌کند',
 	},
 ];
 const manageDatabaseModeOptions = [
 	{
-		name: 'Clean Database',
+		name: 'پاک کردن پایگاه داده',
 		value: 'cleanDatabase',
-		description: 'Clear all values stored for a key in the database',
+		description: 'پاک کردن همه مقادیر ذخیره شده برای یک کلید در پایگاه داده',
 	},
 ];
 
 export const removeDuplicatesNodeFields: INodeProperties[] = [
 	{
-		displayName: 'Operation',
+		displayName: 'عملیات',
 		name: 'operation',
 		type: 'options',
 		noDataExpression: true,
@@ -70,12 +70,12 @@ export const removeDuplicatesNodeFields: INodeProperties[] = [
 		default: 'removeDuplicateInputItems',
 	},
 	{
-		displayName: 'Compare',
+		displayName: 'مقایسه',
 		name: 'compare',
 		type: 'options',
 		options: compareOptions,
 		default: 'allFields',
-		description: 'The fields of the input items to compare to see if they are the same',
+		description: 'فیلدهای آیتم‌های ورودی برای مقایسه تا ببینیم آیا یکسان هستند',
 		displayOptions: {
 			show: {
 				operation: ['removeDuplicateInputItems'],
@@ -83,12 +83,12 @@ export const removeDuplicatesNodeFields: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Fields To Exclude',
+		displayName: 'فیلدهای برای حذف',
 		name: 'fieldsToExclude',
 		type: 'string',
-		placeholder: 'e.g. email, name',
+		placeholder: 'مثلاً email, name',
 		requiresDataPath: 'multiple',
-		description: 'Fields in the input to exclude from the comparison',
+		description: 'فیلدها در ورودی برای حذف از مقایسه',
 		default: '',
 		displayOptions: {
 			show: {
@@ -97,12 +97,12 @@ export const removeDuplicatesNodeFields: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Fields To Compare',
+		displayName: 'فیلدهای برای مقایسه',
 		name: 'fieldsToCompare',
 		type: 'string',
-		placeholder: 'e.g. email, name',
+		placeholder: 'مثلاً email, name',
 		requiresDataPath: 'multiple',
-		description: 'Fields in the input to add to the comparison',
+		description: 'فیلدها در ورودی برای افزودن به مقایسه',
 		default: '',
 		displayOptions: {
 			show: {
@@ -113,14 +113,14 @@ export const removeDuplicatesNodeFields: INodeProperties[] = [
 
 	// ----------------------------------
 	{
-		displayName: 'Keep Items Where',
+		displayName: 'نگه داشتن آیتم‌هایی که',
 		name: 'logic',
 		type: 'options',
 		noDataExpression: true,
 		options: logicOptions,
 		default: 'removeItemsWithAlreadySeenKeyValues',
 		description:
-			'How to select input items to remove by comparing them with key values previously processed',
+			'نحوه انتخاب آیتم‌های ورودی برای حذف با مقایسه آن‌ها با مقادیر کلیدی قبلاً پردازش شده',
 		displayOptions: {
 			show: {
 				operation: ['removeItemsSeenInPreviousExecutions'],
@@ -128,13 +128,14 @@ export const removeDuplicatesNodeFields: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Value to Dedupe On',
+		displayName: 'مقدار برای حذف تکراری بر اساس',
 		name: 'dedupeValue',
 		type: 'string',
 		default: '',
-		description: 'Use an input field (or a combination of fields) that has a unique ID value',
-		hint: 'The input field value to compare between items',
-		placeholder: 'e.g. ID',
+		description:
+			'استفاده از یک فیلد ورودی (یا ترکیبی از فیلدها) که دارای مقدار شناسه منحصر به فرد است',
+		hint: 'مقدار فیلد ورودی برای مقایسه بین آیتم‌ها',
+		placeholder: 'مثلاً ID',
 		required: true,
 		displayOptions: {
 			show: {
@@ -144,13 +145,13 @@ export const removeDuplicatesNodeFields: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Value to Dedupe On',
+		displayName: 'مقدار برای حذف تکراری بر اساس',
 		name: 'incrementalDedupeValue',
 		type: 'number',
 		default: '',
-		description: 'Use an input field (or a combination of fields) that has an incremental value',
-		hint: 'The input field value to compare between items, an incremental value is expected',
-		placeholder: 'e.g. ID',
+		description: 'استفاده از یک فیلد ورودی (یا ترکیبی از فیلدها) که دارای مقدار افزایشی است',
+		hint: 'مقدار فیلد ورودی برای مقایسه بین آیتم‌ها، یک مقدار افزایشی انتظار می‌رود',
+		placeholder: 'مثلاً ID',
 		displayOptions: {
 			show: {
 				logic: ['removeItemsUpToStoredIncrementalKey'],
@@ -159,13 +160,13 @@ export const removeDuplicatesNodeFields: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Value to Dedupe On',
+		displayName: 'مقدار برای حذف تکراری بر اساس',
 		name: 'dateDedupeValue',
 		type: 'dateTime',
 		default: '',
-		description: 'Use an input field that has a date value in ISO format',
-		hint: 'The input field value to compare between items, a date is expected',
-		placeholder: ' e.g. 2024-08-09T13:44:16Z',
+		description: 'استفاده از یک فیلد ورودی که دارای مقدار تاریخ در فرمت ISO است',
+		hint: 'مقدار فیلد ورودی برای مقایسه بین آیتم‌ها، یک تاریخ انتظار می‌رود',
+		placeholder: ' مثلاً 2024-08-09T13:44:16Z',
 		displayOptions: {
 			show: {
 				logic: ['removeItemsUpToStoredDate'],
@@ -174,12 +175,12 @@ export const removeDuplicatesNodeFields: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Mode',
+		displayName: 'حالت',
 		name: 'mode',
 		type: 'options',
 		default: 'cleanDatabase',
 		description:
-			'How you want to modify the key values stored on the database. None of these modes removes input items.',
+			'نحوه تغییر مقادیر کلیدی ذخیره شده در پایگاه داده. هیچ یک از این حالت‌ها آیتم‌های ورودی را حذف نمی‌کند.',
 		displayOptions: {
 			show: {
 				operation: ['clearDeduplicationHistory'],
@@ -188,10 +189,10 @@ export const removeDuplicatesNodeFields: INodeProperties[] = [
 		options: manageDatabaseModeOptions,
 	},
 	{
-		displayName: 'Options',
+		displayName: 'گزینه‌ها',
 		name: 'options',
 		type: 'collection',
-		placeholder: 'Add Field',
+		placeholder: 'افزودن فیلد',
 		default: {},
 		displayOptions: {
 			show: {
@@ -204,7 +205,7 @@ export const removeDuplicatesNodeFields: INodeProperties[] = [
 		},
 		options: [
 			{
-				displayName: 'Disable Dot Notation',
+				displayName: 'غیرفعال کردن نماد نقطه',
 				name: 'disableDotNotation',
 				type: 'boolean',
 				default: false,
@@ -217,10 +218,10 @@ export const removeDuplicatesNodeFields: INodeProperties[] = [
 					},
 				},
 				description:
-					'Whether to disallow referencing child fields using `parent.child` in the field name',
+					'آیا ارجاع به فیلدهای فرزند با استفاده از `parent.child` در نام فیلد مجاز نباشد',
 			},
 			{
-				displayName: 'Remove Other Fields',
+				displayName: 'حذف فیلدهای دیگر',
 				name: 'removeOtherFields',
 				type: 'boolean',
 				default: false,
@@ -233,10 +234,10 @@ export const removeDuplicatesNodeFields: INodeProperties[] = [
 					},
 				},
 				description:
-					'Whether to remove any fields that are not being compared. If disabled, will keep the values from the first of the duplicates.',
+					'آیا هر فیلدی که مقایسه نمی‌شود حذف شود. اگر غیرفعال باشد، مقادیر از اولین مورد تکراری حفظ می‌شوند.',
 			},
 			{
-				displayName: 'Scope',
+				displayName: 'محدوده',
 				name: 'scope',
 				type: 'options',
 				default: 'node',
@@ -246,26 +247,26 @@ export const removeDuplicatesNodeFields: INodeProperties[] = [
 					},
 				},
 				description:
-					'If set to ‘workflow,’ key values will be shared across all nodes in the workflow. If set to ‘node,’ key values will be specific to this node.',
+					"اگر روی 'گردش کار' تنظیم شود، مقادیر کلیدی در همه نودهای گردش کار به اشتراک گذاشته می‌شوند. اگر روی 'نود' تنظیم شود، مقادیر کلیدی مخصوص این نود خواهند بود.",
 				options: [
 					{
-						name: 'Workflow',
+						name: 'گردش کار',
 						value: 'workflow',
-						description: 'Deduplication info will be shared by all the nodes in the workflow',
+						description: 'اطلاعات حذف تکراری توسط همه نودهای گردش کار به اشتراک گذاشته می‌شود',
 					},
 					{
-						name: 'Node',
+						name: 'نود',
 						value: 'node',
-						description: 'Deduplication info will be stored only for this node',
+						description: 'اطلاعات حذف تکراری فقط برای این نود ذخیره می‌شود',
 					},
 				],
 			},
 			{
-				displayName: 'History Size',
+				displayName: 'اندازه تاریخچه',
 				name: 'historySize',
 				type: 'number',
 				default: 10000,
-				hint: 'The max number of past items to store for deduplication',
+				hint: 'حداکثر تعداد آیتم‌های گذشته برای ذخیره برای حذف تکراری',
 				displayOptions: {
 					show: {
 						'/logic': ['removeItemsWithAlreadySeenKeyValues'],

@@ -19,159 +19,159 @@ export class FilterV1 implements INodeType {
 			...baseDescription,
 			version: 1,
 			defaults: {
-				name: 'Filter',
+				name: 'فیلتر',
 				color: '#229eff',
 			},
 			inputs: [NodeConnectionTypes.Main],
 			outputs: [NodeConnectionTypes.Main],
-			outputNames: ['Kept', 'Discarded'],
+			outputNames: ['نگه‌داشته شده', 'دور ریخته شده'],
 			properties: [
 				{
-					displayName: 'Conditions',
+					displayName: 'شرایط',
 					name: 'conditions',
-					placeholder: 'Add Condition',
+					placeholder: 'افزودن شرط',
 					type: 'fixedCollection',
 					typeOptions: {
 						multipleValues: true,
 						sortable: true,
 					},
-					description: 'The type of values to compare',
+					description: 'نوع مقادیر برای مقایسه',
 					default: {},
 					options: [
 						{
 							name: 'boolean',
-							displayName: 'Boolean',
+							displayName: 'بولین',
 							values: [
 								{
-									displayName: 'Value 1',
+									displayName: 'مقدار ۱',
 									name: 'value1',
 									type: 'boolean',
 									default: false,
 									// eslint-disable-next-line n8n-nodes-base/node-param-description-boolean-without-whether
-									description: 'The value to compare with the second one',
+									description: 'مقداری که با مقدار دوم مقایسه می‌شود',
 								},
 								// eslint-disable-next-line n8n-nodes-base/node-param-operation-without-no-data-expression
 								{
-									displayName: 'Operation',
+									displayName: 'عملیات',
 									name: 'operation',
 									type: 'options',
 									options: [
 										{
-											name: 'Equal',
+											name: 'برابر',
 											value: 'equal',
 										},
 										{
-											name: 'Not Equal',
+											name: 'نا برابر',
 											value: 'notEqual',
 										},
 									],
 									default: 'equal',
-									description: 'Operation to decide where the data should be mapped to',
+									description: 'عملیات برای تصمیم‌گیری در مورد مسیر داده',
 								},
 								{
-									displayName: 'Value 2',
+									displayName: 'مقدار ۲',
 									name: 'value2',
 									type: 'boolean',
 									default: false,
 									// eslint-disable-next-line n8n-nodes-base/node-param-description-boolean-without-whether
-									description: 'The value to compare with the first one',
+									description: 'مقداری که با مقدار اول مقایسه می‌شود',
 								},
 							],
 						},
 						{
 							name: 'dateTime',
-							displayName: 'Date & Time',
+							displayName: 'تاریخ و زمان',
 							values: [
 								{
-									displayName: 'Value 1',
+									displayName: 'مقدار ۱',
 									name: 'value1',
 									type: 'dateTime',
 									default: '',
-									description: 'The value to compare with the second one',
+									description: 'مقداری که با مقدار دوم مقایسه می‌شود',
 								},
 								// eslint-disable-next-line n8n-nodes-base/node-param-operation-without-no-data-expression
 								{
-									displayName: 'Operation',
+									displayName: 'عملیات',
 									name: 'operation',
 									type: 'options',
 									options: [
 										{
-											name: 'Occurred After',
+											name: 'بعد از',
 											value: 'after',
 										},
 										{
-											name: 'Occurred Before',
+											name: 'قبل از',
 											value: 'before',
 										},
 									],
 									default: 'after',
-									description: 'Operation to decide where the data should be mapped to',
+									description: 'عملیات برای تصمیم‌گیری در مورد مسیر داده',
 								},
 								{
-									displayName: 'Value 2',
+									displayName: 'مقدار ۲',
 									name: 'value2',
 									type: 'dateTime',
 									default: '',
-									description: 'The value to compare with the first one',
+									description: 'مقداری که با مقدار اول مقایسه می‌شود',
 								},
 							],
 						},
 						{
 							name: 'number',
-							displayName: 'Number',
+							displayName: 'عدد',
 							values: [
 								{
-									displayName: 'Value 1',
+									displayName: 'مقدار ۱',
 									name: 'value1',
 									type: 'number',
 									default: 0,
-									description: 'The value to compare with the second one',
+									description: 'مقداری که با مقدار دوم مقایسه می‌شود',
 								},
 								{
-									displayName: 'Operation',
+									displayName: 'عملیات',
 									name: 'operation',
 									type: 'options',
 									noDataExpression: true,
 									// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 									options: [
 										{
-											name: 'Smaller',
+											name: 'کوچکتر',
 											value: 'smaller',
 										},
 										{
-											name: 'Smaller or Equal',
+											name: 'کوچکتر یا برابر',
 											value: 'smallerEqual',
 										},
 										{
-											name: 'Equal',
+											name: 'برابر',
 											value: 'equal',
 										},
 										{
-											name: 'Not Equal',
+											name: 'نا برابر',
 											value: 'notEqual',
 										},
 										{
-											name: 'Larger',
+											name: 'بزرگتر',
 											value: 'larger',
 										},
 										{
-											name: 'Larger or Equal',
+											name: 'بزرگتر یا برابر',
 											value: 'largerEqual',
 										},
 										{
-											name: 'Is Empty',
+											name: 'خالی است',
 											value: 'isEmpty',
 										},
 										{
-											name: 'Is Not Empty',
+											name: 'خالی نیست',
 											value: 'isNotEmpty',
 										},
 									],
 									default: 'smaller',
-									description: 'Operation to decide where the data should be mapped to',
+									description: 'عملیات برای تصمیم‌گیری در مورد مسیر داده',
 								},
 								{
-									displayName: 'Value 2',
+									displayName: 'مقدار ۲',
 									name: 'value2',
 									type: 'number',
 									displayOptions: {
@@ -180,82 +180,82 @@ export class FilterV1 implements INodeType {
 										},
 									},
 									default: 0,
-									description: 'The value to compare with the first one',
+									description: 'مقداری که با مقدار اول مقایسه می‌شود',
 								},
 							],
 						},
 						{
 							name: 'string',
-							displayName: 'String',
+							displayName: 'رشته',
 							values: [
 								{
-									displayName: 'Value 1',
+									displayName: 'مقدار ۱',
 									name: 'value1',
 									type: 'string',
 									default: '',
-									description: 'The value to compare with the second one',
+									description: 'مقداری که با مقدار دوم مقایسه می‌شود',
 								},
 								{
-									displayName: 'Operation',
+									displayName: 'عملیات',
 									name: 'operation',
 									type: 'options',
 									noDataExpression: true,
 									// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 									options: [
 										{
-											name: 'Contains',
+											name: 'شامل',
 											value: 'contains',
 										},
 										{
-											name: 'Not Contains',
+											name: 'شامل نیست',
 											value: 'notContains',
 										},
 										{
-											name: 'Ends With',
+											name: 'به پایان می‌رسد با',
 											value: 'endsWith',
 										},
 										{
-											name: 'Not Ends With',
+											name: 'به پایان نمی‌رسد با',
 											value: 'notEndsWith',
 										},
 										{
-											name: 'Equal',
+											name: 'برابر',
 											value: 'equal',
 										},
 										{
-											name: 'Not Equal',
+											name: 'نا برابر',
 											value: 'notEqual',
 										},
 										{
-											name: 'Regex Match',
+											name: 'تطابق با Regex',
 											value: 'regex',
 										},
 										{
-											name: 'Regex Not Match',
+											name: 'عدم تطابق با Regex',
 											value: 'notRegex',
 										},
 										{
-											name: 'Starts With',
+											name: 'شروع می‌شود با',
 											value: 'startsWith',
 										},
 										{
-											name: 'Not Starts With',
+											name: 'شروع نمی‌شود با',
 											value: 'notStartsWith',
 										},
 										{
-											name: 'Is Empty',
+											name: 'خالی است',
 											value: 'isEmpty',
 										},
 										{
-											name: 'Is Not Empty',
+											name: 'خالی نیست',
 											value: 'isNotEmpty',
 										},
 									],
 									default: 'equal',
-									description: 'Operation to decide where the data should be mapped to',
+									description: 'عملیات برای تصمیم‌گیری در مورد مسیر داده',
 								},
 								{
-									displayName: 'Value 2',
+									displayName: 'مقدار ۲',
 									name: 'value2',
 									type: 'string',
 									displayOptions: {
@@ -264,7 +264,7 @@ export class FilterV1 implements INodeType {
 										},
 									},
 									default: '',
-									description: 'The value to compare with the first one',
+									description: 'مقداری که با مقدار اول مقایسه می‌شود',
 								},
 								{
 									displayName: 'Regex',
@@ -277,31 +277,32 @@ export class FilterV1 implements INodeType {
 									},
 									default: '',
 									placeholder: '/text/i',
-									description: 'The regex which has to match',
+									description: 'عبارت منظم که باید تطابق داشته باشد',
 								},
 							],
 						},
 					],
 				},
 				{
-					displayName: 'Combine Conditions',
+					displayName: 'ترکیب شرایط',
 					name: 'combineConditions',
 					type: 'options',
 					options: [
 						{
 							name: 'AND',
-							description: 'Items are passed to the next node only if they meet all the conditions',
+							description:
+								'آیتم‌ها فقط در صورتی به نود بعدی ارسال می‌شوند که تمام شرایط را برآورده کنند',
 							value: 'AND',
 						},
 						{
 							name: 'OR',
-							description: 'Items are passed to the next node if they meet at least one condition',
+							description: 'آیتم‌ها در صورت برآورده کردن حداقل یک شرط به نود بعدی ارسال می‌شوند',
 							value: 'OR',
 						},
 					],
 					default: 'AND',
 					description:
-						'How to combine the conditions: AND requires all conditions to be true, OR requires at least one condition to be true',
+						'نحوه ترکیب شرایط: AND نیاز به برآورده شدن تمام شرایط دارد، OR نیاز به برآورده شدن حداقل یک شرط دارد',
 				},
 			],
 		};

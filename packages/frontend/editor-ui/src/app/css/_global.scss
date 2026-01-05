@@ -87,6 +87,17 @@
 	}
 }
 
+/* RTL Support for Message Box */
+html[dir='rtl'] .el-message-box {
+	direction: rtl;
+	text-align: right;
+
+	.el-message-box__content {
+		direction: rtl;
+		text-align: right;
+	}
+}
+
 // Notification Message
 .el-message p {
 	line-height: 1.5em;

@@ -8,12 +8,12 @@ import { SplitInBatchesV3 } from './v3/SplitInBatchesV3.node';
 export class SplitInBatches extends VersionedNodeType {
 	constructor() {
 		const baseDescription: INodeTypeBaseDescription = {
-			displayName: 'Split In Batches',
+			displayName: 'تقسیم به دسته‌ها',
 			name: 'splitInBatches',
 			icon: 'fa:th-large',
 			iconColor: 'dark-green',
 			group: ['organization'],
-			description: 'Split data into batches and iterate over each batch',
+			description: 'تقسیم داده به دسته‌ها و تکرار روی هر دسته',
 			defaultVersion: 3,
 		};
 

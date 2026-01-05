@@ -5,7 +5,7 @@ import { includeInputFields } from './common.descriptions';
 export const ExtractDateDescription: INodeProperties[] = [
 	{
 		displayName:
-			'You can also do this using an expression, e.g. <code>{{ your_date.extract("month") }}}</code>. <a target="_blank" href="https://docs.n8n.io/code/cookbook/luxon/">More info</a>',
+			'همچنین می‌توانید این کار را با استفاده از یک عبارت انجام دهید، مثلاً <code>{{ your_date.extract("month") }}}</code>. <a target="_blank" href="https://docs.n8n.io/code/cookbook/luxon/">اطلاعات بیشتر</a>',
 		name: 'notice',
 		type: 'notice',
 		default: '',
@@ -16,10 +16,10 @@ export const ExtractDateDescription: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Date',
+		displayName: 'تاریخ',
 		name: 'date',
 		type: 'string',
-		description: 'The date that you want to round',
+		description: 'تاریخی که می‌خواهید بخشی از آن را استخراج کنید',
 		default: '',
 		displayOptions: {
 			show: {
@@ -28,37 +28,37 @@ export const ExtractDateDescription: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Part',
+		displayName: 'بخش',
 		name: 'part',
 		type: 'options',
 		// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 		options: [
 			{
-				name: 'Year',
+				name: 'سال',
 				value: 'year',
 			},
 			{
-				name: 'Month',
+				name: 'ماه',
 				value: 'month',
 			},
 			{
-				name: 'Week',
+				name: 'هفته',
 				value: 'week',
 			},
 			{
-				name: 'Day',
+				name: 'روز',
 				value: 'day',
 			},
 			{
-				name: 'Hour',
+				name: 'ساعت',
 				value: 'hour',
 			},
 			{
-				name: 'Minute',
+				name: 'دقیقه',
 				value: 'minute',
 			},
 			{
-				name: 'Second',
+				name: 'ثانیه',
 				value: 'second',
 			},
 		],
@@ -70,11 +70,11 @@ export const ExtractDateDescription: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Output Field Name',
+		displayName: 'نام فیلد خروجی',
 		name: 'outputFieldName',
 		type: 'string',
 		default: 'datePart',
-		description: 'Name of the field to put the output in',
+		description: 'نام فیلدی که خروجی در آن قرار می‌گیرد',
 		displayOptions: {
 			show: {
 				operation: ['extractDate'],
@@ -82,10 +82,10 @@ export const ExtractDateDescription: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Options',
+		displayName: 'گزینه‌ها',
 		name: 'options',
 		type: 'collection',
-		placeholder: 'Add option',
+		placeholder: 'افزودن گزینه',
 		displayOptions: {
 			show: {
 				operation: ['extractDate'],

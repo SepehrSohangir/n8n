@@ -37,59 +37,59 @@ export class MergeV2 implements INodeType {
 			...baseDescription,
 			version: [2, 2.1],
 			defaults: {
-				name: 'Merge',
+				name: 'ادغام',
 			},
 
 			inputs: [NodeConnectionTypes.Main, NodeConnectionTypes.Main],
 			outputs: [NodeConnectionTypes.Main],
-			inputNames: ['Input 1', 'Input 2'],
+			inputNames: ['ورودی ۱', 'ورودی ۲'],
 			// If mode is chooseBranch data from both branches is required
 			// to continue, else data from any input suffices
 			requiredInputs: '={{ $parameter["mode"] === "chooseBranch" ? [0, 1] : 1 }}',
 			properties: [
 				{
-					displayName: 'Mode',
+					displayName: 'حالت',
 					name: 'mode',
 					type: 'options',
 					options: [
 						{
-							name: 'Append',
+							name: 'افزودن',
 							value: 'append',
-							description: 'All items of input 1, then all items of input 2',
+							description: 'همه آیتم‌های ورودی 1، سپس همه آیتم‌های ورودی 2',
 						},
 						{
-							name: 'Combine',
+							name: 'ترکیب',
 							value: 'combine',
-							description: 'Merge matching items together',
+							description: 'ادغام آیتم‌های مطابق با هم',
 						},
 						{
-							name: 'Choose Branch',
+							name: 'انتخاب شاخه',
 							value: 'chooseBranch',
-							description: 'Output input data, without modifying it',
+							description: 'خروجی داده ورودی، بدون تغییر آن',
 						},
 					],
 					default: 'append',
-					description: 'How data of branches should be merged',
+					description: 'نحوه ادغام داده شاخه‌ها',
 				},
 				{
-					displayName: 'Combination Mode',
+					displayName: 'حالت ترکیب',
 					name: 'combinationMode',
 					type: 'options',
 					options: [
 						{
-							name: 'Merge By Fields',
+							name: 'ادغام بر اساس فیلدها',
 							value: 'mergeByFields',
-							description: 'Combine items with the same field values',
+							description: 'ترکیب آیتم‌ها با مقادیر فیلد یکسان',
 						},
 						{
-							name: 'Merge By Position',
+							name: 'ادغام بر اساس موقعیت',
 							value: 'mergeByPosition',
-							description: 'Combine items based on their order',
+							description: 'ترکیب آیتم‌ها بر اساس ترتیب آنها',
 						},
 						{
-							name: 'Multiplex',
+							name: 'چندگانه',
 							value: 'multiplex',
-							description: 'All possible item combinations (cross join)',
+							description: 'همه ترکیب‌های ممکن آیتم (اتصال متقاطع)',
 						},
 					],
 					default: 'mergeByFields',
@@ -101,37 +101,37 @@ export class MergeV2 implements INodeType {
 				},
 				// mergeByFields ------------------------------------------------------------------
 				{
-					displayName: 'Fields to Match',
+					displayName: 'فیلدهای برای تطابق',
 					name: 'mergeByFields',
 					type: 'fixedCollection',
-					placeholder: 'Add Fields to Match',
+					placeholder: 'افزودن فیلدهای برای تطابق',
 					default: { values: [{ field1: '', field2: '' }] },
 					typeOptions: {
 						multipleValues: true,
 					},
 					options: [
 						{
-							displayName: 'Values',
+							displayName: 'مقادیر',
 							name: 'values',
 							values: [
 								{
-									displayName: 'Input 1 Field',
+									displayName: 'فیلد ورودی 1',
 									name: 'field1',
 									type: 'string',
 									default: '',
 									// eslint-disable-next-line n8n-nodes-base/node-param-placeholder-miscased-id
-									placeholder: 'e.g. id',
-									hint: ' Enter the field name as text',
+									placeholder: 'مثلاً id',
+									hint: 'نام فیلد را به صورت متن وارد کنید',
 									requiresDataPath: 'single',
 								},
 								{
-									displayName: 'Input 2 Field',
+									displayName: 'فیلد ورودی 2',
 									name: 'field2',
 									type: 'string',
 									default: '',
 									// eslint-disable-next-line n8n-nodes-base/node-param-placeholder-miscased-id
-									placeholder: 'e.g. id',
-									hint: ' Enter the field name as text',
+									placeholder: 'مثلاً id',
+									hint: 'نام فیلد را به صورت متن وارد کنید',
 									requiresDataPath: 'single',
 								},
 							],
@@ -145,36 +145,36 @@ export class MergeV2 implements INodeType {
 					},
 				},
 				{
-					displayName: 'Output Type',
+					displayName: 'نوع خروجی',
 					name: 'joinMode',
 					type: 'options',
 					// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 					options: [
 						{
-							name: 'Keep Matches',
+							name: 'نگه داشتن تطابق‌ها',
 							value: 'keepMatches',
-							description: 'Items that match, merged together (inner join)',
+							description: 'آیتم‌هایی که تطابق دارند، با هم ادغام شده (اتصال داخلی)',
 						},
 						{
-							name: 'Keep Non-Matches',
+							name: 'نگه داشتن غیر تطابق‌ها',
 							value: 'keepNonMatches',
-							description: "Items that don't match",
+							description: 'آیتم‌هایی که تطابق ندارند',
 						},
 						{
-							name: 'Keep Everything',
+							name: 'نگه داشتن همه چیز',
 							value: 'keepEverything',
 							description:
-								"Items that match merged together, plus items that don't match (outer join)",
+								'آیتم‌هایی که تطابق دارند با هم ادغام شده، به علاوه آیتم‌هایی که تطابق ندارند (اتصال خارجی)',
 						},
 						{
-							name: 'Enrich Input 1',
+							name: 'غنی‌سازی ورودی 1',
 							value: 'enrichInput1',
-							description: 'All of input 1, with data from input 2 added in (left join)',
+							description: 'همه ورودی 1، با داده از ورودی 2 اضافه شده (اتصال چپ)',
 						},
 						{
-							name: 'Enrich Input 2',
+							name: 'غنی‌سازی ورودی 2',
 							value: 'enrichInput2',
-							description: 'All of input 2, with data from input 1 added in (right join)',
+							description: 'همه ورودی 2، با داده از ورودی 1 اضافه شده (اتصال راست)',
 						},
 					],
 					default: 'keepMatches',
@@ -186,20 +186,20 @@ export class MergeV2 implements INodeType {
 					},
 				},
 				{
-					displayName: 'Output Data From',
+					displayName: 'داده خروجی از',
 					name: 'outputDataFrom',
 					type: 'options',
 					options: [
 						{
-							name: 'Both Inputs Merged Together',
+							name: 'هر دو ورودی با هم ادغام شده',
 							value: 'both',
 						},
 						{
-							name: 'Input 1',
+							name: 'ورودی 1',
 							value: 'input1',
 						},
 						{
-							name: 'Input 2',
+							name: 'ورودی 2',
 							value: 'input2',
 						},
 					],
@@ -213,20 +213,20 @@ export class MergeV2 implements INodeType {
 					},
 				},
 				{
-					displayName: 'Output Data From',
+					displayName: 'داده خروجی از',
 					name: 'outputDataFrom',
 					type: 'options',
 					options: [
 						{
-							name: 'Both Inputs Appended Together',
+							name: 'هر دو ورودی با هم الحاق شده',
 							value: 'both',
 						},
 						{
-							name: 'Input 1',
+							name: 'ورودی 1',
 							value: 'input1',
 						},
 						{
-							name: 'Input 2',
+							name: 'ورودی 2',
 							value: 'input2',
 						},
 					],
@@ -242,12 +242,12 @@ export class MergeV2 implements INodeType {
 
 				// chooseBranch -----------------------------------------------------------------
 				{
-					displayName: 'Output Type',
+					displayName: 'نوع خروجی',
 					name: 'chooseBranchMode',
 					type: 'options',
 					options: [
 						{
-							name: 'Wait for Both Inputs to Arrive',
+							name: 'انتظار برای رسیدن هر دو ورودی',
 							value: 'waitForBoth',
 						},
 					],
@@ -259,20 +259,20 @@ export class MergeV2 implements INodeType {
 					},
 				},
 				{
-					displayName: 'Output',
+					displayName: 'خروجی',
 					name: 'output',
 					type: 'options',
 					options: [
 						{
-							name: 'Input 1 Data',
+							name: 'داده ورودی 1',
 							value: 'input1',
 						},
 						{
-							name: 'Input 2 Data',
+							name: 'داده ورودی 2',
 							value: 'input2',
 						},
 						{
-							name: 'A Single, Empty Item',
+							name: 'یک آیتم خالی واحد',
 							value: 'empty',
 						},
 					],

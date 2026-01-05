@@ -312,6 +312,65 @@
 	}
 }
 
+/* RTL Support */
+html[dir='rtl'] {
+	@include mixins.b(pagination) {
+		.el-input__suffix {
+			right: auto;
+			left: 0;
+		}
+
+		.el-select .el-input {
+			.el-input__inner {
+				padding-right: 0;
+				padding-left: 25px;
+			}
+		}
+
+		.btn-prev {
+			padding-right: 0;
+			padding-left: 12px;
+		}
+
+		.btn-next {
+			padding-left: 0;
+			padding-right: 12px;
+		}
+
+		@include mixins.e(sizes) {
+			margin: 0 0 0 10px;
+
+			.el-input .el-input__inner {
+				padding-left: 0;
+				padding-right: 8px;
+			}
+		}
+
+		@include mixins.e(total) {
+			margin-right: 0;
+			margin-left: 10px;
+		}
+
+		@include mixins.e(jump) {
+			margin-left: 0;
+			margin-right: 24px;
+		}
+
+		@include mixins.e(rightwrapper) {
+			float: left;
+		}
+	}
+
+	@include mixins.b(pager) {
+		li {
+			&.is-active + li {
+				border-left: auto;
+				border-right: 0;
+			}
+		}
+	}
+}
+
 // @mixin pagination-button {
 //	display: flex;
 //	justify-content: center;

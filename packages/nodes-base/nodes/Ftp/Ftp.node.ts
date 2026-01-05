@@ -111,9 +111,9 @@ function normalizeFtpItem(input: ftpClient.ListingElement, path: string, recursi
 }
 
 const timeoutOption: INodeProperties = {
-	displayName: 'Timeout',
+	displayName: 'زمان‌انتظار',
 	name: 'timeout',
-	description: 'Connection timeout in milliseconds',
+	description: 'زمان‌انتظار اتصال به میلی‌ثانیه',
 	type: 'number',
 	typeOptions: {
 		minValue: 1,
@@ -130,7 +130,7 @@ export class Ftp implements INodeType {
 		group: ['input'],
 		version: 1,
 		subtitle: '={{$parameter["protocol"] + ": " + $parameter["operation"]}}',
-		description: 'Transfer files via FTP or SFTP',
+		description: 'انتقال فایل از طریق FTP یا SFTP',
 		defaults: {
 			name: 'FTP',
 			color: '#303050',
@@ -163,7 +163,7 @@ export class Ftp implements INodeType {
 		],
 		properties: [
 			{
-				displayName: 'Protocol',
+				displayName: 'پروتکل',
 				name: 'protocol',
 				type: 'options',
 				options: [
@@ -177,42 +177,42 @@ export class Ftp implements INodeType {
 					},
 				],
 				default: 'ftp',
-				description: 'File transfer protocol',
+				description: 'پروتکل انتقال فایل',
 			},
 			{
-				displayName: 'Operation',
+				displayName: 'عملیات',
 				name: 'operation',
 				type: 'options',
 				options: [
 					{
-						name: 'Delete',
+						name: 'حذف',
 						value: 'delete',
-						description: 'Delete a file/folder',
-						action: 'Delete a file or folder',
+						description: 'حذف یک فایل/پوشه',
+						action: 'حذف یک فایل یا پوشه',
 					},
 					{
-						name: 'Download',
+						name: 'دانلود',
 						value: 'download',
-						description: 'Download a file',
-						action: 'Download a file',
+						description: 'دانلود یک فایل',
+						action: 'دانلود یک فایل',
 					},
 					{
-						name: 'List',
+						name: 'لیست',
 						value: 'list',
-						description: 'List folder content',
-						action: 'List folder content',
+						description: 'لیست محتوای پوشه',
+						action: 'لیست محتوای پوشه',
 					},
 					{
-						name: 'Rename',
+						name: 'تغییر نام',
 						value: 'rename',
-						description: 'Rename/move oldPath to newPath',
-						action: 'Rename / move a file or folder',
+						description: 'تغییر نام/انتقال oldPath به newPath',
+						action: 'تغییر نام / انتقال یک فایل یا پوشه',
 					},
 					{
-						name: 'Upload',
+						name: 'آپلود',
 						value: 'upload',
-						description: 'Upload a file',
-						action: 'Upload a file',
+						description: 'آپلود یک فایل',
+						action: 'آپلود یک فایل',
 					},
 				],
 				default: 'download',
@@ -223,7 +223,7 @@ export class Ftp implements INodeType {
 			//         delete
 			// ----------------------------------
 			{
-				displayName: 'Path',
+				displayName: 'مسیر',
 				displayOptions: {
 					show: {
 						operation: ['delete'],
@@ -232,16 +232,16 @@ export class Ftp implements INodeType {
 				name: 'path',
 				type: 'string',
 				default: '',
-				description: 'The file path of the file to delete. Has to contain the full path.',
-				placeholder: 'e.g. /public/documents/file-to-delete.txt',
+				description: 'مسیر فایل برای حذف. باید شامل مسیر کامل باشد.',
+				placeholder: 'مثلاً /public/documents/file-to-delete.txt',
 				required: true,
 			},
 
 			{
-				displayName: 'Options',
+				displayName: 'گزینه‌ها',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'Add option',
+				placeholder: 'افزودن گزینه',
 				displayOptions: {
 					show: {
 						operation: ['delete'],
@@ -250,14 +250,14 @@ export class Ftp implements INodeType {
 				default: {},
 				options: [
 					{
-						displayName: 'Folder',
+						displayName: 'پوشه',
 						name: 'folder',
 						type: 'boolean',
 						default: false,
-						description: 'Whether folders can be deleted',
+						description: 'آیا پوشه‌ها می‌توانند حذف شوند',
 					},
 					{
-						displayName: 'Recursive',
+						displayName: 'بازگشتی',
 						displayOptions: {
 							show: {
 								folder: [true],
@@ -266,7 +266,7 @@ export class Ftp implements INodeType {
 						name: 'recursive',
 						type: 'boolean',
 						default: false,
-						description: 'Whether to remove all files and directories in target directory',
+						description: 'آیا همه فایل‌ها و دایرکتوری‌ها در دایرکتوری هدف حذف شوند',
 					},
 					timeoutOption,
 				],
@@ -276,7 +276,7 @@ export class Ftp implements INodeType {
 			//         download
 			// ----------------------------------
 			{
-				displayName: 'Path',
+				displayName: 'مسیر',
 				displayOptions: {
 					show: {
 						operation: ['download'],
@@ -285,12 +285,12 @@ export class Ftp implements INodeType {
 				name: 'path',
 				type: 'string',
 				default: '',
-				description: 'The file path of the file to download. Has to contain the full path.',
-				placeholder: 'e.g. /public/documents/file-to-download.txt',
+				description: 'مسیر فایل برای دانلود. باید شامل مسیر کامل باشد.',
+				placeholder: 'مثلاً /public/documents/file-to-download.txt',
 				required: true,
 			},
 			{
-				displayName: 'Put Output File in Field',
+				displayName: 'قرار دادن فایل خروجی در فیلد',
 				displayOptions: {
 					show: {
 						operation: ['download'],
@@ -299,14 +299,14 @@ export class Ftp implements INodeType {
 				name: 'binaryPropertyName',
 				type: 'string',
 				default: 'data',
-				hint: 'The name of the output binary field to put the file in',
+				hint: 'نام فیلد باینری خروجی برای قرار دادن فایل در آن',
 				required: true,
 			},
 			{
-				displayName: 'Options',
+				displayName: 'گزینه‌ها',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'Add Field',
+				placeholder: 'افزودن فیلد',
 				default: {},
 				displayOptions: {
 					show: {
@@ -315,14 +315,14 @@ export class Ftp implements INodeType {
 				},
 				options: [
 					{
-						displayName: 'Enable Concurrent Reads',
+						displayName: 'فعال‌سازی خواندن همزمان',
 						name: 'enableConcurrentReads',
 						type: 'boolean',
 						default: false,
-						description: 'Whether to enable concurrent reads for downloading files',
+						description: 'آیا خواندن همزمان برای دانلود فایل‌ها فعال شود',
 					},
 					{
-						displayName: 'Max Concurrent Reads',
+						displayName: 'حداکثر خواندن همزمان',
 						name: 'maxConcurrentReads',
 						type: 'number',
 						default: 5,
@@ -333,11 +333,12 @@ export class Ftp implements INodeType {
 						},
 					},
 					{
-						displayName: 'Chunk Size',
+						displayName: 'اندازه تکه',
 						name: 'chunkSize',
 						type: 'number',
 						default: 64,
-						description: 'Size of each chunk in KB to download, Not all servers support this',
+						description:
+							'اندازه هر تکه به کیلوبایت برای دانلود، همه سرورها از این پشتیبانی نمی‌کنند',
 						displayOptions: {
 							show: {
 								enableConcurrentReads: [true],
@@ -351,7 +352,7 @@ export class Ftp implements INodeType {
 			//         rename
 			// ----------------------------------
 			{
-				displayName: 'Old Path',
+				displayName: 'مسیر قدیمی',
 				displayOptions: {
 					show: {
 						operation: ['rename'],
@@ -360,11 +361,11 @@ export class Ftp implements INodeType {
 				name: 'oldPath',
 				type: 'string',
 				default: '',
-				placeholder: 'e.g. /public/documents/old-file.txt',
+				placeholder: 'مثلاً /public/documents/old-file.txt',
 				required: true,
 			},
 			{
-				displayName: 'New Path',
+				displayName: 'مسیر جدید',
 				displayOptions: {
 					show: {
 						operation: ['rename'],
@@ -373,14 +374,14 @@ export class Ftp implements INodeType {
 				name: 'newPath',
 				type: 'string',
 				default: '',
-				placeholder: 'e.g. /public/documents/new-file.txt',
+				placeholder: 'مثلاً /public/documents/new-file.txt',
 				required: true,
 			},
 			{
-				displayName: 'Options',
+				displayName: 'گزینه‌ها',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'Add Field',
+				placeholder: 'افزودن فیلد',
 				default: {},
 				displayOptions: {
 					show: {
@@ -389,12 +390,12 @@ export class Ftp implements INodeType {
 				},
 				options: [
 					{
-						displayName: 'Create Directories',
+						displayName: 'ایجاد دایرکتوری‌ها',
 						name: 'createDirectories',
 						type: 'boolean',
 						default: false,
 						description:
-							'Whether to recursively create destination directory when renaming an existing file or folder',
+							'آیا دایرکتوری مقصد به صورت بازگشتی ایجاد شود هنگام تغییر نام یک فایل یا پوشه موجود',
 					},
 					timeoutOption,
 				],
@@ -404,7 +405,7 @@ export class Ftp implements INodeType {
 			//         upload
 			// ----------------------------------
 			{
-				displayName: 'Path',
+				displayName: 'مسیر',
 				displayOptions: {
 					show: {
 						operation: ['upload'],
@@ -413,12 +414,12 @@ export class Ftp implements INodeType {
 				name: 'path',
 				type: 'string',
 				default: '',
-				description: 'The file path of the file to upload. Has to contain the full path.',
-				placeholder: 'e.g. /public/documents/file-to-upload.txt',
+				description: 'مسیر فایل برای آپلود. باید شامل مسیر کامل باشد.',
+				placeholder: 'مثلاً /public/documents/file-to-upload.txt',
 				required: true,
 			},
 			{
-				displayName: 'Binary File',
+				displayName: 'فایل باینری',
 				displayOptions: {
 					show: {
 						operation: ['upload'],
@@ -428,10 +429,10 @@ export class Ftp implements INodeType {
 				type: 'boolean',
 				default: true,
 				// eslint-disable-next-line n8n-nodes-base/node-param-description-boolean-without-whether
-				description: 'The text content of the file to upload',
+				description: 'محتوای متنی فایل برای آپلود',
 			},
 			{
-				displayName: 'Input Binary Field',
+				displayName: 'فیلد باینری ورودی',
 				displayOptions: {
 					show: {
 						operation: ['upload'],
@@ -441,11 +442,11 @@ export class Ftp implements INodeType {
 				name: 'binaryPropertyName',
 				type: 'string',
 				default: 'data',
-				hint: 'The name of the input binary field containing the file to be written',
+				hint: 'نام فیلد باینری ورودی حاوی فایل برای نوشتن',
 				required: true,
 			},
 			{
-				displayName: 'File Content',
+				displayName: 'محتوای فایل',
 				displayOptions: {
 					show: {
 						operation: ['upload'],
@@ -455,13 +456,13 @@ export class Ftp implements INodeType {
 				name: 'fileContent',
 				type: 'string',
 				default: '',
-				description: 'The text content of the file to upload',
+				description: 'محتوای متنی فایل برای آپلود',
 			},
 			{
-				displayName: 'Options',
+				displayName: 'گزینه‌ها',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'Add Field',
+				placeholder: 'افزودن فیلد',
 				default: {},
 				displayOptions: {
 					show: {
@@ -475,7 +476,7 @@ export class Ftp implements INodeType {
 			//         list
 			// ----------------------------------
 			{
-				displayName: 'Path',
+				displayName: 'مسیر',
 				displayOptions: {
 					show: {
 						operation: ['list'],
@@ -484,12 +485,12 @@ export class Ftp implements INodeType {
 				name: 'path',
 				type: 'string',
 				default: '/',
-				placeholder: 'e.g. /public/folder',
-				description: 'Path of directory to list contents of',
+				placeholder: 'مثلاً /public/folder',
+				description: 'مسیر دایرکتوری برای لیست کردن محتوا',
 				required: true,
 			},
 			{
-				displayName: 'Recursive',
+				displayName: 'بازگشتی',
 				displayOptions: {
 					show: {
 						operation: ['list'],
@@ -499,14 +500,14 @@ export class Ftp implements INodeType {
 				type: 'boolean',
 				default: false,
 				description:
-					'Whether to return object representing all directories / objects recursively found within SFTP server',
+					'آیا شیء نشان‌دهنده همه دایرکتوری‌ها / اشیاء به صورت بازگشتی یافت شده در سرور SFTP برگردانده شود',
 				required: true,
 			},
 			{
-				displayName: 'Options',
+				displayName: 'گزینه‌ها',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'Add Field',
+				placeholder: 'افزودن فیلد',
 				default: {},
 				displayOptions: {
 					show: {

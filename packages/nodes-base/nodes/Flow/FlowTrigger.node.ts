@@ -12,14 +12,14 @@ import { flowApiRequest } from './GenericFunctions';
 
 export class FlowTrigger implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Flow Trigger',
+		displayName: 'تریگر Flow',
 		name: 'flowTrigger',
 		icon: 'file:flow.svg',
 		group: ['trigger'],
 		version: 1,
-		description: 'Handle Flow events via webhooks',
+		description: 'مدیریت رویدادهای Flow از طریق وب هوک‌ها',
 		defaults: {
-			name: 'Flow Trigger',
+			name: 'تریگر Flow',
 		},
 		inputs: [],
 		outputs: [NodeConnectionTypes.Main],
@@ -39,25 +39,25 @@ export class FlowTrigger implements INodeType {
 		],
 		properties: [
 			{
-				displayName: 'Resource',
+				displayName: 'منبع',
 				name: 'resource',
 				type: 'options',
 				noDataExpression: true,
 				default: '',
 				options: [
 					{
-						name: 'Project',
+						name: 'پروژه',
 						value: 'list',
 					},
 					{
-						name: 'Task',
+						name: 'وظیفه',
 						value: 'task',
 					},
 				],
-				description: 'Resource that triggers the webhook',
+				description: 'منبعی که وب هوک را تریگر می‌کند',
 			},
 			{
-				displayName: 'Project ID',
+				displayName: 'شناسه پروژه',
 				name: 'listIds',
 				type: 'string',
 				required: true,
@@ -70,10 +70,10 @@ export class FlowTrigger implements INodeType {
 						resource: ['task'],
 					},
 				},
-				description: 'Lists IDs, perhaps known better as "Projects" separated by a comma (,)',
+				description: 'شناسه‌های لیست، شاید بهتر به عنوان "پروژه‌ها" شناخته شوند، جدا شده با کاما (,)',
 			},
 			{
-				displayName: 'Task ID',
+				displayName: 'شناسه وظیفه',
 				name: 'taskIds',
 				type: 'string',
 				required: true,
@@ -86,7 +86,7 @@ export class FlowTrigger implements INodeType {
 						resource: ['list'],
 					},
 				},
-				description: 'Task IDs separated by a comma (,)',
+				description: 'شناسه‌های وظیفه جدا شده با کاما (,)',
 			},
 		],
 	};

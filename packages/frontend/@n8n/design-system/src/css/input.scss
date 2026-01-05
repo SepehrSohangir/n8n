@@ -376,3 +376,43 @@
 	width: 0;
 	height: 0;
 }
+
+/* RTL Support */
+html[dir='rtl'] {
+	@include mixins.b(textarea) {
+		& .el-input__count {
+			right: auto;
+			left: 10px;
+		}
+	}
+
+	@include mixins.b(input) {
+		@include mixins.e(inner) {
+			padding: 0 var(--spacing--2xs) 0 0;
+		}
+
+		@include mixins.e(suffix) {
+			right: auto;
+			left: var(--spacing--2xs);
+		}
+
+		@include mixins.e(prefix) {
+			left: auto;
+			right: 14px;
+		}
+
+		@include mixins.m(suffix) {
+			.el-input__inner {
+				padding-right: 0;
+				padding-left: 30px;
+			}
+		}
+
+		@include mixins.m(prefix) {
+			.el-input__inner {
+				padding-left: 0;
+				padding-right: 37px;
+			}
+		}
+	}
+}

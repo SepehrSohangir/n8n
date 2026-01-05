@@ -607,3 +607,143 @@
 		opacity: 0;
 	}
 }
+
+/* RTL Support */
+html[dir='rtl'] {
+	@include mixins.b(tabs) {
+		@include mixins.e(new-tab) {
+			float: left;
+			margin: 12px 10px 9px 0;
+		}
+
+		@include mixins.e(nav-next) {
+			right: auto;
+			left: 0;
+		}
+
+		@include mixins.e(nav-prev) {
+			left: auto;
+			right: 0;
+		}
+
+		@include mixins.e(nav) {
+			float: right;
+		}
+
+		@include mixins.e(item) {
+			& .el-icon-close {
+				margin-left: 0;
+				margin-right: 5px;
+			}
+		}
+
+		@include mixins.m(card) {
+			> .el-tabs__header .el-tabs__item {
+				border-left: none;
+				border-right: 1px solid var(--border-color);
+
+				&:first-child {
+					border-left: none;
+					border-right: none;
+				}
+
+				&.is-closable {
+					&:hover {
+						padding-left: 13px;
+						padding-right: 13px;
+					}
+				}
+			}
+		}
+
+		@include mixins.m(border-card) {
+			> .el-tabs__header .el-tabs__item {
+				&:first-child {
+					margin-left: 0;
+					margin-right: -1px;
+				}
+
+				& + .el-tabs__item {
+					margin-left: 0;
+					margin-right: -1px;
+				}
+			}
+
+			> .el-tabs__header .is-scrollable .el-tabs__item:first-child {
+				margin-left: auto;
+				margin-right: 0;
+			}
+		}
+
+		@include mixins.m((top, bottom)) {
+			.el-tabs__item.is-top:nth-child(2),
+			.el-tabs__item.is-bottom:nth-child(2) {
+				padding-left: 20px;
+				padding-right: 0;
+			}
+			.el-tabs__item.is-top:last-child,
+			.el-tabs__item.is-bottom:last-child {
+				padding-right: 20px;
+				padding-left: 0;
+			}
+		}
+
+		@include mixins.m(left) {
+			.el-tabs__header.is-left {
+				float: right;
+				margin-right: 0;
+				margin-left: 10px;
+			}
+
+			.el-tabs__nav-wrap.is-left {
+				margin-right: 0;
+				margin-left: -1px;
+
+				&::after {
+					left: 0;
+					right: auto;
+				}
+			}
+
+			.el-tabs__active-bar.is-left {
+				right: auto;
+				left: 0;
+			}
+
+			.el-tabs__item.is-left {
+				text-align: left;
+			}
+
+			&.el-tabs--card {
+				.el-tabs__item.is-left {
+					border-right: none;
+					border-left: 1px solid var(--border-color);
+					text-align: right;
+				}
+			}
+		}
+
+		@include mixins.m(right) {
+			.el-tabs__header.is-right {
+				float: left;
+				margin-left: 0;
+				margin-right: 10px;
+			}
+
+			.el-tabs__nav-wrap.is-right {
+				margin-left: 0;
+				margin-right: -1px;
+
+				&::after {
+					left: auto;
+					right: 0;
+				}
+			}
+
+			.el-tabs__active-bar.is-right {
+				left: auto;
+				right: 0;
+			}
+		}
+	}
+}

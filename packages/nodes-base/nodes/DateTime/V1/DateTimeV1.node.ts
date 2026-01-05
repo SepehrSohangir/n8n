@@ -19,7 +19,7 @@ function parseDateByFormat(this: IExecuteFunctions, value: string, fromFormat: s
 
 	throw new NodeOperationError(
 		this.getNode(),
-		'Date input cannot be parsed. Please recheck the value and the "From Format" field.',
+		'ورودی تاریخ قابل تجزیه نیست. لطفاً مقدار و فیلد "از فرمت" را دوباره بررسی کنید.',
 	);
 }
 
@@ -29,7 +29,7 @@ function getIsoValue(this: IExecuteFunctions, value: string) {
 	} catch (error) {
 		throw new NodeOperationError(
 			this.getNode(),
-			'Unrecognized date input. Please specify a format in the "From Format" field.',
+			'ورودی تاریخ تشخیص داده نشد. لطفاً یک فرمت در فیلد "از فرمت" مشخص کنید.',
 		);
 	}
 }
@@ -45,15 +45,15 @@ function parseDateByDefault(this: IExecuteFunctions, value: string) {
 }
 
 const versionDescription: INodeTypeDescription = {
-	displayName: 'Date & Time',
+	displayName: 'تاریخ و زمان',
 	name: 'dateTime',
 	icon: 'fa:clock',
 	group: ['transform'],
 	version: 1,
-	description: 'Allows you to manipulate date and time values',
+	description: 'اجازه دستکاری مقادیر تاریخ و زمان را می‌دهد',
 	subtitle: '={{$parameter["action"]}}',
 	defaults: {
-		name: 'Date & Time',
+		name: 'تاریخ و زمان',
 		color: '#408000',
 	},
 	inputs: [NodeConnectionTypes.Main],
@@ -61,33 +61,33 @@ const versionDescription: INodeTypeDescription = {
 	properties: [
 		{
 			displayName:
-				"More powerful date functionality is available in <a href='https://docs.n8n.io/code/cookbook/luxon/' target='_blank'>expressions</a>,</br> e.g. <code>{{ $now.plus(1, 'week') }}</code>",
+				"عملکردهای قدرتمندتر تاریخ در <a href='https://docs.n8n.io/code/cookbook/luxon/' target='_blank'>عبارت‌ها</a> در دسترس است،</br> مثلاً <code>{{ $now.plus(1, 'week') }}</code>",
 			name: 'noticeDateTime',
 			type: 'notice',
 			default: '',
 		},
 		{
-			displayName: 'Action',
+			displayName: 'عملیات',
 			name: 'action',
 			type: 'options',
 			options: [
 				{
-					name: 'Calculate a Date',
-					description: 'Add or subtract time from a date',
+					name: 'محاسبه تاریخ',
+					description: 'افزودن یا کم کردن زمان از یک تاریخ',
 					value: 'calculate',
-					action: 'Add or subtract time from a date',
+					action: 'افزودن یا کم کردن زمان از یک تاریخ',
 				},
 				{
-					name: 'Format a Date',
-					description: 'Convert a date to a different format',
+					name: 'فرمت کردن تاریخ',
+					description: 'تبدیل تاریخ به فرمت متفاوت',
 					value: 'format',
-					action: 'Convert a date to a different format',
+					action: 'تبدیل تاریخ به فرمت متفاوت',
 				},
 			],
 			default: 'format',
 		},
 		{
-			displayName: 'Value',
+			displayName: 'مقدار',
 			name: 'value',
 			displayOptions: {
 				show: {
@@ -96,11 +96,11 @@ const versionDescription: INodeTypeDescription = {
 			},
 			type: 'string',
 			default: '',
-			description: 'The value that should be converted',
+			description: 'مقداری که باید تبدیل شود',
 			required: true,
 		},
 		{
-			displayName: 'Property Name',
+			displayName: 'نام ویژگی',
 			name: 'dataPropertyName',
 			type: 'string',
 			default: 'data',
@@ -110,10 +110,10 @@ const versionDescription: INodeTypeDescription = {
 					action: ['format'],
 				},
 			},
-			description: 'Name of the property to which to write the converted date',
+			description: 'نام ویژگی که تاریخ تبدیل شده در آن نوشته می‌شود',
 		},
 		{
-			displayName: 'Custom Format',
+			displayName: 'فرمت سفارشی',
 			name: 'custom',
 			displayOptions: {
 				show: {
@@ -122,10 +122,10 @@ const versionDescription: INodeTypeDescription = {
 			},
 			type: 'boolean',
 			default: false,
-			description: 'Whether a predefined format should be selected or custom format entered',
+			description: 'آیا باید یک فرمت از پیش تعریف شده انتخاب شود یا فرمت سفارشی وارد شود',
 		},
 		{
-			displayName: 'To Format',
+			displayName: 'به فرمت',
 			name: 'toFormat',
 			displayOptions: {
 				show: {
@@ -136,10 +136,10 @@ const versionDescription: INodeTypeDescription = {
 			type: 'string',
 			default: '',
 			placeholder: 'YYYY-MM-DD',
-			description: 'The format to convert the date to',
+			description: 'فرمتی که تاریخ به آن تبدیل می‌شود',
 		},
 		{
-			displayName: 'To Format',
+			displayName: 'به فرمت',
 			name: 'toFormat',
 			type: 'options',
 			displayOptions: {
@@ -153,44 +153,44 @@ const versionDescription: INodeTypeDescription = {
 				{
 					name: 'MM/DD/YYYY',
 					value: 'MM/DD/YYYY',
-					description: 'Example: 09/04/1986',
+					description: 'مثال: 09/04/1986',
 				},
 				{
 					name: 'YYYY/MM/DD',
 					value: 'YYYY/MM/DD',
-					description: 'Example: 1986/04/09',
+					description: 'مثال: 1986/04/09',
 				},
 				{
 					name: 'MMMM DD YYYY',
 					value: 'MMMM DD YYYY',
-					description: 'Example: April 09 1986',
+					description: 'مثال: April 09 1986',
 				},
 				{
 					name: 'MM-DD-YYYY',
 					value: 'MM-DD-YYYY',
-					description: 'Example: 09-04-1986',
+					description: 'مثال: 09-04-1986',
 				},
 				{
 					name: 'YYYY-MM-DD',
 					value: 'YYYY-MM-DD',
-					description: 'Example: 1986-04-09',
+					description: 'مثال: 1986-04-09',
 				},
 				{
-					name: 'Unix Timestamp',
+					name: 'برچسب زمانی Unix',
 					value: 'X',
-					description: 'Example: 513388800.879',
+					description: 'مثال: 513388800.879',
 				},
 				{
-					name: 'Unix Ms Timestamp',
+					name: 'برچسب زمانی Unix (میلی‌ثانیه)',
 					value: 'x',
-					description: 'Example: 513388800',
+					description: 'مثال: 513388800',
 				},
 			],
 			default: 'MM/DD/YYYY',
-			description: 'The format to convert the date to',
+			description: 'فرمتی که تاریخ به آن تبدیل می‌شود',
 		},
 		{
-			displayName: 'Options',
+			displayName: 'گزینه‌ها',
 			name: 'options',
 			displayOptions: {
 				show: {
@@ -198,18 +198,18 @@ const versionDescription: INodeTypeDescription = {
 				},
 			},
 			type: 'collection',
-			placeholder: 'Add option',
+			placeholder: 'افزودن گزینه',
 			default: {},
 			options: [
 				{
-					displayName: 'From Format',
+					displayName: 'از فرمت',
 					name: 'fromFormat',
 					type: 'string',
 					default: '',
-					description: 'In case the input format is not recognized you can provide the format',
+					description: 'در صورتی که فرمت ورودی تشخیص داده نشود می‌توانید فرمت را ارائه دهید',
 				},
 				{
-					displayName: 'From Timezone Name or ID',
+					displayName: 'نام یا شناسه منطقه زمانی مبدأ',
 					name: 'fromTimezone',
 					type: 'options',
 					typeOptions: {
@@ -217,10 +217,10 @@ const versionDescription: INodeTypeDescription = {
 					},
 					default: 'UTC',
 					description:
-						'The timezone to convert from. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+						'منطقه زمانی برای تبدیل از آن. از لیست انتخاب کنید یا با استفاده از یک <a href="https://docs.n8n.io/code/expressions/">عبارت</a> شناسه را مشخص کنید.',
 				},
 				{
-					displayName: 'To Timezone Name or ID',
+					displayName: 'نام یا شناسه منطقه زمانی مقصد',
 					name: 'toTimezone',
 					type: 'options',
 					typeOptions: {
@@ -228,12 +228,12 @@ const versionDescription: INodeTypeDescription = {
 					},
 					default: 'UTC',
 					description:
-						'The timezone to convert to. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+						'منطقه زمانی برای تبدیل به آن. از لیست انتخاب کنید یا با استفاده از یک <a href="https://docs.n8n.io/code/expressions/">عبارت</a> شناسه را مشخص کنید.',
 				},
 			],
 		},
 		{
-			displayName: 'Date Value',
+			displayName: 'مقدار تاریخ',
 			name: 'value',
 			displayOptions: {
 				show: {
@@ -242,11 +242,11 @@ const versionDescription: INodeTypeDescription = {
 			},
 			type: 'string',
 			default: '',
-			description: 'The date string or timestamp from which you want to add/subtract time',
+			description: 'رشته تاریخ یا برچسب زمانی که می‌خواهید زمان را به آن اضافه/کم کنید',
 			required: true,
 		},
 		{
-			displayName: 'Operation',
+			displayName: 'عملیات',
 			name: 'operation',
 			displayOptions: {
 				show: {
@@ -257,23 +257,23 @@ const versionDescription: INodeTypeDescription = {
 			noDataExpression: true,
 			options: [
 				{
-					name: 'Add',
+					name: 'افزودن',
 					value: 'add',
-					description: 'Add time to Date Value',
-					action: 'Add time to Date Value',
+					description: 'افزودن زمان به مقدار تاریخ',
+					action: 'افزودن زمان به مقدار تاریخ',
 				},
 				{
-					name: 'Subtract',
+					name: 'کم کردن',
 					value: 'subtract',
-					description: 'Subtract time from Date Value',
-					action: 'Subtract time from Date Value',
+					description: 'کم کردن زمان از مقدار تاریخ',
+					action: 'کم کردن زمان از مقدار تاریخ',
 				},
 			],
 			default: 'add',
 			required: true,
 		},
 		{
-			displayName: 'Duration',
+			displayName: 'مدت زمان',
 			name: 'duration',
 			displayOptions: {
 				show: {
@@ -286,12 +286,13 @@ const versionDescription: INodeTypeDescription = {
 			},
 			default: 0,
 			required: true,
-			description: 'E.g. enter “10” then select “Days” if you want to add 10 days to Date Value.',
+			description:
+				'مثلاً "10" را وارد کنید سپس "روز" را انتخاب کنید اگر می‌خواهید 10 روز به مقدار تاریخ اضافه کنید.',
 		},
 		{
-			displayName: 'Time Unit',
+			displayName: 'واحد زمان',
 			name: 'timeUnit',
-			description: 'Time unit for Duration parameter above',
+			description: 'واحد زمان برای پارامتر مدت زمان بالا',
 			displayOptions: {
 				show: {
 					action: ['calculate'],
@@ -301,39 +302,39 @@ const versionDescription: INodeTypeDescription = {
 			// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 			options: [
 				{
-					name: 'Quarters',
+					name: 'سه‌ماهه',
 					value: 'quarters',
 				},
 				{
-					name: 'Years',
+					name: 'سال',
 					value: 'years',
 				},
 				{
-					name: 'Months',
+					name: 'ماه',
 					value: 'months',
 				},
 				{
-					name: 'Weeks',
+					name: 'هفته',
 					value: 'weeks',
 				},
 				{
-					name: 'Days',
+					name: 'روز',
 					value: 'days',
 				},
 				{
-					name: 'Hours',
+					name: 'ساعت',
 					value: 'hours',
 				},
 				{
-					name: 'Minutes',
+					name: 'دقیقه',
 					value: 'minutes',
 				},
 				{
-					name: 'Seconds',
+					name: 'ثانیه',
 					value: 'seconds',
 				},
 				{
-					name: 'Milliseconds',
+					name: 'میلی‌ثانیه',
 					value: 'milliseconds',
 				},
 			],
@@ -341,7 +342,7 @@ const versionDescription: INodeTypeDescription = {
 			required: true,
 		},
 		{
-			displayName: 'Property Name',
+			displayName: 'نام ویژگی',
 			name: 'dataPropertyName',
 			type: 'string',
 			default: 'data',
@@ -351,13 +352,13 @@ const versionDescription: INodeTypeDescription = {
 					action: ['calculate'],
 				},
 			},
-			description: 'Name of the output property to which to write the converted date',
+			description: 'نام ویژگی خروجی که تاریخ تبدیل شده در آن نوشته می‌شود',
 		},
 		{
-			displayName: 'Options',
+			displayName: 'گزینه‌ها',
 			name: 'options',
 			type: 'collection',
-			placeholder: 'Add option',
+			placeholder: 'افزودن گزینه',
 			default: {},
 			displayOptions: {
 				show: {
@@ -366,12 +367,12 @@ const versionDescription: INodeTypeDescription = {
 			},
 			options: [
 				{
-					displayName: 'From Format',
+					displayName: 'از فرمت',
 					name: 'fromFormat',
 					type: 'string',
 					default: '',
 					description:
-						'Format for parsing the value as a date. If unrecognized, specify the <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.datetime/#faqs">format</a> for the value.',
+						'فرمت برای تجزیه مقدار به عنوان تاریخ. اگر تشخیص داده نشد، <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.datetime/#faqs">فرمت</a> را برای مقدار مشخص کنید.',
 				},
 			],
 		},
@@ -450,7 +451,7 @@ export class DateTimeV1 implements INodeType {
 					if (options.fromFormat === undefined && !moment(currentDate).isValid()) {
 						throw new NodeOperationError(
 							this.getNode(),
-							'The date input format could not be recognized. Please set the "From Format" field',
+							'فرمت ورودی تاریخ قابل تشخیص نبود. لطفاً فیلد "از فرمت" را تنظیم کنید',
 							{ itemIndex: i },
 						);
 					}

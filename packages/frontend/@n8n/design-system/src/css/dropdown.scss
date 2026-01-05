@@ -192,3 +192,34 @@
 		}
 	}
 }
+
+/* RTL Support */
+html[dir='rtl'] {
+	@include mixins.b(dropdown) {
+		& .el-dropdown__caret-button {
+			padding-left: 5px;
+			padding-right: 5px;
+			border-left: var(--border);
+			border-right: none;
+
+			&::before {
+				left: auto;
+				right: 0;
+			}
+
+			& .el-dropdown__icon {
+				padding-left: 0;
+				padding-right: 0;
+			}
+		}
+	}
+
+	@include mixins.b(dropdown-menu) {
+		@include mixins.e(item) {
+			i {
+				margin-right: 0;
+				margin-left: 5px;
+			}
+		}
+	}
+}

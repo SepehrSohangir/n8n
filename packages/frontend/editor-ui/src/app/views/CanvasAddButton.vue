@@ -92,5 +92,12 @@ const containerCssVars = computed(() => ({
 	line-height: var(--line-height--xl);
 	color: var(--color--text--shade-1);
 	margin-top: var(--spacing--2xs);
+	text-align: center;
+}
+
+/* RTL Support */
+html[dir='rtl'] .label {
+	direction: rtl;
+	text-align: center;
 }
 </style>

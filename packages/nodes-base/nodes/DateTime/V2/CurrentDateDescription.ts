@@ -5,7 +5,7 @@ import { includeInputFields } from './common.descriptions';
 export const CurrentDateDescription: INodeProperties[] = [
 	{
 		displayName:
-			'You can also refer to the current date in n8n expressions by using <code>{{$now}}</code> or <code>{{$today}}</code>. <a target="_blank" href="https://docs.n8n.io/code/cookbook/luxon/">More info</a>',
+			'همچنین می‌توانید با استفاده از <code>{{$now}}</code> یا <code>{{$today}}</code> به تاریخ فعلی در عبارت‌های n8n ارجاع دهید. <a target="_blank" href="https://docs.n8n.io/code/cookbook/luxon/">اطلاعات بیشتر</a>',
 		name: 'notice',
 		type: 'notice',
 		default: '',
@@ -16,12 +16,12 @@ export const CurrentDateDescription: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Include Current Time',
+		displayName: 'شامل زمان فعلی',
 		name: 'includeTime',
 		type: 'boolean',
 		default: true,
 		// eslint-disable-next-line n8n-nodes-base/node-param-description-boolean-without-whether
-		description: 'When deactivated, the time will be set to midnight',
+		description: 'هنگام غیرفعال شدن، زمان به نیمه‌شب تنظیم می‌شود',
 		displayOptions: {
 			show: {
 				operation: ['getCurrentDate'],
@@ -29,11 +29,11 @@ export const CurrentDateDescription: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Output Field Name',
+		displayName: 'نام فیلد خروجی',
 		name: 'outputFieldName',
 		type: 'string',
 		default: 'currentDate',
-		description: 'Name of the field to put the output in',
+		description: 'نام فیلدی که خروجی در آن قرار می‌گیرد',
 		displayOptions: {
 			show: {
 				operation: ['getCurrentDate'],
@@ -41,10 +41,10 @@ export const CurrentDateDescription: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Options',
+		displayName: 'گزینه‌ها',
 		name: 'options',
 		type: 'collection',
-		placeholder: 'Add option',
+		placeholder: 'افزودن گزینه',
 		displayOptions: {
 			show: {
 				operation: ['getCurrentDate'],
@@ -54,13 +54,13 @@ export const CurrentDateDescription: INodeProperties[] = [
 		options: [
 			includeInputFields,
 			{
-				displayName: 'Timezone',
+				displayName: 'منطقه زمانی',
 				name: 'timezone',
 				type: 'string',
 				placeholder: 'America/New_York',
 				default: '',
 				description:
-					'The timezone to use. If not set, the timezone of the n8n instance will be used. Use ‘GMT’ for +00:00 timezone.',
+					"منطقه زمانی برای استفاده. اگر تنظیم نشود، منطقه زمانی نمونه n8n استفاده می‌شود. برای منطقه زمانی +00:00 از 'GMT' استفاده کنید.",
 			},
 		],
 	},

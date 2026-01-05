@@ -8,45 +8,45 @@ import { NodeConnectionTypes } from 'n8n-workflow';
 
 export class Limit implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Limit',
+		displayName: 'محدودیت',
 		name: 'limit',
 		icon: 'file:limit.svg',
 		group: ['transform'],
 		subtitle: '',
 		version: 1,
-		description: 'Restrict the number of items',
+		description: 'محدود کردن تعداد آیتم‌ها',
 		defaults: {
-			name: 'Limit',
+			name: 'محدودیت',
 		},
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
 		properties: [
 			{
-				displayName: 'Max Items',
+				displayName: 'حداکثر آیتم‌ها',
 				name: 'maxItems',
 				type: 'number',
 				typeOptions: {
 					minValue: 1,
 				},
 				default: 1,
-				description: 'If there are more items than this number, some are removed',
+				description: 'اگر تعداد آیتم‌ها بیشتر از این عدد باشد، برخی حذف می‌شوند',
 			},
 			{
-				displayName: 'Keep',
+				displayName: 'نگه داشتن',
 				name: 'keep',
 				type: 'options',
 				options: [
 					{
-						name: 'First Items',
+						name: 'اولین آیتم‌ها',
 						value: 'firstItems',
 					},
 					{
-						name: 'Last Items',
+						name: 'آخرین آیتم‌ها',
 						value: 'lastItems',
 					},
 				],
 				default: 'firstItems',
-				description: 'When removing items, whether to keep the ones at the start or the ending',
+				description: 'هنگام حذف آیتم‌ها، آیا آیتم‌های ابتدایی یا انتهایی حفظ شوند',
 			},
 		],
 	};

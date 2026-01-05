@@ -17,70 +17,70 @@ import { file } from 'tmp-promise';
 
 const nodeOperations: INodePropertyOptions[] = [
 	{
-		name: 'Blur',
+		name: 'تار کردن',
 		value: 'blur',
-		description: 'Adds a blur to the image and so makes it less sharp',
-		action: 'Blur Image',
+		description: 'تاری به تصویر اضافه می‌کند و آن را کمتر واضح می‌کند',
+		action: 'تار کردن تصویر',
 	},
 	{
-		name: 'Border',
+		name: 'حاشیه',
 		value: 'border',
-		description: 'Adds a border to the image',
-		action: 'Border Image',
+		description: 'حاشیه به تصویر اضافه می‌کند',
+		action: 'حاشیه تصویر',
 	},
 	{
-		name: 'Composite',
+		name: 'ترکیب',
 		value: 'composite',
-		description: 'Composite image on top of another one',
-		action: 'Composite Image',
+		description: 'ترکیب تصویر روی تصویر دیگر',
+		action: 'ترکیب تصویر',
 	},
 	{
-		name: 'Create',
+		name: 'ایجاد',
 		value: 'create',
-		description: 'Create a new image',
-		action: 'Create Image',
+		description: 'ایجاد یک تصویر جدید',
+		action: 'ایجاد تصویر',
 	},
 	{
-		name: 'Crop',
+		name: 'برش',
 		value: 'crop',
-		description: 'Crops the image',
-		action: 'Crop Image',
+		description: 'برش تصویر',
+		action: 'برش تصویر',
 	},
 	{
-		name: 'Draw',
+		name: 'رسم',
 		value: 'draw',
-		description: 'Draw on image',
-		action: 'Draw Image',
+		description: 'رسم روی تصویر',
+		action: 'رسم تصویر',
 	},
 	{
-		name: 'Rotate',
+		name: 'چرخش',
 		value: 'rotate',
-		description: 'Rotate image',
-		action: 'Rotate Image',
+		description: 'چرخش تصویر',
+		action: 'چرخش تصویر',
 	},
 	{
-		name: 'Resize',
+		name: 'تغییر اندازه',
 		value: 'resize',
-		description: 'Change the size of image',
-		action: 'Resize Image',
+		description: 'تغییر اندازه تصویر',
+		action: 'تغییر اندازه تصویر',
 	},
 	{
-		name: 'Shear',
+		name: 'برش مایل',
 		value: 'shear',
-		description: 'Shear image along the X or Y axis',
-		action: 'Shear Image',
+		description: 'برش مایل تصویر در امتداد محور X یا Y',
+		action: 'برش مایل تصویر',
 	},
 	{
-		name: 'Text',
+		name: 'متن',
 		value: 'text',
-		description: 'Adds text to image',
-		action: 'Apply Text to Image',
+		description: 'افزودن متن به تصویر',
+		action: 'اعمال متن به تصویر',
 	},
 	{
-		name: 'Transparent',
+		name: 'شفاف',
 		value: 'transparent',
-		description: 'Make a color in image transparent',
-		action: 'Add Transparency to Image',
+		description: 'شفاف کردن یک رنگ در تصویر',
+		action: 'افزودن شفافیت به تصویر',
 	},
 ];
 
@@ -89,7 +89,7 @@ const nodeOperationOptions: INodeProperties[] = [
 	//         create
 	// ----------------------------------
 	{
-		displayName: 'Background Color',
+		displayName: 'رنگ پس‌زمینه',
 		name: 'backgroundColor',
 		type: 'color',
 		default: '#ffffff00',
@@ -101,10 +101,10 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['create'],
 			},
 		},
-		description: 'The background color of the image to create',
+		description: 'رنگ پس‌زمینه تصویری که باید ایجاد شود',
 	},
 	{
-		displayName: 'Image Width',
+		displayName: 'عرض تصویر',
 		name: 'width',
 		type: 'number',
 		default: 50,
@@ -116,10 +116,10 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['create'],
 			},
 		},
-		description: 'The width of the image to create',
+		description: 'عرض تصویری که باید ایجاد شود',
 	},
 	{
-		displayName: 'Image Height',
+		displayName: 'ارتفاع تصویر',
 		name: 'height',
 		type: 'number',
 		default: 50,
@@ -131,14 +131,14 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['create'],
 			},
 		},
-		description: 'The height of the image to create',
+		description: 'ارتفاع تصویری که باید ایجاد شود',
 	},
 
 	// ----------------------------------
 	//         draw
 	// ----------------------------------
 	{
-		displayName: 'Primitive',
+		displayName: 'شکل اولیه',
 		name: 'primitive',
 		type: 'options',
 		displayOptions: {
@@ -148,23 +148,23 @@ const nodeOperationOptions: INodeProperties[] = [
 		},
 		options: [
 			{
-				name: 'Circle',
+				name: 'دایره',
 				value: 'circle',
 			},
 			{
-				name: 'Line',
+				name: 'خط',
 				value: 'line',
 			},
 			{
-				name: 'Rectangle',
+				name: 'مستطیل',
 				value: 'rectangle',
 			},
 		],
 		default: 'rectangle',
-		description: 'The primitive to draw',
+		description: 'شکل اولیه برای رسم',
 	},
 	{
-		displayName: 'Color',
+		displayName: 'رنگ',
 		name: 'color',
 		type: 'color',
 		default: '#ff000000',
@@ -176,10 +176,10 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['draw'],
 			},
 		},
-		description: 'The color of the primitive to draw',
+		description: 'رنگ شکل اولیه برای رسم',
 	},
 	{
-		displayName: 'Start Position X',
+		displayName: 'موقعیت شروع X',
 		name: 'startPositionX',
 		type: 'number',
 		default: 50,
@@ -189,10 +189,10 @@ const nodeOperationOptions: INodeProperties[] = [
 				primitive: ['circle', 'line', 'rectangle'],
 			},
 		},
-		description: 'X (horizontal) start position of the primitive',
+		description: 'موقعیت شروع X (افقی) شکل اولیه',
 	},
 	{
-		displayName: 'Start Position Y',
+		displayName: 'موقعیت شروع Y',
 		name: 'startPositionY',
 		type: 'number',
 		default: 50,
@@ -202,10 +202,10 @@ const nodeOperationOptions: INodeProperties[] = [
 				primitive: ['circle', 'line', 'rectangle'],
 			},
 		},
-		description: 'Y (horizontal) start position of the primitive',
+		description: 'موقعیت شروع Y (عمودی) شکل اولیه',
 	},
 	{
-		displayName: 'End Position X',
+		displayName: 'موقعیت پایان X',
 		name: 'endPositionX',
 		type: 'number',
 		default: 250,
@@ -215,10 +215,10 @@ const nodeOperationOptions: INodeProperties[] = [
 				primitive: ['circle', 'line', 'rectangle'],
 			},
 		},
-		description: 'X (horizontal) end position of the primitive',
+		description: 'موقعیت پایان X (افقی) شکل اولیه',
 	},
 	{
-		displayName: 'End Position Y',
+		displayName: 'موقعیت پایان Y',
 		name: 'endPositionY',
 		type: 'number',
 		default: 250,
@@ -228,10 +228,10 @@ const nodeOperationOptions: INodeProperties[] = [
 				primitive: ['circle', 'line', 'rectangle'],
 			},
 		},
-		description: 'Y (horizontal) end position of the primitive',
+		description: 'موقعیت پایان Y (عمودی) شکل اولیه',
 	},
 	{
-		displayName: 'Corner Radius',
+		displayName: 'شعاع گوشه',
 		name: 'cornerRadius',
 		type: 'number',
 		default: 0,
@@ -241,30 +241,30 @@ const nodeOperationOptions: INodeProperties[] = [
 				primitive: ['rectangle'],
 			},
 		},
-		description: 'The radius of the corner to create round corners',
+		description: 'شعاع گوشه برای ایجاد گوشه‌های گرد',
 	},
 
 	// ----------------------------------
 	//         text
 	// ----------------------------------
 	{
-		displayName: 'Text',
+		displayName: 'متن',
 		name: 'text',
 		typeOptions: {
 			rows: 5,
 		},
 		type: 'string',
 		default: '',
-		placeholder: 'Text to render',
+		placeholder: 'متن برای رندر',
 		displayOptions: {
 			show: {
 				operation: ['text'],
 			},
 		},
-		description: 'Text to write on the image',
+		description: 'متن برای نوشتن روی تصویر',
 	},
 	{
-		displayName: 'Font Size',
+		displayName: 'اندازه فونت',
 		name: 'fontSize',
 		type: 'number',
 		default: 18,
@@ -273,10 +273,10 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['text'],
 			},
 		},
-		description: 'Size of the text',
+		description: 'اندازه متن',
 	},
 	{
-		displayName: 'Font Color',
+		displayName: 'رنگ فونت',
 		name: 'fontColor',
 		type: 'color',
 		default: '#000000',
@@ -285,10 +285,10 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['text'],
 			},
 		},
-		description: 'Color of the text',
+		description: 'رنگ متن',
 	},
 	{
-		displayName: 'Position X',
+		displayName: 'موقعیت X',
 		name: 'positionX',
 		type: 'number',
 		default: 50,
@@ -297,10 +297,10 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['text'],
 			},
 		},
-		description: 'X (horizontal) position of the text',
+		description: 'موقعیت X (افقی) متن',
 	},
 	{
-		displayName: 'Position Y',
+		displayName: 'موقعیت Y',
 		name: 'positionY',
 		type: 'number',
 		default: 50,
@@ -309,10 +309,10 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['text'],
 			},
 		},
-		description: 'Y (vertical) position of the text',
+		description: 'موقعیت Y (عمودی) متن',
 	},
 	{
-		displayName: 'Max Line Length',
+		displayName: 'حداکثر طول خط',
 		name: 'lineLength',
 		type: 'number',
 		typeOptions: {
@@ -324,14 +324,14 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['text'],
 			},
 		},
-		description: 'Max amount of characters in a line before a line-break should get added',
+		description: 'حداکثر تعداد کاراکترها در یک خط قبل از افزودن شکست خط',
 	},
 
 	// ----------------------------------
 	//         blur
 	// ----------------------------------
 	{
-		displayName: 'Blur',
+		displayName: 'تار کردن',
 		name: 'blur',
 		type: 'number',
 		typeOptions: {
@@ -344,10 +344,10 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['blur'],
 			},
 		},
-		description: 'How strong the blur should be',
+		description: 'میزان تاری',
 	},
 	{
-		displayName: 'Sigma',
+		displayName: 'سیگما',
 		name: 'sigma',
 		type: 'number',
 		typeOptions: {
@@ -360,14 +360,14 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['blur'],
 			},
 		},
-		description: 'The sigma of the blur',
+		description: 'سیگما تاری',
 	},
 
 	// ----------------------------------
 	//         border
 	// ----------------------------------
 	{
-		displayName: 'Border Width',
+		displayName: 'عرض حاشیه',
 		name: 'borderWidth',
 		type: 'number',
 		default: 10,
@@ -376,10 +376,10 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['border'],
 			},
 		},
-		description: 'The width of the border',
+		description: 'عرض حاشیه',
 	},
 	{
-		displayName: 'Border Height',
+		displayName: 'ارتفاع حاشیه',
 		name: 'borderHeight',
 		type: 'number',
 		default: 10,
@@ -388,10 +388,10 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['border'],
 			},
 		},
-		description: 'The height of the border',
+		description: 'ارتفاع حاشیه',
 	},
 	{
-		displayName: 'Border Color',
+		displayName: 'رنگ حاشیه',
 		name: 'borderColor',
 		type: 'color',
 		default: '#000000',
@@ -400,14 +400,14 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['border'],
 			},
 		},
-		description: 'Color of the border',
+		description: 'رنگ حاشیه',
 	},
 
 	// ----------------------------------
 	//         composite
 	// ----------------------------------
 	{
-		displayName: 'Composite Image Property',
+		displayName: 'ویژگی تصویر ترکیبی',
 		name: 'dataPropertyNameComposite',
 		type: 'string',
 		default: '',
@@ -418,10 +418,10 @@ const nodeOperationOptions: INodeProperties[] = [
 			},
 		},
 		description:
-			'The name of the binary property which contains the data of the image to composite on top of image which is found in Property Name',
+			'نام ویژگی باینری که حاوی داده‌های تصویری است که باید روی تصویری که در نام ویژگی یافت می‌شود، ترکیب شود',
 	},
 	{
-		displayName: 'Operator',
+		displayName: 'عملگر',
 		name: 'operator',
 		type: 'options',
 		displayOptions: {
@@ -520,10 +520,10 @@ const nodeOperationOptions: INodeProperties[] = [
 			},
 		],
 		default: 'Over',
-		description: 'The operator to use to combine the images',
+		description: 'عملگر برای ترکیب تصاویر',
 	},
 	{
-		displayName: 'Position X',
+		displayName: 'موقعیت X',
 		name: 'positionX',
 		type: 'number',
 		default: 0,
@@ -532,10 +532,10 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['composite'],
 			},
 		},
-		description: 'X (horizontal) position of composite image',
+		description: 'موقعیت X (افقی) تصویر ترکیبی',
 	},
 	{
-		displayName: 'Position Y',
+		displayName: 'موقعیت Y',
 		name: 'positionY',
 		type: 'number',
 		default: 0,
@@ -544,14 +544,14 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['composite'],
 			},
 		},
-		description: 'Y (vertical) position of composite image',
+		description: 'موقعیت Y (عمودی) تصویر ترکیبی',
 	},
 
 	// ----------------------------------
 	//         crop
 	// ----------------------------------
 	{
-		displayName: 'Width',
+		displayName: 'عرض',
 		name: 'width',
 		type: 'number',
 		default: 500,
@@ -560,10 +560,10 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['crop'],
 			},
 		},
-		description: 'Crop width',
+		description: 'عرض برش',
 	},
 	{
-		displayName: 'Height',
+		displayName: 'ارتفاع',
 		name: 'height',
 		type: 'number',
 		default: 500,
@@ -572,10 +572,10 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['crop'],
 			},
 		},
-		description: 'Crop height',
+		description: 'ارتفاع برش',
 	},
 	{
-		displayName: 'Position X',
+		displayName: 'موقعیت X',
 		name: 'positionX',
 		type: 'number',
 		default: 0,
@@ -584,10 +584,10 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['crop'],
 			},
 		},
-		description: 'X (horizontal) position to crop from',
+		description: 'موقعیت X (افقی) برای برش از',
 	},
 	{
-		displayName: 'Position Y',
+		displayName: 'موقعیت Y',
 		name: 'positionY',
 		type: 'number',
 		default: 0,
@@ -596,14 +596,14 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['crop'],
 			},
 		},
-		description: 'Y (vertical) position to crop from',
+		description: 'موقعیت Y (عمودی) برای برش از',
 	},
 
 	// ----------------------------------
 	//         resize
 	// ----------------------------------
 	{
-		displayName: 'Width',
+		displayName: 'عرض',
 		name: 'width',
 		type: 'number',
 		default: 500,
@@ -612,10 +612,10 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['resize'],
 			},
 		},
-		description: 'New width of the image',
+		description: 'عرض جدید تصویر',
 	},
 	{
-		displayName: 'Height',
+		displayName: 'ارتفاع',
 		name: 'height',
 		type: 'number',
 		default: 500,
@@ -624,42 +624,42 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['resize'],
 			},
 		},
-		description: 'New height of the image',
+		description: 'ارتفاع جدید تصویر',
 	},
 	{
-		displayName: 'Option',
+		displayName: 'گزینه',
 		name: 'resizeOption',
 		type: 'options',
 		options: [
 			{
-				name: 'Ignore Aspect Ratio',
+				name: 'نادیده گرفتن نسبت ابعاد',
 				value: 'ignoreAspectRatio',
-				description: 'Ignore aspect ratio and resize exactly to specified values',
+				description: 'نادیده گرفتن نسبت ابعاد و تغییر اندازه دقیقاً به مقادیر مشخص شده',
 			},
 			{
-				name: 'Maximum Area',
+				name: 'حداکثر مساحت',
 				value: 'maximumArea',
-				description: 'Specified values are maximum area',
+				description: 'مقادیر مشخص شده حداکثر مساحت هستند',
 			},
 			{
-				name: 'Minimum Area',
+				name: 'حداقل مساحت',
 				value: 'minimumArea',
-				description: 'Specified values are minimum area',
+				description: 'حداقل مساحت',
 			},
 			{
-				name: 'Only if Larger',
+				name: 'فقط اگر بزرگتر باشد',
 				value: 'onlyIfLarger',
-				description: 'Resize only if image is larger than width or height',
+				description: 'تغییر اندازه فقط اگر تصویر بزرگتر از عرض یا ارتفاع باشد',
 			},
 			{
-				name: 'Only if Smaller',
+				name: 'فقط اگر کوچکتر باشد',
 				value: 'onlyIfSmaller',
-				description: 'Resize only if image is smaller than width or height',
+				description: 'تغییر اندازه فقط اگر تصویر کوچکتر از عرض یا ارتفاع باشد',
 			},
 			{
-				name: 'Percent',
+				name: 'درصد',
 				value: 'percent',
-				description: 'Width and height are specified in percents',
+				description: 'عرض و ارتفاع به درصد مشخص شده‌اند',
 			},
 		],
 		default: 'maximumArea',
@@ -668,14 +668,14 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['resize'],
 			},
 		},
-		description: 'How to resize the image',
+		description: 'نحوه تغییر اندازه تصویر',
 	},
 
 	// ----------------------------------
 	//         rotate
 	// ----------------------------------
 	{
-		displayName: 'Rotate',
+		displayName: 'چرخش',
 		name: 'rotate',
 		type: 'number',
 		typeOptions: {
@@ -688,10 +688,10 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['rotate'],
 			},
 		},
-		description: 'How much the image should be rotated',
+		description: 'میزان چرخش تصویر',
 	},
 	{
-		displayName: 'Background Color',
+		displayName: 'رنگ پس‌زمینه',
 		name: 'backgroundColor',
 		type: 'color',
 		default: '#ffffffff',
@@ -704,14 +704,14 @@ const nodeOperationOptions: INodeProperties[] = [
 			},
 		},
 		description:
-			'The color to use for the background when image gets rotated by anything which is not a multiple of 90',
+			'رنگی که برای پس‌زمینه استفاده شود زمانی که تصویر با چیزی که مضرب 90 نیست چرخانده می‌شود',
 	},
 
 	// ----------------------------------
 	//         shear
 	// ----------------------------------
 	{
-		displayName: 'Degrees X',
+		displayName: 'درجات X',
 		name: 'degreesX',
 		type: 'number',
 		default: 0,
@@ -720,10 +720,10 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['shear'],
 			},
 		},
-		description: 'X (horizontal) shear degrees',
+		description: 'درجات برش مایل X (افقی)',
 	},
 	{
-		displayName: 'Degrees Y',
+		displayName: 'درجات Y',
 		name: 'degreesY',
 		type: 'number',
 		default: 0,
@@ -732,14 +732,14 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['shear'],
 			},
 		},
-		description: 'Y (vertical) shear degrees',
+		description: 'درجات برش مایل Y (عمودی)',
 	},
 
 	// ----------------------------------
 	//         transparent
 	// ----------------------------------
 	{
-		displayName: 'Color',
+		displayName: 'رنگ',
 		name: 'color',
 		type: 'color',
 		default: '#ff0000',
@@ -748,41 +748,41 @@ const nodeOperationOptions: INodeProperties[] = [
 				operation: ['transparent'],
 			},
 		},
-		description: 'The color to make transparent',
+		description: 'رنگی که باید شفاف شود',
 	},
 ];
 
 export class EditImage implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Edit Image',
+		displayName: 'ویرایش تصویر',
 		name: 'editImage',
 		icon: 'fa:image',
 		iconColor: 'purple',
 		group: ['transform'],
 		version: 1,
-		description: 'Edits an image like blur, resize or adding border and text',
+		description: 'تصویر را ویرایش می‌کند مانند تار کردن، تغییر اندازه یا افزودن حاشیه و متن',
 		defaults: {
-			name: 'Edit Image',
+			name: 'ویرایش تصویر',
 			color: '#553399',
 		},
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
 		properties: [
 			{
-				displayName: 'Operation',
+				displayName: 'عملیات',
 				name: 'operation',
 				type: 'options',
 				noDataExpression: true,
 				options: [
 					{
-						name: 'Get Information',
+						name: 'دریافت اطلاعات',
 						value: 'information',
-						description: 'Returns image information like resolution',
+						description: 'اطلاعات تصویر مانند وضوح را برمی‌گرداند',
 					},
 					{
-						name: 'Multi Step',
+						name: 'چند مرحله‌ای',
 						value: 'multiStep',
-						description: 'Perform multiple operations',
+						description: 'انجام چندین عملیات',
 					},
 					...nodeOperations,
 				].sort((a, b) => {
@@ -797,20 +797,20 @@ export class EditImage implements INodeType {
 				default: 'border',
 			},
 			{
-				displayName: 'Property Name',
+				displayName: 'نام ویژگی',
 				name: 'dataPropertyName',
 				type: 'string',
 				default: 'data',
-				description: 'Name of the binary property in which the image data can be found',
+				description: 'نام ویژگی باینری که داده‌های تصویر در آن یافت می‌شود',
 			},
 
 			// ----------------------------------
 			//         multiStep
 			// ----------------------------------
 			{
-				displayName: 'Operations',
+				displayName: 'عملیات',
 				name: 'operations',
-				placeholder: 'Add Operation',
+				placeholder: 'افزودن عملیات',
 				type: 'fixedCollection',
 				typeOptions: {
 					multipleValues: true,
@@ -821,15 +821,15 @@ export class EditImage implements INodeType {
 						operation: ['multiStep'],
 					},
 				},
-				description: 'The operations to perform',
+				description: 'عملیات برای انجام',
 				default: {},
 				options: [
 					{
 						name: 'operations',
-						displayName: 'Operations',
+						displayName: 'عملیات',
 						values: [
 							{
-								displayName: 'Operation',
+								displayName: 'عملیات',
 								name: 'operation',
 								type: 'options',
 								noDataExpression: true,
@@ -838,7 +838,7 @@ export class EditImage implements INodeType {
 							},
 							...nodeOperationOptions,
 							{
-								displayName: 'Font Name or ID',
+								displayName: 'نام یا شناسه فونت',
 								name: 'font',
 								type: 'options',
 								displayOptions: {
@@ -851,7 +851,7 @@ export class EditImage implements INodeType {
 								},
 								default: '',
 								description:
-									'The font to use. Defaults to Arial. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+									'فونت برای استفاده. پیش‌فرض Arial است. از لیست انتخاب کنید، یا با استفاده از یک <a href="https://docs.n8n.io/code/expressions/">عبارت</a> یک شناسه مشخص کنید.',
 							},
 						],
 					},
@@ -860,10 +860,10 @@ export class EditImage implements INodeType {
 
 			...nodeOperationOptions,
 			{
-				displayName: 'Options',
+				displayName: 'گزینه‌ها',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'Add option',
+				placeholder: 'افزودن گزینه',
 				default: {},
 				displayOptions: {
 					hide: {
@@ -872,14 +872,14 @@ export class EditImage implements INodeType {
 				},
 				options: [
 					{
-						displayName: 'File Name',
+						displayName: 'نام فایل',
 						name: 'fileName',
 						type: 'string',
 						default: '',
-						description: 'File name to set in binary data',
+						description: 'نام فایل برای تنظیم در داده‌های باینری',
 					},
 					{
-						displayName: 'Font Name or ID',
+						displayName: 'نام یا شناسه فونت',
 						name: 'font',
 						type: 'options',
 						displayOptions: {
@@ -892,10 +892,10 @@ export class EditImage implements INodeType {
 						},
 						default: '',
 						description:
-							'The font to use. Defaults to Arial. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
+							'فونت برای استفاده. پیش‌فرض Arial است. از لیست انتخاب کنید، یا با استفاده از یک <a href="https://docs.n8n.io/code/expressions/">عبارت</a> یک شناسه مشخص کنید.',
 					},
 					{
-						displayName: 'Format',
+						displayName: 'فرمت',
 						name: 'format',
 						type: 'options',
 						options: [
@@ -925,10 +925,10 @@ export class EditImage implements INodeType {
 							},
 						],
 						default: 'jpeg',
-						description: 'Set the output image format',
+						description: 'تنظیم فرمت تصویر خروجی',
 					},
 					{
-						displayName: 'Quality',
+						displayName: 'کیفیت',
 						name: 'quality',
 						type: 'number',
 						typeOptions: {
@@ -941,7 +941,7 @@ export class EditImage implements INodeType {
 								format: ['jpeg', 'png', 'tiff'],
 							},
 						},
-						description: 'Sets the jpeg|png|tiff compression level from 0 to 100 (best)',
+						description: 'تنظیم سطح فشرده‌سازی jpeg|png|tiff از 0 تا 100 (بهترین)',
 					},
 				],
 			},

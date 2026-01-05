@@ -309,3 +309,75 @@
 	transition: 0.2s;
 	opacity: 0;
 }
+
+/* RTL Support */
+html[dir='rtl'] {
+	@include mixins.b(menu) {
+		padding-left: auto;
+		padding-right: 0;
+
+		@include mixins.m(horizontal) {
+			& > .el-menu-item {
+				float: right;
+			}
+			& > .el-sub-menu {
+				float: right;
+
+				& .el-sub-menu__icon-arrow {
+					margin-left: 0;
+					margin-right: 8px;
+				}
+			}
+		}
+
+		@include mixins.m(collapse) {
+			.el-sub-menu {
+				& .el-menu {
+					margin-left: 0;
+					margin-right: 5px;
+					left: auto;
+					right: 100%;
+				}
+			}
+		}
+
+		@include mixins.m(popup) {
+			&-right-start {
+				margin-left: 0;
+				margin-right: 5px;
+			}
+		}
+	}
+
+	@include mixins.b(menu-item) {
+		& [class^='el-icon-'] {
+			margin-right: 0;
+			margin-left: 5px;
+		}
+	}
+
+	@include mixins.b(sub-menu) {
+		padding-left: auto;
+		padding-right: 0;
+
+		& .el-menu-item {
+			padding: 0 20px 0 45px;
+		}
+
+		@include mixins.e(icon-arrow) {
+			right: auto;
+			left: 20px;
+		}
+
+		[class^='el-icon-'] {
+			margin-right: 0;
+			margin-left: 5px;
+		}
+	}
+
+	@include mixins.b(menu-item-group) {
+		@include mixins.e(title) {
+			padding: 7px 20px 7px 0;
+		}
+	}
+}

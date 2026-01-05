@@ -27,16 +27,16 @@ const supportedAlgorithms = getHashes()
 
 export class Crypto implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Crypto',
+		displayName: 'رمزنگاری',
 		name: 'crypto',
 		icon: 'fa:key',
 		iconColor: 'green',
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["action"]}}',
-		description: 'Provide cryptographic utilities',
+		description: 'ارائه ابزارهای رمزنگاری',
 		defaults: {
-			name: 'Crypto',
+			name: 'رمزنگاری',
 			color: '#408000',
 		},
 		usableAsTool: true,
@@ -44,39 +44,39 @@ export class Crypto implements INodeType {
 		outputs: [NodeConnectionTypes.Main],
 		properties: [
 			{
-				displayName: 'Action',
+				displayName: 'عملیات',
 				name: 'action',
 				type: 'options',
 				options: [
 					{
-						name: 'Generate',
-						description: 'Generate random string',
+						name: 'تولید',
+						description: 'تولید رشته تصادفی',
 						value: 'generate',
-						action: 'Generate random string',
+						action: 'تولید رشته تصادفی',
 					},
 					{
-						name: 'Hash',
-						description: 'Hash a text or file in a specified format',
+						name: 'هش',
+						description: 'هش کردن یک متن یا فایل در فرمت مشخص شده',
 						value: 'hash',
-						action: 'Hash a text or file in a specified format',
+						action: 'هش کردن یک متن یا فایل در فرمت مشخص شده',
 					},
 					{
 						name: 'Hmac',
-						description: 'Hmac a text or file in a specified format',
+						description: 'Hmac کردن یک متن یا فایل در فرمت مشخص شده',
 						value: 'hmac',
-						action: 'HMAC a text or file in a specified format',
+						action: 'HMAC کردن یک متن یا فایل در فرمت مشخص شده',
 					},
 					{
-						name: 'Sign',
-						description: 'Sign a string using a private key',
+						name: 'امضا',
+						description: 'امضای یک رشته با استفاده از کلید خصوصی',
 						value: 'sign',
-						action: 'Sign a string using a private key',
+						action: 'امضای یک رشته با استفاده از کلید خصوصی',
 					},
 				],
 				default: 'hash',
 			},
 			{
-				displayName: 'Type',
+				displayName: 'نوع',
 				name: 'type',
 				displayOptions: {
 					show: {
@@ -115,11 +115,11 @@ export class Crypto implements INodeType {
 					},
 				],
 				default: 'MD5',
-				description: 'The hash type to use',
+				description: 'نوع هش برای استفاده',
 				required: true,
 			},
 			{
-				displayName: 'Binary File',
+				displayName: 'فایل باینری',
 				name: 'binaryData',
 				type: 'boolean',
 				default: false,
@@ -129,10 +129,10 @@ export class Crypto implements INodeType {
 						action: ['hash', 'hmac'],
 					},
 				},
-				description: 'Whether the data to hashed should be taken from binary field',
+				description: 'آیا داده‌های هش شده از فیلد باینری گرفته شوند',
 			},
 			{
-				displayName: 'Binary Property Name',
+				displayName: 'نام ویژگی باینری',
 				name: 'binaryPropertyName',
 				displayOptions: {
 					show: {
@@ -142,11 +142,11 @@ export class Crypto implements INodeType {
 				},
 				type: 'string',
 				default: 'data',
-				description: 'Name of the binary property which contains the input data',
+				description: 'نام ویژگی باینری که حاوی داده‌های ورودی است',
 				required: true,
 			},
 			{
-				displayName: 'Value',
+				displayName: 'مقدار',
 				name: 'value',
 				displayOptions: {
 					show: {
@@ -156,11 +156,11 @@ export class Crypto implements INodeType {
 				},
 				type: 'string',
 				default: '',
-				description: 'The value that should be hashed',
+				description: 'مقداری که باید هش شود',
 				required: true,
 			},
 			{
-				displayName: 'Property Name',
+				displayName: 'نام ویژگی',
 				name: 'dataPropertyName',
 				type: 'string',
 				default: 'data',
@@ -170,10 +170,10 @@ export class Crypto implements INodeType {
 						action: ['hash'],
 					},
 				},
-				description: 'Name of the property to which to write the hash',
+				description: 'نام ویژگی برای نوشتن هش در آن',
 			},
 			{
-				displayName: 'Encoding',
+				displayName: 'کدگذاری',
 				name: 'encoding',
 				displayOptions: {
 					show: {
@@ -195,7 +195,7 @@ export class Crypto implements INodeType {
 				required: true,
 			},
 			{
-				displayName: 'Type',
+				displayName: 'نوع',
 				name: 'type',
 				displayOptions: {
 					show: {
@@ -234,11 +234,11 @@ export class Crypto implements INodeType {
 					},
 				],
 				default: 'MD5',
-				description: 'The hash type to use',
+				description: 'نوع هش برای استفاده',
 				required: true,
 			},
 			{
-				displayName: 'Value',
+				displayName: 'مقدار',
 				name: 'value',
 				displayOptions: {
 					show: {
@@ -248,11 +248,11 @@ export class Crypto implements INodeType {
 				},
 				type: 'string',
 				default: '',
-				description: 'The value of which the hmac should be created',
+				description: 'مقداری که hmac آن باید ایجاد شود',
 				required: true,
 			},
 			{
-				displayName: 'Property Name',
+				displayName: 'نام ویژگی',
 				name: 'dataPropertyName',
 				type: 'string',
 				default: 'data',
@@ -262,10 +262,10 @@ export class Crypto implements INodeType {
 						action: ['hmac'],
 					},
 				},
-				description: 'Name of the property to which to write the hmac',
+				description: 'نام ویژگی برای نوشتن hmac در آن',
 			},
 			{
-				displayName: 'Secret',
+				displayName: 'راز',
 				name: 'secret',
 				displayOptions: {
 					show: {
@@ -278,7 +278,7 @@ export class Crypto implements INodeType {
 				required: true,
 			},
 			{
-				displayName: 'Encoding',
+				displayName: 'کدگذاری',
 				name: 'encoding',
 				displayOptions: {
 					show: {
@@ -300,7 +300,7 @@ export class Crypto implements INodeType {
 				required: true,
 			},
 			{
-				displayName: 'Value',
+				displayName: 'مقدار',
 				name: 'value',
 				displayOptions: {
 					show: {
@@ -309,11 +309,11 @@ export class Crypto implements INodeType {
 				},
 				type: 'string',
 				default: '',
-				description: 'The value that should be signed',
+				description: 'مقداری که باید امضا شود',
 				required: true,
 			},
 			{
-				displayName: 'Property Name',
+				displayName: 'نام ویژگی',
 				name: 'dataPropertyName',
 				type: 'string',
 				default: 'data',
@@ -323,10 +323,10 @@ export class Crypto implements INodeType {
 						action: ['sign'],
 					},
 				},
-				description: 'Name of the property to which to write the signed value',
+				description: 'نام ویژگی برای نوشتن مقدار امضا شده در آن',
 			},
 			{
-				displayName: 'Algorithm Name or ID',
+				displayName: 'نام یا شناسه الگوریتم',
 				name: 'algorithm',
 				displayOptions: {
 					show: {
@@ -335,13 +335,13 @@ export class Crypto implements INodeType {
 				},
 				type: 'options',
 				description:
-					'Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>',
+					'از لیست انتخاب کنید، یا با استفاده از یک <a href="https://docs.n8n.io/code/expressions/">عبارت</a> یک شناسه مشخص کنید',
 				options: supportedAlgorithms,
 				default: '',
 				required: true,
 			},
 			{
-				displayName: 'Encoding',
+				displayName: 'کدگذاری',
 				name: 'encoding',
 				displayOptions: {
 					show: {
@@ -363,7 +363,7 @@ export class Crypto implements INodeType {
 				required: true,
 			},
 			{
-				displayName: 'Private Key',
+				displayName: 'کلید خصوصی',
 				name: 'privateKey',
 				displayOptions: {
 					show: {
@@ -371,12 +371,12 @@ export class Crypto implements INodeType {
 					},
 				},
 				type: 'string',
-				description: 'Private key to use when signing the string',
+				description: 'کلید خصوصی برای استفاده هنگام امضای رشته',
 				default: '',
 				required: true,
 			},
 			{
-				displayName: 'Property Name',
+				displayName: 'نام ویژگی',
 				name: 'dataPropertyName',
 				type: 'string',
 				default: 'data',
@@ -386,10 +386,10 @@ export class Crypto implements INodeType {
 						action: ['generate'],
 					},
 				},
-				description: 'Name of the property to which to write the random string',
+				description: 'نام ویژگی برای نوشتن رشته تصادفی در آن',
 			},
 			{
-				displayName: 'Type',
+				displayName: 'نوع',
 				name: 'encodingType',
 				displayOptions: {
 					show: {
@@ -416,15 +416,15 @@ export class Crypto implements INodeType {
 					},
 				],
 				default: 'uuid',
-				description: 'Encoding that will be used to generate string',
+				description: 'کدگذاری که برای تولید رشته استفاده خواهد شد',
 				required: true,
 			},
 			{
-				displayName: 'Length',
+				displayName: 'طول',
 				name: 'stringLength',
 				type: 'number',
 				default: 32,
-				description: 'Length of the generated string',
+				description: 'طول رشته تولید شده',
 				displayOptions: {
 					show: {
 						action: ['generate'],

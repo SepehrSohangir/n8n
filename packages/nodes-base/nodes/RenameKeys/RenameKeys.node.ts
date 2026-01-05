@@ -16,25 +16,25 @@ interface IRenameKey {
 
 export class RenameKeys implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Rename Keys',
+		displayName: 'تغییر نام کلیدها',
 		name: 'renameKeys',
 		icon: 'fa:edit',
 		iconColor: 'crimson',
 		group: ['transform'],
 		version: 1,
-		description: 'Update item field names',
+		description: 'به‌روزرسانی نام فیلدهای آیتم',
 		defaults: {
-			name: 'Rename Keys',
+			name: 'تغییر نام کلیدها',
 			color: '#772244',
 		},
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
 		properties: [
 			{
-				displayName: 'Keys',
+				displayName: 'کلیدها',
 				name: 'keys',
-				placeholder: 'Add new key',
-				description: 'Adds a key which should be renamed',
+				placeholder: 'افزودن کلید جدید',
+				description: 'افزودن کلیدی که باید تغییر نام داده شود',
 				type: 'fixedCollection',
 				typeOptions: {
 					multipleValues: true,
@@ -43,44 +43,44 @@ export class RenameKeys implements INodeType {
 				default: {},
 				options: [
 					{
-						displayName: 'Key',
+						displayName: 'کلید',
 						name: 'key',
 						values: [
 							{
-								displayName: 'Current Key Name',
+								displayName: 'نام کلید فعلی',
 								name: 'currentKey',
 								type: 'string',
 								default: '',
 								placeholder: 'currentKey',
 								requiresDataPath: 'single',
 								description:
-									'The current name of the key. It is also possible to define deep keys by using dot-notation like for example: "level1.level2.currentKey".',
+									'نام فعلی کلید. همچنین می‌توان کلیدهای عمیق را با استفاده از نماد نقطه مانند "level1.level2.currentKey" تعریف کرد.',
 							},
 							{
-								displayName: 'New Key Name',
+								displayName: 'نام کلید جدید',
 								name: 'newKey',
 								type: 'string',
 								default: '',
 								placeholder: 'newKey',
 								description:
-									'The name the key should be renamed to. It is also possible to define deep keys by using dot-notation like for example: "level1.level2.newKey".',
+									'نامی که کلید باید به آن تغییر نام داده شود. همچنین می‌توان کلیدهای عمیق را با استفاده از نماد نقطه مانند "level1.level2.newKey" تعریف کرد.',
 							},
 						],
 					},
 				],
 			},
 			{
-				displayName: 'Additional Options',
+				displayName: 'گزینه‌های اضافی',
 				name: 'additionalOptions',
 				type: 'collection',
 				default: {},
-				placeholder: 'Add option',
+				placeholder: 'افزودن گزینه',
 				options: [
 					{
 						displayName: 'Regex',
 						name: 'regexReplacement',
-						placeholder: 'Add new regular expression',
-						description: 'Adds a regular expression',
+						placeholder: 'افزودن عبارت باقاعده جدید',
+						description: 'افزودن یک عبارت باقاعده',
 						type: 'fixedCollection',
 						typeOptions: {
 							multipleValues: true,
@@ -89,55 +89,55 @@ export class RenameKeys implements INodeType {
 						default: {},
 						options: [
 							{
-								displayName: 'Replacement',
+								displayName: 'جایگزینی',
 								name: 'replacements',
 								values: [
 									{
 										displayName:
-											'Be aware that by using regular expression previously renamed keys can be affected',
+											'توجه داشته باشید که با استفاده از عبارت باقاعده، کلیدهای قبلاً تغییر نام داده شده ممکن است تحت تأثیر قرار گیرند',
 										name: 'regExNotice',
 										type: 'notice',
 										default: '',
 									},
 									{
-										displayName: 'Regular Expression',
+										displayName: 'عبارت باقاعده',
 										name: 'searchRegex',
 										type: 'string',
 										default: '',
-										placeholder: 'e.g. [N-n]ame',
-										description: 'Regex to match the key name',
-										hint: 'Learn more and test RegEx <a href="https://regex101.com/">here</a>',
+										placeholder: 'مثلاً [N-n]ame',
+										description: 'Regex برای تطبیق نام کلید',
+										hint: 'در مورد RegEx <a href="https://regex101.com/">اینجا</a> بیشتر بیاموزید و آن را تست کنید',
 									},
 									{
-										displayName: 'Replace With',
+										displayName: 'جایگزینی با',
 										name: 'replaceRegex',
 										type: 'string',
 										default: '',
 										placeholder: 'replacedName',
 										description:
-											"The name the key/s should be renamed to. It's possible to use regex captures e.g. $1, $2, ...",
+											'نامی که کلید(ها) باید به آن تغییر نام داده شوند. می‌توان از گروه‌های تطبیق regex مانند $1, $2, ... استفاده کرد.',
 									},
 									{
-										displayName: 'Options',
+										displayName: 'گزینه‌ها',
 										name: 'options',
 										type: 'collection',
 										default: {},
-										placeholder: 'Add Regex Option',
+										placeholder: 'افزودن گزینه Regex',
 										options: [
 											{
-												displayName: 'Case Insensitive',
+												displayName: 'غیر حساس به حروف کوچک و بزرگ',
 												name: 'caseInsensitive',
 												type: 'boolean',
-												description: 'Whether to use case insensitive match',
+												description: 'آیا از تطابق غیر حساس به حروف کوچک و بزرگ استفاده شود',
 												default: false,
 											},
 											{
-												displayName: 'Max Depth',
+												displayName: 'حداکثر عمق',
 												name: 'depth',
 												type: 'number',
 												default: -1,
-												description: 'Maximum depth to replace keys',
-												hint: 'Specify number for depth level (-1 for unlimited, 0 for top level only)',
+												description: 'حداکثر عمق برای جایگزینی کلیدها',
+												hint: 'عدد را برای سطح عمق مشخص کنید (-1 برای نامحدود، 0 فقط برای سطح بالا)',
 											},
 										],
 									},

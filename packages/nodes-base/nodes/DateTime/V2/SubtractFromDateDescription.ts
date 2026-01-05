@@ -5,7 +5,7 @@ import { includeInputFields } from './common.descriptions';
 export const SubtractFromDateDescription: INodeProperties[] = [
 	{
 		displayName:
-			"You can also do this using an expression, e.g. <code>{{your_date.minus(5, 'minutes')}}</code>. <a target='_blank' href='https://docs.n8n.io/code/cookbook/luxon/'>More info</a>",
+			"همچنین می‌توانید این کار را با استفاده از یک عبارت انجام دهید، مثلاً <code>{{your_date.minus(5, 'minutes')}}</code>. <a target='_blank' href='https://docs.n8n.io/code/cookbook/luxon/'>اطلاعات بیشتر</a>",
 		name: 'notice',
 		type: 'notice',
 		default: '',
@@ -16,10 +16,10 @@ export const SubtractFromDateDescription: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Date to Subtract From',
+		displayName: 'تاریخ برای کم کردن',
 		name: 'magnitude',
 		type: 'string',
-		description: 'The date that you want to change',
+		description: 'تاریخی که می‌خواهید تغییر دهید',
 		default: '',
 		displayOptions: {
 			show: {
@@ -29,9 +29,9 @@ export const SubtractFromDateDescription: INodeProperties[] = [
 		required: true,
 	},
 	{
-		displayName: 'Time Unit to Subtract',
+		displayName: 'واحد زمان برای کم کردن',
 		name: 'timeUnit',
-		description: 'Time unit for Duration parameter below',
+		description: 'واحد زمان برای پارامتر مدت زمان زیر',
 		displayOptions: {
 			show: {
 				operation: ['subtractFromDate'],
@@ -41,39 +41,39 @@ export const SubtractFromDateDescription: INodeProperties[] = [
 		// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 		options: [
 			{
-				name: 'Years',
+				name: 'سال',
 				value: 'years',
 			},
 			{
-				name: 'Quarters',
+				name: 'سه‌ماهه',
 				value: 'quarters',
 			},
 			{
-				name: 'Months',
+				name: 'ماه',
 				value: 'months',
 			},
 			{
-				name: 'Weeks',
+				name: 'هفته',
 				value: 'weeks',
 			},
 			{
-				name: 'Days',
+				name: 'روز',
 				value: 'days',
 			},
 			{
-				name: 'Hours',
+				name: 'ساعت',
 				value: 'hours',
 			},
 			{
-				name: 'Minutes',
+				name: 'دقیقه',
 				value: 'minutes',
 			},
 			{
-				name: 'Seconds',
+				name: 'ثانیه',
 				value: 'seconds',
 			},
 			{
-				name: 'Milliseconds',
+				name: 'میلی‌ثانیه',
 				value: 'milliseconds',
 			},
 		],
@@ -81,10 +81,10 @@ export const SubtractFromDateDescription: INodeProperties[] = [
 		required: true,
 	},
 	{
-		displayName: 'Duration',
+		displayName: 'مدت زمان',
 		name: 'duration',
 		type: 'number',
-		description: 'The number of time units to subtract from the date',
+		description: 'تعداد واحدهای زمانی برای کم کردن از تاریخ',
 		default: 0,
 		displayOptions: {
 			show: {
@@ -93,11 +93,11 @@ export const SubtractFromDateDescription: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Output Field Name',
+		displayName: 'نام فیلد خروجی',
 		name: 'outputFieldName',
 		type: 'string',
 		default: 'newDate',
-		description: 'Name of the field to put the output in',
+		description: 'نام فیلدی که خروجی در آن قرار می‌گیرد',
 		displayOptions: {
 			show: {
 				operation: ['subtractFromDate'],
@@ -105,10 +105,10 @@ export const SubtractFromDateDescription: INodeProperties[] = [
 		},
 	},
 	{
-		displayName: 'Options',
+		displayName: 'گزینه‌ها',
 		name: 'options',
 		type: 'collection',
-		placeholder: 'Add option',
+		placeholder: 'افزودن گزینه',
 		displayOptions: {
 			show: {
 				operation: ['subtractFromDate'],

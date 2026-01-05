@@ -15,7 +15,7 @@ const versionDescription: INodeTypeDescription = {
 	icon: 'fa:pen',
 	group: ['input'],
 	version: [1, 2],
-	description: 'Sets values on items and optionally remove other values',
+	description: 'تنظیم مقادیر روی آیتم‌ها و به صورت اختیاری حذف مقادیر دیگر',
 	defaults: {
 		name: 'Set',
 		color: '#0000FF',
@@ -24,88 +24,88 @@ const versionDescription: INodeTypeDescription = {
 	outputs: [NodeConnectionTypes.Main],
 	properties: [
 		{
-			displayName: 'Keep Only Set',
+			displayName: 'فقط نگه داشتن تنظیم شده',
 			name: 'keepOnlySet',
 			type: 'boolean',
 			default: false,
-			description: 'Whether only the values set on this node should be kept and all others removed',
+			description: 'آیا فقط مقادیر تنظیم شده در این نود باید حفظ شوند و همه بقیه حذف شوند',
 		},
 		{
-			displayName: 'Values to Set',
+			displayName: 'مقادیر برای تنظیم',
 			name: 'values',
-			placeholder: 'Add Value',
+			placeholder: 'افزودن مقدار',
 			type: 'fixedCollection',
 			typeOptions: {
 				multipleValues: true,
 				sortable: true,
 			},
-			description: 'The value to set',
+			description: 'مقدار برای تنظیم',
 			default: {},
 			options: [
 				{
 					name: 'boolean',
-					displayName: 'Boolean',
+					displayName: 'بولین',
 					values: [
 						{
-							displayName: 'Name',
+							displayName: 'نام',
 							name: 'name',
 							type: 'string',
 							requiresDataPath: 'single',
 							default: 'propertyName',
 							description:
-								'Name of the property to write data to. Supports dot-notation. Example: "data.person[0].name"',
+								'نام ویژگی برای نوشتن داده در آن. از نماد نقطه پشتیبانی می‌کند. مثال: "data.person[0].name"',
 						},
 						{
-							displayName: 'Value',
+							displayName: 'مقدار',
 							name: 'value',
 							type: 'boolean',
 							default: false,
 							// eslint-disable-next-line n8n-nodes-base/node-param-description-boolean-without-whether
-							description: 'The boolean value to write in the property',
+							description: 'مقدار بولین برای نوشتن در ویژگی',
 						},
 					],
 				},
 				{
 					name: 'number',
-					displayName: 'Number',
+					displayName: 'عدد',
 					values: [
 						{
-							displayName: 'Name',
+							displayName: 'نام',
 							name: 'name',
 							type: 'string',
 							default: 'propertyName',
 							requiresDataPath: 'single',
 							description:
-								'Name of the property to write data to. Supports dot-notation. Example: "data.person[0].name"',
+								'نام ویژگی برای نوشتن داده در آن. از نماد نقطه پشتیبانی می‌کند. مثال: "data.person[0].name"',
 						},
 						{
-							displayName: 'Value',
+							displayName: 'مقدار',
 							name: 'value',
 							type: 'number',
 							default: 0,
-							description: 'The number value to write in the property',
+							description: 'مقدار عددی برای نوشتن در ویژگی',
 						},
 					],
 				},
 				{
 					name: 'string',
-					displayName: 'String',
+					displayName: 'رشته',
 					values: [
 						{
-							displayName: 'Name',
+							displayName: 'نام',
 							name: 'name',
 							type: 'string',
 							default: 'propertyName',
 							requiresDataPath: 'single',
 							description:
-								'Name of the property to write data to. Supports dot-notation. Example: "data.person[0].name"',
+								'نام ویژگی برای نوشتن داده در آن. از نماد نقطه پشتیبانی می‌کند. مثال: "data.person[0].name"',
 						},
 						{
-							displayName: 'Value',
+							displayName: 'مقدار',
 							name: 'value',
 							type: 'string',
 							default: '',
-							description: 'The string value to write in the property',
+							description: 'مقدار رشته برای نوشتن در ویژگی',
 						},
 					],
 				},
@@ -113,20 +113,20 @@ const versionDescription: INodeTypeDescription = {
 		},
 
 		{
-			displayName: 'Options',
+			displayName: 'گزینه‌ها',
 			name: 'options',
 			type: 'collection',
-			placeholder: 'Add option',
+			placeholder: 'افزودن گزینه',
 			default: {},
 			options: [
 				{
-					displayName: 'Dot Notation',
+					displayName: 'نماد نقطه',
 					name: 'dotNotation',
 					type: 'boolean',
 					default: true,
 					// eslint-disable-next-line n8n-nodes-base/node-param-description-boolean-without-whether
 					description:
-						'<p>By default, dot-notation is used in property names. This means that "a.b" will set the property "b" underneath "a" so { "a": { "b": value} }.<p></p>If that is not intended this can be deactivated, it will then set { "a.b": value } instead.</p>.',
+						'<p>به طور پیش‌فرض، نماد نقطه در نام ویژگی‌ها استفاده می‌شود. این به معنای آن است که "a.b" ویژگی "b" را زیر "a" تنظیم می‌کند بنابراین { "a": { "b": value} }.<p></p>اگر این مورد نظر نیست می‌تواند غیرفعال شود، سپس { "a.b": value } را تنظیم می‌کند.</p>.',
 				},
 			],
 		},

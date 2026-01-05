@@ -22,18 +22,18 @@ export class FilterV2 implements INodeType {
 			...baseDescription,
 			version: [2, 2.1, 2.2, 2.3],
 			defaults: {
-				name: 'Filter',
+				name: 'فیلتر',
 				color: '#229eff',
 			},
 			inputs: [NodeConnectionTypes.Main],
 			outputs: [NodeConnectionTypes.Main],
-			outputNames: ['Kept', 'Discarded'],
+			outputNames: ['نگه‌داشته شده', 'دور ریخته شده'],
 			parameterPane: 'wide',
 			properties: [
 				{
-					displayName: 'Conditions',
+					displayName: 'شرایط',
 					name: 'conditions',
-					placeholder: 'Add Condition',
+					placeholder: 'افزودن شرط',
 					type: 'filter',
 					default: {},
 					typeOptions: {
@@ -54,15 +54,15 @@ export class FilterV2 implements INodeType {
 					},
 				},
 				{
-					displayName: 'Options',
+					displayName: 'گزینه‌ها',
 					name: 'options',
 					type: 'collection',
-					placeholder: 'Add option',
+					placeholder: 'افزودن گزینه',
 					default: {},
 					options: [
 						{
-							displayName: 'Ignore Case',
-							description: 'Whether to ignore letter case when evaluating conditions',
+							displayName: 'نادیده گرفتن حروف بزرگ و کوچک',
+							description: 'آیا هنگام ارزیابی شرایط، حروف بزرگ و کوچک نادیده گرفته شود',
 							name: 'ignoreCase',
 							type: 'boolean',
 							default: true,

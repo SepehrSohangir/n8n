@@ -8,12 +8,12 @@ import { MergeV3 } from './v3/MergeV3.node';
 export class Merge extends VersionedNodeType {
 	constructor() {
 		const baseDescription: INodeTypeBaseDescription = {
-			displayName: 'Merge',
+			displayName: 'ادغام',
 			name: 'merge',
 			icon: 'file:merge.svg',
 			group: ['transform'],
 			subtitle: '={{$parameter["mode"]}}',
-			description: 'Merges data of multiple streams once data from both is available',
+			description: 'ادغام داده‌های چندین جریان پس از در دسترس بودن داده از هر دو',
 			defaultVersion: 3.2,
 		};
 

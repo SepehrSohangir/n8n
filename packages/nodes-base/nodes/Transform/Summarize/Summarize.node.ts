@@ -21,24 +21,24 @@ import {
 
 export class Summarize implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'Summarize',
+		displayName: 'خلاصه‌سازی',
 		name: 'summarize',
 		icon: 'file:summarize.svg',
 		group: ['transform'],
 		subtitle: '',
 		version: [1, 1.1],
-		description: 'Sum, count, max, etc. across items',
+		description: 'جمع، شمارش، حداکثر، و غیره در بین آیتم‌ها',
 		defaults: {
-			name: 'Summarize',
+			name: 'خلاصه‌سازی',
 		},
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
 		properties: [
 			{
-				displayName: 'Fields to Summarize',
+				displayName: 'فیلدهای برای خلاصه‌سازی',
 				name: 'fieldsToSummarize',
 				type: 'fixedCollection',
-				placeholder: 'Add Field',
+				placeholder: 'افزودن فیلد',
 				default: { values: [{ aggregation: 'count', field: '' }] },
 				typeOptions: {
 					multipleValues: true,
@@ -49,55 +49,55 @@ export class Summarize implements INodeType {
 						name: 'values',
 						values: [
 							{
-								displayName: 'Aggregation',
+								displayName: 'تجمیع',
 								name: 'aggregation',
 								type: 'options',
 								options: [
 									{
-										name: 'Append',
+										name: 'الحاق',
 										value: 'append',
 									},
 									{
-										name: 'Average',
+										name: 'میانگین',
 										value: 'average',
 									},
 									{
-										name: 'Concatenate',
+										name: 'الحاق رشته',
 										value: 'concatenate',
 									},
 									{
-										name: 'Count',
+										name: 'شمارش',
 										value: 'count',
 									},
 									{
-										name: 'Count Unique',
+										name: 'شمارش منحصر به فرد',
 										value: 'countUnique',
 									},
 									{
-										name: 'Max',
+										name: 'حداکثر',
 										value: 'max',
 									},
 									{
-										name: 'Min',
+										name: 'حداقل',
 										value: 'min',
 									},
 									{
-										name: 'Sum',
+										name: 'جمع',
 										value: 'sum',
 									},
 								],
 								default: 'count',
-								description: 'How to combine the values of the field you want to summarize',
+								description: 'نحوه ترکیب مقادیر فیلدی که می‌خواهید خلاصه‌سازی کنید',
 							},
 							//field repeated to have different descriptions for different aggregations --------------------------------
 							{
-								displayName: 'Field',
+								displayName: 'فیلد',
 								name: 'field',
 								type: 'string',
 								default: '',
-								description: 'The name of an input field that you want to summarize',
-								placeholder: 'e.g. cost',
-								hint: ' Enter the field name as text',
+								description: 'نام فیلد ورودی که می‌خواهید خلاصه‌سازی کنید',
+								placeholder: 'مثلاً هزینه',
+								hint: 'نام فیلد را به صورت متن وارد کنید',
 								displayOptions: {
 									hide: {
 										aggregation: [...NUMERICAL_AGGREGATIONS, 'countUnique', 'count', 'max', 'min'],
@@ -106,14 +106,14 @@ export class Summarize implements INodeType {
 								requiresDataPath: 'single',
 							},
 							{
-								displayName: 'Field',
+								displayName: 'فیلد',
 								name: 'field',
 								type: 'string',
 								default: '',
 								description:
-									'The name of an input field that you want to summarize. The field should contain numerical values; null, undefined, empty strings would be ignored.',
-								placeholder: 'e.g. cost',
-								hint: ' Enter the field name as text',
+									'نام فیلد ورودی که می‌خواهید خلاصه‌سازی کنید. فیلد باید شامل مقادیر عددی باشد؛ null، undefined، رشته‌های خالی نادیده گرفته می‌شوند.',
+								placeholder: 'مثلاً هزینه',
+								hint: 'نام فیلد را به صورت متن وارد کنید',
 								displayOptions: {
 									show: {
 										aggregation: NUMERICAL_AGGREGATIONS,
@@ -122,14 +122,14 @@ export class Summarize implements INodeType {
 								requiresDataPath: 'single',
 							},
 							{
-								displayName: 'Field',
+								displayName: 'فیلد',
 								name: 'field',
 								type: 'string',
 								default: '',
 								description:
-									'The name of an input field that you want to summarize; null, undefined, empty strings would be ignored',
-								placeholder: 'e.g. cost',
-								hint: ' Enter the field name as text',
+									'نام فیلد ورودی که می‌خواهید خلاصه‌سازی کنید؛ null، undefined، رشته‌های خالی نادیده گرفته می‌شوند',
+								placeholder: 'مثلاً هزینه',
+								hint: 'نام فیلد را به صورت متن وارد کنید',
 								displayOptions: {
 									show: {
 										aggregation: ['countUnique', 'count', 'max', 'min'],
@@ -139,7 +139,7 @@ export class Summarize implements INodeType {
 							},
 							// ----------------------------------------------------------------------------------------------------------
 							{
-								displayName: 'Include Empty Values',
+								displayName: 'شامل مقادیر خالی',
 								name: 'includeEmpty',
 								type: 'boolean',
 								default: false,
@@ -150,38 +150,38 @@ export class Summarize implements INodeType {
 								},
 							},
 							{
-								displayName: 'Separator',
+								displayName: 'جداکننده',
 								name: 'separateBy',
 								type: 'options',
 								default: ',',
 								// eslint-disable-next-line n8n-nodes-base/node-param-options-type-unsorted-items
 								options: [
 									{
-										name: 'Comma',
+										name: 'کاما',
 										value: ',',
 									},
 									{
-										name: 'Comma and Space',
+										name: 'کاما و فاصله',
 										value: ', ',
 									},
 									{
-										name: 'New Line',
+										name: 'خط جدید',
 										value: '\n',
 									},
 									{
-										name: 'None',
+										name: 'هیچ کدام',
 										value: '',
 									},
 									{
-										name: 'Space',
+										name: 'فاصله',
 										value: ' ',
 									},
 									{
-										name: 'Other',
+										name: 'دیگر',
 										value: 'other',
 									},
 								],
-								hint: 'What to insert between values',
+								hint: 'چه چیزی بین مقادیر وارد شود',
 								displayOptions: {
 									show: {
 										aggregation: ['concatenate'],
@@ -189,7 +189,7 @@ export class Summarize implements INodeType {
 								},
 							},
 							{
-								displayName: 'Custom Separator',
+								displayName: 'جداکننده سفارشی',
 								name: 'customSeparator',
 								type: 'string',
 								default: '',
@@ -206,13 +206,13 @@ export class Summarize implements INodeType {
 			},
 			// fieldsToSplitBy repeated to have different displayName for singleItem and separateItems -----------------------------
 			{
-				displayName: 'Fields to Split By',
+				displayName: 'فیلدهای برای تقسیم بر اساس',
 				name: 'fieldsToSplitBy',
 				type: 'string',
-				placeholder: 'e.g. country, city',
+				placeholder: 'مثلاً کشور، شهر',
 				default: '',
-				description: 'The name of the input fields that you want to split the summary by',
-				hint: 'Enter the name of the fields as text (separated by commas)',
+				description: 'نام فیلدهای ورودی که می‌خواهید خلاصه را بر اساس آنها تقسیم کنید',
+				hint: 'نام فیلدها را به صورت متن (با کاما جدا شده) وارد کنید',
 				displayOptions: {
 					hide: {
 						'/options.outputFormat': ['singleItem'],
@@ -221,13 +221,13 @@ export class Summarize implements INodeType {
 				requiresDataPath: 'multiple',
 			},
 			{
-				displayName: 'Fields to Group By',
+				displayName: 'فیلدهای برای گروه‌بندی بر اساس',
 				name: 'fieldsToSplitBy',
 				type: 'string',
-				placeholder: 'e.g. country, city',
+				placeholder: 'مثلاً کشور، شهر',
 				default: '',
-				description: 'The name of the input fields that you want to split the summary by',
-				hint: 'Enter the name of the fields as text (separated by commas)',
+				description: 'نام فیلدهای ورودی که می‌خواهید خلاصه را بر اساس آنها تقسیم کنید',
+				hint: 'نام فیلدها را به صورت متن (با کاما جدا شده) وارد کنید',
 				displayOptions: {
 					show: {
 						'/options.outputFormat': ['singleItem'],
@@ -237,19 +237,19 @@ export class Summarize implements INodeType {
 			},
 			// ----------------------------------------------------------------------------------------------------------
 			{
-				displayName: 'Options',
+				displayName: 'گزینه‌ها',
 				name: 'options',
 				type: 'collection',
-				placeholder: 'Add option',
+				placeholder: 'افزودن گزینه',
 				default: {},
 				options: [
 					{
-						displayName: 'Continue if Field Not Found',
+						displayName: 'ادامه در صورت عدم یافتن فیلد',
 						name: 'continueIfFieldNotFound',
 						type: 'boolean',
 						default: false,
 						description:
-							"Whether to continue if field to summarize can't be found in any items and return single empty item, otherwise an error would be thrown",
+							'آیا در صورت عدم یافتن فیلد برای خلاصه‌سازی در هیچ آیتمی، ادامه داده شود و یک آیتم خالی برگردانده شود، در غیر این صورت خطا پرتاب می‌شود',
 						displayOptions: {
 							hide: {
 								'@version': [{ _cnd: { gte: 1.1 } }],
@@ -257,32 +257,32 @@ export class Summarize implements INodeType {
 						},
 					},
 					{
-						displayName: 'Disable Dot Notation',
+						displayName: 'غیرفعال کردن نماد نقطه',
 						name: 'disableDotNotation',
 						type: 'boolean',
 						default: false,
 						description:
-							'Whether to disallow referencing child fields using `parent.child` in the field name',
+							'آیا ارجاع به فیلدهای فرزند با استفاده از `parent.child` در نام فیلد مجاز نباشد',
 					},
 					{
-						displayName: 'Output Format',
+						displayName: 'فرمت خروجی',
 						name: 'outputFormat',
 						type: 'options',
 						default: 'separateItems',
 						options: [
 							{
-								name: 'Each Split in a Separate Item',
+								name: 'هر تقسیم در یک آیتم جداگانه',
 								value: 'separateItems',
 							},
 							{
-								name: 'All Splits in a Single Item',
+								name: 'همه تقسیم‌ها در یک آیتم واحد',
 								value: 'singleItem',
 							},
 						],
 					},
 					{
 						// eslint-disable-next-line n8n-nodes-base/node-param-display-name-miscased
-						displayName: 'Ignore items without valid fields to group by',
+						displayName: 'نادیده گرفتن آیتم‌های بدون فیلدهای معتبر برای گروه‌بندی',
 						name: 'skipEmptySplitFields',
 						type: 'boolean',
 						default: false,

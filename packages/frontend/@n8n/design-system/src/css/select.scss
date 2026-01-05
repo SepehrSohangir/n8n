@@ -178,3 +178,52 @@
 		}
 	}
 }
+
+/* RTL Support */
+html[dir='rtl'] {
+	@include mixins.b(select) {
+		.el-select__tags + .el-input {
+			input {
+				padding: 0 var(--spacing--2xs) 0 0;
+			}
+		}
+
+		.el-input__inner {
+			padding-right: 0;
+			padding-left: 35px;
+		}
+
+		.el-input {
+			&__prefix {
+				left: auto;
+				right: var(--spacing--2xs);
+			}
+
+			&--prefix .el-input__inner {
+				padding-left: 0;
+				padding-right: 26px;
+			}
+		}
+
+		@include mixins.e(input) {
+			margin-left: 0;
+			margin-right: var(--spacing--2xs);
+		}
+
+		@include mixins.e(close) {
+			right: auto;
+			left: 25px;
+		}
+
+		.el-tag {
+			margin: 2px 6px 2px 0;
+
+			&__close.el-icon-close {
+				right: auto;
+				left: -7px;
+				margin-right: 0;
+				margin-left: 6px;
+			}
+		}
+	}
+}

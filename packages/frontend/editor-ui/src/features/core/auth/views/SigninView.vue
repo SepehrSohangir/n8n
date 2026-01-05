@@ -197,10 +197,10 @@ const cacheCredentials = (form: EmailOrLdapLoginIdAndPassword) => {
 	password.value = form.password;
 };
 
-// Auto-login in dev mode when environment variables are set
+// Auto-login when environment variables are set (works in both dev and production builds)
 onMounted(async () => {
-	// Only auto-login in dev mode and if user is not already logged in
-	if (import.meta.env.DEV && !usersStore.currentUser) {
+	// Auto-login if user is not already logged in and credentials are provided
+	if (!usersStore.currentUser) {
 		const devUsername = import.meta.env.VUE_APP_DEV_USERNAME;
 		const devPassword = import.meta.env.VUE_APP_DEV_PASSWORD;
 

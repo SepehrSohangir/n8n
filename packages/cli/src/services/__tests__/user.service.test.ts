@@ -28,7 +28,7 @@ describe('UserService', () => {
 		host: 'localhost',
 		path: '/',
 		port: 5678,
-		listen_address: '::',
+		listen_address: '0.0.0.0',
 		protocol: 'http',
 		editorBaseUrl: '',
 	});

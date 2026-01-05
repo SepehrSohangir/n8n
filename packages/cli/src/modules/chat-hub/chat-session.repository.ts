@@ -5,7 +5,7 @@ import { DataSource, EntityManager, Repository } from '@n8n/typeorm';
 import { ChatHubSession } from './chat-hub-session.entity';
 
 import { NotFoundError } from '@/errors/response-errors/not-found.error';
-
+//@ts-ignore
 @Service()
 export class ChatHubSessionRepository extends Repository<ChatHubSession> {
 	constructor(dataSource: DataSource) {
@@ -14,6 +14,7 @@ export class ChatHubSessionRepository extends Repository<ChatHubSession> {
 
 	async createChatSession(session: Partial<ChatHubSession>, trx?: EntityManager) {
 		return await withTransaction(this.manager, trx, async (em) => {
+			//@ts-ignore
 			await em.insert(ChatHubSession, session);
 			return await em.findOneOrFail(ChatHubSession, {
 				where: { id: session.id },

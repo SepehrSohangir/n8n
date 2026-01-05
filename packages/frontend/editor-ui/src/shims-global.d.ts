@@ -42,6 +42,8 @@ declare global {
 			PROD: boolean;
 			NODE_ENV: 'development' | 'production';
 			VUE_APP_URL_BASE_API: string;
+			VUE_APP_DEV_USERNAME?: string;
+			VUE_APP_DEV_PASSWORD?: string;
 			VUE_SCAN: boolean;
 		};
 	}

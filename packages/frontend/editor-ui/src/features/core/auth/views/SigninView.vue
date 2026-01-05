@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, reactive, ref } from 'vue';
+import { computed, onMounted, reactive, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import AuthView from './AuthView.vue';
@@ -196,6 +196,27 @@ const cacheCredentials = (form: EmailOrLdapLoginIdAndPassword) => {
 	emailOrLdapLoginId.value = form.emailOrLdapLoginId;
 	password.value = form.password;
 };
+
+// Auto-login in dev mode when environment variables are set
+onMounted(async () => {
+	// Only auto-login in dev mode and if user is not already logged in
+	if (import.meta.env.DEV && !usersStore.currentUser) {
+		const devUsername = import.meta.env.VUE_APP_DEV_USERNAME;
+		const devPassword = import.meta.env.VUE_APP_DEV_PASSWORD;
+
+		if (devUsername && devPassword) {
+			emailOrLdapLoginId.value = devUsername;
+			password.value = devPassword;
+
+			// Wait a bit for the form and stores to be ready, then auto-login
+			await new Promise((resolve) => setTimeout(resolve, 200));
+			await login({
+				emailOrLdapLoginId: devUsername,
+				password: devPassword,
+			});
+		}
+	}
+});
 </script>
 
 <template>
